@@ -1,9 +1,3 @@
+.settings/
 .project
-*.prefs
-*.jsdtscope
-web/.settings/org.eclipse.wst.jsdt.ui.superType.name
-web/.settings/org.eclipse.wst.jsdt.ui.superType.container
-web/.settings/org.eclipse.wst.common.project.facet.core.xml
-web/.settings/org.eclipse.wst.common.component
-dao-jdbc-impl/.classpath
 *.classpath
