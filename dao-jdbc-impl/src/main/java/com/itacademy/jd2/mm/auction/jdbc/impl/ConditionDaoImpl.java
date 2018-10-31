@@ -1,18 +1,14 @@
 package com.itacademy.jd2.mm.auction.jdbc.impl;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Types;
-import java.util.List;
 
 import com.itacademy.jd2.mm.auction.daoapi.IConditionDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.model.ICondition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Condition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
-import com.itacademy.jd2.mm.auction.jdbc.impl.util.SQLExecutionException;
 
 public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> implements IConditionDao {
 

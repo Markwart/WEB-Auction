@@ -2,11 +2,8 @@ package com.itacademy.jd2.mm.auction.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,5 +24,5 @@ public class ConditionServiceTest extends AbstractTest {
         assertNotNull(entityFromDb.getUpdated());
         assertTrue(entityFromDb.getCreated().equals(entityFromDb.getUpdated()));
     }
-
+    
 }

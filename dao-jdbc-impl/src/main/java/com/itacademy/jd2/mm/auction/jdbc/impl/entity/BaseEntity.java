@@ -5,6 +5,7 @@ import java.util.Date;
 import com.itacademy.jd2.mm.auction.daoapi.entity.model.IBaseEntity;
 
 public abstract class BaseEntity implements IBaseEntity {
+	
     private Integer id;
     private Date created;
     private Date updated;
