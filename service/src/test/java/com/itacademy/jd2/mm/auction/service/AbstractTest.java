@@ -9,6 +9,7 @@ import com.itacademy.jd2.mm.auction.service.IConditionService;
 import com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl;
 
 public abstract class AbstractTest {
+	
     protected IConditionService conditionService = new ConditionServiceImpl();
 
     private static final Random RANDOM = new Random();
@@ -17,7 +18,6 @@ public abstract class AbstractTest {
     public void setUpMethod() {
         // clean DB recursive
         conditionService.deleteAll();
-
     }
 
     protected String getRandomPrefix() {
@@ -38,6 +38,5 @@ public abstract class AbstractTest {
         conditionService.save(entity);
         return entity;
     }
-
 
 }

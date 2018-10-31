@@ -1,14 +1,17 @@
 package com.itacademy.jd2.mm.auction.jdbc.impl;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 
 import com.itacademy.jd2.mm.auction.daoapi.IConditionDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.model.ICondition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Condition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
+import com.itacademy.jd2.mm.auction.jdbc.impl.util.SQLExecutionException;
 
 public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> implements IConditionDao {
 
@@ -60,7 +63,7 @@ public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> imple
 
 	@Override
 	protected String getTableName() {
-		return "brand";
+		return "condition";
 	}
 
 	@Override
@@ -72,5 +75,43 @@ public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> imple
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;
 	}
+	
+	 @Override
+	    public void save(ICondition... entities) {
+	        try (Connection c = getConnection()) {
+	            c.setAutoCommit(false);
+	            try {
+
+	                for (ICondition entity : entities) {
+	                    PreparedStatement pStmt = c.prepareStatement(
+	                            String.format("insert into %s (name, created, updated) values(?,?,?)", getTableName()),
+	                            Statement.RETURN_GENERATED_KEYS);
+
+	                    pStmt.setString(1, entity.getName());
+	                    pStmt.setObject(2, entity.getCreated(), Types.TIMESTAMP);
+	                    pStmt.setObject(3, entity.getUpdated(), Types.TIMESTAMP);
+
+	                    pStmt.executeUpdate();
+
+	                    final ResultSet rs = pStmt.getGeneratedKeys();
+	                    rs.next();
+	                    final int id = rs.getInt("id");
+
+	                    rs.close();
+	                    pStmt.close();
+	                    entity.setId(id);
+	                }
+
+	                // the same should be done in 'update' DAO method
+	                c.commit();
+	            } catch (final Exception e) {
+	                c.rollback();
+	                throw new RuntimeException(e);
+	            }
+
+	        } catch (final SQLException e) {
+	            throw new SQLExecutionException(e);
+	        }
+	    }
 
 }
