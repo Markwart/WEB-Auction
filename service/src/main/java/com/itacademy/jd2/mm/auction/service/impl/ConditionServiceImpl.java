@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.itacademy.jd2.mm.auction.daoapi.IConditionDao;
-import com.itacademy.jd2.mm.auction.daoapi.entity.model.ICondition;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.ConditionDaoImpl;
 import com.itacademy.jd2.mm.auction.service.IConditionService;
 

@@ -2,7 +2,7 @@ package com.itacademy.jd2.mm.auction.jdbc.impl.entity;
 
 import java.util.Date;
 
-import com.itacademy.jd2.mm.auction.daoapi.entity.model.IBaseEntity;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBaseEntity;
 
 public abstract class BaseEntity implements IBaseEntity {
 	

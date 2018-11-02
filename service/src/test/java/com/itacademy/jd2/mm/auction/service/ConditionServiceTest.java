@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.itacademy.jd2.mm.auction.daoapi.entity.model.ICondition;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
 
 public class ConditionServiceTest extends AbstractTest {
 
@@ -42,7 +42,6 @@ public class ConditionServiceTest extends AbstractTest {
         } catch (Exception e) {
             assertEquals(initialSize, conditionService.getAll().size());
         }
-
     }
 
     @Test
@@ -67,7 +66,7 @@ public class ConditionServiceTest extends AbstractTest {
 
     @Test
     public void testGetAll() {
-        final int intialCount = conditionService.getAll().size();
+        final int initialCount = conditionService.getAll().size();
 
         final int randomObjectsCount = getRandomObjectsCount();
         for (int i = 0; i < randomObjectsCount; i++) {
@@ -83,7 +82,7 @@ public class ConditionServiceTest extends AbstractTest {
             assertNotNull(entityFromDb.getUpdated());
         }
 
-        assertEquals(randomObjectsCount + intialCount, allEntities.size());
+        assertEquals(randomObjectsCount + initialCount, allEntities.size());
     }
 
     @Test

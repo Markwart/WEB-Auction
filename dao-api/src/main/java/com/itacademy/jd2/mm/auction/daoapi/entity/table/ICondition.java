@@ -1,4 +1,4 @@
-package com.itacademy.jd2.mm.auction.daoapi.entity.model;
+package com.itacademy.jd2.mm.auction.daoapi.entity.table;
 
 public interface ICondition extends IBaseEntity {
 

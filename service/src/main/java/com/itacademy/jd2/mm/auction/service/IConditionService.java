@@ -2,7 +2,7 @@ package com.itacademy.jd2.mm.auction.service;
 
 import java.util.List;
 
-import com.itacademy.jd2.mm.auction.daoapi.entity.model.ICondition;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
 
 public interface IConditionService {
 

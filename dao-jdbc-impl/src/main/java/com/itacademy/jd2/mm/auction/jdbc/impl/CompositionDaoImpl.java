@@ -7,25 +7,26 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 
-import com.itacademy.jd2.mm.auction.daoapi.IConditionDao;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
-import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Condition;
+import com.itacademy.jd2.mm.auction.daoapi.ICompositionDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
+import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Composition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.SQLExecutionException;
 
-public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> implements IConditionDao {
+public class CompositionDaoImpl extends AbstractDaoImpl<IComposition, Integer> implements ICompositionDao {
 
 	@Override
-	public ICondition createEntity() {
-		return new Condition();
+	public IComposition createEntity() {
+		return new Composition();
 	}
 
 	@Override
-	public void insert(final ICondition entity) {
-		executeStatement(new PreparedStatementAction<ICondition>(
+	public void insert(final IComposition entity) {
+		executeStatement(new PreparedStatementAction<IComposition>(
 				String.format("insert into %s (name, created, updated) values(?,?,?)", getTableName()), true) {
+			
 			@Override
-			public ICondition doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
+			public IComposition doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
 				pStmt.setObject(2, entity.getCreated(), Types.TIMESTAMP);
 				pStmt.setObject(3, entity.getUpdated(), Types.TIMESTAMP);
@@ -42,15 +43,13 @@ public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> imple
 				return entity;
 			}
 		});
-
 	}
-
 	@Override
-	public void update(final ICondition entity) {
-		executeStatement(new PreparedStatementAction<ICondition>(
+	public void update(IComposition entity) {
+		executeStatement(new PreparedStatementAction<IComposition>(
 				String.format("update %s set name=?, updated=? where id=?", getTableName())) {
 			@Override
-			public ICondition doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
+			public IComposition doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
 				pStmt.setObject(2, entity.getUpdated(), Types.TIMESTAMP);
 				pStmt.setInt(3, entity.getId());
@@ -60,29 +59,30 @@ public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> imple
 			}
 		});
 	}
+	
 
 	@Override
 	protected String getTableName() {
-		return "condition";
+		return "composition";
 	}
-
+	
 	@Override
-	protected ICondition parseRow(final ResultSet resultSet) throws SQLException {
-		final ICondition entity = createEntity();
+	protected IComposition parseRow(final ResultSet resultSet) throws SQLException {
+		final IComposition entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setName(resultSet.getString("name"));
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;
 	}
-	
-	 @Override
-	    public void save(ICondition... entities) {
-	        try (Connection c = getConnection()) {
+
+	@Override
+	public void save(IComposition... entities) {
+		 try (Connection c = getConnection()) {
 	            c.setAutoCommit(false);
 	            try {
 
-	                for (ICondition entity : entities) {
+	                for (IComposition entity : entities) {
 	                    PreparedStatement pStmt = c.prepareStatement(
 	                            String.format("insert into %s (name, created, updated) values(?,?,?)", getTableName()),
 	                            Statement.RETURN_GENERATED_KEYS);
@@ -112,6 +112,6 @@ public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> imple
 	        } catch (final SQLException e) {
 	            throw new SQLExecutionException(e);
 	        }
-	    }
+	}
 
 }

@@ -1,6 +1,6 @@
 package com.itacademy.jd2.mm.auction.jdbc.impl.entity;
 
-import com.itacademy.jd2.mm.auction.daoapi.entity.model.ICondition;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
 
 public class Condition extends BaseEntity implements ICondition {
 
@@ -18,7 +18,7 @@ public class Condition extends BaseEntity implements ICondition {
 
     @Override
     public String toString() {
-        return "Brand [name=" + name + ", getId()=" + getId() + ", getCreated()=" + getCreated() + ", getUpdated()=" + getUpdated() + "]";
+        return "Condition [name=" + name + ", getId()=" + getId() + ", getCreated()=" + getCreated() + ", getUpdated()=" + getUpdated() + "]";
     }
 
 }
