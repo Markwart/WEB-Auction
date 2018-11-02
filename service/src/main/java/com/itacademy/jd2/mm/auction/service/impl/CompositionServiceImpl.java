@@ -13,7 +13,7 @@ import com.itacademy.jd2.mm.auction.service.ICompositionService;
 
 public class CompositionServiceImpl implements ICompositionService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ConditionServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CompositionServiceImpl.class);
 
 	private ICompositionDao dao = new CompositionDaoImpl();
 

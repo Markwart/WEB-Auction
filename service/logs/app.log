@@ -1,0 +1,49 @@
+18:44:12.379 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:12.635 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:12.756 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new composition created: Composition [name=composition-30300, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:12 MSK 2018]
+18:44:12.937 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:13.070 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:13.128 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:13.250 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:13.296 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:13.367 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new composition created: Composition [name=composition-43173, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:13 MSK 2018]
+18:44:13.481 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:13.549 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:13.619 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new composition created: Composition [name=composition-98526, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:13 MSK 2018]
+18:44:13.780 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:13.818 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:13.891 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new composition created: Composition [name=composition-58113, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:13 MSK 2018]
+18:44:13.934 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new composition created: Composition [name=composition-2349, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:13 MSK 2018]
+18:44:14.063 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new composition created: Composition [name=composition-86673, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:14 MSK 2018]
+18:44:14.103 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new composition created: Composition [name=composition-11977, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:14 MSK 2018]
+18:44:14.141 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new composition created: Composition [name=composition-76520, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:14 MSK 2018]
+18:44:14.179 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new composition created: Composition [name=composition-99421, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:14 MSK 2018]
+18:44:14.215 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new composition created: Composition [name=composition-9031, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:14 MSK 2018]
+18:44:14.290 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:14.327 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:14.363 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new composition created: Composition [name=composition-56094, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:14 MSK 2018]
+18:44:16.519 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:16.554 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:16.614 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new condition created: Condition [name=condition-92650, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:16 MSK 2018]
+18:44:16.658 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:16.836 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:16.875 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:17.171 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:17.206 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:17.242 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new condition created: Condition [name=condition-58931, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:17 MSK 2018]
+18:44:17.326 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:17.362 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:17.405 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new condition created: Condition [name=condition-39629, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:17 MSK 2018]
+18:44:17.518 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:17.554 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:17.630 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new condition created: Condition [name=condition-2778, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:17 MSK 2018]
+18:44:17.673 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new condition created: Condition [name=condition-15301, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:17 MSK 2018]
+18:44:17.711 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new condition created: Condition [name=condition-19593, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:17 MSK 2018]
+18:44:17.748 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new condition created: Condition [name=condition-28294, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:17 MSK 2018]
+18:44:17.784 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new condition created: Condition [name=condition-23769, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:17 MSK 2018]
+18:44:17.820 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new condition created: Condition [name=condition-28164, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:17 MSK 2018]
+18:44:17.863 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new condition created: Condition [name=condition-40769, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:17 MSK 2018]
+18:44:17.900 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new condition created: Condition [name=condition-7080, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:17 MSK 2018]
+18:44:17.975 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all conditions
+18:44:18.012 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - delete all compositions
+18:44:18.047 [main] INFO  com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl - new condition created: Condition [name=condition-50579, getId()=null, getCreated()=null, getUpdated()=Fri Nov 02 18:44:18 MSK 2018]
