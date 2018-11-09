@@ -1,17 +1,14 @@
 package com.itacademy.jd2.mm.auction.jdbc.impl;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Types;
 
 import com.itacademy.jd2.mm.auction.daoapi.IConditionDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Condition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
-import com.itacademy.jd2.mm.auction.jdbc.impl.util.SQLExecutionException;
 
 public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> implements IConditionDao {
 
@@ -76,7 +73,7 @@ public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> imple
 		return entity;
 	}
 	
-	 @Override
+	/* @Override
 	    public void save(ICondition... entities) {
 	        try (Connection c = getConnection()) {
 	            c.setAutoCommit(false);
@@ -112,6 +109,6 @@ public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> imple
 	        } catch (final SQLException e) {
 	            throw new SQLExecutionException(e);
 	        }
-	    }
+	    }*/
 
 }

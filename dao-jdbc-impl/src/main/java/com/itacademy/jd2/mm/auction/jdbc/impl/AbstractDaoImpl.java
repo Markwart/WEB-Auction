@@ -213,7 +213,7 @@ public abstract class AbstractDaoImpl<ENTITY, ID> implements IDao<ENTITY, ID> {
     protected ENTITY parseRow(final ResultSet resultSet) throws SQLException {
         throw new UnsupportedOperationException(
                 "this method should be overriden in particular *Impl class or use alternative "
-                        + "com.itacademy.jd2.dz.cardealer.dao.jdbc.AbstractDaoImpl.parseRow(ResultSet, List<String>)");
+                        + "com.itacademy.jd2.mm.auction.dao.jdbc.AbstractDaoImpl.parseRow(ResultSet, List<String>)");
     };
 
     protected ENTITY parseRow(final ResultSet resultSet, final Set<String> columns) throws SQLException {

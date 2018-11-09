@@ -1,8 +1,8 @@
 package com.itacademy.jd2.mm.auction.jdbc.impl.entity;
 
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
 
-public class Composition extends BaseEntity implements IComposition {
+public class PaymentMethod extends BaseEntity implements IPaymentMethod {
 
 	private String name;
 
@@ -18,7 +18,7 @@ public class Composition extends BaseEntity implements IComposition {
 
 	@Override
 	public String toString() {
-		return "Composition [name=" + name + ", getId()=" + getId() + ", getCreated()=" + getCreated()
+		return "PaymentMethod [name=" + name + ", getId()=" + getId() + ", getCreated()=" + getCreated()
 				+ ", getUpdated()=" + getUpdated() + "]";
 	}
 

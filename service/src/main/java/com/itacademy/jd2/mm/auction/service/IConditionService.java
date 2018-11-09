@@ -12,7 +12,7 @@ public interface IConditionService {
 
     void save(ICondition entity);
 
-    void save(ICondition... entity);// skip
+    //void save(ICondition... entity);// skip
 
     void delete(Integer id);
 

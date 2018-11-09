@@ -18,6 +18,11 @@ public class CompositionServiceImpl implements ICompositionService {
 	private ICompositionDao dao = new CompositionDaoImpl();
 
 	@Override
+	public IComposition createEntity() {
+		return dao.createEntity();
+	}
+	
+	@Override
 	public IComposition get(final Integer id) {
 		final IComposition entity = dao.get(id);
 		return entity;
@@ -30,32 +35,22 @@ public class CompositionServiceImpl implements ICompositionService {
 	}
 
 	@Override
-	public void save(IComposition entity) {
+	public void save(final IComposition entity) {
 		final Date modefeOn = new Date();
 		entity.setUpdated(modefeOn);
 		if (entity.getId() == null) {
-			LOGGER.info("new composition created: {}", entity);
 			entity.setCreated(modefeOn);
 			dao.insert(entity);
+			LOGGER.debug("new composition created: {}", entity);
 		} else {
-			LOGGER.debug("composition updated: {}", entity);
 			dao.update(entity);
-		}
-	}
-
-	@Override
-	public void save(IComposition... entities) {
-		Date modified = new Date();
-		for (IComposition iComposition : entities) {
-			
-			iComposition.setUpdated(modified);
-			iComposition.setCreated(modified);
-
+			LOGGER.debug("composition updated: {}", entity);
 		}
 	}
 
 	@Override
 	public void delete(final Integer id) {
+		LOGGER.info("delete composition by id: {}", id);
 		dao.delete(id);
 	}
 
@@ -63,11 +58,6 @@ public class CompositionServiceImpl implements ICompositionService {
 	public void deleteAll() {
 		LOGGER.info("delete all compositions");
 		dao.deleteAll();
-	}
-
-	@Override
-	public IComposition createEntity() {
-		return dao.createEntity();
 	}
 
 }

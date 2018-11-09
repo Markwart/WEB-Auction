@@ -1,6 +1,6 @@
 CREATE TABLE "user_account" (
 	"id" serial NOT NULL,
-	"role_id" int NOT NULL,
+	"role" int NOT NULL,
 	"email" character varying NOT NULL UNIQUE,
 	"password" character varying NOT NULL,
 	"created" TIMESTAMP NOT NULL,
@@ -20,15 +20,15 @@ CREATE TABLE "item" (
 	"starting_price" DECIMAL NOT NULL,
 	"category_id" int NOT NULL,
 	"year" int NOT NULL,
-	"country_manufacture_id" int NOT NULL,
+	"country_origin" int NOT NULL,
 	"condition_id" int NOT NULL,
 	"composition_id" int NOT NULL,
 	"image" bytea NOT NULL,
-	"description" TEXT NOT NULL,
+	"text" TEXT NOT NULL,
 	"shipping_method_id" int NOT NULL,
 	"payment_method_id" int NOT NULL,
 	"seller_id" int NOT NULL,
-	"status" character varying NOT NULL,
+	"status_auction" character varying NOT NULL,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
 	CONSTRAINT item_pk PRIMARY KEY ("id")
@@ -77,12 +77,12 @@ CREATE TABLE "category" (
 
 
 
-CREATE TABLE "step_bid" (
+CREATE TABLE "step" (
 	"id" serial NOT NULL,
 	"amount" int NOT NULL,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
-	CONSTRAINT step_bid_pk PRIMARY KEY ("id")
+	CONSTRAINT step_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -104,7 +104,7 @@ CREATE TABLE "composition" (
 CREATE TABLE "shipping_method" (
 	"id" serial NOT NULL,
 	"name" character varying NOT NULL,
-	"delivery" TIMESTAMP NOT NULL,
+	"delivery_time" TIMESTAMP NOT NULL,
 	"cost" DECIMAL NOT NULL,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
@@ -129,7 +129,7 @@ CREATE TABLE "payment_method" (
 
 CREATE TABLE "feedback" (
 	"id" serial NOT NULL,
-	"item_id" int NOT NULL,
+	"lot_id" int NOT NULL,
 	"user_from_id" int NOT NULL,
 	"user_whom_id" int NOT NULL,
 	"communication" int NOT NULL,
@@ -160,7 +160,6 @@ CREATE TABLE "auction_duration" (
 
 CREATE TABLE "bid" (
 	"id" serial NOT NULL,
-	"item_id" int NOT NULL,
 	"price_bid" DECIMAL NOT NULL,
 	"user_bid_id" int NOT NULL,
 	"status_bid" character varying NOT NULL,
@@ -173,8 +172,8 @@ CREATE TABLE "bid" (
 
 
 
-CREATE TABLE "user_2_item" (
-	"item_id" int NOT NULL,
+CREATE TABLE "user_2_lot" (
+	"lot_id" int NOT NULL,
 	"user_id" int NOT NULL
 ) WITH (
   OIDS=FALSE
@@ -197,27 +196,25 @@ CREATE TABLE "message" (
 
 
 
-CREATE TABLE "country_manufacture" (
+CREATE TABLE "country_origin" (
 	"id" serial NOT NULL,
 	"name" character varying NOT NULL UNIQUE,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
-	CONSTRAINT country_manufacture_pk PRIMARY KEY ("id")
+	CONSTRAINT country_origin_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
 
 
 
-CREATE TABLE "deffered_bid" (
+CREATE TABLE "auction_rule" (
 	"id" serial NOT NULL,
-	"item_id" int NOT NULL,
-	"price_bid" DECIMAL NOT NULL,
-	"user_bid_id" int NOT NULL,
-	"status_bid" character varying NOT NULL,
+	"theme" serial NOT NULL,
+	"text" TEXT NOT NULL,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
-	CONSTRAINT deffered_bid_pk PRIMARY KEY ("id")
+	CONSTRAINT auction_rule_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -238,13 +235,15 @@ CREATE TABLE "admin_communication" (
 
 
 
-CREATE TABLE "auction_rule" (
+CREATE TABLE "deffered_bid" (
 	"id" serial NOT NULL,
-	"text" character varying NOT NULL,
+	"item_id" int NOT NULL,
+	"price_bid" DECIMAL NOT NULL,
+	"user_bid_id" int NOT NULL,
+	"status_bid" int NOT NULL,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
-	"theme" character varying NOT NULL,
-	CONSTRAINT auction_rule_pk PRIMARY KEY ("id")
+	CONSTRAINT deffered_bid_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -253,7 +252,7 @@ CREATE TABLE "auction_rule" (
 
 
 ALTER TABLE "item" ADD CONSTRAINT "item_fk0" FOREIGN KEY ("category_id") REFERENCES "category"("id");
-ALTER TABLE "item" ADD CONSTRAINT "item_fk1" FOREIGN KEY ("country_manufacture_id") REFERENCES "country_manufacture"("id");
+ALTER TABLE "item" ADD CONSTRAINT "item_fk1" FOREIGN KEY ("country_origin") REFERENCES "country_origin"("id");
 ALTER TABLE "item" ADD CONSTRAINT "item_fk2" FOREIGN KEY ("condition_id") REFERENCES "condition"("id");
 ALTER TABLE "item" ADD CONSTRAINT "item_fk3" FOREIGN KEY ("composition_id") REFERENCES "composition"("id");
 ALTER TABLE "item" ADD CONSTRAINT "item_fk4" FOREIGN KEY ("shipping_method_id") REFERENCES "shipping_method"("id");
@@ -268,24 +267,24 @@ ALTER TABLE "personal_data" ADD CONSTRAINT "personal_data_fk0" FOREIGN KEY ("id"
 
 
 
-ALTER TABLE "feedback" ADD CONSTRAINT "feedback_fk0" FOREIGN KEY ("item_id") REFERENCES "item"("id");
+ALTER TABLE "feedback" ADD CONSTRAINT "feedback_fk0" FOREIGN KEY ("lot_id") REFERENCES "item"("id");
 ALTER TABLE "feedback" ADD CONSTRAINT "feedback_fk1" FOREIGN KEY ("user_from_id") REFERENCES "user_account"("id");
 ALTER TABLE "feedback" ADD CONSTRAINT "feedback_fk2" FOREIGN KEY ("user_whom_id") REFERENCES "user_account"("id");
 
 
-ALTER TABLE "bid" ADD CONSTRAINT "bid_fk0" FOREIGN KEY ("item_id") REFERENCES "item"("id");
+ALTER TABLE "bid" ADD CONSTRAINT "bid_fk0" FOREIGN KEY ("id") REFERENCES "item"("id");
 ALTER TABLE "bid" ADD CONSTRAINT "bid_fk1" FOREIGN KEY ("user_bid_id") REFERENCES "user_account"("id");
 
-ALTER TABLE "user_2_item" ADD CONSTRAINT "user_2_item_fk0" FOREIGN KEY ("item_id") REFERENCES "item"("id");
-ALTER TABLE "user_2_item" ADD CONSTRAINT "user_2_item_fk1" FOREIGN KEY ("user_id") REFERENCES "user_account"("id");
+ALTER TABLE "user_2_lot" ADD CONSTRAINT "user_2_lot_fk0" FOREIGN KEY ("lot_id") REFERENCES "item"("id");
+ALTER TABLE "user_2_lot" ADD CONSTRAINT "user_2_lot_fk1" FOREIGN KEY ("user_id") REFERENCES "user_account"("id");
 
 ALTER TABLE "message" ADD CONSTRAINT "message_fk0" FOREIGN KEY ("user_from_id") REFERENCES "user_account"("id");
 ALTER TABLE "message" ADD CONSTRAINT "message_fk1" FOREIGN KEY ("user_whom_id") REFERENCES "user_account"("id");
 
 
-ALTER TABLE "deffered_bid" ADD CONSTRAINT "deffered_bid_fk0" FOREIGN KEY ("item_id") REFERENCES "item"("id");
-ALTER TABLE "deffered_bid" ADD CONSTRAINT "deffered_bid_fk1" FOREIGN KEY ("user_bid_id") REFERENCES "user_account"("id");
 
 ALTER TABLE "admin_communication" ADD CONSTRAINT "admin_communication_fk0" FOREIGN KEY ("user_from_id") REFERENCES "user_account"("id");
 
+ALTER TABLE "deffered_bid" ADD CONSTRAINT "deffered_bid_fk0" FOREIGN KEY ("item_id") REFERENCES "item"("id");
+ALTER TABLE "deffered_bid" ADD CONSTRAINT "deffered_bid_fk1" FOREIGN KEY ("user_bid_id") REFERENCES "user_account"("id");
 

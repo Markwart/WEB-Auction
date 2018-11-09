@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
@@ -28,21 +27,6 @@ public class CompositionServiceTest extends AbstractTest {
 		assertTrue(entityFromDb.getCreated().equals(entityFromDb.getUpdated()));
 	}
 
-	@Test
-	public void testCreateMultiple() {
-		int initialSize = compositionService.getAll().size();
-
-		final IComposition entity1 = compositionService.createEntity();
-		entity1.setName("composition-" + getRandomPrefix());
-
-		try {
-			final IComposition entity2 = compositionService.createEntity();
-			compositionService.save(entity1, entity2);
-			fail("Composition save should fail if name not specified");
-		} catch (Exception e) {
-			assertEquals(initialSize, compositionService.getAll().size());
-		}
-	}
 
 	@Test
 	public void testUpdate() throws InterruptedException {

@@ -4,20 +4,17 @@ import java.util.List;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 
-
 public interface ICompositionService {
 
 	IComposition get(Integer id);
 
-    List<IComposition> getAll();
+	List<IComposition> getAll();
 
-    void save(IComposition entity);
+	void save(IComposition entity);
 
-    void save(IComposition... entity);// skip
+	void delete(Integer id);
 
-    void delete(Integer id);
+	void deleteAll();
 
-    void deleteAll();
-
-    IComposition createEntity();
+	IComposition createEntity();
 }
