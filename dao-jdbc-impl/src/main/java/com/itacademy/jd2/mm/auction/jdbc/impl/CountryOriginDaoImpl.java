@@ -5,11 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.mm.auction.daoapi.ICountryOriginDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICountryOrigin;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.CountryOrigin;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class CountryOriginDaoImpl extends AbstractDaoImpl<ICountryOrigin, Integer> implements ICountryOriginDao{
 
 	@Override

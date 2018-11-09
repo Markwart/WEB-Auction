@@ -5,17 +5,25 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IShippingMethodDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
-import com.itacademy.jd2.mm.auction.jdbc.impl.ShippingMethodDaoImpl;
 import com.itacademy.jd2.mm.auction.service.IShippingMethodService;
 
+@Service
 public class ShippingMethodServiceImpl implements IShippingMethodService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(PaymentMethodServiceImpl.class);
 
-	private IShippingMethodDao dao = new ShippingMethodDaoImpl();
+	private IShippingMethodDao dao;
+
+	@Autowired
+	public ShippingMethodServiceImpl(IShippingMethodDao dao) {
+		super();
+		this.dao = dao;
+	}
 
 	@Override
 	public IShippingMethod get(final Integer id) {

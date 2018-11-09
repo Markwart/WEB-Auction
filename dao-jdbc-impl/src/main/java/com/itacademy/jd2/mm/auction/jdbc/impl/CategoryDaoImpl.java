@@ -5,11 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.mm.auction.daoapi.ICategoryDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Category;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class CategoryDaoImpl extends AbstractDaoImpl<ICategory, Integer> implements ICategoryDao {
 
 	@Override

@@ -5,11 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.mm.auction.daoapi.IUserAccountDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.UserAccount;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> implements IUserAccountDao {
 
 	@Override
@@ -73,7 +76,7 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setRole(resultSet.getInt("role"));
 		entity.setEmail(resultSet.getString("email"));
-		entity.setEmail(resultSet.getString("password"));
+		entity.setPassword(resultSet.getString("password"));
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;

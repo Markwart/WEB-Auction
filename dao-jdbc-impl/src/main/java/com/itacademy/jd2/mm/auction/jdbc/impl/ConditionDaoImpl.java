@@ -5,11 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.mm.auction.daoapi.IConditionDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Condition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> implements IConditionDao {
 
 	@Override

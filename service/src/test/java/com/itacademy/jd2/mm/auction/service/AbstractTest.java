@@ -3,22 +3,25 @@ package com.itacademy.jd2.mm.auction.service;
 import java.util.Random;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.service.IConditionService;
-import com.itacademy.jd2.mm.auction.service.impl.AdminCommunicationServiceImpl;
-import com.itacademy.jd2.mm.auction.service.impl.CompositionServiceImpl;
-import com.itacademy.jd2.mm.auction.service.impl.ConditionServiceImpl;
-import com.itacademy.jd2.mm.auction.service.impl.UserAccountServiceImpl;
 
+@SpringJUnitConfig(locations = "classpath:service-context.xml")
 public abstract class AbstractTest {
 
-	protected IConditionService conditionService = new ConditionServiceImpl();
-	protected ICompositionService compositionService = new CompositionServiceImpl();
-	protected IUserAccountService userAccountService = new UserAccountServiceImpl();
-	protected IAdminCommunicationService adminCommunicationService = new AdminCommunicationServiceImpl();
+	@Autowired
+	protected IConditionService conditionService;
+	@Autowired
+	protected ICompositionService compositionService;
+	@Autowired
+	protected IUserAccountService userAccountService;
+	@Autowired
+	protected IAdminCommunicationService adminCommunicationService;
 
 	private static final Random RANDOM = new Random();
 

@@ -5,11 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.mm.auction.daoapi.ICompositionDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Composition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class CompositionDaoImpl extends AbstractDaoImpl<IComposition, Integer> implements ICompositionDao {
 
 	@Override

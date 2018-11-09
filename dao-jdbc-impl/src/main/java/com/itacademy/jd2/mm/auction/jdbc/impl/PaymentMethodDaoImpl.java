@@ -5,11 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.mm.auction.daoapi.IPaymentMethodDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.PaymentMethod;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class PaymentMethodDaoImpl extends AbstractDaoImpl<IPaymentMethod, Integer> implements IPaymentMethodDao {
 
 	@Override

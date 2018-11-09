@@ -5,17 +5,25 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.ICategoryDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
-import com.itacademy.jd2.mm.auction.jdbc.impl.CategoryDaoImpl;
 import com.itacademy.jd2.mm.auction.service.ICategoryService;
 
+@Service
 public class CategoryServiceImpl implements ICategoryService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(CategoryServiceImpl.class);
 
-	private ICategoryDao dao = new CategoryDaoImpl();
+	private ICategoryDao dao;
+	
+	@Autowired
+	public CategoryServiceImpl(ICategoryDao dao) {
+		super();
+		this.dao = dao;
+	}
 
 	@Override
 	public ICategory get(final Integer id) {

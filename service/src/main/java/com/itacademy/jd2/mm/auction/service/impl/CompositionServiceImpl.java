@@ -5,17 +5,25 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.ICompositionDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
-import com.itacademy.jd2.mm.auction.jdbc.impl.CompositionDaoImpl;
 import com.itacademy.jd2.mm.auction.service.ICompositionService;
 
+@Service
 public class CompositionServiceImpl implements ICompositionService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CompositionServiceImpl.class);
 
-	private ICompositionDao dao = new CompositionDaoImpl();
+	private ICompositionDao dao;
+	
+	@Autowired
+	public CompositionServiceImpl(ICompositionDao dao) {
+		super();
+		this.dao = dao;
+	}
 
 	@Override
 	public IComposition createEntity() {

@@ -5,17 +5,25 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IConditionDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
-import com.itacademy.jd2.mm.auction.jdbc.impl.ConditionDaoImpl;
 import com.itacademy.jd2.mm.auction.service.IConditionService;
 
+@Service
 public class ConditionServiceImpl implements IConditionService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConditionServiceImpl.class);
 
-	private IConditionDao dao = new ConditionDaoImpl();
+	private IConditionDao dao;
+	
+	@Autowired
+	public ConditionServiceImpl(IConditionDao dao) {
+		super();
+		this.dao = dao;
+	}
 
 	@Override
 	public ICondition createEntity() {

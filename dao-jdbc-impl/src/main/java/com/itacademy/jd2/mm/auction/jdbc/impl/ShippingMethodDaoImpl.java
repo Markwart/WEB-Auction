@@ -5,11 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.mm.auction.daoapi.IShippingMethodDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.ShippingMethod;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class ShippingMethodDaoImpl extends AbstractDaoImpl<IShippingMethod, Integer> implements IShippingMethodDao {
 
 	@Override

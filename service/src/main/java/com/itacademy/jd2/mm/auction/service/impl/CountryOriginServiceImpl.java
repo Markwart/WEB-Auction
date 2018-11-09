@@ -5,17 +5,25 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.ICountryOriginDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICountryOrigin;
-import com.itacademy.jd2.mm.auction.jdbc.impl.CountryOriginDaoImpl;
 import com.itacademy.jd2.mm.auction.service.ICountryOriginService;
 
+@Service
 public class CountryOriginServiceImpl implements ICountryOriginService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CountryOriginServiceImpl.class);
 
-	private ICountryOriginDao dao = new CountryOriginDaoImpl();
+	private ICountryOriginDao dao;
+	
+	@Autowired
+	public CountryOriginServiceImpl(ICountryOriginDao dao) {
+		super();
+		this.dao = dao;
+	}
 
 	@Override
 	public ICountryOrigin get(final Integer id) {

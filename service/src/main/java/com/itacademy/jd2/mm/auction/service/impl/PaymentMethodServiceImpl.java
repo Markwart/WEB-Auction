@@ -5,17 +5,25 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IPaymentMethodDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
-import com.itacademy.jd2.mm.auction.jdbc.impl.PaymentMethodDaoImpl;
 import com.itacademy.jd2.mm.auction.service.IPaymentMethodService;
 
+@Service
 public class PaymentMethodServiceImpl implements IPaymentMethodService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PaymentMethodServiceImpl.class);
 
-	private IPaymentMethodDao dao = new PaymentMethodDaoImpl();
+	private IPaymentMethodDao dao;
+	
+	@Autowired
+	public PaymentMethodServiceImpl(IPaymentMethodDao dao) {
+		super();
+		this.dao = dao;
+	}
 
 	@Override
 	public IPaymentMethod get(final Integer id) {

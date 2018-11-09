@@ -5,12 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.mm.auction.daoapi.IAdminCommunicationDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAdminCommunication;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.AdminCommunication;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.UserAccount;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunication, Integer>
 		implements IAdminCommunicationDao {
 

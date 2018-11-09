@@ -5,17 +5,25 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IAdminCommunicationDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAdminCommunication;
-import com.itacademy.jd2.mm.auction.jdbc.impl.AdminCommunicationDaoImpl;
 import com.itacademy.jd2.mm.auction.service.IAdminCommunicationService;
 
+@Service
 public class AdminCommunicationServiceImpl implements IAdminCommunicationService {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(AdminCommunicationServiceImpl.class);
-	
-	private IAdminCommunicationDao dao = new AdminCommunicationDaoImpl();
+
+	private IAdminCommunicationDao dao;
+
+	@Autowired
+	public AdminCommunicationServiceImpl(IAdminCommunicationDao dao) {
+		super();
+		this.dao = dao;
+	}
 
 	@Override
 	public IAdminCommunication get(final Integer id) {
@@ -40,19 +48,19 @@ public class AdminCommunicationServiceImpl implements IAdminCommunicationService
 		} else {
 			dao.update(entity);
 			LOGGER.debug("admin_communication updated: {}", entity);
-		}			
+		}
 	}
 
 	@Override
 	public void delete(final Integer id) {
 		LOGGER.info("delete admin_communication by id: {}", id);
-		dao.delete(id);		
+		dao.delete(id);
 	}
 
 	@Override
 	public void deleteAll() {
-		LOGGER.info("delete all admin_communications");	
-		dao.deleteAll();		
+		LOGGER.info("delete all admin_communications");
+		dao.deleteAll();
 	}
 
 	@Override
