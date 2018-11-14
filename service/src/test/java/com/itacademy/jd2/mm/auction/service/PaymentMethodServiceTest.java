@@ -9,15 +9,16 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
 
-public class CompositionServiceTest extends AbstractTest {
+public class PaymentMethodServiceTest extends AbstractTest {
 
 	@Test
 	public void testCreate() {
-		final IComposition entity = saveNewComposition();
+		final IPaymentMethod entity = saveNewPaymentMethod();
 
-		final IComposition entityFromDb = compositionService.get(entity.getId());
+		final IPaymentMethod entityFromDb = paymentMethodService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getName(), entityFromDb.getName());
@@ -30,14 +31,14 @@ public class CompositionServiceTest extends AbstractTest {
 
 	@Test
 	public void testUpdate() throws InterruptedException {
-		final IComposition entity = saveNewComposition();
+		final IPaymentMethod entity = saveNewPaymentMethod();
 
 		String newName = entity.getName() + "_updated";
 		entity.setName(newName);
 		Thread.sleep(2000);
-		compositionService.save(entity);
+		paymentMethodService.save(entity);
 
-		final IComposition entityFromDb = compositionService.get(entity.getId());
+		final IPaymentMethod entityFromDb = paymentMethodService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getName(), entityFromDb.getName());
@@ -50,16 +51,16 @@ public class CompositionServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int initialCount = compositionService.getAll().size();
+		final int initialCount = paymentMethodService.getAll().size();
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
-			saveNewComposition();
+			saveNewPaymentMethod();
 		}
 
-		final List<IComposition> allEntities = compositionService.getAll();
+		final List<IPaymentMethod> allEntities = paymentMethodService.getAll();
 
-		for (final IComposition entityFromDb : allEntities) {
+		for (final IPaymentMethod entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getCreated());
@@ -70,15 +71,15 @@ public class CompositionServiceTest extends AbstractTest {
 
 	@Test
 	public void testDelete() {
-		final IComposition entity = saveNewComposition();
-		compositionService.delete(entity.getId());
-		assertNull(compositionService.get(entity.getId()));
+		final IPaymentMethod entity = saveNewPaymentMethod();
+		paymentMethodService.delete(entity.getId());
+		assertNull(paymentMethodService.get(entity.getId()));
 	}
 
 	@Test
 	public void testDeleteAll() {
-		saveNewComposition();
-		compositionService.deleteAll();
-		assertEquals(0, compositionService.getAll().size());
+		saveNewPaymentMethod();
+		paymentMethodService.deleteAll();
+		assertEquals(0, paymentMethodService.getAll().size());
 	}
 }

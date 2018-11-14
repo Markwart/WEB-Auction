@@ -9,18 +9,20 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
 
-public class CompositionServiceTest extends AbstractTest {
-
+public class ShippingMethodServiceTest extends AbstractTest {
+	
 	@Test
 	public void testCreate() {
-		final IComposition entity = saveNewComposition();
+		final IShippingMethod entity = saveNewShippingMethod();
 
-		final IComposition entityFromDb = compositionService.get(entity.getId());
+		final IShippingMethod entityFromDb = shippingMethodService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getName(), entityFromDb.getName());
+		assertEquals(entity.getDeliveryTime(), entityFromDb.getDeliveryTime());
+		assertEquals(entity.getCost(), entityFromDb.getCost());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
@@ -30,17 +32,19 @@ public class CompositionServiceTest extends AbstractTest {
 
 	@Test
 	public void testUpdate() throws InterruptedException {
-		final IComposition entity = saveNewComposition();
+		final IShippingMethod entity = saveNewShippingMethod();
 
 		String newName = entity.getName() + "_updated";
 		entity.setName(newName);
 		Thread.sleep(2000);
-		compositionService.save(entity);
+		shippingMethodService.save(entity);
 
-		final IComposition entityFromDb = compositionService.get(entity.getId());
+		final IShippingMethod entityFromDb = shippingMethodService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getName(), entityFromDb.getName());
+		assertEquals(entity.getDeliveryTime(), entityFromDb.getDeliveryTime());
+		assertEquals(entity.getCost(), entityFromDb.getCost());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
@@ -50,18 +54,20 @@ public class CompositionServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int initialCount = compositionService.getAll().size();
+		final int initialCount = shippingMethodService.getAll().size();
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
-			saveNewComposition();
+			saveNewShippingMethod();
 		}
 
-		final List<IComposition> allEntities = compositionService.getAll();
+		final List<IShippingMethod> allEntities = shippingMethodService.getAll();
 
-		for (final IComposition entityFromDb : allEntities) {
+		for (final IShippingMethod entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getId());
+			assertNotNull(entityFromDb.getDeliveryTime());
+			assertNotNull(entityFromDb.getCost());
 			assertNotNull(entityFromDb.getCreated());
 			assertNotNull(entityFromDb.getUpdated());
 		}
@@ -70,15 +76,16 @@ public class CompositionServiceTest extends AbstractTest {
 
 	@Test
 	public void testDelete() {
-		final IComposition entity = saveNewComposition();
-		compositionService.delete(entity.getId());
-		assertNull(compositionService.get(entity.getId()));
+		final IShippingMethod entity = saveNewShippingMethod();
+		shippingMethodService.delete(entity.getId());
+		assertNull(shippingMethodService.get(entity.getId()));
 	}
 
 	@Test
 	public void testDeleteAll() {
-		saveNewComposition();
-		compositionService.deleteAll();
-		assertEquals(0, compositionService.getAll().size());
+		saveNewShippingMethod();
+		shippingMethodService.deleteAll();
+		assertEquals(0, shippingMethodService.getAll().size());
 	}
+
 }

@@ -36,8 +36,14 @@ public class AdminCommunication extends BaseEntity implements IAdminCommunicatio
 	}
 
 	@Override
-	public void setUserAccount(final IUserAccount useAccount) {
-		this.userAccount = useAccount;
+	public void setUserAccount(final IUserAccount userAccount) {
+		this.userAccount = userAccount;
+	}
+
+	@Override
+	public String toString() {
+		return "AdminCommunication [theme=" + theme + ", text=" + text + ", userAccount=" + userAccount + ", getId()="
+				+ getId() + ", getCreated()=" + getCreated() + ", getUpdated()=" + getUpdated() + "]";
 	}
 
 }

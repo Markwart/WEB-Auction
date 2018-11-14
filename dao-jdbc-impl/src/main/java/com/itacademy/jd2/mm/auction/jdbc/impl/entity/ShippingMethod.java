@@ -9,7 +9,7 @@ public class ShippingMethod extends BaseEntity implements IShippingMethod{
 	
 	private String name;
 	private BigDecimal cost;
-	private Date deliveryTime;
+	private String deliveryTime;
 
 	@Override
 	public String getName() {
@@ -29,11 +29,11 @@ public class ShippingMethod extends BaseEntity implements IShippingMethod{
 		this.cost = cost;
 	}
 
-	public Date getDeliveryTime() {
+	public String getDeliveryTime() {
 		return deliveryTime;
 	}
 
-	public void setDeliveryTime(final Date deliveryTime) {
+	public void setDeliveryTime(final String deliveryTime) {
 		this.deliveryTime = deliveryTime;
 	}
 

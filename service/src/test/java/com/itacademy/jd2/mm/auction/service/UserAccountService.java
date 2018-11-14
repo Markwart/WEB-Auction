@@ -57,7 +57,7 @@ public class UserAccountService extends AbstractTest{
 
 	        final int randomObjectsCount = getRandomObjectsCount();
 	        for (int i = 0; i < randomObjectsCount; i++) {
-	            saveNewCondition();
+	            saveNewUserAccount();
 	        }
 
 	        final List<IUserAccount> allEntities = userAccountService.getAll();

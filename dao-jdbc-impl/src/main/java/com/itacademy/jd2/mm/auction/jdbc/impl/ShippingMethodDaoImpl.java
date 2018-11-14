@@ -28,7 +28,7 @@ public class ShippingMethodDaoImpl extends AbstractDaoImpl<IShippingMethod, Inte
 			public IShippingMethod doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
 				pStmt.setBigDecimal(2, entity.getCost());
-				pStmt.setObject(3, entity.getDeliveryTime(), Types.TIMESTAMP);
+				pStmt.setString(3, entity.getDeliveryTime());
 				pStmt.setObject(4, entity.getUpdated(), Types.TIMESTAMP);
 				pStmt.setInt(5, entity.getId());
 
@@ -47,7 +47,7 @@ public class ShippingMethodDaoImpl extends AbstractDaoImpl<IShippingMethod, Inte
 			public IShippingMethod doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
 				pStmt.setBigDecimal(2, entity.getCost());
-				pStmt.setObject(3, entity.getDeliveryTime(), Types.TIMESTAMP);
+				pStmt.setString(3, entity.getDeliveryTime());
 				pStmt.setObject(4, entity.getCreated(), Types.TIMESTAMP);
 				pStmt.setObject(5, entity.getUpdated(), Types.TIMESTAMP);
 
@@ -76,7 +76,7 @@ public class ShippingMethodDaoImpl extends AbstractDaoImpl<IShippingMethod, Inte
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setName(resultSet.getString("name"));
 		entity.setCost(resultSet.getBigDecimal("cost"));
-		entity.setDeliveryTime(resultSet.getTimestamp("delivery_time"));
+		entity.setDeliveryTime(resultSet.getString("delivery_time"));
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;

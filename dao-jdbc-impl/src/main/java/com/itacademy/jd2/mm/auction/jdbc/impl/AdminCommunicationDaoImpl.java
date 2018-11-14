@@ -30,7 +30,7 @@ public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunicati
 			public IAdminCommunication doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getTheme());
 				pStmt.setInt(2, entity.getUserAccount().getId());
-				pStmt.setObject(3, entity.getText());
+				pStmt.setString(3, entity.getText());
 				pStmt.setObject(4, entity.getUpdated(), Types.TIMESTAMP);
 				pStmt.setInt(5, entity.getId());
 
@@ -51,7 +51,7 @@ public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunicati
 			public IAdminCommunication doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getTheme());
 				pStmt.setInt(2, entity.getUserAccount().getId());
-				pStmt.setObject(3, entity.getText());
+				pStmt.setString(3, entity.getText());
 				pStmt.setObject(4, entity.getCreated(), Types.TIMESTAMP);
 				pStmt.setObject(5, entity.getUpdated(), Types.TIMESTAMP);
 

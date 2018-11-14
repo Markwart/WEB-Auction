@@ -9,15 +9,15 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICountryOrigin;
 
-public class CompositionServiceTest extends AbstractTest {
-
+public class CountryOriginServiceTest extends AbstractTest {
+	
 	@Test
 	public void testCreate() {
-		final IComposition entity = saveNewComposition();
+		final ICountryOrigin entity = saveNewCountryOrigin();
 
-		final IComposition entityFromDb = compositionService.get(entity.getId());
+		final ICountryOrigin entityFromDb = countryOriginService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getName(), entityFromDb.getName());
@@ -30,14 +30,14 @@ public class CompositionServiceTest extends AbstractTest {
 
 	@Test
 	public void testUpdate() throws InterruptedException {
-		final IComposition entity = saveNewComposition();
+		final ICountryOrigin entity = saveNewCountryOrigin();
 
 		String newName = entity.getName() + "_updated";
 		entity.setName(newName);
 		Thread.sleep(2000);
-		compositionService.save(entity);
+		countryOriginService.save(entity);
 
-		final IComposition entityFromDb = compositionService.get(entity.getId());
+		final ICountryOrigin entityFromDb = countryOriginService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getName(), entityFromDb.getName());
@@ -50,16 +50,16 @@ public class CompositionServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int initialCount = compositionService.getAll().size();
+		final int initialCount = countryOriginService.getAll().size();
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
-			saveNewComposition();
+			saveNewCountryOrigin();
 		}
 
-		final List<IComposition> allEntities = compositionService.getAll();
+		final List<ICountryOrigin> allEntities = countryOriginService.getAll();
 
-		for (final IComposition entityFromDb : allEntities) {
+		for (final ICountryOrigin entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getCreated());
@@ -70,15 +70,16 @@ public class CompositionServiceTest extends AbstractTest {
 
 	@Test
 	public void testDelete() {
-		final IComposition entity = saveNewComposition();
-		compositionService.delete(entity.getId());
-		assertNull(compositionService.get(entity.getId()));
+		final ICountryOrigin entity = saveNewCountryOrigin();
+		countryOriginService.delete(entity.getId());
+		assertNull(countryOriginService.get(entity.getId()));
 	}
 
 	@Test
 	public void testDeleteAll() {
-		saveNewComposition();
-		compositionService.deleteAll();
-		assertEquals(0, compositionService.getAll().size());
+		saveNewCountryOrigin();
+		countryOriginService.deleteAll();
+		assertEquals(0, countryOriginService.getAll().size());
 	}
+
 }

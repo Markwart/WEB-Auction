@@ -1,7 +1,6 @@
 package com.itacademy.jd2.mm.auction.daoapi.entity.table;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public interface IShippingMethod extends IBaseEntity {
 
@@ -13,7 +12,7 @@ public interface IShippingMethod extends IBaseEntity {
 
 	void setCost(BigDecimal cost);
 
-	Date getDeliveryTime();
+	String getDeliveryTime();
 
-	void setDeliveryTime(Date deliveryTime);
+	void setDeliveryTime(String deliveryTime);
 }
