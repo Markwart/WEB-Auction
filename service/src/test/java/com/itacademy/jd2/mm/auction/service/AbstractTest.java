@@ -125,13 +125,15 @@ public abstract class AbstractTest {
 		entity.setTheme("theme-" + getRandomPrefix());
 		entity.setText("text-" + getRandomPrefix());
 		entity.setItem(saveNewItem());
+		entity.setUserAccountFrom(saveNewUserAccount());
+		entity.setUserAccountWhom(saveNewUserAccount());
 		messageService.save(entity);
 		return entity;
 	}
 	
 	protected IItem saveNewItem() {
 		final IItem entity = itemService.createEntity();
-		entity.setName("name" + getRandomPrefix());
+		entity.setName("name-" + getRandomPrefix());
 		entity.setAuctionEnd(new Date());
 		entity.setStartingPrice(new BigDecimal(getRANDOM().nextInt(10000)));
 		entity.setCategory(saveNewCategory());
@@ -140,9 +142,9 @@ public abstract class AbstractTest {
 		entity.setCondition(saveNewCondition());
 		entity.setComposition(saveNewComposition());
 		entity.setImage("mindmap.jpg");
-		entity.setText("text" + getRandomPrefix());
+		entity.setText("text-" + getRandomPrefix());
 		entity.setSeller(saveNewUserAccount());
-		entity.setStatusAuction("status_auction" + getRandomPrefix());
+		entity.setStatusAuction("status_auction-" + getRandomPrefix());
 		itemService.save(entity);
 		return entity;
 	}

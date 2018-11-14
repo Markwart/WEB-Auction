@@ -47,203 +47,201 @@ public abstract class AbstractDaoImpl<ENTITY, ID> implements IDao<ENTITY, ID> {
 		}
 	}
 
+	@Override
+	public ENTITY get(final ID id) {
+		StatementAction<ENTITY> action = (statement) -> {
+			statement.executeQuery("select * from " + getTableName() + " where id=" + id);
 
-    @Override
-    public ENTITY get(final ID id) {
-        StatementAction<ENTITY> action = (statement) -> {
-            statement.executeQuery("select * from " + getTableName() + " where id=" + id);
+			final ResultSet resultSet = statement.getResultSet();
+			final Set<String> columns = resolveColumnNames(resultSet);
 
-            final ResultSet resultSet = statement.getResultSet();
-            final Set<String> columns = resolveColumnNames(resultSet);
+			final boolean hasNext = resultSet.next();
+			ENTITY result = null;
+			if (hasNext) {
+				result = parseRow(resultSet, columns);
+			}
 
-            final boolean hasNext = resultSet.next();
-            ENTITY result = null;
-            if (hasNext) {
-                result = parseRow(resultSet, columns);
-            }
+			resultSet.close();
+			return result;
+		};
+		ENTITY entityById = executeStatement(action);
+		return entityById;
+	}
 
-            resultSet.close();
-            return result;
-        };
-        ENTITY entityById = executeStatement(action);
-        return entityById;
-    }
+	@Override
+	public List<ENTITY> selectAll() {
+		StatementAction<List<ENTITY>> action = new StatementAction<List<ENTITY>>() {
+			@Override
+			public List<ENTITY> doWithStatement(final Statement statement) throws SQLException {
+				statement.executeQuery("select * from " + getTableName());
 
-    @Override
-    public List<ENTITY> selectAll() {
-        StatementAction<List<ENTITY>> action = new StatementAction<List<ENTITY>>() {
-            @Override
-            public List<ENTITY> doWithStatement(final Statement statement) throws SQLException {
-                statement.executeQuery("select * from " + getTableName());
+				final ResultSet resultSet = statement.getResultSet();
+				final Set<String> columns = resolveColumnNames(resultSet);
+				final List<ENTITY> result = new ArrayList<>();
+				boolean hasNext = resultSet.next();
+				while (hasNext) {
+					result.add(parseRow(resultSet, columns));
+					hasNext = resultSet.next();
+				}
+				resultSet.close();
+				return result;
+			}
+		};
+		return executeStatement(action);
+	}
 
-                final ResultSet resultSet = statement.getResultSet();
-                final Set<String> columns = resolveColumnNames(resultSet);
-                final List<ENTITY> result = new ArrayList<>();
-                boolean hasNext = resultSet.next();
-                while (hasNext) {
-                    result.add(parseRow(resultSet, columns));
-                    hasNext = resultSet.next();
-                }
-                resultSet.close();
-                return result;
-            }
-        };
-        return executeStatement(action);
-    }
+	@Override
+	public void delete(final ID id) {
+		executeStatement(
+				new PreparedStatementAction<Integer>(String.format("delete from %s where id=?", getTableName())) {
+					@Override
+					public Integer doWithPreparedStatement(final PreparedStatement prepareStatement)
+							throws SQLException {
+						prepareStatement.setObject(1, id);
+						return prepareStatement.executeUpdate();
+					}
+				});
+	}
 
-    @Override
-    public void delete(final ID id) {
-        executeStatement(
-                new PreparedStatementAction<Integer>(String.format("delete from %s where id=?", getTableName())) {
-                    @Override
-                    public Integer doWithPreparedStatement(final PreparedStatement prepareStatement)
-                            throws SQLException {
-                        prepareStatement.setObject(1, id);
-                        return prepareStatement.executeUpdate();
-                    }
-                });
-    }
+	@Override
+	public void deleteAll() {
+		executeStatement(new PreparedStatementAction<Integer>("delete from " + getTableName()) {
+			@Override
+			public Integer doWithPreparedStatement(final PreparedStatement prepareStatement) throws SQLException {
+				final int executeUpdate = prepareStatement.executeUpdate();
+				return executeUpdate;
+			}
+		});
+	}
 
-    @Override
-    public void deleteAll() {
-        executeStatement(new PreparedStatementAction<Integer>("delete from " + getTableName()) {
-            @Override
-            public Integer doWithPreparedStatement(final PreparedStatement prepareStatement) throws SQLException {
-                final int executeUpdate = prepareStatement.executeUpdate();
-                return executeUpdate;
-            }
-        });
-    }
+	protected <T> T executeStatement(final StatementAction<T> action) {
+		try (Connection c = getConnection(); Statement stmt = c.createStatement()) {
+			// c.setAutoCommit(false);
+			return action.doWithStatement(stmt);
 
-    protected <T> T executeStatement(final StatementAction<T> action) {
-        try (Connection c = getConnection(); Statement stmt = c.createStatement()) {
-            c.setAutoCommit(false);
-            return action.doWithStatement(stmt);
+		} catch (final SQLException e) {
+			throw new SQLExecutionException(e); // wrap catchable exception with runtime
+		}
+	}
 
-        } catch (final SQLException e) {
-            throw new SQLExecutionException(e); // wrap catchable exception with
-            // runtime
-        }
-    }
+	protected <T> T executeStatement(final PreparedStatementAction<T> action) {
+		try (Connection c = getConnection();
+				PreparedStatement pStmt = action.isReturnGeneratedKeys()
+						? c.prepareStatement(action.getSql(), Statement.RETURN_GENERATED_KEYS)
+						: c.prepareStatement(action.getSql())) {
+			c.setAutoCommit(false);
+			try {
+				final T doWithPreparedStatement = action.doWithPreparedStatement(pStmt);
+				c.commit();
+				return doWithPreparedStatement;
+			} catch (final Exception e) {
+				c.rollback();
+				throw new RuntimeException(e);
+			}
 
-    protected <T> T executeStatement(final PreparedStatementAction<T> action) {
-        try (Connection c = getConnection();
-                PreparedStatement pStmt = action.isReturnGeneratedKeys()
-                        ? c.prepareStatement(action.getSql(), Statement.RETURN_GENERATED_KEYS)
-                        : c.prepareStatement(action.getSql())) {
-            c.setAutoCommit(false);
-            try {
-                final T doWithPreparedStatement = action.doWithPreparedStatement(pStmt);
-                c.commit();
-                return doWithPreparedStatement;
-            } catch (final Exception e) {
-                c.rollback();
-                throw new RuntimeException(e);
-            }
+		} catch (final SQLException e) {
+			throw new SQLExecutionException(e);
+		}
+	}
 
-        } catch (final SQLException e) {
-            throw new SQLExecutionException(e);
-        }
-    }
+	protected List<ENTITY> executeFindQuery(final String sqlFragment) {
+		return executeFindQueryWithCustomSelect(String.format("select * from %s %s", getTableName(), sqlFragment));
+	}
 
-    protected List<ENTITY> executeFindQuery(final String sqlFragment) {
-        return executeFindQueryWithCustomSelect(String.format("select * from %s %s", getTableName(), sqlFragment));
-    }
+	protected List<ENTITY> executeFindQueryWithCustomSelect(final String fullSql) {
+		return executeStatement(new StatementAction<List<ENTITY>>() {
+			@Override
+			public List<ENTITY> doWithStatement(final Statement statement) throws SQLException {
+				statement.executeQuery(fullSql);
 
-    protected List<ENTITY> executeFindQueryWithCustomSelect(final String fullSql) {
-        return executeStatement(new StatementAction<List<ENTITY>>() {
-            @Override
-            public List<ENTITY> doWithStatement(final Statement statement) throws SQLException {
-                statement.executeQuery(fullSql);
+				final ResultSet resultSet = statement.getResultSet();
 
-                final ResultSet resultSet = statement.getResultSet();
+				final Set<String> columns = resolveColumnNames(resultSet);
 
-                final Set<String> columns = resolveColumnNames(resultSet);
+				final List<ENTITY> result = new ArrayList<>();
+				boolean hasNext = resultSet.next();
+				while (hasNext) {
+					result.add(parseRow(resultSet, columns));
+					hasNext = resultSet.next();
+				}
+				resultSet.close();
+				return result;
+			}
 
-                final List<ENTITY> result = new ArrayList<>();
-                boolean hasNext = resultSet.next();
-                while (hasNext) {
-                    result.add(parseRow(resultSet, columns));
-                    hasNext = resultSet.next();
-                }
-                resultSet.close();
-                return result;
-            }
+		});
+	}
 
-        });
-    }
+	protected long executeCountQuery(final String sql) {
+		return executeStatement(new StatementAction<Long>() {
+			@Override
+			public Long doWithStatement(final Statement statement) throws SQLException {
+				final String fullSql = String.format("select count(*) as total from %s %s", getTableName(), sql);
 
-    protected long executeCountQuery(final String sql) {
-        return executeStatement(new StatementAction<Long>() {
-            @Override
-            public Long doWithStatement(final Statement statement) throws SQLException {
-                final String fullSql = String.format("select count(*) as total from %s %s", getTableName(), sql);
+				statement.executeQuery(fullSql);
 
-                statement.executeQuery(fullSql);
+				final ResultSet resultSet = statement.getResultSet();
+				resultSet.next();
 
-                final ResultSet resultSet = statement.getResultSet();
-                resultSet.next();
+				final long total = resultSet.getLong("total");
+				resultSet.close();
+				return total;
+			}
+		});
+	}
 
-                final long total = resultSet.getLong("total");
-                resultSet.close();
-                return total;
-            }
-        });
-    }
+	private Set<String> resolveColumnNames(final ResultSet resultSet) throws SQLException {
+		final ResultSetMetaData rsMetaData = resultSet.getMetaData();
+		final int numberOfColumns = rsMetaData.getColumnCount();
+		final Set<String> columns = new HashSet<>();
+		for (int i = 1; i <= numberOfColumns; i++) {
+			columns.add(rsMetaData.getColumnName(i));
+		}
+		return columns;
+	}
 
-    private Set<String> resolveColumnNames(final ResultSet resultSet) throws SQLException {
-        final ResultSetMetaData rsMetaData = resultSet.getMetaData();
-        final int numberOfColumns = rsMetaData.getColumnCount();
-        final Set<String> columns = new HashSet<>();
-        for (int i = 1; i <= numberOfColumns; i++) {
-            columns.add(rsMetaData.getColumnName(i));
-        }
-        return columns;
-    }
+	protected Connection getConnection() throws SQLException {
+		return DriverManager.getConnection(url, user, password);
+	}
 
-    protected Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url, user, password);
-    }
+	protected ENTITY parseRow(final ResultSet resultSet) throws SQLException {
+		throw new UnsupportedOperationException(
+				"this method should be overriden in particular *Impl class or use alternative "
+						+ "com.itacademy.jd2.mm.auction.dao.jdbc.AbstractDaoImpl.parseRow(ResultSet, List<String>)");
+	};
 
-    protected ENTITY parseRow(final ResultSet resultSet) throws SQLException {
-        throw new UnsupportedOperationException(
-                "this method should be overriden in particular *Impl class or use alternative "
-                        + "com.itacademy.jd2.mm.auction.dao.jdbc.AbstractDaoImpl.parseRow(ResultSet, List<String>)");
-    };
+	protected ENTITY parseRow(final ResultSet resultSet, final Set<String> columns) throws SQLException {
+		// this method allows to specify in particular DAO the parser which
+		// accepts list of columns. but by default it will fall back to
+		// com.itacademy.jd2.dz.cardealer.dao.jdbc.AbstractDaoImpl.parseRow(ResultSet)
+		return parseRow(resultSet);
+	};
 
-    protected ENTITY parseRow(final ResultSet resultSet, final Set<String> columns) throws SQLException {
-        // this method allows to specify in particular DAO the parser which
-        // accepts list of columns. but by default it will fall back to
-        // com.itacademy.jd2.dz.cardealer.dao.jdbc.AbstractDaoImpl.parseRow(ResultSet)
-        return parseRow(resultSet);
-    };
+	protected void appendSort(final AbstractFilter filter, final StringBuilder sql) {
+		final String sortColumn = filter.getSortColumn();
+		final Boolean sortOrder = filter.getSortOrder();
 
-    protected void appendSort(final AbstractFilter filter, final StringBuilder sql) {
-        final String sortColumn = filter.getSortColumn();
-        final Boolean sortOrder = filter.getSortOrder();
+		if (sortColumn != null) {
+			sql.append(String.format(" order by %s", sortColumn));
 
-        if (sortColumn != null) {
-            sql.append(String.format(" order by %s", sortColumn));
+			if (sortOrder != null) {
+				sql.append(" ");
+				sql.append(sortOrder ? "asc" : "desc");
+			}
+		}
+	}
 
-            if (sortOrder != null) {
-                sql.append(" ");
-                sql.append(sortOrder ? "asc" : "desc");
-            }
-        }
-    }
+	protected void appendPaging(final AbstractFilter filter, final StringBuilder sql) {
+		final Integer limit = filter.getLimit();
+		final Integer offset = filter.getOffset();
 
-    protected void appendPaging(final AbstractFilter filter, final StringBuilder sql) {
-        final Integer limit = filter.getLimit();
-        final Integer offset = filter.getOffset();
+		if (limit != null) {
+			sql.append(" limit " + limit);
+		}
 
-        if (limit != null) {
-            sql.append(" limit " + limit);
-        }
+		if (offset != null) {
+			sql.append(" offset " + offset);
+		}
+	}
 
-        if (offset != null) {
-            sql.append(" offset " + offset);
-        }
-    }
-
-    protected abstract String getTableName();
+	protected abstract String getTableName();
 }
