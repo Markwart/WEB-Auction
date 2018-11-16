@@ -86,7 +86,7 @@ public class BidDaoImpl extends AbstractDaoImpl<IBid, Integer> implements IBidDa
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 
 		final Item item = new Item();
-		item.setId(resultSet.getInt("item_id"));
+		item.setId((Integer)resultSet.getObject("item_id"));
 		entity.setItem(item);
 
 		final UserAccount userAccount = new UserAccount();

@@ -74,18 +74,6 @@ CREATE TABLE "category" (
 
 
 
-CREATE TABLE "step" (
-	"id" serial NOT NULL,
-	"amount" int NOT NULL,
-	"created" TIMESTAMP NOT NULL,
-	"updated" TIMESTAMP NOT NULL,
-	CONSTRAINT step_pk PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
 CREATE TABLE "composition" (
 	"id" serial NOT NULL,
 	"name" character varying NOT NULL UNIQUE,
@@ -100,7 +88,7 @@ CREATE TABLE "composition" (
 
 CREATE TABLE "shipping_method" (
 	"id" serial NOT NULL,
-	"name" character varying NOT NULL,
+	"name" character varying NOT NULL UNIQUE,
 	"delivery_time" character varying NOT NULL,
 	"cost" DECIMAL NOT NULL,
 	"created" TIMESTAMP NOT NULL,
@@ -157,7 +145,7 @@ CREATE TABLE "auction_duration" (
 
 CREATE TABLE "bid" (
 	"id" serial NOT NULL,
-	"item_id" bigint NOT NULL,
+	"item_id" int NOT NULL,
 	"price_bid" DECIMAL NOT NULL,
 	"user_bid_id" int NOT NULL,
 	"status_bid" character varying NOT NULL,
@@ -209,6 +197,7 @@ CREATE TABLE "country_origin" (
 
 CREATE TABLE "auction_rule" (
 	"id" serial NOT NULL,
+	"ordinal_number" double NOT NULL UNIQUE,
 	"theme" character varying NOT NULL,
 	"text" TEXT NOT NULL,
 	"created" TIMESTAMP NOT NULL,
@@ -249,6 +238,23 @@ CREATE TABLE "deferred_bid" (
 
 
 
+CREATE TABLE "step_block" (
+	"id" serial NOT NULL,
+	"name" character varying NOT NULL UNIQUE,
+	"step_1" int NOT NULL,
+	"step_2" int NOT NULL,
+	"step_3" int NOT NULL,
+	"step_4" int NOT NULL,
+	"step_5" int NOT NULL,
+	"created" TIMESTAMP NOT NULL,
+	"updated" TIMESTAMP NOT NULL,
+	CONSTRAINT step_block_pk PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
 
 ALTER TABLE "item" ADD CONSTRAINT "item_fk0" FOREIGN KEY ("category_id") REFERENCES "category"("id");
 ALTER TABLE "item" ADD CONSTRAINT "item_fk1" FOREIGN KEY ("country_origin_id") REFERENCES "country_origin"("id");
@@ -257,7 +263,6 @@ ALTER TABLE "item" ADD CONSTRAINT "item_fk3" FOREIGN KEY ("composition_id") REFE
 ALTER TABLE "item" ADD CONSTRAINT "item_fk4" FOREIGN KEY ("seller_id") REFERENCES "user_account"("id");
 
 ALTER TABLE "personal_data" ADD CONSTRAINT "personal_data_fk0" FOREIGN KEY ("id") REFERENCES "user_account"("id");
-
 
 
 
@@ -285,4 +290,5 @@ ALTER TABLE "admin_communication" ADD CONSTRAINT "admin_communication_fk0" FOREI
 
 ALTER TABLE "deferred_bid" ADD CONSTRAINT "deferred_bid_fk0" FOREIGN KEY ("item_id") REFERENCES "item"("id");
 ALTER TABLE "deferred_bid" ADD CONSTRAINT "deferred_bid_fk1" FOREIGN KEY ("user_bid_id") REFERENCES "user_account"("id");
+
 
