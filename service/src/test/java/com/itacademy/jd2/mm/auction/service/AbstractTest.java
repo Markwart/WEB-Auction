@@ -9,10 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAdminCommunication;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICountryOrigin;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
@@ -43,6 +46,12 @@ public abstract class AbstractTest {
 	protected IMessageService messageService;
 	@Autowired
 	protected IItemService itemService;
+	@Autowired
+	protected IBidService bidService;
+	@Autowired
+	protected IDeferredBidService deferredBidService;
+	@Autowired
+	protected IFeedbackService feedbackService;
 
 	private static final Random RANDOM = new Random();
 
@@ -50,10 +59,13 @@ public abstract class AbstractTest {
 	public void setUpMethod() {
 		// clean DB recursive
 		messageService.deleteAll();
-		
+		bidService.deleteAll();
+		deferredBidService.deleteAll();
+		feedbackService.deleteAll();
+
 		itemService.deleteAll();
 		adminCommunicationService.deleteAll();
-		
+
 		conditionService.deleteAll();
 		categoryService.deleteAll();
 		compositionService.deleteAll();
@@ -96,21 +108,21 @@ public abstract class AbstractTest {
 		categoryService.save(entity);
 		return entity;
 	}
-	
+
 	protected ICountryOrigin saveNewCountryOrigin() {
 		final ICountryOrigin entity = countryOriginService.createEntity();
 		entity.setName("countryOrigin-" + getRandomPrefix());
 		countryOriginService.save(entity);
 		return entity;
 	}
-	
+
 	protected IPaymentMethod saveNewPaymentMethod() {
 		final IPaymentMethod entity = paymentMethodService.createEntity();
 		entity.setName("paymentMethod-" + getRandomPrefix());
 		paymentMethodService.save(entity);
 		return entity;
 	}
-	
+
 	protected IShippingMethod saveNewShippingMethod() {
 		final IShippingMethod entity = shippingMethodService.createEntity();
 		entity.setName("shipping_method-" + getRandomPrefix());
@@ -119,7 +131,7 @@ public abstract class AbstractTest {
 		shippingMethodService.save(entity);
 		return entity;
 	}
-	
+
 	protected IMessage saveNewMessage() {
 		final IMessage entity = messageService.createEntity();
 		entity.setTheme("theme-" + getRandomPrefix());
@@ -130,7 +142,41 @@ public abstract class AbstractTest {
 		messageService.save(entity);
 		return entity;
 	}
-	
+
+	protected IFeedback saveNewFeedback() {
+		final IFeedback entity = feedbackService.createEntity();
+		entity.setCommunication(RANDOM.nextInt(5) + 1);
+		entity.setShippingTime(RANDOM.nextInt(5) + 1);
+		entity.setShippingCharges(RANDOM.nextInt(5) + 1);
+		entity.setItemDescription(RANDOM.nextInt(5) + 1);
+		entity.setComment("comment-" + getRandomPrefix());
+		entity.setItem(saveNewItem());
+		entity.setUserAccountFrom(saveNewUserAccount());
+		entity.setUserAccountWhom(saveNewUserAccount());
+		feedbackService.save(entity);
+		return entity;
+	}
+
+	protected IBid saveNewBid() {
+		final IBid entity = bidService.createEntity();
+		entity.setPriceBid(new BigDecimal(getRANDOM().nextInt(10000)));
+		entity.setStatusBid("status_bid-" + getRandomPrefix());
+		entity.setItem(saveNewItem());
+		entity.setUserAccount(saveNewUserAccount());
+		bidService.save(entity);
+		return entity;
+	}
+
+	protected IDeferredBid saveNewDeferredBid() {
+		final IDeferredBid entity = deferredBidService.createEntity();
+		entity.setPriceBid(new BigDecimal(getRANDOM().nextInt(10000)));
+		entity.setStatusBid("status_bid-" + getRandomPrefix());
+		entity.setItem(saveNewItem());
+		entity.setUserAccount(saveNewUserAccount());
+		deferredBidService.save(entity);
+		return entity;
+	}
+
 	protected IItem saveNewItem() {
 		final IItem entity = itemService.createEntity();
 		entity.setName("name-" + getRandomPrefix());

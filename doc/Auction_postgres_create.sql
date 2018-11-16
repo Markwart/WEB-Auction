@@ -132,7 +132,7 @@ CREATE TABLE "feedback" (
 	"communication" int NOT NULL,
 	"shipping_time" int NOT NULL,
 	"shipping_charges" int NOT NULL,
-	"Item_description" int NOT NULL,
+	"item_description" int NOT NULL,
 	"comment" TEXT NOT NULL,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
@@ -182,9 +182,9 @@ CREATE TABLE "user_2_item" (
 CREATE TABLE "message" (
 	"id" serial NOT NULL,
 	"item_id" int NOT NULL,
+	"theme" character varying NOT NULL,
 	"user_from_id" int NOT NULL,
 	"user_whom_id" int NOT NULL,
-	"theme" character varying NOT NULL,
 	"text" TEXT NOT NULL,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
@@ -209,7 +209,7 @@ CREATE TABLE "country_origin" (
 
 CREATE TABLE "auction_rule" (
 	"id" serial NOT NULL,
-	"theme" serial NOT NULL,
+	"theme" character varying NOT NULL,
 	"text" TEXT NOT NULL,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
@@ -239,7 +239,7 @@ CREATE TABLE "deferred_bid" (
 	"item_id" int NOT NULL,
 	"price_bid" DECIMAL NOT NULL,
 	"user_bid_id" int NOT NULL,
-	"status_bid" int NOT NULL,
+	"status_bid" character varying NOT NULL,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
 	CONSTRAINT deferred_bid_pk PRIMARY KEY ("id")

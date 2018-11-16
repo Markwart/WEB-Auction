@@ -106,7 +106,7 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 
 		final UserAccount userAccountWhom = new UserAccount();
 		userAccountWhom.setId((Integer) resultSet.getObject("user_whom_id"));
-		entity.setUserAccountFrom(userAccountWhom);
+		entity.setUserAccountWhom(userAccountWhom);
 
 		return entity;
 	}
