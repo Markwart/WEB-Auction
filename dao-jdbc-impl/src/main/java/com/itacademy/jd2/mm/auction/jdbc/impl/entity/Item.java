@@ -12,18 +12,15 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 public class Item extends BaseEntity implements IItem {
 
-	private String name;
+	private String name, image, text, statusAuction;
+	private Integer year;
 	private Date auctionEnd;
 	private BigDecimal startingPrice;
 	private ICategory category;
-	private Integer year;
 	private ICountryOrigin countryOrigin;
 	private ICondition condition;
 	private IComposition composition;
-	private String image;
-	private String text;
 	private IUserAccount seller;
-	private String statusAuction;
 
 	@Override
 	public String getName() {

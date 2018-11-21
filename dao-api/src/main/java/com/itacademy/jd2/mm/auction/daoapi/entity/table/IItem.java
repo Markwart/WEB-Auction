@@ -1,7 +1,6 @@
 package com.itacademy.jd2.mm.auction.daoapi.entity.table;
 
 import java.math.BigDecimal;
-import java.sql.Blob;
 import java.util.Date;
 
 public interface IItem extends IBaseEntity {

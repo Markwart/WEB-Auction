@@ -6,8 +6,7 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 public class AdminCommunication extends BaseEntity implements IAdminCommunication {
 
-	private String theme;
-	private String text;
+	private String theme, text;
 	private IUserAccount userAccount;
 
 	@Override

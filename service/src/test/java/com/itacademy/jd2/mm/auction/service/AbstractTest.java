@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAdminCommunication;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionRule;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
@@ -20,6 +22,7 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IStepBlock;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.service.IConditionService;
 
@@ -52,6 +55,12 @@ public abstract class AbstractTest {
 	protected IDeferredBidService deferredBidService;
 	@Autowired
 	protected IFeedbackService feedbackService;
+	@Autowired
+	protected IAuctionRuleService auctionRuleService;
+	@Autowired
+	protected IAuctionDurationService auctionDurationService;
+	@Autowired
+	protected IStepBlockService stepBlockService;
 
 	private static final Random RANDOM = new Random();
 
@@ -72,6 +81,9 @@ public abstract class AbstractTest {
 		countryOriginService.deleteAll();
 		paymentMethodService.deleteAll();
 		shippingMethodService.deleteAll();
+		auctionRuleService.deleteAll();
+		auctionDurationService.deleteAll();
+		stepBlockService.deleteAll();
 		userAccountService.deleteAll();
 
 	}
@@ -129,6 +141,35 @@ public abstract class AbstractTest {
 		entity.setDeliveryTime("delivey_time-" + getRandomPrefix());
 		entity.setCost(new BigDecimal(getRANDOM().nextInt(10000)));
 		shippingMethodService.save(entity);
+		return entity;
+	}
+	
+	protected IAuctionRule saveNewAuctionRule() {
+		final IAuctionRule entity = auctionRuleService.createEntity();
+		entity.setIndex("index-" + getRandomPrefix());
+		entity.setTheme("theme-" + getRandomPrefix());
+		entity.setText("text-" + getRandomPrefix());
+		auctionRuleService.save(entity);
+		return entity;
+	}
+	
+	
+	protected IAuctionDuration saveNewAuctionDuration() {
+		final IAuctionDuration entity = auctionDurationService.createEntity();
+		entity.setMin(RANDOM.nextInt(10000));
+		auctionDurationService.save(entity);
+		return entity;
+	}
+	
+	protected IStepBlock saveNewStepBlock() {
+		final IStepBlock entity = stepBlockService.createEntity();
+		entity.setName("step_block-" + getRandomPrefix());
+		entity.setStep_1(getRandomObjectsCount());
+		entity.setStep_2(getRandomObjectsCount());
+		entity.setStep_3(getRandomObjectsCount());
+		entity.setStep_4(getRandomObjectsCount());
+		entity.setStep_5(getRandomObjectsCount());
+		stepBlockService.save(entity);
 		return entity;
 	}
 

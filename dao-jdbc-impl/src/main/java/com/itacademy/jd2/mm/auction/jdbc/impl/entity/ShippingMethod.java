@@ -1,7 +1,6 @@
 package com.itacademy.jd2.mm.auction.jdbc.impl.entity;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
 

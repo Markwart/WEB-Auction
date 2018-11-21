@@ -6,13 +6,9 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 public class Feedback extends BaseEntity implements IFeedback {
 
-	private Integer communication;
-	private Integer shippingTime;
-	private Integer shippingCharges;
-	private Integer itemDescription;
+	private Integer communication, shippingTime, shippingCharges, itemDescription;
 	private String comment;
-	private IUserAccount userAccountFrom;
-	private IUserAccount userAccountWhom;
+	private IUserAccount userAccountFrom, userAccountWhom;
 	private IItem item;
 
 	@Override

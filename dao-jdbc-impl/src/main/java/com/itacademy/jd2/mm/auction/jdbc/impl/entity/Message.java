@@ -6,10 +6,8 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 public class Message extends BaseEntity implements IMessage {
 
-	private String theme;
-	private String text;
-	private IUserAccount userAccountFrom;
-	private IUserAccount userAccountWhom;
+	private String theme, text;
+	private IUserAccount userAccountFrom, userAccountWhom;
 	private IItem item;
 
 	@Override
