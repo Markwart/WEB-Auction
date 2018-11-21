@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IConditionDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
+import com.itacademy.jd2.mm.auction.daoapi.filter.ConditionFilter;
 import com.itacademy.jd2.mm.auction.service.IConditionService;
 
 @Service
@@ -18,7 +19,7 @@ public class ConditionServiceImpl implements IConditionService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConditionServiceImpl.class);
 
 	private IConditionDao dao;
-	
+
 	@Autowired
 	public ConditionServiceImpl(IConditionDao dao) {
 		super();
@@ -79,12 +80,14 @@ public class ConditionServiceImpl implements IConditionService {
 	 * dao.save(entities); }
 	 */
 
-	/*
-	 * @Override public List<ICondition> find(ConditionFilter filter) { return
-	 * dao.find(filter); }
-	 * 
-	 * @Override public long getCount(ConditionFilter filter) { return
-	 * dao.getCount(filter); }
-	 */
+	@Override
+	public List<ICondition> find(ConditionFilter filter) {
+		return dao.find(filter);
+	}
 
+	/*@Override
+	public long getCount(ConditionFilter filter) {
+		return dao.getCount(filter);
+	}
+*/
 }

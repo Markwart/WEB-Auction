@@ -42,22 +42,22 @@ public class PersonalDataServiceImpl implements IPersonalDataService {
 		if (entity.getId() == null) {
 			entity.setCreated(modefeOn);
 			dao.insert(entity);
-			LOGGER.debug("new personal_date created: {}", entity);
+			LOGGER.debug("new personal_data created: {}", entity);
 		} else {
 			dao.update(entity);
-			LOGGER.debug("personal_date updated: {}", entity);
+			LOGGER.debug("personal_data updated: {}", entity);
 		}	
 	}
 
 	@Override
 	public void delete(Integer id) {
-		LOGGER.info("delete personal_date by id: {}", id);
+		LOGGER.info("delete personal_data by id: {}", id);
 		dao.delete(id);	
 	}
 
 	@Override
 	public void deleteAll() {
-		LOGGER.info("delete all personal_date");
+		LOGGER.info("delete all personal_data");
 		dao.deleteAll();
 	}
 
