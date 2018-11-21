@@ -1,0 +1,18 @@
+19:07:22.293 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @986ms
+19:07:22.413 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+19:07:22.653 [main] INFO  /auction - No Spring WebApplicationInitializer types detected on classpath
+19:07:22.769 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.w.WebAppContext@2b4a2ec7{/auction,file:/D:/M_Matusevich/dzhivushko/G-JD2-10-17_mmatusevich/web/src/main/webapp/,AVAILABLE}{src/main/webapp}
+19:07:22.881 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@4f18837a{HTTP/1.1}{0.0.0.0:8081}
+19:07:22.882 [main] INFO  org.eclipse.jetty.server.Server - Started @1585ms
+19:09:06.375 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @590ms
+19:09:06.461 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+19:09:06.676 [main] INFO  /auction - No Spring WebApplicationInitializer types detected on classpath
+19:09:06.777 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.w.WebAppContext@2b4a2ec7{/auction,file:/D:/M_Matusevich/dzhivushko/G-JD2-10-17_mmatusevich/web/src/main/webapp/,AVAILABLE}{src/main/webapp}
+19:09:06.837 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@4f18837a{HTTP/1.1}{0.0.0.0:8081}
+19:09:06.837 [main] INFO  org.eclipse.jetty.server.Server - Started @1060ms
+19:34:46.128 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @595ms
+19:34:46.217 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+19:34:46.451 [main] INFO  /auction - No Spring WebApplicationInitializer types detected on classpath
+19:34:46.559 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.w.WebAppContext@2b4a2ec7{/auction,file:/D:/M_Matusevich/dzhivushko/G-JD2-10-17_mmatusevich/web/src/main/webapp/,AVAILABLE}{src/main/webapp}
+19:34:46.619 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@4f18837a{HTTP/1.1}{0.0.0.0:8081}
+19:34:46.620 [main] INFO  org.eclipse.jetty.server.Server - Started @1096ms
