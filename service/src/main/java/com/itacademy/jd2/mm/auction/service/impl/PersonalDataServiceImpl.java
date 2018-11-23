@@ -6,11 +6,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IPersonalDataDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.service.IPersonalDataService;
 
+@Service
 public class PersonalDataServiceImpl implements IPersonalDataService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PersonalDataServiceImpl.class);

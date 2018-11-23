@@ -46,7 +46,7 @@ public class PersonalDataDaoImpl extends AbstractDaoImpl<IPersonalData, Integer>
 
 			@Override
 			public IPersonalData doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
-				pStmt.setInt(1, entity.getUserAccount().getId());
+				pStmt.setInt(1, entity.getId());
 				pStmt.setString(2, entity.getUsername());
 				pStmt.setString(3, entity.getFirstName());
 				pStmt.setString(4, entity.getLastName());

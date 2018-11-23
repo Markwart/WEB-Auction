@@ -40,7 +40,7 @@ CREATE TABLE "personal_data" (
 	"username" character varying NOT NULL,
 	"first_name" character varying NOT NULL,
 	"last_name" character varying NOT NULL,
-	"address" character varying NOT NULL,
+	"adress" character varying NOT NULL,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
 	CONSTRAINT personal_data_pk PRIMARY KEY ("id")

@@ -62,8 +62,8 @@ public abstract class AbstractTest {
 	protected IAuctionDurationService auctionDurationService;
 	@Autowired
 	protected IStepBlockService stepBlockService;
-	/*@Autowired
-	protected IPersonalDataService personalDataService;*/
+	@Autowired
+	protected IPersonalDataService personalDataService;
 
 	private static final Random RANDOM = new Random();
 
@@ -77,7 +77,7 @@ public abstract class AbstractTest {
 
 		itemService.deleteAll();
 		adminCommunicationService.deleteAll();
-		//personalDataService.deleteAll();
+		personalDataService.deleteAll();
 
 		conditionService.deleteAll();
 		categoryService.deleteAll();
@@ -147,7 +147,7 @@ public abstract class AbstractTest {
 		shippingMethodService.save(entity);
 		return entity;
 	}
-	
+
 	protected IAuctionRule saveNewAuctionRule() {
 		final IAuctionRule entity = auctionRuleService.createEntity();
 		entity.setIndex("index-" + getRandomPrefix());
@@ -156,15 +156,14 @@ public abstract class AbstractTest {
 		auctionRuleService.save(entity);
 		return entity;
 	}
-	
-	
+
 	protected IAuctionDuration saveNewAuctionDuration() {
 		final IAuctionDuration entity = auctionDurationService.createEntity();
 		entity.setMin(RANDOM.nextInt(10000));
 		auctionDurationService.save(entity);
 		return entity;
 	}
-	
+
 	protected IStepBlock saveNewStepBlock() {
 		final IStepBlock entity = stepBlockService.createEntity();
 		entity.setName("step_block-" + getRandomPrefix());
@@ -248,17 +247,18 @@ public abstract class AbstractTest {
 		userAccountService.save(entity);
 		return entity;
 	}
-	
-	/*protected IPersonalData saveNewPersonalData() {
+
+	protected IPersonalData saveNewPersonalData() {
 		final IPersonalData entity = personalDataService.createEntity();
 		entity.setUserName("username-" + getRandomPrefix());
 		entity.setFirstName("first_name-" + getRandomPrefix());
-		entity.setLastName("last_name-"+ getRandomPrefix());
+		entity.setLastName("last_name-" + getRandomPrefix());
 		entity.setAdress("adress-" + getRandomPrefix());
-		entity.setUserAccount(saveNewUserAccount());
+		//entity.setUserAccount(saveNewUserAccount());
+		entity.setId(saveNewUserAccount().getId());
 		personalDataService.save(entity);
 		return entity;
-	}*/
+	}
 
 	protected IAdminCommunication saveNewAdminCommunication() {
 		final IAdminCommunication entity = adminCommunicationService.createEntity();
