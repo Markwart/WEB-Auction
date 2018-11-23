@@ -33,7 +33,7 @@ public class ConditionServiceTest extends AbstractTest {
 
         String newName = entity.getName() + "_updated";
         entity.setName(newName);
-        Thread.sleep(2000);
+        Thread.sleep(DELAY);
         conditionService.save(entity);
 
         final ICondition entityFromDb = conditionService.get(entity.getId());

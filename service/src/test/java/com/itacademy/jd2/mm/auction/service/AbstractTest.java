@@ -30,6 +30,8 @@ import com.itacademy.jd2.mm.auction.service.IConditionService;
 @SpringJUnitConfig(locations = "classpath:service-context-test.xml")
 public abstract class AbstractTest {
 
+	public static final Integer DELAY = 100;
+	
 	@Autowired
 	protected IConditionService conditionService;
 	@Autowired
@@ -254,7 +256,6 @@ public abstract class AbstractTest {
 		entity.setFirstName("first_name-" + getRandomPrefix());
 		entity.setLastName("last_name-" + getRandomPrefix());
 		entity.setAdress("adress-" + getRandomPrefix());
-		//entity.setUserAccount(saveNewUserAccount());
 		entity.setId(saveNewUserAccount().getId());
 		personalDataService.save(entity);
 		return entity;

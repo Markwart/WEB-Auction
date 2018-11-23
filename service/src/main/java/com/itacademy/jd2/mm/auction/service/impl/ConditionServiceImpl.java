@@ -85,9 +85,9 @@ public class ConditionServiceImpl implements IConditionService {
 		return dao.find(filter);
 	}
 
-	/*@Override
+	@Override
 	public long getCount(ConditionFilter filter) {
 		return dao.getCount(filter);
 	}
-*/
+
 }

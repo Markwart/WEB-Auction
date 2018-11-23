@@ -592,3 +592,332 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 21:42:03.884 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.w.WebAppContext@57175e74{/auction,file:/D:/M_Matusevich/G-JD2-10-17_mmatusevich/web/src/main/webapp/,AVAILABLE}{src/main/webapp}
 21:42:03.900 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@36b0fcd5{HTTP/1.1}{0.0.0.0:8081}
 21:42:03.900 [main] INFO  org.eclipse.jetty.server.Server - Started @2099ms
+18:55:45.585 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @661ms
+18:55:45.844 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+18:55:46.231 [main] INFO  /auction - No Spring WebApplicationInitializer types detected on classpath
+18:55:46.251 [main] INFO  /auction - Initializing Spring root WebApplicationContext
+18:55:46.252 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+18:55:46.386 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Fri Nov 23 18:55:46 MSK 2018]; root of context hierarchy
+18:55:46.427 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [webapp-context.xml]
+18:55:46.528 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [service-context.xml]
+18:55:46.548 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [dao-context.xml]
+18:55:47.217 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 965 ms
+18:55:47.329 [main] INFO  /auction - Initializing Spring FrameworkServlet 'dispatcher'
+18:55:47.329 [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization started
+18:55:47.332 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 18:55:47 MSK 2018]; parent: Root WebApplicationContext
+18:55:47.333 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/dispatcher-servlet.xml]
+18:55:47.754 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.index(javax.servlet.http.HttpServletRequest)
+18:55:47.756 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.DefaultController.index()
+18:55:47.843 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 18:55:47 MSK 2018]; parent: Root WebApplicationContext
+18:55:47.887 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 18:55:47 MSK 2018]; parent: Root WebApplicationContext
+18:55:47.942 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+18:55:47.959 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+18:55:48.110 [main] INFO  org.apache.tiles.access.TilesAccess - Publishing TilesContext for context: org.springframework.web.servlet.view.tiles3.SpringWildcardServletTilesApplicationContext
+18:55:48.150 [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization completed in 821 ms
+18:55:48.151 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.w.WebAppContext@51b7e5df{/auction,file:/D:/M_Matusevich/dzhivushko/G-JD2-10-17_mmatusevich/web/src/main/webapp/,AVAILABLE}{src/main/webapp}
+18:55:48.196 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@235f4c10{HTTP/1.1}{0.0.0.0:8081}
+18:55:48.196 [main] INFO  org.eclipse.jetty.server.Server - Started @3282ms
+19:42:10.558 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @617ms
+19:42:10.644 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+19:42:10.896 [main] INFO  /auction - No Spring WebApplicationInitializer types detected on classpath
+19:42:10.938 [main] INFO  /auction - Initializing Spring root WebApplicationContext
+19:42:10.939 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+19:42:11.032 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Fri Nov 23 19:42:11 MSK 2018]; root of context hierarchy
+19:42:11.067 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [webapp-context.xml]
+19:42:11.160 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [service-context.xml]
+19:42:11.182 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [dao-context.xml]
+19:42:11.804 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 865 ms
+19:42:11.882 [main] INFO  /auction - Initializing Spring FrameworkServlet 'dispatcher'
+19:42:11.882 [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization started
+19:42:11.885 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 19:42:11 MSK 2018]; parent: Root WebApplicationContext
+19:42:11.886 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/dispatcher-servlet.xml]
+19:42:12.201 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.index(javax.servlet.http.HttpServletRequest)
+19:42:12.204 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/{id}/delete],methods=[GET]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.ConditionController.delete(java.lang.Integer)
+19:42:12.205 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition],methods=[POST]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.ConditionController.save(com.itacademy.jd2.mm.auction.web.dto.ConditionDTO,org.springframework.validation.BindingResult)
+19:42:12.206 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/{id}/edit],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.edit(java.lang.Integer)
+19:42:12.207 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.viewDetails(java.lang.Integer)
+19:42:12.208 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/add],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.showForm()
+19:42:12.208 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.DefaultController.index()
+19:42:12.264 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+19:42:12.430 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 19:42:11 MSK 2018]; parent: Root WebApplicationContext
+19:42:12.479 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 19:42:11 MSK 2018]; parent: Root WebApplicationContext
+19:42:12.551 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+19:42:12.569 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+19:42:12.693 [main] INFO  org.apache.tiles.access.TilesAccess - Publishing TilesContext for context: org.springframework.web.servlet.view.tiles3.SpringWildcardServletTilesApplicationContext
+19:42:12.735 [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization completed in 852 ms
+19:42:12.735 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.w.WebAppContext@29ba4338{/auction,file:/D:/M_Matusevich/dzhivushko/G-JD2-10-17_mmatusevich/web/src/main/webapp/,AVAILABLE}{src/main/webapp}
+19:42:12.757 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@e24ddd0{HTTP/1.1}{0.0.0.0:8081}
+19:42:12.759 [main] INFO  org.eclipse.jetty.server.Server - Started @2827ms
+20:02:07.206 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @652ms
+20:02:07.292 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+20:02:07.543 [main] INFO  /auction - No Spring WebApplicationInitializer types detected on classpath
+20:02:07.585 [main] INFO  /auction - Initializing Spring root WebApplicationContext
+20:02:07.586 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+20:02:07.678 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Fri Nov 23 20:02:07 MSK 2018]; root of context hierarchy
+20:02:07.719 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [webapp-context.xml]
+20:02:07.806 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [service-context.xml]
+20:02:07.828 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [dao-context.xml]
+20:02:08.519 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 933 ms
+20:02:08.596 [main] INFO  /auction - Initializing Spring FrameworkServlet 'dispatcher'
+20:02:08.596 [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization started
+20:02:08.599 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 20:02:08 MSK 2018]; parent: Root WebApplicationContext
+20:02:08.600 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/dispatcher-servlet.xml]
+20:02:08.903 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.index(javax.servlet.http.HttpServletRequest)
+20:02:08.905 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/{id}/delete],methods=[GET]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.ConditionController.delete(java.lang.Integer)
+20:02:08.905 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition],methods=[POST]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.ConditionController.save(com.itacademy.jd2.mm.auction.web.dto.ConditionDTO,org.springframework.validation.BindingResult)
+20:02:08.906 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.viewDetails(java.lang.Integer)
+20:02:08.906 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/add],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.showForm()
+20:02:08.907 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/{id}/edit],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.edit(java.lang.Integer)
+20:02:08.907 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.DefaultController.index()
+20:02:08.945 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+20:02:09.070 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 20:02:08 MSK 2018]; parent: Root WebApplicationContext
+20:02:09.131 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 20:02:08 MSK 2018]; parent: Root WebApplicationContext
+20:02:09.206 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+20:02:09.227 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+20:02:09.334 [main] INFO  org.apache.tiles.access.TilesAccess - Publishing TilesContext for context: org.springframework.web.servlet.view.tiles3.SpringWildcardServletTilesApplicationContext
+20:02:09.386 [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization completed in 790 ms
+20:02:09.387 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.w.WebAppContext@29ba4338{/auction,file:/D:/M_Matusevich/dzhivushko/G-JD2-10-17_mmatusevich/web/src/main/webapp/,AVAILABLE}{src/main/webapp}
+20:02:09.409 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@e24ddd0{HTTP/1.1}{0.0.0.0:8081}
+20:02:09.413 [main] INFO  org.eclipse.jetty.server.Server - Started @2868ms
+20:53:35.310 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @611ms
+20:53:35.401 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+20:53:35.648 [main] INFO  /auction - No Spring WebApplicationInitializer types detected on classpath
+20:53:35.700 [main] INFO  /auction - Initializing Spring root WebApplicationContext
+20:53:35.701 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+20:53:35.794 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Fri Nov 23 20:53:35 MSK 2018]; root of context hierarchy
+20:53:35.830 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [webapp-context.xml]
+20:53:35.927 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [service-context.xml]
+20:53:35.950 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [dao-context.xml]
+20:53:36.525 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 824 ms
+20:53:36.605 [main] INFO  /auction - Initializing Spring FrameworkServlet 'dispatcher'
+20:53:36.606 [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization started
+20:53:36.608 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 20:53:36 MSK 2018]; parent: Root WebApplicationContext
+20:53:36.609 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/dispatcher-servlet.xml]
+20:53:36.916 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.index(javax.servlet.http.HttpServletRequest,java.lang.Integer,java.lang.String)
+20:53:36.917 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/{id}/delete],methods=[GET]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.ConditionController.delete(java.lang.Integer)
+20:53:36.918 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition],methods=[POST]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.ConditionController.save(com.itacademy.jd2.mm.auction.web.dto.ConditionDTO,org.springframework.validation.BindingResult)
+20:53:36.918 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.viewDetails(java.lang.Integer)
+20:53:36.919 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/{id}/edit],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.edit(java.lang.Integer)
+20:53:36.919 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/add],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.showForm()
+20:53:36.920 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.DefaultController.index()
+20:53:36.953 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+20:53:37.086 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 20:53:36 MSK 2018]; parent: Root WebApplicationContext
+20:53:37.135 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 20:53:36 MSK 2018]; parent: Root WebApplicationContext
+20:53:37.200 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+20:53:37.222 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+20:53:37.346 [main] INFO  org.apache.tiles.access.TilesAccess - Publishing TilesContext for context: org.springframework.web.servlet.view.tiles3.SpringWildcardServletTilesApplicationContext
+20:53:37.389 [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization completed in 783 ms
+20:53:37.390 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.w.WebAppContext@29ba4338{/auction,file:/D:/M_Matusevich/dzhivushko/G-JD2-10-17_mmatusevich/web/src/main/webapp/,AVAILABLE}{src/main/webapp}
+20:53:37.410 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@ca27722{HTTP/1.1}{0.0.0.0:8081}
+20:53:37.411 [main] INFO  org.eclipse.jetty.server.Server - Started @2721ms
+21:02:55.014 [qtp513169028-18] WARN  org.eclipse.jetty.servlet.ServletHandler - 
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.apache.tiles.request.render.CannotRenderException: ServletException including path '/WEB-INF/views/main-template.jsp'.
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:986) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:870) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687) ~[javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:855) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790) ~[javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:812) ~[jetty-servlet-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:587) [jetty-servlet-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:577) [jetty-security-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:223) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1127) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:515) [jetty-servlet-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:185) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1061) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.handle(Server.java:499) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:311) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:257) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:544) [jetty-io-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_181]
+Caused by: org.apache.tiles.request.render.CannotRenderException: ServletException including path '/WEB-INF/views/main-template.jsp'.
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:399) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:238) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:221) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.renderer.DefinitionRenderer.render(DefinitionRenderer.java:59) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.springframework.web.servlet.view.tiles3.TilesView.renderMergedOutputModel(TilesView.java:146) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:312) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1325) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1069) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1008) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:978) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	... 22 more
+Caused by: java.io.IOException: ServletException including path '/WEB-INF/views/main-template.jsp'.
+	at org.apache.tiles.request.servlet.ServletUtil.wrapServletException(ServletUtil.java:61) ~[tiles-request-servlet-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.servlet.ServletRequest.forward(ServletRequest.java:267) ~[tiles-request-servlet-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.servlet.ServletRequest.doForward(ServletRequest.java:228) ~[tiles-request-servlet-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.AbstractClientRequest.dispatch(AbstractClientRequest.java:57) ~[tiles-request-api-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.render.DispatchRenderer.render(DispatchRenderer.java:47) ~[tiles-request-api-1.0.7.jar:1.0.7]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:259) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:397) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:238) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:221) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.renderer.DefinitionRenderer.render(DefinitionRenderer.java:59) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.springframework.web.servlet.view.tiles3.TilesView.renderMergedOutputModel(TilesView.java:146) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:312) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1325) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1069) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1008) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:978) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	... 22 more
+Caused by: java.io.IOException: JSPException including path '/WEB-INF/views/condition/list.jsp'.
+	at org.apache.tiles.request.servlet.ServletUtil.wrapServletException(ServletUtil.java:61) ~[tiles-request-servlet-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.jsp.JspRequest.doInclude(JspRequest.java:125) ~[tiles-request-jsp-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.AbstractViewRequest.dispatch(AbstractViewRequest.java:47) ~[tiles-request-api-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.render.DispatchRenderer.render(DispatchRenderer.java:47) ~[tiles-request-api-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.render.ChainedDelegateRenderer.render(ChainedDelegateRenderer.java:68) ~[tiles-request-api-1.0.7.jar:1.0.7]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:259) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.template.InsertAttributeModel.renderAttribute(InsertAttributeModel.java:188) ~[tiles-template-3.0.8.jar:3.0.8]
+	at org.apache.tiles.template.InsertAttributeModel.execute(InsertAttributeModel.java:132) ~[tiles-template-3.0.8.jar:3.0.8]
+	at org.apache.tiles.jsp.taglib.InsertAttributeTag.doTag(InsertAttributeTag.java:299) ~[tiles-jsp-3.0.8.jar:3.0.8]
+	at org.apache.jsp.WEB_002dINF.views.main_002dtemplate_jsp._jspx_meth_tiles_005finsertAttribute_005f2(main_002dtemplate_jsp.java:314) ~[?:?]
+	at org.apache.jsp.WEB_002dINF.views.main_002dtemplate_jsp._jspService(main_002dtemplate_jsp.java:110) ~[?:?]
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70) ~[jasper-6.0.53.jar:6.0.53]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790) ~[javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:388) ~[jasper-6.0.53.jar:2.3]
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:321) ~[jasper-6.0.53.jar:2.3]
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:267) ~[jasper-6.0.53.jar:2.3]
+	at org.eclipse.jetty.jsp.JettyJspServlet.service(JettyJspServlet.java:107) ~[apache-jsp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790) ~[javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:812) ~[jetty-servlet-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:587) ~[jetty-servlet-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:595) ~[jetty-security-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:223) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1127) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:515) ~[jetty-servlet-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:185) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1061) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Dispatcher.forward(Dispatcher.java:191) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Dispatcher.forward(Dispatcher.java:72) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.apache.tiles.request.servlet.ServletRequest.forward(ServletRequest.java:265) ~[tiles-request-servlet-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.servlet.ServletRequest.doForward(ServletRequest.java:228) ~[tiles-request-servlet-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.AbstractClientRequest.dispatch(AbstractClientRequest.java:57) ~[tiles-request-api-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.render.DispatchRenderer.render(DispatchRenderer.java:47) ~[tiles-request-api-1.0.7.jar:1.0.7]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:259) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:397) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:238) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:221) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.renderer.DefinitionRenderer.render(DefinitionRenderer.java:59) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.springframework.web.servlet.view.tiles3.TilesView.renderMergedOutputModel(TilesView.java:146) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:312) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1325) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1069) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1008) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:978) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	... 22 more
+Caused by: java.lang.IllegalArgumentException: Illegal pattern character 't'
+	at java.text.SimpleDateFormat.compile(Unknown Source) ~[?:1.8.0_181]
+	at java.text.SimpleDateFormat.applyPatternImpl(Unknown Source) ~[?:1.8.0_181]
+	at java.text.SimpleDateFormat.applyPattern(Unknown Source) ~[?:1.8.0_181]
+	at org.apache.taglibs.standard.tag.common.fmt.FormatDateSupport.doEndTag(FormatDateSupport.java:128) ~[standard-1.1.2.jar:1.1.2]
+	at org.apache.jsp.WEB_002dINF.views.condition.list_jsp._jspx_meth_fmt_005fformatDate_005f0(list_jsp.java:335) ~[?:?]
+	at org.apache.jsp.WEB_002dINF.views.condition.list_jsp._jspx_meth_c_005fforEach_005f0(list_jsp.java:225) ~[?:?]
+	at org.apache.jsp.WEB_002dINF.views.condition.list_jsp._jspService(list_jsp.java:97) ~[?:?]
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70) ~[jasper-6.0.53.jar:6.0.53]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790) ~[javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:388) ~[jasper-6.0.53.jar:2.3]
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:321) ~[jasper-6.0.53.jar:2.3]
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:267) ~[jasper-6.0.53.jar:2.3]
+	at org.eclipse.jetty.jsp.JettyJspServlet.service(JettyJspServlet.java:107) ~[apache-jsp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790) ~[javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:812) ~[jetty-servlet-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:587) ~[jetty-servlet-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:595) ~[jetty-security-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:223) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1127) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:515) ~[jetty-servlet-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:185) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1061) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Dispatcher.include(Dispatcher.java:115) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:924) ~[jasper-6.0.53.jar:6.0.53]
+	at org.apache.jasper.runtime.PageContextImpl.doInclude(PageContextImpl.java:656) ~[jasper-6.0.53.jar:6.0.53]
+	at org.apache.jasper.runtime.PageContextImpl.include(PageContextImpl.java:650) ~[jasper-6.0.53.jar:6.0.53]
+	at org.apache.tiles.request.jsp.JspRequest.doInclude(JspRequest.java:123) ~[tiles-request-jsp-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.AbstractViewRequest.dispatch(AbstractViewRequest.java:47) ~[tiles-request-api-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.render.DispatchRenderer.render(DispatchRenderer.java:47) ~[tiles-request-api-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.render.ChainedDelegateRenderer.render(ChainedDelegateRenderer.java:68) ~[tiles-request-api-1.0.7.jar:1.0.7]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:259) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.template.InsertAttributeModel.renderAttribute(InsertAttributeModel.java:188) ~[tiles-template-3.0.8.jar:3.0.8]
+	at org.apache.tiles.template.InsertAttributeModel.execute(InsertAttributeModel.java:132) ~[tiles-template-3.0.8.jar:3.0.8]
+	at org.apache.tiles.jsp.taglib.InsertAttributeTag.doTag(InsertAttributeTag.java:299) ~[tiles-jsp-3.0.8.jar:3.0.8]
+	at org.apache.jsp.WEB_002dINF.views.main_002dtemplate_jsp._jspx_meth_tiles_005finsertAttribute_005f2(main_002dtemplate_jsp.java:314) ~[?:?]
+	at org.apache.jsp.WEB_002dINF.views.main_002dtemplate_jsp._jspService(main_002dtemplate_jsp.java:110) ~[?:?]
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70) ~[jasper-6.0.53.jar:6.0.53]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790) ~[javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:388) ~[jasper-6.0.53.jar:2.3]
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:321) ~[jasper-6.0.53.jar:2.3]
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:267) ~[jasper-6.0.53.jar:2.3]
+	at org.eclipse.jetty.jsp.JettyJspServlet.service(JettyJspServlet.java:107) ~[apache-jsp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790) ~[javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:812) ~[jetty-servlet-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:587) ~[jetty-servlet-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:595) ~[jetty-security-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:223) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1127) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:515) ~[jetty-servlet-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:185) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1061) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Dispatcher.forward(Dispatcher.java:191) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Dispatcher.forward(Dispatcher.java:72) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.apache.tiles.request.servlet.ServletRequest.forward(ServletRequest.java:265) ~[tiles-request-servlet-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.servlet.ServletRequest.doForward(ServletRequest.java:228) ~[tiles-request-servlet-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.AbstractClientRequest.dispatch(AbstractClientRequest.java:57) ~[tiles-request-api-1.0.7.jar:1.0.7]
+	at org.apache.tiles.request.render.DispatchRenderer.render(DispatchRenderer.java:47) ~[tiles-request-api-1.0.7.jar:1.0.7]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:259) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:397) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:238) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.impl.BasicTilesContainer.render(BasicTilesContainer.java:221) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.apache.tiles.renderer.DefinitionRenderer.render(DefinitionRenderer.java:59) ~[tiles-core-3.0.8.jar:3.0.8]
+	at org.springframework.web.servlet.view.tiles3.TilesView.renderMergedOutputModel(TilesView.java:146) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:312) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1325) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1069) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1008) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:978) ~[spring-webmvc-5.0.0.RELEASE.jar:5.0.0.RELEASE]
+	... 22 more
+21:20:35.928 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @625ms
+21:20:36.013 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+21:20:36.262 [main] INFO  /auction - No Spring WebApplicationInitializer types detected on classpath
+21:20:36.316 [main] INFO  /auction - Initializing Spring root WebApplicationContext
+21:20:36.317 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+21:20:36.417 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Fri Nov 23 21:20:36 MSK 2018]; root of context hierarchy
+21:20:36.455 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [webapp-context.xml]
+21:20:36.548 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [service-context.xml]
+21:20:36.572 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [dao-context.xml]
+21:20:37.167 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 850 ms
+21:20:37.249 [main] INFO  /auction - Initializing Spring FrameworkServlet 'dispatcher'
+21:20:37.249 [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization started
+21:20:37.252 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext - Refreshing WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 21:20:37 MSK 2018]; parent: Root WebApplicationContext
+21:20:37.253 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/dispatcher-servlet.xml]
+21:20:37.571 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.index(javax.servlet.http.HttpServletRequest,java.lang.Integer,java.lang.String)
+21:20:37.572 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/{id}/delete],methods=[GET]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.ConditionController.delete(java.lang.Integer)
+21:20:37.573 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition],methods=[POST]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.ConditionController.save(com.itacademy.jd2.mm.auction.web.dto.ConditionDTO,org.springframework.validation.BindingResult)
+21:20:37.574 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.viewDetails(java.lang.Integer)
+21:20:37.575 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/{id}/edit],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.edit(java.lang.Integer)
+21:20:37.576 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/condition/add],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.itacademy.jd2.mm.auction.web.controller.ConditionController.showForm()
+21:20:37.577 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.itacademy.jd2.mm.auction.web.controller.DefaultController.index()
+21:20:37.616 [main] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.1.Final
+21:20:37.747 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 21:20:37 MSK 2018]; parent: Root WebApplicationContext
+21:20:37.789 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: WebApplicationContext for namespace 'dispatcher-servlet': startup date [Fri Nov 23 21:20:37 MSK 2018]; parent: Root WebApplicationContext
+21:20:37.843 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+21:20:37.862 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+21:20:37.955 [main] INFO  org.apache.tiles.access.TilesAccess - Publishing TilesContext for context: org.springframework.web.servlet.view.tiles3.SpringWildcardServletTilesApplicationContext
+21:20:37.995 [main] INFO  org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcher': initialization completed in 745 ms
+21:20:37.996 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.w.WebAppContext@29ba4338{/auction,file:/D:/M_Matusevich/dzhivushko/G-JD2-10-17_mmatusevich/web/src/main/webapp/,AVAILABLE}{src/main/webapp}
+21:20:38.017 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@ca27722{HTTP/1.1}{0.0.0.0:8081}
+21:20:38.019 [main] INFO  org.eclipse.jetty.server.Server - Started @2723ms

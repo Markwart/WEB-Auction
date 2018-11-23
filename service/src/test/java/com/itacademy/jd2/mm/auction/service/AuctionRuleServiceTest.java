@@ -36,7 +36,7 @@ public class AuctionRuleServiceTest extends AbstractTest{
 
 		String newIndex = entity.getIndex() + "_updated";
 		entity.setIndex(newIndex);
-		Thread.sleep(2000);
+		Thread.sleep(DELAY);
 		auctionRuleService.save(entity);
 
 		final IAuctionRule entityFromDb = auctionRuleService.get(entity.getId());

@@ -37,7 +37,7 @@ public class PersonalDataServiceTest extends AbstractTest {
 
 		String newUserName = entity.getUsername() + "_updated";
 		entity.setUserName(newUserName);
-		Thread.sleep(2000);
+		Thread.sleep(DELAY);
 		personalDataService.save(entity);
 
 		final IPersonalData entityFromDb = personalDataService.get(entity.getId());

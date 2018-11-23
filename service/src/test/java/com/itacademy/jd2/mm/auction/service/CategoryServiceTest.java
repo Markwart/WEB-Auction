@@ -34,7 +34,7 @@ public class CategoryServiceTest extends AbstractTest {
 
 		String newName = entity.getName() + "_updated";
 		entity.setName(newName);
-		Thread.sleep(2000);
+		Thread.sleep(DELAY);
 		categoryService.save(entity);
 
 		final ICategory entityFromDb = categoryService.get(entity.getId());

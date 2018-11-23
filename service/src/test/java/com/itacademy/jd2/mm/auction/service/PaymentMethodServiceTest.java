@@ -34,7 +34,7 @@ public class PaymentMethodServiceTest extends AbstractTest {
 
 		String newName = entity.getName() + "_updated";
 		entity.setName(newName);
-		Thread.sleep(2000);
+		Thread.sleep(DELAY);
 		paymentMethodService.save(entity);
 
 		final IPaymentMethod entityFromDb = paymentMethodService.get(entity.getId());

@@ -85,6 +85,11 @@ public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> imple
 	        appendPaging(filter, sqlTile);
 	        return executeFindQuery(sqlTile.toString());
 	    }
+
+	@Override
+	public long getCount(ConditionFilter filter) {
+		return executeCountQuery("");
+	}
 	
 	/* @Override
 	    public void save(ICondition... entities) {

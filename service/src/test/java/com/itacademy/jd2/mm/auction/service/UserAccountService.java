@@ -35,7 +35,7 @@ public class UserAccountService extends AbstractTest{
 
 	        String newEmail = entity.getEmail() + "_updated";
 	        entity.setEmail(newEmail);
-	        Thread.sleep(2000);
+	        Thread.sleep(DELAY);
 	        userAccountService.save(entity);
 
 	        final IUserAccount entityFromDb = userAccountService.get(entity.getId());

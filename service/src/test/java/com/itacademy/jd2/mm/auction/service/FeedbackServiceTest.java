@@ -40,7 +40,7 @@ public class FeedbackServiceTest extends AbstractTest {
 
 		String newComment = entity.getComment() + "_updated";
 		entity.setComment(newComment);
-		Thread.sleep(2000);
+		Thread.sleep(DELAY);
 		feedbackService.save(entity);
 
 		final IFeedback entityFromDb = feedbackService.get(entity.getId());

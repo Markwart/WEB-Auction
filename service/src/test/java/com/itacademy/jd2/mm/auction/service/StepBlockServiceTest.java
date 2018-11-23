@@ -39,7 +39,7 @@ public class StepBlockServiceTest extends AbstractTest {
 
 		String newName = entity.getName() + "_updated";
 		entity.setName(newName);
-		Thread.sleep(2000);
+		Thread.sleep(DELAY);
 		stepBlockService.save(entity);
 
 		final IStepBlock entityFromDb = stepBlockService.get(entity.getId());

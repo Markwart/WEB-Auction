@@ -35,7 +35,7 @@ public class AdminCommunicationServiceTest extends AbstractTest{
 
 	        String newTheme = entity.getTheme() + "_updated";
 	        entity.setTheme(newTheme);
-	        Thread.sleep(2000);
+	        Thread.sleep(DELAY);
 	        adminCommunicationService.save(entity);
 
 	        final IAdminCommunication entityFromDb = adminCommunicationService.get(entity.getId());

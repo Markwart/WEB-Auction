@@ -10,4 +10,6 @@ public interface IConditionDao extends IDao<ICondition, Integer> {
 	//void save(ICondition... entities); // skip
 	
 	List<ICondition> find(ConditionFilter filter);
+	
+	long getCount(ConditionFilter filter);
 }

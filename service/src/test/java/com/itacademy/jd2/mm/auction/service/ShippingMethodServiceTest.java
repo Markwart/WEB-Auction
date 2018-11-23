@@ -36,7 +36,7 @@ public class ShippingMethodServiceTest extends AbstractTest {
 
 		String newName = entity.getName() + "_updated";
 		entity.setName(newName);
-		Thread.sleep(2000);
+		Thread.sleep(DELAY);
 		shippingMethodService.save(entity);
 
 		final IShippingMethod entityFromDb = shippingMethodService.get(entity.getId());

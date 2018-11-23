@@ -18,5 +18,9 @@
  <definition name="condition.list" extends="DefaultTemplate">
         <put-attribute name="body" value="/WEB-INF/views/condition/list.jsp" />
     </definition>
+    
+    <definition name="condition.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/condition/form.jsp" />
+	</definition>
 
 </tiles-definitions>

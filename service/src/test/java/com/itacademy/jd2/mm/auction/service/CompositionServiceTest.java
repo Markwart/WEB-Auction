@@ -34,7 +34,7 @@ public class CompositionServiceTest extends AbstractTest {
 
 		String newName = entity.getName() + "_updated";
 		entity.setName(newName);
-		Thread.sleep(2000);
+		Thread.sleep(DELAY);
 		compositionService.save(entity);
 
 		final IComposition entityFromDb = compositionService.get(entity.getId());

@@ -34,7 +34,7 @@ public class AuctionDurationServiceTest extends AbstractTest {
 
 		Integer newMin = entity.getMin() + getRandomObjectsCount();
 		entity.setMin(newMin);
-		Thread.sleep(2000);
+		Thread.sleep(DELAY);
 		auctionDurationService.save(entity);
 
 		final IAuctionDuration entityFromDb = auctionDurationService.get(entity.getId());

@@ -34,7 +34,7 @@ public class CountryOriginServiceTest extends AbstractTest {
 
 		String newName = entity.getName() + "_updated";
 		entity.setName(newName);
-		Thread.sleep(2000);
+		Thread.sleep(DELAY);
 		countryOriginService.save(entity);
 
 		final ICountryOrigin entityFromDb = countryOriginService.get(entity.getId());

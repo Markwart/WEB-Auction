@@ -41,20 +41,20 @@ public class PersonalDataServiceImpl implements IPersonalDataService {
 	public void save(IPersonalData entity) {
 		final Date modefeOn = new Date();
 		entity.setUpdated(modefeOn);
-		if (entity.getId() == null) {
+		if (entity.getCreated() == null) {
 			entity.setCreated(modefeOn);
 			dao.insert(entity);
 			LOGGER.debug("new personal_data created: {}", entity);
 		} else {
 			dao.update(entity);
 			LOGGER.debug("personal_data updated: {}", entity);
-		}	
+		}
 	}
 
 	@Override
 	public void delete(Integer id) {
 		LOGGER.info("delete personal_data by id: {}", id);
-		dao.delete(id);	
+		dao.delete(id);
 	}
 
 	@Override

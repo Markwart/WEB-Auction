@@ -35,7 +35,7 @@ public class DegerredBidServiceTest extends AbstractTest {
 
 		String newStatusBid = entity.getStatusBid() + "_updated";
 		entity.setStatusBid(newStatusBid);
-		Thread.sleep(2000);
+		Thread.sleep(DELAY);
 		deferredBidService.save(entity);
 
 		final IDeferredBid entityFromDb = deferredBidService.get(entity.getId());

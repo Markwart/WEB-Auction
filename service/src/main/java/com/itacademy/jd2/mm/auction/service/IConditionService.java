@@ -23,6 +23,6 @@ public interface IConditionService {
 
     List<ICondition> find(ConditionFilter filter);
 
-    //long getCount(ConditionFilter filter);// skip
+    long getCount(ConditionFilter filter);
 
 }

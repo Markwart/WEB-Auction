@@ -38,7 +38,7 @@ public class MessageServiceTest extends AbstractTest {
 
 		String newTheme = entity.getTheme() + "_updated";
 		entity.setTheme(newTheme);
-		Thread.sleep(2000);
+		Thread.sleep(DELAY);
 		messageService.save(entity);
 
 		final IMessage entityFromDb = messageService.get(entity.getId());
