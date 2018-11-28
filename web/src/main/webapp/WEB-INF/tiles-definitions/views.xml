@@ -22,5 +22,9 @@
     <definition name="condition.edit" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/condition/form.jsp" />
 	</definition>
+	
+	<definition name="login" extends="DefaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+    </definition>
 
 </tiles-definitions>
