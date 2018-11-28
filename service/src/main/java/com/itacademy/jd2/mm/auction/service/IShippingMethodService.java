@@ -3,6 +3,7 @@ package com.itacademy.jd2.mm.auction.service;
 import java.util.List;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
+import com.itacademy.jd2.mm.auction.daoapi.filter.ShippingMethodFilter;
 
 public interface IShippingMethodService {
 
@@ -17,4 +18,8 @@ public interface IShippingMethodService {
 	void deleteAll();
 
 	IShippingMethod createEntity();
+	
+	List<IShippingMethod> find(ShippingMethodFilter filter);
+
+    long getCount(ShippingMethodFilter filter);
 }

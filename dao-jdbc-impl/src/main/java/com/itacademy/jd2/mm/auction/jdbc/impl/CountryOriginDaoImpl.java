@@ -4,11 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.daoapi.ICountryOriginDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICountryOrigin;
+import com.itacademy.jd2.mm.auction.daoapi.filter.CountryOriginFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.CountryOrigin;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
@@ -74,5 +76,18 @@ public class CountryOriginDaoImpl extends AbstractDaoImpl<ICountryOrigin, Intege
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;
+	}
+
+	@Override
+	public List<ICountryOrigin> find(CountryOriginFilter filter) {
+		 final StringBuilder sqlTile = new StringBuilder("");
+	        appendSort(filter, sqlTile);
+	        appendPaging(filter, sqlTile);
+	        return executeFindQuery(sqlTile.toString());
+	}
+
+	@Override
+	public long getCount(CountryOriginFilter filter) {
+		return executeCountQuery("");
 	}
 }

@@ -4,11 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.daoapi.IPaymentMethodDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
+import com.itacademy.jd2.mm.auction.daoapi.filter.PaymentMethodFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.PaymentMethod;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
@@ -74,5 +76,18 @@ public class PaymentMethodDaoImpl extends AbstractDaoImpl<IPaymentMethod, Intege
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;
+	}
+
+	@Override
+	public List<IPaymentMethod> find(PaymentMethodFilter filter) {
+		 final StringBuilder sqlTile = new StringBuilder("");
+	        appendSort(filter, sqlTile);
+	        appendPaging(filter, sqlTile);
+	        return executeFindQuery(sqlTile.toString());
+	}
+
+	@Override
+	public long getCount(PaymentMethodFilter filter) {
+		return executeCountQuery("");
 	}
 }

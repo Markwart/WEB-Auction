@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IShippingMethodDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
+import com.itacademy.jd2.mm.auction.daoapi.filter.ShippingMethodFilter;
 import com.itacademy.jd2.mm.auction.service.IShippingMethodService;
 
 @Service
@@ -66,6 +67,16 @@ public class ShippingMethodServiceImpl implements IShippingMethodService {
 	@Override
 	public IShippingMethod createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IShippingMethod> find(ShippingMethodFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(ShippingMethodFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

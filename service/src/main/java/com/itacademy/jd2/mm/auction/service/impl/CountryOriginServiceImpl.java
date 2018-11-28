@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.ICountryOriginDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICountryOrigin;
+import com.itacademy.jd2.mm.auction.daoapi.filter.CountryOriginFilter;
 import com.itacademy.jd2.mm.auction.service.ICountryOriginService;
 
 @Service
@@ -66,5 +67,15 @@ public class CountryOriginServiceImpl implements ICountryOriginService {
 	@Override
 	public ICountryOrigin createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<ICountryOrigin> find(CountryOriginFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(CountryOriginFilter filter) {
+		return dao.getCount(filter);
 	}
 }

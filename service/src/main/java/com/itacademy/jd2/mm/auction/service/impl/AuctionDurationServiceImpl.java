@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IAuctionDurationDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
+import com.itacademy.jd2.mm.auction.daoapi.filter.AuctionDurationFilter;
 import com.itacademy.jd2.mm.auction.service.IAuctionDurationService;
 
 @Service
@@ -66,6 +67,16 @@ public class AuctionDurationServiceImpl implements IAuctionDurationService {
 	@Override
 	public IAuctionDuration createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IAuctionDuration> find(AuctionDurationFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(AuctionDurationFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

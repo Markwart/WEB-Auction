@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IUserAccountDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
+import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 
 @Service
@@ -66,5 +67,15 @@ public class UserAccountServiceImpl implements IUserAccountService {
 	@Override
 	public IUserAccount createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IUserAccount> find(UserAccountFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(UserAccountFilter filter) {
+		return dao.getCount(filter);
 	}
 }

@@ -30,7 +30,7 @@ import com.itacademy.jd2.mm.auction.service.IConditionService;
 @SpringJUnitConfig(locations = "classpath:service-context-test.xml")
 public abstract class AbstractTest {
 
-	public static final Integer DELAY = 100;
+	public static final Integer DELAY = 1000;
 	
 	@Autowired
 	protected IConditionService conditionService;

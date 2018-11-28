@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IBidDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
+import com.itacademy.jd2.mm.auction.daoapi.filter.BidFilter;
 import com.itacademy.jd2.mm.auction.service.IBidService;
 
 @Service
@@ -66,6 +67,16 @@ public class BidServiceImpl implements IBidService {
 	@Override
 	public IBid createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IBid> find(BidFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(BidFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.itacademy.jd2.mm.auction.service;
 import java.util.List;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionRule;
+import com.itacademy.jd2.mm.auction.daoapi.filter.AuctionRuleFilter;
 
 public interface IAuctionRuleService {
 	
@@ -17,4 +18,8 @@ public interface IAuctionRuleService {
 	void deleteAll();
 
 	IAuctionRule createEntity();
+	
+	List<IAuctionRule> find(AuctionRuleFilter filter);
+
+    long getCount(AuctionRuleFilter filter);
 }

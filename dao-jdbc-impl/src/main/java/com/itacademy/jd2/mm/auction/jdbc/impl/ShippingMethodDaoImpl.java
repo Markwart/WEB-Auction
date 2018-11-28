@@ -4,11 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.daoapi.IShippingMethodDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
+import com.itacademy.jd2.mm.auction.daoapi.filter.ShippingMethodFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.ShippingMethod;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
@@ -41,7 +43,9 @@ public class ShippingMethodDaoImpl extends AbstractDaoImpl<IShippingMethod, Inte
 	@Override
 	public void insert(IShippingMethod entity) {
 		executeStatement(new PreparedStatementAction<IShippingMethod>(
-				String.format("insert into %s (name, cost, delivery_time, created, updated) values(?,?,?,?,?)", getTableName()), true) {
+				String.format("insert into %s (name, cost, delivery_time, created, updated) values(?,?,?,?,?)",
+						getTableName()),
+				true) {
 
 			@Override
 			public IShippingMethod doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
@@ -80,5 +84,18 @@ public class ShippingMethodDaoImpl extends AbstractDaoImpl<IShippingMethod, Inte
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;
+	}
+
+	@Override
+	public List<IShippingMethod> find(ShippingMethodFilter filter) {
+		final StringBuilder sqlTile = new StringBuilder("");
+		appendSort(filter, sqlTile);
+		appendPaging(filter, sqlTile);
+		return executeFindQuery(sqlTile.toString());
+	}
+
+	@Override
+	public long getCount(ShippingMethodFilter filter) {
+		return executeCountQuery("");
 	}
 }

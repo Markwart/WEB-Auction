@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IAdminCommunicationDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAdminCommunication;
+import com.itacademy.jd2.mm.auction.daoapi.filter.AdminCommunicationFilter;
 import com.itacademy.jd2.mm.auction.service.IAdminCommunicationService;
 
 @Service
@@ -66,6 +67,16 @@ public class AdminCommunicationServiceImpl implements IAdminCommunicationService
 	@Override
 	public IAdminCommunication createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IAdminCommunication> find(AdminCommunicationFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(AdminCommunicationFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.ICompositionDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
+import com.itacademy.jd2.mm.auction.daoapi.filter.CompositionFilter;
 import com.itacademy.jd2.mm.auction.service.ICompositionService;
 
 @Service
@@ -66,6 +67,16 @@ public class CompositionServiceImpl implements ICompositionService {
 	public void deleteAll() {
 		LOGGER.info("delete all compositions");
 		dao.deleteAll();
+	}
+
+	@Override
+	public List<IComposition> find(CompositionFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(CompositionFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

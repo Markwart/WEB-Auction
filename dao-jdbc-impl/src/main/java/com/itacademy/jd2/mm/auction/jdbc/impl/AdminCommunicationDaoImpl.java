@@ -4,11 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.daoapi.IAdminCommunicationDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAdminCommunication;
+import com.itacademy.jd2.mm.auction.daoapi.filter.AdminCommunicationFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.AdminCommunication;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.UserAccount;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
@@ -88,5 +90,18 @@ public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunicati
 		entity.setUserAccount(userAccount);
 
 		return entity;
+	}
+
+	@Override
+	public List<IAdminCommunication> find(AdminCommunicationFilter filter) {
+		 final StringBuilder sqlTile = new StringBuilder("");
+	        appendSort(filter, sqlTile);
+	        appendPaging(filter, sqlTile);
+	        return executeFindQuery(sqlTile.toString());
+	}
+
+	@Override
+	public long getCount(AdminCommunicationFilter filter) {
+		return executeCountQuery("");
 	}
 }

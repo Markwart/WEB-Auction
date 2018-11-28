@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IDeferredBidDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
+import com.itacademy.jd2.mm.auction.daoapi.filter.DeferredBidFilter;
 import com.itacademy.jd2.mm.auction.service.IDeferredBidService;
 
 @Service
@@ -66,6 +67,16 @@ public class DeferredBidServiceImpl implements IDeferredBidService {
 	@Override
 	public IDeferredBid createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IDeferredBid> find(DeferredBidFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(DeferredBidFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

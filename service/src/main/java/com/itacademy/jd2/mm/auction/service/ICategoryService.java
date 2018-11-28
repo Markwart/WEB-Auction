@@ -3,6 +3,7 @@ package com.itacademy.jd2.mm.auction.service;
 import java.util.List;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
+import com.itacademy.jd2.mm.auction.daoapi.filter.CategoryFilter;
 
 public interface ICategoryService {
 	
@@ -18,4 +19,7 @@ public interface ICategoryService {
 
 	ICategory createEntity();
 
+	List<ICategory> find(CategoryFilter filter);
+
+    long getCount(CategoryFilter filter);
 }

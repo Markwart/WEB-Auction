@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IAuctionRuleDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionRule;
+import com.itacademy.jd2.mm.auction.daoapi.filter.AuctionRuleFilter;
 import com.itacademy.jd2.mm.auction.service.IAuctionRuleService;
 
 @Service
@@ -66,6 +67,16 @@ public class AuctionRuleServiceImpl implements IAuctionRuleService{
 	@Override
 	public IAuctionRule createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IAuctionRule> find(AuctionRuleFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(AuctionRuleFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

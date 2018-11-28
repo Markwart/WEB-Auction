@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IPaymentMethodDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
+import com.itacademy.jd2.mm.auction.daoapi.filter.PaymentMethodFilter;
 import com.itacademy.jd2.mm.auction.service.IPaymentMethodService;
 
 @Service
@@ -66,6 +67,16 @@ public class PaymentMethodServiceImpl implements IPaymentMethodService {
 	@Override
 	public IPaymentMethod createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IPaymentMethod> find(PaymentMethodFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(PaymentMethodFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

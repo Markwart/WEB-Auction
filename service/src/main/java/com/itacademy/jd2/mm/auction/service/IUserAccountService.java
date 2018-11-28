@@ -3,6 +3,7 @@ package com.itacademy.jd2.mm.auction.service;
 import java.util.List;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
+import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
 
 public interface IUserAccountService {
 
@@ -17,4 +18,8 @@ public interface IUserAccountService {
 	void deleteAll();
 
 	IUserAccount createEntity();
+	
+	List<IUserAccount> find(UserAccountFilter filter);
+
+    long getCount(UserAccountFilter filter);
 }

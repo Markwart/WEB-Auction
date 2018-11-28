@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IStepBlockDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IStepBlock;
+import com.itacademy.jd2.mm.auction.daoapi.filter.StepBlockFilter;
 import com.itacademy.jd2.mm.auction.service.IStepBlockService;
 
 @Service
@@ -66,6 +67,16 @@ public class StepBlockServiceImpl implements IStepBlockService {
 	@Override
 	public IStepBlock createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IStepBlock> find(StepBlockFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(StepBlockFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

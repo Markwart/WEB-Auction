@@ -5,7 +5,7 @@
 <tiles-definitions>
 
     <definition name="DefaultTemplate" template="/WEB-INF/views/main-template.jsp">
-        <put-attribute name="title" value="Джылли и Ко" />
+        <put-attribute name="title" value="Auction" />
         <put-attribute name="header" value="/WEB-INF/views/header.jsp" />
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />

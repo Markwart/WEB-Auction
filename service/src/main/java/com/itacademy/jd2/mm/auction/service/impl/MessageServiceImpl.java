@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IMessageDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
+import com.itacademy.jd2.mm.auction.daoapi.filter.MessageFilter;
 import com.itacademy.jd2.mm.auction.service.IMessageService;
 
 @Service
@@ -66,6 +67,16 @@ public class MessageServiceImpl implements IMessageService {
 	@Override
 	public IMessage createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IMessage> find(MessageFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(MessageFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

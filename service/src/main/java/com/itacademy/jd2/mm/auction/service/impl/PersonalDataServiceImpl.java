@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IPersonalDataDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
+import com.itacademy.jd2.mm.auction.daoapi.filter.PersonalDataFilter;
 import com.itacademy.jd2.mm.auction.service.IPersonalDataService;
 
 @Service
@@ -66,6 +67,16 @@ public class PersonalDataServiceImpl implements IPersonalDataService {
 	@Override
 	public IPersonalData createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IPersonalData> find(PersonalDataFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(PersonalDataFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.ICategoryDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
+import com.itacademy.jd2.mm.auction.daoapi.filter.CategoryFilter;
 import com.itacademy.jd2.mm.auction.service.ICategoryService;
 
 @Service
@@ -66,6 +67,16 @@ public class CategoryServiceImpl implements ICategoryService {
 	@Override
 	public ICategory createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<ICategory> find(CategoryFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(CategoryFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

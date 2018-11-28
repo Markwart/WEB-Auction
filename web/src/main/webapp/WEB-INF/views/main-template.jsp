@@ -2,10 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" scope="request" />
 <c:set var="pagesCondition" value="${contextPath}/condition" scope="request" />
-<c:set var="pagesModel" value="${contextPath}/model" scope="request" />
-<c:set var="pagesEngine" value="${contextPath}/engine" scope="request" />
-<c:set var="pagesCar" value="${contextPath}/car" scope="request" />
-
+<c:set var="pagesComposition" value="${contextPath}/composition" scope="request" />
+<c:set var="pagesCategory" value="${contextPath}/category" scope="request" />
+<c:set var="pagesCountryOrigin" value="${contextPath}/countryOrigin" scope="request" />
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

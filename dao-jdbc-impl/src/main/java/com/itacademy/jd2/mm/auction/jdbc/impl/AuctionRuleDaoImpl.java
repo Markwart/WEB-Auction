@@ -4,11 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.daoapi.IAuctionRuleDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionRule;
+import com.itacademy.jd2.mm.auction.daoapi.filter.AuctionRuleFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.AuctionRule;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
@@ -80,5 +82,18 @@ public class AuctionRuleDaoImpl extends AbstractDaoImpl<IAuctionRule, Integer> i
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;
+	}
+
+	@Override
+	public List<IAuctionRule> find(AuctionRuleFilter filter) {
+		 final StringBuilder sqlTile = new StringBuilder("");
+	        appendSort(filter, sqlTile);
+	        appendPaging(filter, sqlTile);
+	        return executeFindQuery(sqlTile.toString());
+	}
+
+	@Override
+	public long getCount(AuctionRuleFilter filter) {
+		return executeCountQuery("");
 	}
 }

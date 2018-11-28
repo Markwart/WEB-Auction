@@ -4,11 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
+import com.itacademy.jd2.mm.auction.daoapi.filter.ItemFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Category;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Composition;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Condition;
@@ -130,5 +132,18 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		entity.setComposition(composition);
 		
 		return entity;
+	}
+
+	@Override
+	public List<IItem> find(ItemFilter filter) {
+		 final StringBuilder sqlTile = new StringBuilder("");
+	        appendSort(filter, sqlTile);
+	        appendPaging(filter, sqlTile);
+	        return executeFindQuery(sqlTile.toString());
+	}
+
+	@Override
+	public long getCount(ItemFilter filter) {
+		return executeCountQuery("");
 	}
 }

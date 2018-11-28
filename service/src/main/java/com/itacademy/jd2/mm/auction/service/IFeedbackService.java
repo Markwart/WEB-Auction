@@ -3,6 +3,7 @@ package com.itacademy.jd2.mm.auction.service;
 import java.util.List;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
+import com.itacademy.jd2.mm.auction.daoapi.filter.FeedbackFilter;
 
 public interface IFeedbackService {
 
@@ -17,4 +18,8 @@ public interface IFeedbackService {
 	void deleteAll();
 
 	IFeedback createEntity();
+
+	List<IFeedback> find(FeedbackFilter filter);
+
+	long getCount(FeedbackFilter filter);
 }

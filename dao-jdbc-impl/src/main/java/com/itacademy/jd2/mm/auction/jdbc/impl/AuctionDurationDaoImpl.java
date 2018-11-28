@@ -4,11 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.daoapi.IAuctionDurationDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
+import com.itacademy.jd2.mm.auction.daoapi.filter.AuctionDurationFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.AuctionDuration;
 import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
@@ -74,6 +76,19 @@ public class AuctionDurationDaoImpl extends AbstractDaoImpl<IAuctionDuration, In
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;
+	}
+
+	@Override
+	public List<IAuctionDuration> find(AuctionDurationFilter filter) {
+		 final StringBuilder sqlTile = new StringBuilder("");
+	        appendSort(filter, sqlTile);
+	        appendPaging(filter, sqlTile);
+	        return executeFindQuery(sqlTile.toString());
+	}
+
+	@Override
+	public long getCount(AuctionDurationFilter filter) {
+		return executeCountQuery("");
 	}
 
 }

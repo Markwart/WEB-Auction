@@ -4,11 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.daoapi.IDeferredBidDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
+import com.itacademy.jd2.mm.auction.daoapi.filter.DeferredBidFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.DeferredBid;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Item;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.UserAccount;
@@ -94,5 +96,18 @@ public class DereffedBidDaoImpl extends AbstractDaoImpl<IDeferredBid, Integer> i
 		entity.setUserAccount(userAccount);
 
 		return entity;
+	}
+
+	@Override
+	public List<IDeferredBid> find(DeferredBidFilter filter) {
+		 final StringBuilder sqlTile = new StringBuilder("");
+	        appendSort(filter, sqlTile);
+	        appendPaging(filter, sqlTile);
+	        return executeFindQuery(sqlTile.toString());
+	}
+
+	@Override
+	public long getCount(DeferredBidFilter filter) {
+		return executeCountQuery("");
 	}
 }

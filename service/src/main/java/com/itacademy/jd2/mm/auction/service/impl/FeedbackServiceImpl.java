@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IFeedbackDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
+import com.itacademy.jd2.mm.auction.daoapi.filter.FeedbackFilter;
 import com.itacademy.jd2.mm.auction.service.IFeedbackService;
 
 @Service
@@ -66,6 +67,16 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	@Override
 	public IFeedback createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IFeedback> find(FeedbackFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(FeedbackFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }

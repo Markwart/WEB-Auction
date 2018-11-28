@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
+import com.itacademy.jd2.mm.auction.daoapi.filter.ItemFilter;
 import com.itacademy.jd2.mm.auction.service.IItemService;
 
 @Service
@@ -66,6 +67,16 @@ public class ItemServiceImpl implements IItemService {
 	@Override
 	public IItem createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IItem> find(ItemFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(ItemFilter filter) {
+		return dao.getCount(filter);
 	}
 
 }
