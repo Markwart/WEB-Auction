@@ -13,7 +13,7 @@
             <th><mytaglib:sort-link pageUrl="${pagesPaymentMethod}" column="updated">updated</mytaglib:sort-link></th>
             <th></th>
         </tr>
-        <c:forEach var="condition" items="${gridItems}" varStatus="loopCounter">
+        <c:forEach var="paymentMethod" items="${gridItems}" varStatus="loopCounter">
             <tr>
                 <td><c:out value="${paymentMethod.id}" /></td>
                 <td><c:out value="${paymentMethod.name}" /></td>

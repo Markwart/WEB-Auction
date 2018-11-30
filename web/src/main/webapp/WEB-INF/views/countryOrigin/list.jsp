@@ -13,7 +13,7 @@
             <th><mytaglib:sort-link pageUrl="${pagesCountryOrigin}" column="updated">updated</mytaglib:sort-link></th>
             <th></th>
         </tr>
-        <c:forEach var="condition" items="${gridItems}" varStatus="loopCounter">
+        <c:forEach var="countryOrigin" items="${gridItems}" varStatus="loopCounter">
             <tr>
                 <td><c:out value="${countryOrigin.id}" /></td>
                 <td><c:out value="${countryOrigin.name}" /></td>

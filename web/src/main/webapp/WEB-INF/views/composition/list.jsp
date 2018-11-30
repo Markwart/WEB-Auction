@@ -13,7 +13,7 @@
             <th><mytaglib:sort-link pageUrl="${pagesComposition}" column="updated">updated</mytaglib:sort-link></th>
             <th></th>
         </tr>
-        <c:forEach var="condition" items="${gridItems}" varStatus="loopCounter">
+        <c:forEach var="composition" items="${gridItems}" varStatus="loopCounter">
             <tr>
                 <td><c:out value="${composition.id}" /></td>
                 <td><c:out value="${composition.name}" /></td>

@@ -4,27 +4,59 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-    <definition name="DefaultTemplate" template="/WEB-INF/views/main-template.jsp">
-        <put-attribute name="title" value="Auction" />
-        <put-attribute name="header" value="/WEB-INF/views/header.jsp" />
-        <put-attribute name="body" value="" />
-        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
-    </definition>
+	<definition name="DefaultTemplate" template="/WEB-INF/views/main-template.jsp">
+		<put-attribute name="title" value="Auction" />
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+	</definition>
 
-    <definition name="home" extends="DefaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/views/home.jsp" />
-    </definition>
+	<definition name="home" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	</definition>
 
- <definition name="condition.list" extends="DefaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/views/condition/list.jsp" />
-    </definition>
-    
-    <definition name="condition.edit" extends="DefaultTemplate">
+	<definition name="condition.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/condition/list.jsp" />
+	</definition>
+
+	<definition name="condition.edit" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/condition/form.jsp" />
 	</definition>
 	
+	<definition name="composition.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/composition/list.jsp" />
+	</definition>
+
+	<definition name="composition.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/composition/form.jsp" />
+	</definition>
+	
+	<definition name="category.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/category/list.jsp" />
+	</definition>
+
+	<definition name="category.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/category/form.jsp" />
+	</definition>
+	
+	<definition name="countryOrigin.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/countryOrigin/list.jsp" />
+	</definition>
+
+	<definition name="countryOrigin.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/countryOrigin/form.jsp" />
+	</definition>
+	
+	<definition name="paymentMethod.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/paymentMethod/list.jsp" />
+	</definition>
+
+	<definition name="paymentMethod.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/paymentMethod/form.jsp" />
+	</definition>
+
 	<definition name="login" extends="DefaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/views/login.jsp" />
-    </definition>
+		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+	</definition>
 
 </tiles-definitions>
