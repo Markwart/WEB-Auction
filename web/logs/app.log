@@ -335,3 +335,567 @@
 19:54:48.520 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.w.WebAppContext@3ec300f1{/auction,file:/D:/M_Matusevich/G-JD2-10-17_mmatusevich/web/src/main/webapp/,AVAILABLE}{src/main/webapp}
 19:54:48.536 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@3028e50e{HTTP/1.1}{0.0.0.0:8081}
 19:54:48.537 [main] INFO  org.eclipse.jetty.server.Server - Started @3113ms
+18:18:49.388 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @805ms
+18:18:49.591 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+18:18:49.927 [main] WARN  org.eclipse.jetty.webapp.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@5b0abc94{/auction,file:/D:/JavaMark/web-auction/G-JD1-06-13_mmatusevich/web/src/main/webapp/,STARTING}{src/main/webapp}
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.visit(IterativeDescriptorProcessor.java:85) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.process(IterativeDescriptorProcessor.java:72) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.MetaData.resolve(MetaData.java:408) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1340) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:505) [jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.startInstance(StartJetty.java:59) [test-classes/:?]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.main(StartJetty.java:30) [test-classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/io/Resource
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.io.Resource
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+18:18:50.021 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@6ca8564a{HTTP/1.1}{0.0.0.0:8081}
+18:18:50.021 [main] INFO  org.eclipse.jetty.server.Server - Started @1458ms
+18:24:26.989 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @753ms
+18:24:27.075 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+18:24:27.422 [main] WARN  org.eclipse.jetty.webapp.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@5b0abc94{/auction,file:/D:/JavaMark/web-auction/G-JD1-06-13_mmatusevich/web/src/main/webapp/,STARTING}{src/main/webapp}
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.visit(IterativeDescriptorProcessor.java:85) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.process(IterativeDescriptorProcessor.java:72) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.MetaData.resolve(MetaData.java:408) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1340) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:505) [jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.startInstance(StartJetty.java:59) [test-classes/:?]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.main(StartJetty.java:30) [test-classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/io/Resource
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.io.Resource
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+18:24:27.507 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@6ca8564a{HTTP/1.1}{0.0.0.0:8081}
+18:24:27.507 [main] INFO  org.eclipse.jetty.server.Server - Started @1279ms
+18:26:17.720 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @740ms
+18:26:17.814 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+18:26:18.149 [main] WARN  org.eclipse.jetty.webapp.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@5b0abc94{/auction,file:/D:/JavaMark/web-auction/G-JD1-06-13_mmatusevich/web/src/main/webapp/,STARTING}{src/main/webapp}
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.visit(IterativeDescriptorProcessor.java:85) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.process(IterativeDescriptorProcessor.java:72) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.MetaData.resolve(MetaData.java:408) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1340) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:505) [jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.startInstance(StartJetty.java:59) [test-classes/:?]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.main(StartJetty.java:30) [test-classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/io/Resource
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.io.Resource
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+18:26:18.233 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@6ca8564a{HTTP/1.1}{0.0.0.0:8081}
+18:26:18.233 [main] INFO  org.eclipse.jetty.server.Server - Started @1250ms
+18:32:31.892 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @742ms
+18:32:31.970 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+18:32:32.337 [main] WARN  org.eclipse.jetty.webapp.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@5b0abc94{/auction,file:/D:/JavaMark/web-auction/G-JD1-06-13_mmatusevich/web/src/main/webapp/,STARTING}{src/main/webapp}
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.visit(IterativeDescriptorProcessor.java:85) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.process(IterativeDescriptorProcessor.java:72) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.MetaData.resolve(MetaData.java:408) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1340) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:505) [jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.startInstance(StartJetty.java:59) [test-classes/:?]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.main(StartJetty.java:30) [test-classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/io/Resource
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.io.Resource
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+18:32:32.411 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@39683cfe{HTTP/1.1}{0.0.0.0:8081}
+18:32:32.411 [main] INFO  org.eclipse.jetty.server.Server - Started @1274ms
+18:33:32.806 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @744ms
+18:33:32.884 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+18:33:33.231 [main] WARN  org.eclipse.jetty.webapp.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@5b0abc94{/auction,file:/D:/JavaMark/web-auction/G-JD1-06-13_mmatusevich/web/src/main/webapp/,STARTING}{src/main/webapp}
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.visit(IterativeDescriptorProcessor.java:85) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.process(IterativeDescriptorProcessor.java:72) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.MetaData.resolve(MetaData.java:408) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1340) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:505) [jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.startInstance(StartJetty.java:59) [test-classes/:?]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.main(StartJetty.java:30) [test-classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/io/Resource
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.io.Resource
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+18:33:33.314 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@39683cfe{HTTP/1.1}{0.0.0.0:8081}
+18:33:33.314 [main] INFO  org.eclipse.jetty.server.Server - Started @1259ms
+18:37:48.972 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @735ms
+18:37:49.072 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+18:37:49.401 [main] WARN  org.eclipse.jetty.webapp.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@5b0abc94{/auction,file:/D:/JavaMark/web-auction/G-JD1-06-13_mmatusevich/web/src/main/webapp/,STARTING}{src/main/webapp}
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.visit(IterativeDescriptorProcessor.java:85) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.process(IterativeDescriptorProcessor.java:72) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.MetaData.resolve(MetaData.java:408) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1340) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:505) [jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.startInstance(StartJetty.java:59) [test-classes/:?]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.main(StartJetty.java:30) [test-classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/io/Resource
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.io.Resource
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+18:37:49.475 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@6ca8564a{HTTP/1.1}{0.0.0.0:8081}
+18:37:49.475 [main] INFO  org.eclipse.jetty.server.Server - Started @1241ms
+18:50:49.804 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @745ms
+18:50:49.898 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+18:50:50.234 [main] WARN  org.eclipse.jetty.webapp.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@5b0abc94{/auction,file:/D:/JavaMark/web-auction/G-JD1-06-13_mmatusevich/web/src/main/webapp/,STARTING}{src/main/webapp}
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.visit(IterativeDescriptorProcessor.java:85) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.process(IterativeDescriptorProcessor.java:72) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.MetaData.resolve(MetaData.java:408) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1340) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:505) [jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.startInstance(StartJetty.java:59) [test-classes/:?]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.main(StartJetty.java:30) [test-classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/io/Resource
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.io.Resource
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+18:50:50.313 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@39683cfe{HTTP/1.1}{0.0.0.0:8081}
+18:50:50.314 [main] INFO  org.eclipse.jetty.server.Server - Started @1252ms
+18:53:18.565 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @755ms
+18:53:18.650 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+18:53:18.996 [main] WARN  org.eclipse.jetty.webapp.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@1f1c7bf6{/auction,file:/D:/JavaMark/web-auction/G-JD1-06-13_mmatusevich/web/src/main/webapp/,STARTING}{src/main/webapp}
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.visit(IterativeDescriptorProcessor.java:85) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.process(IterativeDescriptorProcessor.java:72) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.MetaData.resolve(MetaData.java:408) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1340) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:505) [jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.startInstance(StartJetty.java:59) [test-classes/:?]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.main(StartJetty.java:30) [test-classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/io/Resource
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.io.Resource
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+18:53:19.087 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@31368b99{HTTP/1.1}{0.0.0.0:8081}
+18:53:19.087 [main] INFO  org.eclipse.jetty.server.Server - Started @1274ms
+18:53:35.749 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @740ms
+18:53:35.846 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+18:53:36.180 [main] WARN  org.eclipse.jetty.webapp.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@5b0abc94{/auction,file:/D:/JavaMark/web-auction/G-JD1-06-13_mmatusevich/web/src/main/webapp/,STARTING}{src/main/webapp}
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.visit(IterativeDescriptorProcessor.java:85) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.process(IterativeDescriptorProcessor.java:72) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.MetaData.resolve(MetaData.java:408) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1340) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:505) [jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.startInstance(StartJetty.java:59) [test-classes/:?]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.main(StartJetty.java:30) [test-classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/io/Resource
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.io.Resource
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+18:53:36.266 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@6ca8564a{HTTP/1.1}{0.0.0.0:8081}
+18:53:36.266 [main] INFO  org.eclipse.jetty.server.Server - Started @1256ms
+20:59:41.295 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @760ms
+20:59:41.389 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+20:59:41.717 [main] WARN  org.eclipse.jetty.webapp.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@5b0abc94{/auction,file:/D:/JavaMark/web-auction/G-JD1-06-13_mmatusevich/web/src/main/webapp/,STARTING}{src/main/webapp}
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.visit(IterativeDescriptorProcessor.java:85) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.process(IterativeDescriptorProcessor.java:72) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.MetaData.resolve(MetaData.java:408) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1340) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:505) [jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.startInstance(StartJetty.java:59) [test-classes/:?]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.main(StartJetty.java:30) [test-classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/io/Resource
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.io.Resource
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+20:59:41.795 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@6ca8564a{HTTP/1.1}{0.0.0.0:8081}
+20:59:41.795 [main] INFO  org.eclipse.jetty.server.Server - Started @1262ms
+23:23:31.228 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @737ms
+23:23:31.306 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+23:23:31.649 [main] WARN  org.eclipse.jetty.webapp.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@5b0abc94{/auction,file:/D:/JavaMark/web-auction/G-JD1-06-13_mmatusevich/web/src/main/webapp/,STARTING}{src/main/webapp}
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.visit(IterativeDescriptorProcessor.java:85) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.process(IterativeDescriptorProcessor.java:72) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.MetaData.resolve(MetaData.java:408) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1340) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:505) [jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.startInstance(StartJetty.java:59) [test-classes/:?]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.main(StartJetty.java:30) [test-classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/io/Resource
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.io.Resource
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+23:23:31.734 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@6ca8564a{HTTP/1.1}{0.0.0.0:8081}
+23:23:31.734 [main] INFO  org.eclipse.jetty.server.Server - Started @1259ms
+23:28:08.046 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @759ms
+23:28:08.134 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.2.15.v20160210
+23:28:08.459 [main] WARN  org.eclipse.jetty.webapp.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@5b0abc94{/auction,file:/D:/JavaMark/web-auction/G-JD1-06-13_mmatusevich/web/src/main/webapp/,STARTING}{src/main/webapp}
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.visit(IterativeDescriptorProcessor.java:85) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.IterativeDescriptorProcessor.process(IterativeDescriptorProcessor.java:72) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.MetaData.resolve(MetaData.java:408) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1340) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:741) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:505) [jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.start(Server.java:387) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:354) [jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.startInstance(StartJetty.java:59) [test-classes/:?]
+	at com.itacademy.jd2.mm.auction.web.StartJetty.main(StartJetty.java:30) [test-classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/io/Resource
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.io.Resource
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getDeclaredConstructors0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.privateGetDeclaredConstructors(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.getConstructor0(Unknown Source) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Unknown Source) ~[?:1.8.0_171]
+	at org.eclipse.jetty.server.handler.ContextHandler$Context.createInstance(ContextHandler.java:2372) ~[jetty-server-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.newListenerInstance(StandardDescriptorProcessor.java:2014) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	at org.eclipse.jetty.webapp.StandardDescriptorProcessor.visitListener(StandardDescriptorProcessor.java:1957) ~[jetty-webapp-9.2.15.v20160210.jar:9.2.15.v20160210]
+	... 19 more
+23:28:08.533 [main] INFO  org.eclipse.jetty.server.ServerConnector - Started ServerConnector@6ca8564a{HTTP/1.1}{0.0.0.0:8081}
+23:28:08.533 [main] INFO  org.eclipse.jetty.server.Server - Started @1262ms

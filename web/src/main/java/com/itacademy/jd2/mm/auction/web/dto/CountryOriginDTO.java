@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.validation.constraints.Size;
 
-public class ConditionDTO {
+public class CountryOriginDTO {
 
 	private Integer id;
 

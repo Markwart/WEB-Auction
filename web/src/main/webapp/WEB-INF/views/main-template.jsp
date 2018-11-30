@@ -5,6 +5,7 @@
 <c:set var="pagesComposition" value="${contextPath}/composition" scope="request" />
 <c:set var="pagesCategory" value="${contextPath}/category" scope="request" />
 <c:set var="pagesCountryOrigin" value="${contextPath}/countryOrigin" scope="request" />
+<c:set var="pagesPaymentMethod" value="${contextPath}/paymentMethod" scope="request" />
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
