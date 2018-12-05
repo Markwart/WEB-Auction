@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
@@ -77,7 +78,7 @@ public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunicati
 	}
 
 	@Override
-	protected IAdminCommunication parseRow(final ResultSet resultSet) throws SQLException {
+	protected IAdminCommunication parseRow(final ResultSet resultSet, final Set<String> columns) throws SQLException {
 		final IAdminCommunication entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setTheme(resultSet.getString("theme"));
@@ -85,21 +86,39 @@ public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunicati
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 
-		final UserAccount userAccount = new UserAccount();
-		userAccount.setId((Integer) resultSet.getObject("user_from_id"));
-		entity.setUserAccount(userAccount);
+		final Integer userAccountId = (Integer) resultSet.getObject("user_from_id");
+		if (userAccountId != null) {
+			final UserAccount userAccount = new UserAccount();
+			userAccount.setId(userAccountId);
+			if (columns.contains("user_email")) {
+				userAccount.setEmail(resultSet.getString("user_email"));
+			}
+			entity.setUserAccount(userAccount);
+		}
 
 		return entity;
 	}
 
 	@Override
 	public List<IAdminCommunication> find(AdminCommunicationFilter filter) {
-		 final StringBuilder sqlTile = new StringBuilder("");
+		final StringBuilder sqlTile;
+		if (filter.getFetchUserAccount()) {
+			sqlTile = new StringBuilder(String.format("select admin_communication.*, admin_communication.email as user_email from %s", getTableName()));
+		} else {
+			sqlTile = new StringBuilder(String.format("select admin_communication.* from %s", getTableName()));
+		}
+		appendJOINs(sqlTile, filter);
 	        appendSort(filter, sqlTile);
 	        appendPaging(filter, sqlTile);
 	        return executeFindQuery(sqlTile.toString());
 	}
 
+	private void appendJOINs(final StringBuilder sb, final AdminCommunicationFilter filter) {
+		if (filter.getFetchUserAccount()) {
+			sb.append(" join user_account on (user_account.id=admin_communication.user_from_id) ");
+		}
+	}
+	
 	@Override
 	public long getCount(AdminCommunicationFilter filter) {
 		return executeCountQuery("");

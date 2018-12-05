@@ -15,7 +15,6 @@
 <c:set var="pagesFeedback" value="${contextPath}/feedback" scope="request" />
 <c:set var="pagesMessage" value="${contextPath}/message" scope="request" />
 <c:set var="pagesAdminCommunication" value="${contextPath}/adminCommunication" scope="request" />
-<c:set var="pagesPersonalData" value="${contextPath}/personalData" scope="request" />
 <c:set var="pagesUserAccount" value="${contextPath}/userAccount" scope="request" />
 <c:set var="pagesItem" value="${contextPath}/item" scope="request" />
 

@@ -36,7 +36,7 @@ public class CountryOriginController extends AbstractController {
 	private CountryOriginFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	private CountryOriginController(ICountryOriginService countryOriginService,
+	public CountryOriginController(ICountryOriginService countryOriginService,
 			CountryOriginToDTOConverter toDtoConverter, CountryOriginFromDTOConverter fromDtoConverter) {
 		super();
 		this.countryOriginService = countryOriginService;

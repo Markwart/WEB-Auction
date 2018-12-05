@@ -36,7 +36,7 @@ public class StepBlockController extends AbstractController {
 	private StepBlockFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	private StepBlockController(IStepBlockService stepBlockService,
+	public StepBlockController(IStepBlockService stepBlockService,
 			StepBlockToDTOConverter toDtoConverter, StepBlockFromDTOConverter fromDtoConverter) {
 		super();
 		this.stepBlockService = stepBlockService;

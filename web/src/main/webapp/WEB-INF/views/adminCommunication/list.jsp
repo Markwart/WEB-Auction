@@ -12,7 +12,7 @@
             <th><mytaglib:sort-link pageUrl="${pagesAdminCommunication}" column="text">text</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesAdminCommunication}" column="user_from_id">user account</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesAdminCommunication}" column="created">created</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesCAdminCommunication}" column="updated">updated</mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesAdminCommunication}" column="updated">updated</mytaglib:sort-link></th>
             <th></th>
         </tr>
         <c:forEach var="adminCommunication" items="${gridItems}" varStatus="loopCounter">

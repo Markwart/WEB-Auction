@@ -36,7 +36,7 @@ public class CategoryController extends AbstractController {
 	private CategoryFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	private CategoryController(ICategoryService categoryService, CategoryToDTOConverter toDtoConverter,
+	public CategoryController(ICategoryService categoryService, CategoryToDTOConverter toDtoConverter,
 			CategoryFromDTOConverter fromDtoConverter) {
 		super();
 		this.categoryService = categoryService;

@@ -135,14 +135,6 @@
 		<put-attribute name="body" value="/WEB-INF/views/item/form.jsp" />
 	</definition>
 	
-	<definition name="personalData.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/personalData/list.jsp" />
-	</definition>
-	
-	<definition name="personalData.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/personalData/form.jsp" />
-	</definition>
-	
 	<definition name="userAccount.list" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/userAccount/list.jsp" />
 	</definition>

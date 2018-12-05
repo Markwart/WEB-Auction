@@ -36,7 +36,7 @@ public class AuctionRuleController extends AbstractController {
 	private AuctionRuleFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	private AuctionRuleController(IAuctionRuleService auctionRuleService,
+	public AuctionRuleController(IAuctionRuleService auctionRuleService,
 			AuctionRuleToDTOConverter toDtoConverter, AuctionRuleFromDTOConverter fromDtoConverter) {
 		super();
 		this.auctionRuleService = auctionRuleService;

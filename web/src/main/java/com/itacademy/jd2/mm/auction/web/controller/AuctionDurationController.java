@@ -36,7 +36,7 @@ public class AuctionDurationController extends AbstractController {
 	private AuctionDurationFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	private AuctionDurationController(IAuctionDurationService auctionDurationService,
+	public AuctionDurationController(IAuctionDurationService auctionDurationService,
 			AuctionDurationToDTOConverter toDtoConverter, AuctionDurationFromDTOConverter fromDtoConverter) {
 		super();
 		this.auctionDurationService = auctionDurationService;

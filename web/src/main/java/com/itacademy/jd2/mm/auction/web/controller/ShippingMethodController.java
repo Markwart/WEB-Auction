@@ -36,7 +36,7 @@ public class ShippingMethodController extends AbstractController {
 	private ShippingMethodFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	private ShippingMethodController(IShippingMethodService shippingMethodService,
+	public ShippingMethodController(IShippingMethodService shippingMethodService,
 			ShippingMethodToDTOConverter toDtoConverter, ShippingMethodFromDTOConverter fromDtoConverter) {
 		super();
 		this.shippingMethodService = shippingMethodService;

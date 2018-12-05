@@ -36,7 +36,7 @@ public class PaymentMethodController extends AbstractController {
 	private PaymentMethodFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	private PaymentMethodController(IPaymentMethodService paymentMethodService,
+	public PaymentMethodController(IPaymentMethodService paymentMethodService,
 			PaymentMethodToDTOConverter toDtoConverter, PaymentMethodFromDTOConverter fromDtoConverter) {
 		super();
 		this.paymentMethodService = paymentMethodService;

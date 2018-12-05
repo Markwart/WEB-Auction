@@ -36,7 +36,7 @@ public class CompositionController extends AbstractController {
 	private CompositionFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	private CompositionController(ICompositionService compositionService, CompositionToDTOConverter toDtoConverter,
+	public CompositionController(ICompositionService compositionService, CompositionToDTOConverter toDtoConverter,
 			CompositionFromDTOConverter fromDtoConverter) {
 		super();
 		this.compositionService = compositionService;

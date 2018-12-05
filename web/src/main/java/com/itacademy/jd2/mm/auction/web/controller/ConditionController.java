@@ -36,7 +36,7 @@ public class ConditionController extends AbstractController {
 	private ConditionFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	private ConditionController(IConditionService conditionService, ConditionToDTOConverter toDtoConverter,
+	public ConditionController(IConditionService conditionService, ConditionToDTOConverter toDtoConverter,
 			ConditionFromDTOConverter fromDtoConverter) {
 		super();
 		this.conditionService = conditionService;

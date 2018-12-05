@@ -36,7 +36,7 @@ public class UserAccountController extends AbstractController {
 	private UserAccountFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	private UserAccountController(IUserAccountService userAccountService,
+	public UserAccountController(IUserAccountService userAccountService,
 			UserAccountToDTOConverter toDtoConverter, UserAccountFromDTOConverter fromDtoConverter) {
 		super();
 		this.userAccountService = userAccountService;

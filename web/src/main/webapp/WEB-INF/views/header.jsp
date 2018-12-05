@@ -22,7 +22,6 @@
 				<li><a href="${pagesItem}">Items</a></li>
 				<li><a href="${pagesMessage}">Messages</a></li>
 				<li><a href="${pagesUserAccount}">User accounts</a></li>
-				<li><a href="${pagesPersonalData}">Personal data</a></li>
 
 				<sec:authorize access="!isAnonymous()">
 					<a class="right" href="${contextPath}/execute_logout"
