@@ -14,4 +14,8 @@ public interface IUserAccount  extends IBaseEntity{
 	
 	void setPassword(String password);
 	
+	IPersonalData getPersonalData();
+	
+	void setPersonalData(IPersonalData data);
+	
 }

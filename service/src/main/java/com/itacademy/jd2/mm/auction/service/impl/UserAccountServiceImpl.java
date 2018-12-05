@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itacademy.jd2.mm.auction.daoapi.IPersonalDataDao;
 import com.itacademy.jd2.mm.auction.daoapi.IUserAccountDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
@@ -19,13 +21,15 @@ public class UserAccountServiceImpl implements IUserAccountService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserAccountServiceImpl.class);
 
 	private IUserAccountDao dao;
+	private IPersonalDataDao personalDataDao;
 
 	@Autowired
-	public UserAccountServiceImpl(IUserAccountDao dao) {
+	public UserAccountServiceImpl(IUserAccountDao dao, IPersonalDataDao personalDataDao) {
 		super();
 		this.dao = dao;
+		this.personalDataDao = personalDataDao;
 	}
-
+	
 	@Override
 	public IUserAccount get(final Integer id) {
 		final IUserAccount entity = dao.get(id);
@@ -61,6 +65,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
 	@Override
 	public void deleteAll() {
 		LOGGER.info("delete all user_accounts");
+		personalDataDao.deleteAll();
 		dao.deleteAll();		
 	}
 
@@ -77,5 +82,38 @@ public class UserAccountServiceImpl implements IUserAccountService {
 	@Override
 	public long getCount(UserAccountFilter filter) {
 		return dao.getCount(filter);
+	}
+
+	@Override
+	public IPersonalData createPersonalDataEntity() {
+		return personalDataDao.createEntity();
+	}
+
+	@Override
+	public IUserAccount getPersonalData(Integer id) {
+		final IUserAccount entity = dao.getPersonalData(id);
+		return entity;
+	}
+
+	@Override
+	public void save(IUserAccount userAccount, IPersonalData personalData) {
+		final Date modifiedDate = new Date();
+		userAccount.setUpdated(modifiedDate);
+		personalData.setUpdated(modifiedDate);
+
+		if (userAccount.getId() == null) {
+			userAccount.setCreated(modifiedDate);
+			dao.insert(userAccount);
+
+			personalData.setId(userAccount.getId());
+			personalData.setCreated(modifiedDate);
+			personalData.setUserAccount(userAccount);
+			personalDataDao.insert(personalData);
+
+			userAccount.setPersonalData(personalData);
+		} else {
+			dao.update(userAccount);
+			personalDataDao.update(personalData);
+		}
 	}
 }

@@ -7,6 +7,8 @@ import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
 
 public interface IUserAccountDao extends IDao<IUserAccount, Integer> {
 
+	IUserAccount getPersonalData(final Integer id);
+	
 	List<IUserAccount> find(UserAccountFilter filter);
 
 	long getCount(UserAccountFilter filter);

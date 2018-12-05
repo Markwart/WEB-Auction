@@ -3,7 +3,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <header>
 	<nav>
-		<div class="nav-wrapper container">
+		<div class="row"> <!-- nav-wrapper container -->
 			<ul class="left hide-on-med-and-down">
 				<li><a href="${contextPath}">home</a></li>
 				<li><a href="${pagesCategory}">Category</a></li>
@@ -11,18 +11,18 @@
 				<li><a href="${pagesCondition}">Condition</a></li>
 				<li><a href="${pagesCountryOrigin}">Origin country</a></li>
 				<li><a href="${pagesPaymentMethod}">Payment</a></li>
-				<li><a href="${pagesCondition}">Admin Communication</a></li>
-				<li><a href="${pagesCondition}">Auction Rules</a></li>
-				<li><a href="${pagesCondition}">Auction Duration</a></li>
-				<li><a href="${pagesCondition}">Bids</a></li>
-				<li><a href="${pagesCondition}">Deferred Bids</a></li>
-				<li><a href="${pagesCondition}">Feedback</a></li>
-				<li><a href="${pagesCondition}">Items</a></li>
-				<li><a href="${pagesCondition}">Messages</a></li>
-				<li><a href="${pagesCondition}">Shipping</a></li>
-				<li><a href="${pagesCondition}">Step blocks</a></li>
-				<li><a href="${pagesCondition}">User Accounts</a></li>
-				<li><a href="${pagesCondition}">Personal Data</a></li>
+				<li><a href="${pagesShippingMethod}">Shipping</a></li>
+				<li><a href="${pagesAuctionRule}">Auction rules</a></li>
+				<li><a href="${pagesStepBlock}">Step blocks</a></li>
+				<li><a href="${pagesAdminCommunication}">Admin communication</a></li>
+				<li><a href="${pagesAuctionDuration}">Auction duration</a></li>
+				<li><a href="${pagesBid}">Bids</a></li>
+				<li><a href="${pagesDeferredBid}">Deferred bids</a></li>
+				<li><a href="${pagesFeedback}">Feedback</a></li>
+				<li><a href="${pagesItem}">Items</a></li>
+				<li><a href="${pagesMessage}">Messages</a></li>
+				<li><a href="${pagesUserAccount}">User accounts</a></li>
+				<li><a href="${pagesPersonalData}">Personal data</a></li>
 
 				<sec:authorize access="!isAnonymous()">
 					<a class="right" href="${contextPath}/execute_logout"

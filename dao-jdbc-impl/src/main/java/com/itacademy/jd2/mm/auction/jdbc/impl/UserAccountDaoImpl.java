@@ -6,8 +6,10 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.itacademy.jd2.mm.auction.daoapi.IPersonalDataDao;
 import com.itacademy.jd2.mm.auction.daoapi.IUserAccountDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
@@ -16,6 +18,14 @@ import com.itacademy.jd2.mm.auction.jdbc.impl.util.PreparedStatementAction;
 
 @Repository
 public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> implements IUserAccountDao {
+
+	private IPersonalDataDao personalDataDao;
+
+	@Autowired
+	public UserAccountDaoImpl(IPersonalDataDao personalDataDao) {
+		super();
+		this.personalDataDao = personalDataDao;
+	}
 
 	@Override
 	public IUserAccount createEntity() {
@@ -37,13 +47,13 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 				pStmt.executeUpdate();
 				return entity;
 			}
-		});		
+		});
 	}
 
 	@Override
 	public void insert(IUserAccount entity) {
-		executeStatement(new PreparedStatementAction<IUserAccount>(
-				String.format("insert into %s (role, email, password, created, updated) values(?,?,?,?,?)", getTableName()), true) {
+		executeStatement(new PreparedStatementAction<IUserAccount>(String.format(
+				"insert into %s (role, email, password, created, updated) values(?,?,?,?,?)", getTableName()), true) {
 
 			@Override
 			public IUserAccount doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
@@ -64,7 +74,7 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 				entity.setId(id);
 				return entity;
 			}
-		});		
+		});
 	}
 
 	@Override
@@ -86,14 +96,22 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 
 	@Override
 	public List<IUserAccount> find(UserAccountFilter filter) {
-		 final StringBuilder sqlTile = new StringBuilder("");
-	        appendSort(filter, sqlTile);
-	        appendPaging(filter, sqlTile);
-	        return executeFindQuery(sqlTile.toString());
+		final StringBuilder sqlTile = new StringBuilder("");
+		appendSort(filter, sqlTile);
+		appendPaging(filter, sqlTile);
+		return executeFindQuery(sqlTile.toString());
 	}
 
 	@Override
 	public long getCount(UserAccountFilter filter) {
 		return executeCountQuery("");
+	}
+
+	@Override
+	public IUserAccount getPersonalData(Integer id) {
+		final IUserAccount userAccount = get(id);
+
+		userAccount.setPersonalData(personalDataDao.get(id));
+		return userAccount;
 	}
 }

@@ -6,6 +6,18 @@
 <c:set var="pagesCategory" value="${contextPath}/category" scope="request" />
 <c:set var="pagesCountryOrigin" value="${contextPath}/countryOrigin" scope="request" />
 <c:set var="pagesPaymentMethod" value="${contextPath}/paymentMethod" scope="request" />
+<c:set var="pagesShippingMethod" value="${contextPath}/shippingMethod" scope="request" />
+<c:set var="pagesAuctionRule" value="${contextPath}/auctionRule" scope="request" />
+<c:set var="pagesStepBlock" value="${contextPath}/stepBlock" scope="request" />
+<c:set var="pagesAuctionDuration" value="${contextPath}/auctionDuration" scope="request" />
+<c:set var="pagesBid" value="${contextPath}/bid" scope="request" />
+<c:set var="pagesDeferredBid" value="${contextPath}/deferredBid" scope="request" />
+<c:set var="pagesFeedback" value="${contextPath}/feedback" scope="request" />
+<c:set var="pagesMessage" value="${contextPath}/message" scope="request" />
+<c:set var="pagesAdminCommunication" value="${contextPath}/adminCommunication" scope="request" />
+<c:set var="pagesPersonalData" value="${contextPath}/personalData" scope="request" />
+<c:set var="pagesUserAccount" value="${contextPath}/userAccount" scope="request" />
+<c:set var="pagesItem" value="${contextPath}/item" scope="request" />
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

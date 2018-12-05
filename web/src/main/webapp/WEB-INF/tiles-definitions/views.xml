@@ -54,6 +54,102 @@
 	<definition name="paymentMethod.edit" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/paymentMethod/form.jsp" />
 	</definition>
+	
+	<definition name="shippingMethod.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/shippingMethod/list.jsp" />
+	</definition>
+	
+	<definition name="shippingMethod.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/shippingMethod/form.jsp" />
+	</definition>
+	
+	<definition name="auctionRule.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/auctionRule/list.jsp" />
+	</definition>
+	
+	<definition name="auctionRule.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/auctionRule/form.jsp" />
+	</definition>
+	
+	<definition name="stepBlock.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/stepBlock/list.jsp" />
+	</definition>
+	
+	<definition name="stepBlock.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/stepBlock/form.jsp" />
+	</definition>
+	
+	<definition name="auctionDuration.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/auctionDuration/list.jsp" />
+	</definition>
+	
+	<definition name="auctionDuration.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/auctionDuration/form.jsp" />
+	</definition>
+	
+	<definition name="bid.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/bid/list.jsp" />
+	</definition>
+	
+	<definition name="bid.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/bid/form.jsp" />
+	</definition>
+	
+	<definition name="deferredBid.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/deferredBid/list.jsp" />
+	</definition>
+	
+	<definition name="deferredBid.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/deferredBid/form.jsp" />
+	</definition>
+	
+	<definition name="feedback.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/feedback/list.jsp" />
+	</definition>
+	
+	<definition name="feedback.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/feedback/form.jsp" />
+	</definition>
+	
+	<definition name="message.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/message/list.jsp" />
+	</definition>
+	
+	<definition name="message.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/message/form.jsp" />
+	</definition>
+	
+	<definition name="adminCommunication.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/adminCommunication/list.jsp" />
+	</definition>
+	
+	<definition name="adminCommunication.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/adminCommunication/form.jsp" />
+	</definition>
+	
+	<definition name="item.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/item/list.jsp" />
+	</definition>
+	
+	<definition name="item.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/item/form.jsp" />
+	</definition>
+	
+	<definition name="personalData.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/personalData/list.jsp" />
+	</definition>
+	
+	<definition name="personalData.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/personalData/form.jsp" />
+	</definition>
+	
+	<definition name="userAccount.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/userAccount/list.jsp" />
+	</definition>
+	
+	<definition name="userAccount.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/userAccount/form.jsp" />
+	</definition>
 
 	<definition name="login" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />

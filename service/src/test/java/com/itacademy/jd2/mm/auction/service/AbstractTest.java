@@ -64,8 +64,6 @@ public abstract class AbstractTest {
 	protected IAuctionDurationService auctionDurationService;
 	@Autowired
 	protected IStepBlockService stepBlockService;
-	@Autowired
-	protected IPersonalDataService personalDataService;
 
 	private static final Random RANDOM = new Random();
 
@@ -79,7 +77,6 @@ public abstract class AbstractTest {
 
 		itemService.deleteAll();
 		adminCommunicationService.deleteAll();
-		personalDataService.deleteAll();
 
 		conditionService.deleteAll();
 		categoryService.deleteAll();
@@ -250,7 +247,7 @@ public abstract class AbstractTest {
 		return entity;
 	}
 
-	protected IPersonalData saveNewPersonalData() {
+	/*protected IPersonalData saveNewPersonalData() {
 		final IPersonalData entity = personalDataService.createEntity();
 		entity.setUserName("username-" + getRandomPrefix());
 		entity.setFirstName("first_name-" + getRandomPrefix());
@@ -259,7 +256,7 @@ public abstract class AbstractTest {
 		entity.setId(saveNewUserAccount().getId());
 		personalDataService.save(entity);
 		return entity;
-	}
+	}*/
 
 	protected IAdminCommunication saveNewAdminCommunication() {
 		final IAdminCommunication entity = adminCommunicationService.createEntity();

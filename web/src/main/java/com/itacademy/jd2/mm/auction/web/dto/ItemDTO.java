@@ -1,0 +1,144 @@
+package com.itacademy.jd2.mm.auction.web.dto;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class ItemDTO {
+
+	private Integer id;
+
+	private String name, image, text, statusAuction;
+	private Integer year;
+	private Date auctionEnd;
+	private BigDecimal startingPrice;
+	private Integer categoryId;
+	private Integer countryOriginId;
+	private Integer conditionId;
+	private Integer compositionId;
+	private Integer sellerId;
+
+	private Date created;
+
+	private Date updated;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(final Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(final String name) {
+		this.name = name;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(final Date created) {
+		this.created = created;
+	}
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(final Date updated) {
+		this.updated = updated;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public String getStatusAuction() {
+		return statusAuction;
+	}
+
+	public void setStatusAuction(String statusAuction) {
+		this.statusAuction = statusAuction;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public Date getAuctionEnd() {
+		return auctionEnd;
+	}
+
+	public void setAuctionEnd(Date auctionEnd) {
+		this.auctionEnd = auctionEnd;
+	}
+
+	public BigDecimal getStartingPrice() {
+		return startingPrice;
+	}
+
+	public void setStartingPrice(BigDecimal startingPrice) {
+		this.startingPrice = startingPrice;
+	}
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public Integer getCountryOriginId() {
+		return countryOriginId;
+	}
+
+	public void setCountryOriginId(Integer countryOriginId) {
+		this.countryOriginId = countryOriginId;
+	}
+
+	public Integer getConditionId() {
+		return conditionId;
+	}
+
+	public void setConditionId(Integer conditionId) {
+		this.conditionId = conditionId;
+	}
+
+	public Integer getCompositionId() {
+		return compositionId;
+	}
+
+	public void setCompositionId(Integer compositionId) {
+		this.compositionId = compositionId;
+	}
+
+	public Integer getSellerId() {
+		return sellerId;
+	}
+
+	public void setSellerId(Integer sellerId) {
+		this.sellerId = sellerId;
+	}
+
+}

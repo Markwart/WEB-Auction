@@ -7,7 +7,4 @@ import com.itacademy.jd2.mm.auction.daoapi.filter.PersonalDataFilter;
 
 public interface IPersonalDataDao extends IDao<IPersonalData, Integer> {
 
-	List<IPersonalData> find(PersonalDataFilter filter);
-
-	long getCount(PersonalDataFilter filter);
 }
