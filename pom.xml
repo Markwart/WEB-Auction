@@ -27,7 +27,6 @@
 		<module>service</module>
 		<module>web</module>
 		<module>dao-orm-impl</module>
-		<module>dao-orm-ompl</module>
 	</modules>
 
 	<dependencyManagement>
