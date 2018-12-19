@@ -81,7 +81,7 @@ public class StepBlockController extends AbstractController {
 		} else {
 			final IStepBlock entity = fromDtoConverter.apply(formModel);
 			stepBlockService.save(entity);
-			return "redirect:/stepBlock"; // generates 302 response with Location="/carsdealer/brand"
+			return "redirect:/stepBlock"; 
 		}
 	}
 

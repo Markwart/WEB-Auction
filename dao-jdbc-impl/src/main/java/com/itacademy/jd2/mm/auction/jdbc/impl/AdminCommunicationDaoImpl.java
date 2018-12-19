@@ -103,14 +103,14 @@ public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunicati
 	public List<IAdminCommunication> find(AdminCommunicationFilter filter) {
 		final StringBuilder sqlTile;
 		if (filter.getFetchUserAccount()) {
-			sqlTile = new StringBuilder(String.format("select admin_communication.*, admin_communication.email as user_email from %s", getTableName()));
+			sqlTile = new StringBuilder(String.format("select admin_communication.*, user_account.email as user_email from %s", getTableName()));
 		} else {
 			sqlTile = new StringBuilder(String.format("select admin_communication.* from %s", getTableName()));
 		}
 		appendJOINs(sqlTile, filter);
 	        appendSort(filter, sqlTile);
 	        appendPaging(filter, sqlTile);
-	        return executeFindQuery(sqlTile.toString());
+	        return executeFindQueryWithCustomSelect(sqlTile.toString());
 	}
 
 	private void appendJOINs(final StringBuilder sb, final AdminCommunicationFilter filter) {

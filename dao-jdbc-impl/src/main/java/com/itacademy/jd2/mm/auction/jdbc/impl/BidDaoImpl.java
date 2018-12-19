@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
@@ -79,7 +80,7 @@ public class BidDaoImpl extends AbstractDaoImpl<IBid, Integer> implements IBidDa
 	}
 
 	@Override
-	protected IBid parseRow(final ResultSet resultSet) throws SQLException {
+	protected IBid parseRow(final ResultSet resultSet, final Set<String> columns) throws SQLException {
 		final IBid entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setPriceBid(resultSet.getBigDecimal("price_bid"));
@@ -87,23 +88,54 @@ public class BidDaoImpl extends AbstractDaoImpl<IBid, Integer> implements IBidDa
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 
-		final Item item = new Item();
-		item.setId(resultSet.getInt("item_id"));
-		entity.setItem(item);
+		final Integer itemId = (Integer) resultSet.getObject("item_id");
+		if (itemId != null) {
+			final Item item = new Item();
+			item.setId(itemId);
+			if (columns.contains("item_name")) {
+				item.setName(resultSet.getString("item_name"));
+			}
+			entity.setItem(item);
+		}
 
-		final UserAccount userAccount = new UserAccount();
-		userAccount.setId((Integer) resultSet.getObject("user_bid_id"));
-		entity.setUserAccount(userAccount);
-
+		final Integer userAccountId = (Integer) resultSet.getObject("user_bid_id");
+		if (userAccountId != null) {
+			final UserAccount userAccount = new UserAccount();
+			userAccount.setId(userAccountId);
+			if (columns.contains("user_email")) {
+				userAccount.setEmail(resultSet.getString("user_email"));
+			}
+			entity.setUserAccount(userAccount);
+		}
 		return entity;
 	}
 
 	@Override
 	public List<IBid> find(BidFilter filter) {
-		 final StringBuilder sqlTile = new StringBuilder("");
-	        appendSort(filter, sqlTile);
-	        appendPaging(filter, sqlTile);
-	        return executeFindQuery(sqlTile.toString());
+		final StringBuilder sqlTile;
+		if (filter.getFetchUserAccount() & filter.getFetchItem()) {
+			sqlTile = new StringBuilder(
+					String.format("select bid.*, user_account.email as user_email, item.name as item_name from %s", getTableName()));
+		} else {
+			sqlTile = new StringBuilder(String.format("bid.* from %s", getTableName()));
+		}
+
+		appendJOINs(sqlTile, filter);
+		appendSort(filter, sqlTile);
+		appendPaging(filter, sqlTile);
+		return executeFindQueryWithCustomSelect(sqlTile.toString());
+	}
+
+	/*
+	 * "select bid.*, item.name as item_name from %s"
+	 * append(" join item on (item.id=bid.item_id) ")
+	 */
+
+	private void appendJOINs(final StringBuilder sb, final BidFilter filter) {
+		if (filter.getFetchUserAccount() & filter.getFetchItem()) {
+			sb.append(" join user_account on (user_account.id=bid.user_bid_id) ")
+					.append(" join item on (item.id=bid.item_id) ");
+		}
 	}
 
 	@Override

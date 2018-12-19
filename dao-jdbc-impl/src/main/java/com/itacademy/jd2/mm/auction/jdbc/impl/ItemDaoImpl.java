@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
@@ -98,7 +99,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 	}
 
 	@Override
-	protected IItem parseRow(final ResultSet resultSet) throws SQLException {
+	protected IItem parseRow(final ResultSet resultSet, final Set<String> columns) throws SQLException {
 		final IItem entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setName(resultSet.getString("name"));
@@ -111,9 +112,15 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 
-		final UserAccount seller = new UserAccount();
-		seller.setId((Integer) resultSet.getObject("seller_id"));
-		entity.setSeller(seller);
+		final Integer sellerId = (Integer) resultSet.getObject("seller_id");
+		if (sellerId != null) {
+			final UserAccount userAccount = new UserAccount();
+			userAccount.setId(sellerId);
+			if (columns.contains("seller_email")) {
+				userAccount.setEmail(resultSet.getString("seller_email"));
+			}
+			entity.setSeller(userAccount);
+		}
 
 		final Category category = new Category();
 		category.setId((Integer) resultSet.getObject("category_id"));
@@ -122,24 +129,43 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		final CountryOrigin countryOrigin = new CountryOrigin();
 		countryOrigin.setId((Integer) resultSet.getObject("country_origin_id"));
 		entity.setCountryOrigin(countryOrigin);
-		
+
 		final Condition condition = new Condition();
 		condition.setId((Integer) resultSet.getObject("condition_id"));
 		entity.setCondition(condition);
-		
+
 		final Composition composition = new Composition();
 		composition.setId((Integer) resultSet.getObject("composition_id"));
 		entity.setComposition(composition);
-		
+
 		return entity;
 	}
 
 	@Override
 	public List<IItem> find(ItemFilter filter) {
-		 final StringBuilder sqlTile = new StringBuilder("");
-	        appendSort(filter, sqlTile);
-	        appendPaging(filter, sqlTile);
-	        return executeFindQuery(sqlTile.toString());
+		final StringBuilder sqlTile;
+		if (filter.getFetchUserAccount()) {
+			sqlTile = new StringBuilder(
+					String.format("select item.*, user_account.email as seller_email from %s", getTableName()));
+		} else {
+			sqlTile = new StringBuilder(String.format("select item.* from %s", getTableName()));
+		}
+		appendJOINs(sqlTile, filter);
+		appendSort(filter, sqlTile);
+		appendPaging(filter, sqlTile);
+		return executeFindQueryWithCustomSelect(sqlTile.toString());
+	}
+
+	/*
+	 * private boolean isFiltersTrue(ItemFilter filter) { return
+	 * filter.getFetchUserAccount() & filter.getFetchCategory() &
+	 * filter.getFetchCondition() & filter.getFetchComposition() &
+	 * filter.getFetchCountryOrigin(); }
+	 */
+	private void appendJOINs(final StringBuilder sb, final ItemFilter filter) {
+		if (filter.getFetchUserAccount()) {
+			sb.append(" join user_account on (user_account.id=item.seller_id) ");
+		}
 	}
 
 	@Override

@@ -81,7 +81,7 @@ public class PaymentMethodController extends AbstractController {
 		} else {
 			final IPaymentMethod entity = fromDtoConverter.apply(formModel);
 			paymentMethodService.save(entity);
-			return "redirect:/paymentMethod"; // generates 302 response with Location="/carsdealer/brand"
+			return "redirect:/paymentMethod"; 
 		}
 	}
 

@@ -7,7 +7,6 @@ public class PersonalDataDTO {
 	private String userName, firstName, lastName, adress;
 
 	private Date created;
-
 	private Date updated;
 
 	public String getUserName() {

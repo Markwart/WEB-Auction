@@ -81,7 +81,7 @@ public class ShippingMethodController extends AbstractController {
 		} else {
 			final IShippingMethod entity = fromDtoConverter.apply(formModel);
 			shippingMethodService.save(entity);
-			return "redirect:/shippingMethod"; // generates 302 response with Location="/carsdealer/brand"
+			return "redirect:/shippingMethod"; 
 		}
 	}
 

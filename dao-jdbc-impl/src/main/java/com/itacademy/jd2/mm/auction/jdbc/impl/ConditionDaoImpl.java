@@ -44,7 +44,6 @@ public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> imple
 				return entity;
 			}
 		});
-
 	}
 
 	@Override

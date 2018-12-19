@@ -80,7 +80,7 @@ public class CategoryController extends AbstractController {
 		} else {
 			final ICategory entity = fromDtoConverter.apply(formModel);
 			categoryService.save(entity);
-			return "redirect:/category"; // generates 302 response with Location="/carsdealer/brand"
+			return "redirect:/category"; 
 		}
 	}
 

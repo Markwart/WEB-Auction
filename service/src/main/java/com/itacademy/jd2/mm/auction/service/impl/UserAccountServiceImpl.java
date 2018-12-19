@@ -59,6 +59,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
 	@Override
 	public void delete(final Integer id) {
 		LOGGER.info("delete user_account by id: {}", id);
+		personalDataDao.delete(id);
 		dao.delete(id);			
 	}
 

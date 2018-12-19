@@ -2,6 +2,9 @@ package com.itacademy.jd2.mm.auction.web.dto;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 public class UserAccountDTO {
 
 	private Integer id;
@@ -11,8 +14,19 @@ public class UserAccountDTO {
 	private String password;
 
 	private Date created;
-
 	private Date updated;
+	
+	@NotNull
+    @Valid
+    private PersonalDataDTO personalData = new PersonalDataDTO();
+	
+	public PersonalDataDTO getPersonalData() {
+		return personalData;
+	}
+
+	public void setPersonalData(PersonalDataDTO personalData) {
+		this.personalData = personalData;
+	}
 
 	public Integer getId() {
 		return id;

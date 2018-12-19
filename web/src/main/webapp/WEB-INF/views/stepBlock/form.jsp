@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<h4 class="header">Edit step blocks</h4>
+<h4 class="header">Edit step block</h4>
 <div class="row">
 	<form:form class="col s12" method="POST" action="${pagesStepBlock}"
 		modelAttribute="formModel">

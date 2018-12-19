@@ -81,7 +81,7 @@ public class AuctionDurationController extends AbstractController {
 		} else {
 			final IAuctionDuration entity = fromDtoConverter.apply(formModel);
 			auctionDurationService.save(entity);
-			return "redirect:/auctionDuration"; // generates 302 response with Location="/carsdealer/brand"
+			return "redirect:/auctionDuration"; 
 		}
 	}
 

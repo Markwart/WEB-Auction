@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<h4 class="header">Edit items</h4>
+<h4 class="header">Edit item</h4>
 <div class="row">
 	<form:form class="col s12" method="POST" action="${pagesItem}"
 		modelAttribute="formModel">
@@ -30,7 +30,7 @@
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="startingPrice" type="text" disabled="${readonly}" />
+				<form:input path="startingPrice" disabled="${readonly}" />
 				<form:errors path="startingPrice" cssClass="red-text" />
 				<label for="startingPrice">starting price</label>
 			</div>
@@ -56,7 +56,7 @@
 				<label for="statusAuction">status auction</label>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="input-field col s12">
 				<form:select path="sellerId" disabled="${readonly}">

@@ -7,16 +7,41 @@ public class FeedbackDTO {
 	private Integer id;
 
 	private Integer communication, shippingTime, shippingCharges, itemDescription;
-	
+
 	private String comment;
-	
+
 	private Integer userAccountFromId, userAccountWhomId;
-	
+	private String userAccountFromEmail, userAccountWhomEmail;
+
 	private Integer itemId;
+	private String itemName;
 
 	private Date created;
-
 	private Date updated;
+
+	public String getUserAccountFromEmail() {
+		return userAccountFromEmail;
+	}
+
+	public void setUserAccountFromEmail(String userAccountFromEmail) {
+		this.userAccountFromEmail = userAccountFromEmail;
+	}
+
+	public String getUserAccountWhomEmail() {
+		return userAccountWhomEmail;
+	}
+
+	public void setUserAccountWhomEmail(String userAccountWhomEmail) {
+		this.userAccountWhomEmail = userAccountWhomEmail;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 
 	public Integer getId() {
 		return id;

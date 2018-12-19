@@ -13,7 +13,6 @@ public class AdminCommunicationDTO {
 	private String theme, text;
 	
 	private Integer userAccountId;
-	
 	private String userAccountEmail;
 
 	public String getUserAccountEmail() {

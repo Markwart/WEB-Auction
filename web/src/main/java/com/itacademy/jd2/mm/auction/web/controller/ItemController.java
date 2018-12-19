@@ -33,7 +33,6 @@ import com.itacademy.jd2.mm.auction.service.IItemService;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 import com.itacademy.jd2.mm.auction.web.converter.ItemFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.ItemToDTOConverter;
-import com.itacademy.jd2.mm.auction.web.dto.AdminCommunicationDTO;
 import com.itacademy.jd2.mm.auction.web.dto.ItemDTO;
 import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
 
@@ -80,6 +79,7 @@ public class ItemController extends AbstractController {
 		prepareFilter(gridState, filter);
 		gridState.setTotalCount(itemService.getCount(filter));
 
+		filter.setFetchUserAccount(true);
 		final List<IItem> entities = itemService.find(filter);
 		List<ItemDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
@@ -91,7 +91,7 @@ public class ItemController extends AbstractController {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		final Map<String, Object> hashMap = new HashMap<>();
-		hashMap.put("formModel", new AdminCommunicationDTO());
+		hashMap.put("formModel", new ItemDTO());
 		loadCommonFormModels(hashMap);
 		return new ModelAndView("item.edit", hashMap);
 	}
@@ -107,7 +107,7 @@ public class ItemController extends AbstractController {
 		} else {
 			final IItem entity = fromDtoConverter.apply(formModel);
 			itemService.save(entity);
-			return "redirect:/item"; // generates 302 response with Location="/carsdealer/brand"
+			return "redirect:/item"; 
 		}
 	}
 

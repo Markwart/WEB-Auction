@@ -90,7 +90,7 @@ public class AdminCommunicationController extends AbstractController {
 		} else {
 			final IAdminCommunication entity = fromDtoConverter.apply(formModel);
 			adminCommunicationService.save(entity);
-			return "redirect:/adminCommunication"; // generates 302 response with Location="/carsdealer/brand"
+			return "redirect:/adminCommunication";
 		}
 	}
 

@@ -81,7 +81,7 @@ public class CountryOriginController extends AbstractController {
 		} else {
 			final ICountryOrigin entity = fromDtoConverter.apply(formModel);
 			countryOriginService.save(entity);
-			return "redirect:/countryOrigin"; // generates 302 response with Location="/carsdealer/brand"
+			return "redirect:/countryOrigin"; 
 		}
 	}
 

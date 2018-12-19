@@ -24,8 +24,8 @@ public class AuctionRuleDaoImpl extends AbstractDaoImpl<IAuctionRule, Integer> i
 
 	@Override
 	public void update(IAuctionRule entity) {
-		executeStatement(new PreparedStatementAction<IAuctionRule>(String
-				.format("update %s set index=?, theme=?, text=?, updated=? where id=?", getTableName())) {
+		executeStatement(new PreparedStatementAction<IAuctionRule>(
+				String.format("update %s set index=?, theme=?, text=?, updated=? where id=?", getTableName())) {
 			@Override
 			public IAuctionRule doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getIndex());
@@ -86,10 +86,10 @@ public class AuctionRuleDaoImpl extends AbstractDaoImpl<IAuctionRule, Integer> i
 
 	@Override
 	public List<IAuctionRule> find(AuctionRuleFilter filter) {
-		 final StringBuilder sqlTile = new StringBuilder("");
-	        appendSort(filter, sqlTile);
-	        appendPaging(filter, sqlTile);
-	        return executeFindQuery(sqlTile.toString());
+		final StringBuilder sqlTile = new StringBuilder("");
+		appendSort(filter, sqlTile);
+		appendPaging(filter, sqlTile);
+		return executeFindQuery(sqlTile.toString());
 	}
 
 	@Override

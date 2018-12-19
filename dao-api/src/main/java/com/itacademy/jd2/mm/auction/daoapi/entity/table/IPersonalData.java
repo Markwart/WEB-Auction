@@ -2,7 +2,7 @@ package com.itacademy.jd2.mm.auction.daoapi.entity.table;
 
 public interface IPersonalData extends IBaseEntity {
 	
-	String getUsername();
+	String getUserName();
 	
 	void setUserName(String userName);
 	

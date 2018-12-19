@@ -16,7 +16,6 @@
 			</div>
 		</div>
 		
-		
 		<div class="row">
 			<div class="col s6"></div>
 			<div class="col s3">

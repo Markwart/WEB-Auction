@@ -80,7 +80,7 @@ public class ConditionController extends AbstractController {
 	        } else {
 	            final ICondition entity = fromDtoConverter.apply(formModel);
 	            conditionService.save(entity);
-	            return "redirect:/condition"; // generates 302 response with Location="/carsdealer/brand"
+	            return "redirect:/condition"; // generates 302 response with Location="/carsdealer/condition"
 	        }
 	    }
 

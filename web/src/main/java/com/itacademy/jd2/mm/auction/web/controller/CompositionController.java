@@ -80,7 +80,7 @@ public class CompositionController extends AbstractController {
 		} else {
 			final IComposition entity = fromDtoConverter.apply(formModel);
 			compositionService.save(entity);
-			return "redirect:/composition"; // generates 302 response with Location="/carsdealer/brand"
+			return "redirect:/composition"; 
 		}
 	}
 

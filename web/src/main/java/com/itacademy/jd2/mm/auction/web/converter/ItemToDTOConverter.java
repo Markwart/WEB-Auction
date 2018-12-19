@@ -30,6 +30,7 @@ public class ItemToDTOConverter implements Function<IItem, ItemDTO> {
 		final IUserAccount userAccount = entity.getSeller();
 		if (userAccount != null) {
 			dto.setSellerId(userAccount.getId());
+			dto.setSellerEmail(userAccount.getEmail());
 		}
 
 		final ICategory category = entity.getCategory();

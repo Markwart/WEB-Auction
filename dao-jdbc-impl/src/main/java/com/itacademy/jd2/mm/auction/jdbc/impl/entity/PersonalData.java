@@ -9,7 +9,7 @@ public class PersonalData extends BaseEntity implements IPersonalData {
 	private IUserAccount userAccount;
 
 	@Override
-	public String getUsername() {
+	public String getUserName() {
 		return userName;
 	}
 

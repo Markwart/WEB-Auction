@@ -11,5 +11,4 @@ public class AdminCommunicationFilter extends AbstractFilter {
 	public void setFetchUserAccount(boolean fetchUserAccount) {
 		this.fetchUserAccount = fetchUserAccount;
 	}
-
 }

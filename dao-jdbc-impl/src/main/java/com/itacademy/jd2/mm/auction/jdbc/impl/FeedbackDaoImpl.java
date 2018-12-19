@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
@@ -87,7 +88,7 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 	}
 
 	@Override
-	protected IFeedback parseRow(final ResultSet resultSet) throws SQLException {
+	protected IFeedback parseRow(final ResultSet resultSet, final Set<String> columns) throws SQLException {
 		final IFeedback entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setCommunication(resultSet.getInt("communication"));
@@ -98,27 +99,60 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 
-		final Item item = new Item();
-		item.setId((Integer) resultSet.getObject("item_id"));
-		entity.setItem(item);
-		
-		final UserAccount userAccountFrom = new UserAccount();
-		userAccountFrom.setId((Integer) resultSet.getObject("user_from_id"));
-		entity.setUserAccountFrom(userAccountFrom);
+		final Integer itemId = (Integer) resultSet.getObject("item_id");
+		if (itemId != null) {
+			final Item item = new Item();
+			item.setId(itemId);
+			if (columns.contains("item_name")) {
+				item.setName(resultSet.getString("item_name"));
+			}
+			entity.setItem(item);
+		}
 
-		final UserAccount userAccountWhom = new UserAccount();
-		userAccountWhom.setId((Integer) resultSet.getObject("user_whom_id"));
-		entity.setUserAccountWhom(userAccountWhom);
+		final Integer userAccountFromId = (Integer) resultSet.getObject("user_from_id");
+		if (userAccountFromId != null) {
+			final UserAccount userAccountFrom = new UserAccount();
+			userAccountFrom.setId(userAccountFromId);
+			if (columns.contains("user_from_email")) {
+				userAccountFrom.setEmail(resultSet.getString("user_from_email"));
+			}
+			entity.setUserAccountFrom(userAccountFrom);
+		}
 
+		final Integer userAccountWhomId = (Integer) resultSet.getObject("user_whom_id");
+		if (userAccountWhomId != null) {
+			final UserAccount userAccountWhom = new UserAccount();
+			userAccountWhom.setId(userAccountWhomId);
+			if (columns.contains("user_whom_email")) {
+				userAccountWhom.setEmail(resultSet.getString("user_whom_email"));
+			}
+			entity.setUserAccountWhom(userAccountWhom);
+		}
 		return entity;
 	}
 
 	@Override
 	public List<IFeedback> find(FeedbackFilter filter) {
-		 final StringBuilder sqlTile = new StringBuilder("");
-	        appendSort(filter, sqlTile);
-	        appendPaging(filter, sqlTile);
-	        return executeFindQuery(sqlTile.toString());
+		final StringBuilder sqlTile;
+		if (filter.getFetchUserAccountFrom() & filter.getFetchUserAccountWhom() & filter.getFetchItem()) {
+			sqlTile = new StringBuilder(String.format(
+					"select feedback.*, user_account.email as user_from_email, item.name as item_name from %s",
+					getTableName()));
+		} else {
+			sqlTile = new StringBuilder(String.format("feedback.* from %s", getTableName()));
+		}
+
+		appendJOINs(sqlTile, filter);
+		appendSort(filter, sqlTile);
+		appendPaging(filter, sqlTile);
+		return executeFindQueryWithCustomSelect(sqlTile.toString());
+	}
+
+	private void appendJOINs(final StringBuilder sb, final FeedbackFilter filter) {
+		if (filter.getFetchUserAccountFrom() & filter.getFetchUserAccountWhom() & filter.getFetchItem()) {
+			sb.append(" join user_account on (user_account.id=feedback.user_from_id) ")
+					.append(" join item on (item.id=feedback.item_id) ");
+		}
 	}
 
 	@Override

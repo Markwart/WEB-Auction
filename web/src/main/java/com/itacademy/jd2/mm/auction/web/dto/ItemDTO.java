@@ -3,23 +3,37 @@ package com.itacademy.jd2.mm.auction.web.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class ItemDTO {
 
 	private Integer id;
 
 	private String name, image, text, statusAuction;
 	private Integer year;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date auctionEnd;
+	
 	private BigDecimal startingPrice;
 	private Integer categoryId;
 	private Integer countryOriginId;
 	private Integer conditionId;
 	private Integer compositionId;
+	
 	private Integer sellerId;
+	private String sellerEmail;
 
 	private Date created;
-
 	private Date updated;
+	
+	public String getSellerEmail() {
+		return sellerEmail;
+	}
+
+	public void setSellerEmail(String sellerEmail) {
+		this.sellerEmail = sellerEmail;
+	}
 
 	public Integer getId() {
 		return id;

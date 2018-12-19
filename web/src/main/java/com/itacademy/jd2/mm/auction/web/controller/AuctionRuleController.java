@@ -81,7 +81,7 @@ public class AuctionRuleController extends AbstractController {
 		} else {
 			final IAuctionRule entity = fromDtoConverter.apply(formModel);
 			auctionRuleService.save(entity);
-			return "redirect:/auctionRule"; // generates 302 response with Location="/carsdealer/brand"
+			return "redirect:/auctionRule"; 
 		}
 	}
 

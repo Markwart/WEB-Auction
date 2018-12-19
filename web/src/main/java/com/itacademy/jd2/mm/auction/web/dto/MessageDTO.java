@@ -7,12 +7,39 @@ public class MessageDTO {
 	private Integer id;
 
 	private String theme, text;
+
 	private Integer userAccountFromId, userAccountWhomId;
+	private String userAccountFromEmail, userAccountWhomEmail;
+
 	private Integer itemId;
+	private String itemName;
 
 	private Date created;
-
 	private Date updated;
+	
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public String getUserAccountFromEmail() {
+		return userAccountFromEmail;
+	}
+
+	public void setUserAccountFromEmail(String userAccountFromEmail) {
+		this.userAccountFromEmail = userAccountFromEmail;
+	}
+
+	public String getUserAccountWhomEmail() {
+		return userAccountWhomEmail;
+	}
+
+	public void setUserAccountWhomEmail(String userAccountWhomEmail) {
+		this.userAccountWhomEmail = userAccountWhomEmail;
+	}
 
 	public Integer getId() {
 		return id;

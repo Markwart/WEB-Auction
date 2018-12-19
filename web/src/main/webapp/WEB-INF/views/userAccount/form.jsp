@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<h4 class="header">Edit user accounts</h4>
+<h4 class="header">Edit user account</h4>
 <div class="row">
 	<form:form class="col s12" method="POST" action="${pagesUserAccount}"
 		modelAttribute="formModel">
@@ -25,6 +25,35 @@
 				<label for="role">role</label>
 			</div>
 		</div>
+		
+		<div class="row">
+            <div class="input-field  col s12">
+                <form:input path="personalData.firstName" disabled="${readonly}" />
+                <form:errors path="personalData.firstName" cssClass="red-text" />
+                <label for="personalData.firstName">first name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field  col s12">
+                <form:input path="personalData.lastName" disabled="${readonly}" />
+                <form:errors path="personalData.lastName" cssClass="red-text" />
+                <label for="personalData.lastName">last name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field  col s12">
+                <form:input path="personalData.adress" disabled="${readonly}" />
+                <form:errors path="personalData.adress" cssClass="red-text" />
+                <label for="personalData.adress">adress</label>
+            </div>
+        </div>
+         <div class="row">
+            <div class="input-field  col s12">
+                <form:input path="personalData.userName" disabled="${readonly}" />
+                <form:errors path="personalData.userName" cssClass="red-text" />
+                <label for="personalData.userName">username</label>
+            </div>
+        </div>
 		
 		
 		<div class="row">

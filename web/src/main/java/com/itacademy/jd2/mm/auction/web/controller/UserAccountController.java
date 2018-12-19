@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
@@ -36,8 +37,8 @@ public class UserAccountController extends AbstractController {
 	private UserAccountFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	public UserAccountController(IUserAccountService userAccountService,
-			UserAccountToDTOConverter toDtoConverter, UserAccountFromDTOConverter fromDtoConverter) {
+	public UserAccountController(IUserAccountService userAccountService, UserAccountToDTOConverter toDtoConverter,
+			UserAccountFromDTOConverter fromDtoConverter) {
 		super();
 		this.userAccountService = userAccountService;
 		this.toDtoConverter = toDtoConverter;
@@ -74,14 +75,17 @@ public class UserAccountController extends AbstractController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("formModel") final UserAccountDTO formModel,
-			final BindingResult result) {
+	public Object save(@Valid @ModelAttribute("formModel") final UserAccountDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
+			final Map<String, Object> hashMap = new HashMap<>();
+			hashMap.put("formModel", formModel);
+			
 			return "userAccount.edit";
 		} else {
 			final IUserAccount entity = fromDtoConverter.apply(formModel);
-			userAccountService.save(entity);
-			return "redirect:/userAccount"; // generates 302 response with Location="/carsdealer/brand"
+			final IPersonalData personalDataEntity = entity.getPersonalData();
+			userAccountService.save(entity, personalDataEntity);
+			return "redirect:/userAccount";
 		}
 	}
 
@@ -93,7 +97,7 @@ public class UserAccountController extends AbstractController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final IUserAccount dbModel = userAccountService.get(id);
+		final IUserAccount dbModel = userAccountService.getPersonalData(id);
 		final UserAccountDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
@@ -104,7 +108,7 @@ public class UserAccountController extends AbstractController {
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		final UserAccountDTO dto = toDtoConverter.apply(userAccountService.get(id));
+		final UserAccountDTO dto = toDtoConverter.apply(userAccountService.getPersonalData(id));
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);

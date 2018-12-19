@@ -26,7 +26,7 @@ public class PersonalDataDaoImpl extends AbstractDaoImpl<IPersonalData, Integer>
 				String.format("update %s set username=?, first_name=?, last_name=?, adress=?, updated=? where id=?", getTableName())) {
 			@Override
 			public IPersonalData doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
-				pStmt.setString(1, entity.getUsername());
+				pStmt.setString(1, entity.getUserName());
 				pStmt.setString(2, entity.getFirstName());
 				pStmt.setString(3, entity.getLastName());
 				pStmt.setString(4, entity.getAdress());
@@ -47,7 +47,7 @@ public class PersonalDataDaoImpl extends AbstractDaoImpl<IPersonalData, Integer>
 			@Override
 			public IPersonalData doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getId());
-				pStmt.setString(2, entity.getUsername());
+				pStmt.setString(2, entity.getUserName());
 				pStmt.setString(3, entity.getFirstName());
 				pStmt.setString(4, entity.getLastName());
 				pStmt.setString(5, entity.getAdress());

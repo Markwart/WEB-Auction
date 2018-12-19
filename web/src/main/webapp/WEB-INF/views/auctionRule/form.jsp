@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<h4 class="header">Edit auction rules</h4>
+<h4 class="header">Edit auction rule</h4>
 <div class="row">
 	<form:form class="col s12" method="POST" action="${pagesAuctionRule}"
 		modelAttribute="formModel">

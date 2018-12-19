@@ -21,11 +21,9 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IStepBlock;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
-import com.itacademy.jd2.mm.auction.service.IConditionService;
 
 @SpringJUnitConfig(locations = "classpath:service-context-test.xml")
 public abstract class AbstractTest {
@@ -246,17 +244,6 @@ public abstract class AbstractTest {
 		userAccountService.save(entity);
 		return entity;
 	}
-
-	/*protected IPersonalData saveNewPersonalData() {
-		final IPersonalData entity = personalDataService.createEntity();
-		entity.setUserName("username-" + getRandomPrefix());
-		entity.setFirstName("first_name-" + getRandomPrefix());
-		entity.setLastName("last_name-" + getRandomPrefix());
-		entity.setAdress("adress-" + getRandomPrefix());
-		entity.setId(saveNewUserAccount().getId());
-		personalDataService.save(entity);
-		return entity;
-	}*/
 
 	protected IAdminCommunication saveNewAdminCommunication() {
 		final IAdminCommunication entity = adminCommunicationService.createEntity();

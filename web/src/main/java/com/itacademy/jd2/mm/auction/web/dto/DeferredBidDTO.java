@@ -12,12 +12,29 @@ public class DeferredBidDTO {
 	private String statusBid;
 	
 	private Integer userAccountId;
+	private String userAccountEmail;
 	
 	private Integer itemId;
+	private String itemName;
 
 	private Date created;
-
 	private Date updated;
+
+	public String getUserAccountEmail() {
+		return userAccountEmail;
+	}
+
+	public void setUserAccountEmail(String userAccountEmail) {
+		this.userAccountEmail = userAccountEmail;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 
 	public Integer getId() {
 		return id;

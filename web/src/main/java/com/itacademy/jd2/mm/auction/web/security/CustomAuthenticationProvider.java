@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     // TODO inject UserService
+	//private IUserAccountService userAccountService;
 
     @Override
     public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
