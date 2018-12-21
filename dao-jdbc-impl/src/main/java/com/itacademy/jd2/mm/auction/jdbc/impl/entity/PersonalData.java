@@ -5,17 +5,17 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 public class PersonalData extends BaseEntity implements IPersonalData {
 
-	private String userName, firstName, lastName, adress;
+	private String username, firstName, lastName, adress;
 	private IUserAccount userAccount;
 
 	@Override
-	public String getUserName() {
-		return userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	@Override
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public String getUsername() {
+		return username;
 	}
 
 	@Override
@@ -60,9 +60,8 @@ public class PersonalData extends BaseEntity implements IPersonalData {
 
 	@Override
 	public String toString() {
-		return "PersonalData [userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName
+		return "PersonalData [userName=" + username + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", adress=" + adress + ", userAccount=" + userAccount + ", getCreated()=" + getCreated()
 				+ ", getUpdated()=" + getUpdated() + "]";
 	}
-
 }

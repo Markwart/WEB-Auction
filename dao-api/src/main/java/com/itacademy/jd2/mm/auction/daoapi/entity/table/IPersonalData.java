@@ -2,10 +2,6 @@ package com.itacademy.jd2.mm.auction.daoapi.entity.table;
 
 public interface IPersonalData extends IBaseEntity {
 	
-	String getUserName();
-	
-	void setUserName(String userName);
-	
 	String getFirstName();
 	
 	void setFirstName(String firstName);
@@ -21,4 +17,8 @@ public interface IPersonalData extends IBaseEntity {
 	IUserAccount getUserAccount();
 	
 	void setUserAccount(IUserAccount userAccount);
+
+	void setUsername(String username);
+
+	String getUsername();
 }

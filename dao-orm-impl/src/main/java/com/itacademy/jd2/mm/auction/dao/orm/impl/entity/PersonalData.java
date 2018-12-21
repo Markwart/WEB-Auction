@@ -25,20 +25,21 @@ public class PersonalData implements IPersonalData {
     private Date updated;
     
     @Column
-	private String userName, firstName, lastName, adress;
+	private String username, firstName, lastName, adress;
     
     @OneToOne(fetch = FetchType.LAZY, optional = false, targetEntity = UserAccount.class)
     @PrimaryKeyJoinColumn
 	private IUserAccount userAccount;
 
+
 	@Override
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
 	@Override
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	@Override

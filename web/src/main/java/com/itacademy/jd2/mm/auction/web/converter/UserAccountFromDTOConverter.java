@@ -29,7 +29,7 @@ public class UserAccountFromDTOConverter implements Function<UserAccountDTO, IUs
 		personalDataEntity.setFirstName(dto.getPersonalData().getFirstName());
 		personalDataEntity.setLastName(dto.getPersonalData().getLastName());
 		personalDataEntity.setAdress(dto.getPersonalData().getAdress());
-		personalDataEntity.setUserName(dto.getPersonalData().getUserName());
+		personalDataEntity.setUsername(dto.getPersonalData().getUserName());
 		entity.setPersonalData(personalDataEntity);
 
 		return entity;

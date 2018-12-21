@@ -15,7 +15,7 @@ public class PersonalDataDaoImpl extends AbstractDaoImpl<IPersonalData, Integer>
 
 	@Override
 	public IPersonalData createEntity() {
-		final PersonalData personalData = new PersonalData();
+		final IPersonalData personalData = new PersonalData();
 		return personalData;
 	}
 }

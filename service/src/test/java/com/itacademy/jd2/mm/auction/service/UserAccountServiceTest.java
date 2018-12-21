@@ -97,7 +97,7 @@ public class UserAccountServiceTest extends AbstractTest {
 		entity.setPassword("password-" + getRandomPrefix());
 
 		final IPersonalData personalDataEntity = userAccountService.createPersonalDataEntity();
-		personalDataEntity.setUserName("username-" + getRandomPrefix());
+		personalDataEntity.setUsername("username-" + getRandomPrefix());
 		personalDataEntity.setFirstName("first_name-" + getRandomPrefix());
 		personalDataEntity.setLastName("last_name-" + getRandomPrefix());
 		personalDataEntity.setAdress("adress-" + getRandomPrefix());
@@ -119,7 +119,7 @@ public class UserAccountServiceTest extends AbstractTest {
 		assertEquals(personalDataEntity.getFirstName(), infoEntityFromDb.getFirstName());
 		assertEquals(personalDataEntity.getLastName(), infoEntityFromDb.getLastName());
 		assertEquals(personalDataEntity.getAdress(), infoEntityFromDb.getAdress());
-		assertEquals(personalDataEntity.getUserName(), infoEntityFromDb.getUserName());
+		assertEquals(personalDataEntity.getUsername(), infoEntityFromDb.getUsername());
 		assertNotNull(infoEntityFromDb.getCreated());
 		assertNotNull(infoEntityFromDb.getUpdated());
 		assertTrue(infoEntityFromDb.getCreated().equals(infoEntityFromDb.getUpdated()));

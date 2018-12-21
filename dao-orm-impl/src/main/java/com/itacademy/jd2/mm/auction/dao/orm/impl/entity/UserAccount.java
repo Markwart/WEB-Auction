@@ -27,7 +27,7 @@ public class UserAccount extends BaseEntity implements IUserAccount {
 	@Column
 	private String password;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "user_account", targetEntity = PersonalData.class)
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "userAccount", targetEntity = PersonalData.class)
 	private IPersonalData personalData;
 
 	@JoinTable(name = "user_2_item", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {

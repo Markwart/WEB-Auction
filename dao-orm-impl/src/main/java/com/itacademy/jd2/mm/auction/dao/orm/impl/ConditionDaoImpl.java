@@ -14,6 +14,7 @@ import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Condition;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Condition_;
 import com.itacademy.jd2.mm.auction.daoapi.IConditionDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
 import com.itacademy.jd2.mm.auction.daoapi.filter.ConditionFilter;
@@ -72,13 +73,17 @@ public class ConditionDaoImpl extends AbstractDaoImpl<ICondition, Integer> imple
 	}
 
 	private SingularAttribute<? super Condition, ?> toMetamodelFormat(final String sortColumn) {
-		return null;
-		/*
-		 * switch (sortColumn) { case "created": return Condition_.created; case
-		 * "updated": return Condition_.updated; case "id": return Condition_.id; case
-		 * "name": return Condition_.name; default: throw new
-		 * UnsupportedOperationException("sorting is not supported by column:" +
-		 * sortColumn);
-		 */
-	}
+        switch (sortColumn) {
+        case "created":
+            return Condition_.created;
+        case "updated":
+            return Condition_.updated;
+        case "id":
+            return Condition_.id;
+        case "name":
+            return Condition_.name;
+        default:
+            throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
+        }
+    }
 }
