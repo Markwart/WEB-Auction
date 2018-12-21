@@ -11,15 +11,6 @@ public class Condition extends BaseEntity implements ICondition {
 	@Column
 	private String name;
 
-	public Condition(String name, Integer id) {
-		super();
-		setId(id);
-		this.name = name;
-	}
-
-	public Condition() {
-	}
-
 	@Override
 	public String getName() {
 		return name;

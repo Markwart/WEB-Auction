@@ -10,15 +10,6 @@ public class Composition extends BaseEntity implements IComposition {
 
 	@Column
 	private String name;
-	
-	public Composition(String name, Integer id) {
-		super();
-		setId(id);
-		this.name = name;
-	}
-	
-	public Composition() {
-	}
 
 	@Override
 	public String getName() {

@@ -3,10 +3,10 @@ package com.itacademy.jd2.mm.auction.dao.orm.impl.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
 
 @Entity
-public class Category extends BaseEntity implements ICategory {
+public class PaymentMethod extends BaseEntity implements IPaymentMethod {
 
 	@Column
 	private String name;

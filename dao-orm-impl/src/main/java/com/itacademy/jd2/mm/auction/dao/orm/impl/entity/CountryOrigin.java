@@ -7,18 +7,9 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICountryOrigin;
 
 @Entity
 public class CountryOrigin extends BaseEntity implements ICountryOrigin {
-	
+
 	@Column
 	private String name;
-	
-	public CountryOrigin(String name, Integer id) {
-		super();
-		setId(id);
-		this.name = name;
-	}
-
-	public CountryOrigin() {
-	}
 
 	@Override
 	public String getName() {
