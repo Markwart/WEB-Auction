@@ -23,16 +23,16 @@ public class FeedbackToDTOConverter implements Function<IFeedback, FeedbackDTO> 
         dto.setItemDescription(entity.getItemDescription());
         dto.setComment(entity.getComment());
         
-        final IUserAccount userAccountFrom = entity.getUserAccountFrom();
+        final IUserAccount userAccountFrom = entity.getUserFrom();
         if (userAccountFrom != null) {
-            dto.setUserAccountFromId(userAccountFrom.getId());
-            dto.setUserAccountFromEmail(userAccountFrom.getEmail());
+            dto.setUserFromId(userAccountFrom.getId());
+            dto.setUserFromEmail(userAccountFrom.getEmail());
         }
         
-        final IUserAccount userAccountWhom = entity.getUserAccountWhom();
+        final IUserAccount userAccountWhom = entity.getUserWhom();
         if (userAccountWhom != null) {
-            dto.setUserAccountWhomId(userAccountWhom.getId());
-            dto.setUserAccountWhomEmail(userAccountWhom.getEmail());
+            dto.setUserWhomId(userAccountWhom.getId());
+            dto.setUserWhomEmail(userAccountWhom.getEmail());
         }
         
         final IItem item = entity.getItem();

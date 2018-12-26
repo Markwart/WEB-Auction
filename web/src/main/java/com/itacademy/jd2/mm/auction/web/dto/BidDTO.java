@@ -11,8 +11,8 @@ public class BidDTO {
 	
 	private String statusBid;
 	
-	private Integer userAccountId;
-	private String userAccountEmail;
+	private Integer userBidId;
+	private String userBidEmail;
 	
 	private Integer itemId;
 	private String itemName;
@@ -20,12 +20,20 @@ public class BidDTO {
 	private Date created;
 	private Date updated;
 
-	public String getUserAccountEmail() {
-		return userAccountEmail;
+	public Integer getUserBidId() {
+		return userBidId;
 	}
 
-	public void setUserAccountEmail(String userAccountEmail) {
-		this.userAccountEmail = userAccountEmail;
+	public void setUserBidId(Integer userBIdId) {
+		this.userBidId = userBIdId;
+	}
+
+	public String getUserBidEmail() {
+		return userBidEmail;
+	}
+
+	public void setUserBidEmail(String userBidEmail) {
+		this.userBidEmail = userBidEmail;
 	}
 
 	public String getItemName() {
@@ -58,15 +66,6 @@ public class BidDTO {
 
 	public void setStatusBid(String statusBid) {
 		this.statusBid = statusBid;
-	}
-
-	
-	public Integer getUserAccountId() {
-		return userAccountId;
-	}
-
-	public void setUserAccountId(Integer userAccountId) {
-		this.userAccountId = userAccountId;
 	}
 
 	public Integer getItemId() {

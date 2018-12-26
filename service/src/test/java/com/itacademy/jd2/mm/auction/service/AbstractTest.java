@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAdminCommunication;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionRule;
@@ -178,8 +180,8 @@ public abstract class AbstractTest {
 		entity.setTheme("theme-" + getRandomPrefix());
 		entity.setText("text-" + getRandomPrefix());
 		entity.setItem(saveNewItem());
-		entity.setUserAccountFrom(saveNewUserAccount());
-		entity.setUserAccountWhom(saveNewUserAccount());
+		entity.setUserFrom(saveNewUserAccount());
+		entity.setUserWhom(saveNewUserAccount());
 		messageService.save(entity);
 		return entity;
 	}
@@ -192,8 +194,8 @@ public abstract class AbstractTest {
 		entity.setItemDescription(RANDOM.nextInt(5) + 1);
 		entity.setComment("comment-" + getRandomPrefix());
 		entity.setItem(saveNewItem());
-		entity.setUserAccountFrom(saveNewUserAccount());
-		entity.setUserAccountWhom(saveNewUserAccount());
+		entity.setUserFrom(saveNewUserAccount());
+		entity.setUserWhom(saveNewUserAccount());
 		feedbackService.save(entity);
 		return entity;
 	}
@@ -201,9 +203,9 @@ public abstract class AbstractTest {
 	protected IBid saveNewBid() {
 		final IBid entity = bidService.createEntity();
 		entity.setPriceBid(new BigDecimal(getRANDOM().nextInt(10000)));
-		entity.setStatusBid("status_bid-" + getRandomPrefix());
+		entity.setStatusBid(StatusBid.outbidded);
 		entity.setItem(saveNewItem());
-		entity.setUserAccount(saveNewUserAccount());
+		entity.setUserBid(saveNewUserAccount());
 		bidService.save(entity);
 		return entity;
 	}
@@ -211,9 +213,9 @@ public abstract class AbstractTest {
 	protected IDeferredBid saveNewDeferredBid() {
 		final IDeferredBid entity = deferredBidService.createEntity();
 		entity.setPriceBid(new BigDecimal(getRANDOM().nextInt(10000)));
-		entity.setStatusBid("status_bid-" + getRandomPrefix());
+		entity.setStatusBid(StatusBid.outbidded);
 		entity.setItem(saveNewItem());
-		entity.setUserAccount(saveNewUserAccount());
+		entity.setUserBid(saveNewUserAccount());
 		deferredBidService.save(entity);
 		return entity;
 	}
@@ -231,7 +233,7 @@ public abstract class AbstractTest {
 		entity.setImage("mindmap.jpg");
 		entity.setText("text-" + getRandomPrefix());
 		entity.setSeller(saveNewUserAccount());
-		entity.setStatusAuction("status_auction-" + getRandomPrefix());
+		entity.setStatusAuction(StatusAuction.OPEN);
 		itemService.save(entity);
 		return entity;
 	}
@@ -249,7 +251,7 @@ public abstract class AbstractTest {
 		final IAdminCommunication entity = adminCommunicationService.createEntity();
 		entity.setTheme("theme-" + getRandomPrefix());
 		entity.setText("text-" + getRandomPrefix());
-		entity.setUserAccount(saveNewUserAccount());
+		entity.setUserFrom(saveNewUserAccount());
 		adminCommunicationService.save(entity);
 		return entity;
 	}

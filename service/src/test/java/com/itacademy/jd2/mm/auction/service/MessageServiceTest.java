@@ -17,14 +17,14 @@ public class MessageServiceTest extends AbstractTest {
 	public void testCreate() {
 		final IMessage entity = saveNewMessage();
 
-		final IMessage entityFromDb = messageService.get(entity.getId());
+		final IMessage entityFromDb = messageService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getTheme(), entityFromDb.getTheme());
 		assertEquals(entity.getText(), entityFromDb.getText());
 		assertEquals(entity.getItem().getId(), entityFromDb.getItem().getId());
-		assertEquals(entity.getUserAccountFrom().getId(), entityFromDb.getUserAccountFrom().getId());
-		assertEquals(entity.getUserAccountWhom().getId(), entityFromDb.getUserAccountWhom().getId());
+		assertEquals(entity.getUserFrom().getId(), entityFromDb.getUserFrom().getId());
+		assertEquals(entity.getUserWhom().getId(), entityFromDb.getUserWhom().getId());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
@@ -41,12 +41,12 @@ public class MessageServiceTest extends AbstractTest {
 		Thread.sleep(DELAY);
 		messageService.save(entity);
 
-		final IMessage entityFromDb = messageService.get(entity.getId());
+		final IMessage entityFromDb = messageService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getItem().getId(), entityFromDb.getItem().getId());
-		assertEquals(entity.getUserAccountFrom().getId(), entityFromDb.getUserAccountFrom().getId());
-		assertEquals(entity.getUserAccountWhom().getId(), entityFromDb.getUserAccountWhom().getId());
+		assertEquals(entity.getUserFrom().getId(), entityFromDb.getUserFrom().getId());
+		assertEquals(entity.getUserWhom().getId(), entityFromDb.getUserWhom().getId());
 		assertEquals(entity.getTheme(), entityFromDb.getTheme());
 		assertEquals(entity.getText(), entityFromDb.getText());
 		assertNotNull(entityFromDb.getId());
@@ -68,9 +68,9 @@ public class MessageServiceTest extends AbstractTest {
 		final List<IMessage> allEntities = messageService.getAll();
 
 		for (final IMessage entityFromDb : allEntities) {
-			assertNotNull(entityFromDb.getItem().getId());
-			assertNotNull(entityFromDb.getUserAccountFrom().getId());
-			assertNotNull(entityFromDb.getUserAccountWhom().getId());
+			assertNotNull(entityFromDb.getItem());
+			assertNotNull(entityFromDb.getUserFrom());
+			assertNotNull(entityFromDb.getUserWhom());
 			assertNotNull(entityFromDb.getTheme());
 			assertNotNull(entityFromDb.getText());
 			assertNotNull(entityFromDb.getId());

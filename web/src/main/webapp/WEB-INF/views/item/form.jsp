@@ -51,9 +51,11 @@
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="statusAuction" type="text" disabled="${readonly}" />
+				<form:select path="statusAuction" disabled="${readonly}">
+					<form:options items="${statusAuctionChoices}" />
+				</form:select>
 				<form:errors path="statusAuction" cssClass="red-text" />
-				<label for="statusAuction">status auction</label>
+				<label for="statusAuction">status</label>
 			</div>
 		</div>
 

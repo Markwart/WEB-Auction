@@ -35,21 +35,18 @@ import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
 public class MessageController extends AbstractController {
 
 	private IMessageService messageService;
-	private IUserAccountService userAccountFromService;
-	private IUserAccountService userAccountWhomService;
+	private IUserAccountService userAccountService;
 	private IItemService itemService;
 
 	private MessageToDTOConverter toDtoConverter;
 	private MessageFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	public MessageController(IMessageService messageService, IUserAccountService userAccountFromService,
-			IUserAccountService userAccountWhomService, IItemService itemService, MessageToDTOConverter toDtoConverter,
-			MessageFromDTOConverter fromDtoConverter) {
+	public MessageController(IMessageService messageService, IUserAccountService userAccountService,
+			IItemService itemService, MessageToDTOConverter toDtoConverter, MessageFromDTOConverter fromDtoConverter) {
 		super();
 		this.messageService = messageService;
-		this.userAccountFromService = userAccountFromService;
-		this.userAccountWhomService = userAccountWhomService;
+		this.userAccountService = userAccountService;
 		this.itemService = itemService;
 		this.toDtoConverter = toDtoConverter;
 		this.fromDtoConverter = fromDtoConverter;
@@ -71,7 +68,7 @@ public class MessageController extends AbstractController {
 		filter.setFetchUserAccountFrom(true);
 		filter.setFetchUserAccountWhom(true);
 		filter.setFetchItem(true);
-		
+
 		final List<IMessage> entities = messageService.find(filter);
 		List<MessageDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
@@ -110,7 +107,7 @@ public class MessageController extends AbstractController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final IMessage dbModel = messageService.get(id);
+		final IMessage dbModel = messageService.getFullInfo(id);
 		final MessageDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
@@ -121,7 +118,7 @@ public class MessageController extends AbstractController {
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		final MessageDTO dto = toDtoConverter.apply(messageService.get(id));
+		final MessageDTO dto = toDtoConverter.apply(messageService.getFullInfo(id));
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
@@ -130,8 +127,7 @@ public class MessageController extends AbstractController {
 	}
 
 	private void loadCommonFormModels(final Map<String, Object> hashMap) {
-		final List<IUserAccount> userAccountsFrom = userAccountFromService.getAll();
-		final List<IUserAccount> userAccountsWhom = userAccountWhomService.getAll();
+		final List<IUserAccount> userAccounts = userAccountService.getAll();
 		final List<IItem> items = itemService.getAll();
 
 		/*
@@ -140,16 +136,11 @@ public class MessageController extends AbstractController {
 		 * userAccountsMap.put(iUserAccount.getId(), iUserAccount.getEmail()); }
 		 */
 
-		final Map<Integer, String> userAccountsFromMap = userAccountsFrom.stream()
+		final Map<Integer, String> userAccountsMap = userAccounts.stream()
 				.collect(Collectors.toMap(IUserAccount::getId, IUserAccount::getEmail));
-		hashMap.put("userAccountsChoices", userAccountsFromMap);
-		
-		final Map<Integer, String> userAccountsWhomMap = userAccountsWhom.stream()
-				.collect(Collectors.toMap(IUserAccount::getId, IUserAccount::getEmail));
-		hashMap.put("userAccountsChoices", userAccountsWhomMap);
+		hashMap.put("userAccountsChoices", userAccountsMap);
 
-		final Map<Integer, String> itemsMap = items.stream()
-				.collect(Collectors.toMap(IItem::getId, IItem::getName));
+		final Map<Integer, String> itemsMap = items.stream().collect(Collectors.toMap(IItem::getId, IItem::getName));
 		hashMap.put("itemsChoices", itemsMap);
 	}
 }

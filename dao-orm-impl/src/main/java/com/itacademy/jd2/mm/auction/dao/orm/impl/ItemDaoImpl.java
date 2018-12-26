@@ -33,8 +33,31 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 
 	@Override
 	public IItem createEntity() {
-		final Item item = new Item();
+		final IItem item = new Item();
 		return item;
+	}
+
+	@Override
+	public IItem getFullInfo(final Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IItem> cq = cb.createQuery(IItem.class);
+		final Root<Item> from = cq.from(Item.class);
+
+		cq.select(from);
+
+		from.fetch(Item_.category, JoinType.LEFT);
+		from.fetch(Item_.composition, JoinType.LEFT);
+		from.fetch(Item_.condition, JoinType.LEFT);
+		from.fetch(Item_.countryOrigin, JoinType.LEFT);
+		from.fetch(Item_.seller, JoinType.LEFT);
+
+		cq.where(cb.equal(from.get(Item_.id), id));
+
+		final TypedQuery<IItem> q = em.createQuery(cq);
+
+		return getSingleResult(q);
 	}
 
 	@Override
@@ -112,14 +135,13 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 			return from.get(Item_.text);
 		case "status_auction":
 			return from.get(Item_.statusAuction);
-
-		case "category":
+		case "category_id":
 			return from.get(Item_.category).get(Category_.name);
-		case "country_origin":
+		case "country_origin_id":
 			return from.get(Item_.countryOrigin).get(CountryOrigin_.name);
-		case "condition":
+		case "condition_id":
 			return from.get(Item_.condition).get(Condition_.name);
-		case "composition":
+		case "composition_id":
 			return from.get(Item_.composition).get(Composition_.name);
 		case "seller_id":
 			return from.get(Item_.seller).get(UserAccount_.email);

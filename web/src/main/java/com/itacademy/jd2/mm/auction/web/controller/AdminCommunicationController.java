@@ -102,7 +102,7 @@ public class AdminCommunicationController extends AbstractController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final IAdminCommunication dbModel = adminCommunicationService.get(id);
+		final IAdminCommunication dbModel = adminCommunicationService.getFullInfo(id);
 		final AdminCommunicationDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
@@ -113,7 +113,7 @@ public class AdminCommunicationController extends AbstractController {
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		final AdminCommunicationDTO dto = toDtoConverter.apply(adminCommunicationService.get(id));
+		final AdminCommunicationDTO dto = toDtoConverter.apply(adminCommunicationService.getFullInfo(id));
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);

@@ -22,16 +22,16 @@ public interface IFeedback extends IBaseEntity {
 	
 	void setComment(String comment);
 
-	IUserAccount getUserAccountFrom();
-
-	void setUserAccountFrom(IUserAccount userAccountFrom);
-
-	IUserAccount getUserAccountWhom();
-
-	void setUserAccountWhom(IUserAccount userAccountWhom);
-	
 	IItem getItem();
 	
 	void setItem(IItem item);
+
+	void setUserWhom(IUserAccount userWhom);
+
+	IUserAccount getUserWhom();
+
+	void setUserFrom(IUserAccount userFrom);
+
+	IUserAccount getUserFrom();
 
 }

@@ -17,7 +17,7 @@
             <th><mytaglib:sort-link pageUrl="${pagesItem}" column="category_id">category</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesItem}" column="condition_id">condition</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesItem}" column="composition_id">composition</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="country_origin">country origin</mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="country_origin_id">country origin</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesItem}" column="seller_id">seller</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesItem}" column="status_auction">auction status</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesItem}" column="created">created</mytaglib:sort-link></th>
@@ -33,10 +33,10 @@
                 <td><c:out value="${item.startingPrice}" /></td>
                 <td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.auctionEnd}" /></td>
                 <td><c:out value="${item.text}" /></td>
-                <td><c:out value="${item.categoryId}" /></td>
-                <td><c:out value="${item.conditionId}" /></td>
-                <td><c:out value="${item.compositionId}" /></td>
-                <td><c:out value="${item.countryOriginId}" /></td>
+                <td><c:out value="${item.categoryName}" /></td>
+                <td><c:out value="${item.conditionName}" /></td>
+                <td><c:out value="${item.compositionName}" /></td>
+                <td><c:out value="${item.countryOriginName}" /></td>
                 <td><c:out value="${item.sellerEmail}" /></td>
                 <td><c:out value="${item.statusAuction}" /></td>
                 <td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.created}" /></td>

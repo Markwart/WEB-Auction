@@ -15,7 +15,7 @@ public class AdminCommunication extends BaseEntity implements IAdminCommunicatio
 	private String theme, text;
 	
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = UserAccount.class)
-	private IUserAccount userAccount;
+	private IUserAccount userFrom;
 
 	@Override
 	public String getTheme() {
@@ -38,12 +38,13 @@ public class AdminCommunication extends BaseEntity implements IAdminCommunicatio
 	}
 
 	@Override
-	public IUserAccount getUserAccount() {
-		return userAccount;
+	public IUserAccount getUserFrom() {
+		return userFrom;
 	}
 
 	@Override
-	public void setUserAccount(final IUserAccount userAccount) {
-		this.userAccount = userAccount;
+	public void setUserFrom(IUserAccount userFrom) {
+		this.userFrom = userFrom;
 	}
+
 }

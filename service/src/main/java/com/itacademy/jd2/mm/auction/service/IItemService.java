@@ -28,4 +28,6 @@ public interface IItemService {
 
     long getCount(ItemFilter filter);
 
+	IItem getFullInfo(Integer id);
+
 }

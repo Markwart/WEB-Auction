@@ -27,4 +27,6 @@ public interface IDeferredBidService {
 	List<IDeferredBid> find(DeferredBidFilter filter);
 
     long getCount(DeferredBidFilter filter);
+
+	IDeferredBid getFullInfo(Integer id);
 }

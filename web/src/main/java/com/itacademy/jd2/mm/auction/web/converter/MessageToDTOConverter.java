@@ -9,7 +9,6 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.web.dto.MessageDTO;
 
-
 @Component
 public class MessageToDTOConverter implements Function<IMessage, MessageDTO> {
 
@@ -20,16 +19,16 @@ public class MessageToDTOConverter implements Function<IMessage, MessageDTO> {
         dto.setTheme(entity.getTheme());
         dto.setText(entity.getText());
         
-        final IUserAccount userAccountFrom = entity.getUserAccountFrom();
+        final IUserAccount userAccountFrom = entity.getUserFrom();
         if (userAccountFrom != null) {
-            dto.setUserAccountFromId(userAccountFrom.getId());
-            dto.setUserAccountFromEmail(userAccountFrom.getEmail());
+            dto.setUserFromId(userAccountFrom.getId());
+            dto.setUserFromEmail(userAccountFrom.getEmail());
         }
         
-        final IUserAccount userAccountWhom = entity.getUserAccountWhom();
+        final IUserAccount userAccountWhom = entity.getUserWhom();
         if (userAccountWhom != null) {
-            dto.setUserAccountWhomId(userAccountWhom.getId());
-            dto.setUserAccountWhomEmail(userAccountWhom.getEmail());
+            dto.setUserWhomId(userAccountWhom.getId());
+            dto.setUserWhomEmail(userAccountWhom.getEmail());
         }
         
         final IItem item = entity.getItem();

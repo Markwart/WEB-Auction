@@ -1,5 +1,6 @@
 package com.itacademy.jd2.mm.auction.web.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
@@ -106,7 +108,7 @@ public class BidController extends AbstractController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final IBid dbModel = bidService.get(id);
+		final IBid dbModel = bidService.getFullInfo(id);
 		final BidDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
@@ -117,7 +119,7 @@ public class BidController extends AbstractController {
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		final BidDTO dto = toDtoConverter.apply(bidService.get(id));
+		final BidDTO dto = toDtoConverter.apply(bidService.getFullInfo(id));
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
@@ -128,6 +130,7 @@ public class BidController extends AbstractController {
 	private void loadCommonFormModels(final Map<String, Object> hashMap) {
 		final List<IUserAccount> userAccounts = userAccountService.getAll();
 		final List<IItem> items = itemService.getAll();
+		final List<StatusBid> statusBidList = Arrays.asList(StatusBid.values());
 
 		/*
 		 * final Map<Integer, String> userAccountsMap = new HashMap<>(); for (final
@@ -142,5 +145,9 @@ public class BidController extends AbstractController {
 		final Map<Integer, String> itemsMap = items.stream()
 				.collect(Collectors.toMap(IItem::getId, IItem::getName));
 		hashMap.put("itemsChoices", itemsMap);
+		
+		final Map<String, String> statusBidMap = statusBidList.stream()
+				.collect(Collectors.toMap(StatusBid::name, StatusBid::name));
+		hashMap.put("statusBidChoices", statusBidMap);
 	}
 }

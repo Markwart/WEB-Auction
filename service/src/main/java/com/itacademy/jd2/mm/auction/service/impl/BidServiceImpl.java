@@ -79,4 +79,8 @@ public class BidServiceImpl implements IBidService {
 		return dao.getCount(filter);
 	}
 
+	@Override
+    public IBid getFullInfo(Integer id) {
+        return dao.getFullInfo(id);
+    }
 }

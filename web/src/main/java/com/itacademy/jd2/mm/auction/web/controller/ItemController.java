@@ -1,5 +1,6 @@
 package com.itacademy.jd2.mm.auction.web.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
@@ -80,6 +82,11 @@ public class ItemController extends AbstractController {
 		gridState.setTotalCount(itemService.getCount(filter));
 
 		filter.setFetchUserAccount(true);
+		filter.setFetchCategory(true);
+		filter.setFetchCondition(true);
+		filter.setFetchComposition(true);
+		filter.setFetchCountryOrigin(true);
+
 		final List<IItem> entities = itemService.find(filter);
 		List<ItemDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
@@ -97,8 +104,7 @@ public class ItemController extends AbstractController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public Object save(@Valid @ModelAttribute("formModel") final ItemDTO formModel,
-			final BindingResult result) {
+	public Object save(@Valid @ModelAttribute("formModel") final ItemDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
 			final Map<String, Object> hashMap = new HashMap<>();
 			hashMap.put("formModel", formModel);
@@ -107,7 +113,7 @@ public class ItemController extends AbstractController {
 		} else {
 			final IItem entity = fromDtoConverter.apply(formModel);
 			itemService.save(entity);
-			return "redirect:/item"; 
+			return "redirect:/item";
 		}
 	}
 
@@ -119,7 +125,7 @@ public class ItemController extends AbstractController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final IItem dbModel = itemService.get(id);
+		final IItem dbModel = itemService.getFullInfo(id);
 		final ItemDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
@@ -130,7 +136,7 @@ public class ItemController extends AbstractController {
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		final ItemDTO dto = toDtoConverter.apply(itemService.get(id));
+		final ItemDTO dto = toDtoConverter.apply(itemService.getFullInfo(id));
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
@@ -144,6 +150,7 @@ public class ItemController extends AbstractController {
 		final List<ICondition> condition = conditionService.getAll();
 		final List<IComposition> composition = compositionService.getAll();
 		final List<ICountryOrigin> countryOrigin = countryOriginService.getAll();
+		final List<StatusAuction> statusAuctionList = Arrays.asList(StatusAuction.values());
 
 		/*
 		 * final Map<Integer, String> userAccountsMap = new HashMap<>(); for (final
@@ -154,21 +161,25 @@ public class ItemController extends AbstractController {
 		final Map<Integer, String> userAccountsMap = userAccounts.stream()
 				.collect(Collectors.toMap(IUserAccount::getId, IUserAccount::getEmail));
 		hashMap.put("sellerChoices", userAccountsMap);
-		
+
 		final Map<Integer, String> categoryMap = category.stream()
 				.collect(Collectors.toMap(ICategory::getId, ICategory::getName));
 		hashMap.put("categoryChoices", categoryMap);
-		
+
 		final Map<Integer, String> conditionMap = condition.stream()
 				.collect(Collectors.toMap(ICondition::getId, ICondition::getName));
 		hashMap.put("conditionChoices", conditionMap);
-		
+
 		final Map<Integer, String> compositionMap = composition.stream()
 				.collect(Collectors.toMap(IComposition::getId, IComposition::getName));
 		hashMap.put("compositionChoices", compositionMap);
-		
+
 		final Map<Integer, String> countryOriginMap = countryOrigin.stream()
 				.collect(Collectors.toMap(ICountryOrigin::getId, ICountryOrigin::getName));
 		hashMap.put("countryOriginChoices", countryOriginMap);
+		
+		final Map<String, String> statusAuctionMap = statusAuctionList.stream()
+				.collect(Collectors.toMap(StatusAuction::name, StatusAuction::name));
+		hashMap.put("statusAuctionChoices", statusAuctionMap);
 	}
 }

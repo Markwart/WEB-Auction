@@ -21,7 +21,7 @@
                 <td><c:out value="${bid.id}" /></td>
                 <td><c:out value="${bid.itemName}" /></td>
                 <td><c:out value="${bid.priceBid}" /></td>
-                <td><c:out value="${bid.userAccountEmail}" /></td>
+                <td><c:out value="${bid.userBidEmail}" /></td>
                 <td><c:out value="${bid.statusBid}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${bid.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${bid.updated}" /></td>

@@ -14,13 +14,13 @@ public class Feedback extends BaseEntity implements IFeedback {
 
 	@Column
 	private Integer communication, shippingTime, shippingCharges, itemDescription;
-	
+
 	@Column
 	private String comment;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = UserAccount.class)
-	private IUserAccount userAccountFrom, userAccountWhom;
-	
+	private IUserAccount userFrom, userWhom;
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Item.class)
 	private IItem item;
 
@@ -75,26 +75,6 @@ public class Feedback extends BaseEntity implements IFeedback {
 	}
 
 	@Override
-	public IUserAccount getUserAccountFrom() {
-		return userAccountFrom;
-	}
-
-	@Override
-	public void setUserAccountFrom(final IUserAccount userAccountFrom) {
-		this.userAccountFrom = userAccountFrom;
-	}
-
-	@Override
-	public IUserAccount getUserAccountWhom() {
-		return userAccountWhom;
-	}
-
-	@Override
-	public void setUserAccountWhom(final IUserAccount userAccountWhom) {
-		this.userAccountWhom = userAccountWhom;
-	}
-
-	@Override
 	public IItem getItem() {
 		return item;
 	}
@@ -102,5 +82,25 @@ public class Feedback extends BaseEntity implements IFeedback {
 	@Override
 	public void setItem(IItem item) {
 		this.item = item;
+	}
+
+	@Override
+	public void setUserWhom(IUserAccount userWhom) {
+		this.userWhom = userWhom;
+	}
+
+	@Override
+	public IUserAccount getUserWhom() {
+		return userWhom;
+	}
+
+	@Override
+	public void setUserFrom(IUserAccount userFrom) {
+		this.userFrom = userFrom;
+	}
+
+	@Override
+	public IUserAccount getUserFrom() {
+		return userFrom;
 	}
 }

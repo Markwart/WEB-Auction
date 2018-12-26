@@ -21,7 +21,7 @@
                 <td><c:out value="${deferredBid.id}" /></td>
                 <td><c:out value="${deferredBid.itemName}" /></td>
                 <td><c:out value="${deferredBid.priceBid}" /></td>
-                <td><c:out value="${deferredBid.userAccountEmail}" /></td>
+                <td><c:out value="${deferredBid.userBidEmail}" /></td>
                 <td><c:out value="${deferredBid.statusBid}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${deferredBid.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${deferredBid.updated}" /></td>

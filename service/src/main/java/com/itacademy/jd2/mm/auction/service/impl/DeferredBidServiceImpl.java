@@ -79,4 +79,8 @@ public class DeferredBidServiceImpl implements IDeferredBidService {
 		return dao.getCount(filter);
 	}
 
+	@Override
+    public IDeferredBid getFullInfo(Integer id) {
+        return dao.getFullInfo(id);
+    }
 }

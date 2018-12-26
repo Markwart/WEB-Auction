@@ -10,6 +10,7 @@ import java.util.Set;
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.daoapi.IDeferredBidDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
 import com.itacademy.jd2.mm.auction.daoapi.filter.DeferredBidFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.DeferredBid;
@@ -34,8 +35,8 @@ public class DeferredBidDaoImpl extends AbstractDaoImpl<IDeferredBid, Integer> i
 			public IDeferredBid doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getItem().getId());
 				pStmt.setBigDecimal(2, entity.getPriceBid());
-				pStmt.setInt(3, entity.getUserAccount().getId());
-				pStmt.setString(4, entity.getStatusBid());
+				pStmt.setInt(3, entity.getUserBid().getId());
+				pStmt.setObject(4, entity.getStatusBid());
 				pStmt.setObject(5, entity.getUpdated(), Types.TIMESTAMP);
 				pStmt.setInt(6, entity.getId());
 
@@ -55,8 +56,8 @@ public class DeferredBidDaoImpl extends AbstractDaoImpl<IDeferredBid, Integer> i
 			public IDeferredBid doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getItem().getId());
 				pStmt.setBigDecimal(2, entity.getPriceBid());
-				pStmt.setInt(3, entity.getUserAccount().getId());
-				pStmt.setString(4, entity.getStatusBid());
+				pStmt.setInt(3, entity.getUserBid().getId());
+				pStmt.setObject(4, entity.getStatusBid());
 				pStmt.setObject(5, entity.getCreated(), Types.TIMESTAMP);
 				pStmt.setObject(6, entity.getUpdated(), Types.TIMESTAMP);
 
@@ -84,7 +85,7 @@ public class DeferredBidDaoImpl extends AbstractDaoImpl<IDeferredBid, Integer> i
 		final IDeferredBid entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setPriceBid(resultSet.getBigDecimal("price_bid"));
-		entity.setStatusBid(resultSet.getString("status_bid"));
+		entity.setStatusBid((StatusBid) resultSet.getObject("status_bid"));
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 
@@ -105,7 +106,7 @@ public class DeferredBidDaoImpl extends AbstractDaoImpl<IDeferredBid, Integer> i
 			if (columns.contains("user_email")) {
 				userAccount.setEmail(resultSet.getString("user_email"));
 			}
-			entity.setUserAccount(userAccount);
+			entity.setUserBid(userAccount);
 		}
 		return entity;
 	}
@@ -141,5 +142,10 @@ public class DeferredBidDaoImpl extends AbstractDaoImpl<IDeferredBid, Integer> i
 	@Override
 	public long getCount(DeferredBidFilter filter) {
 		return executeCountQuery("");
+	}
+
+	@Override
+	public IDeferredBid getFullInfo(Integer id) {
+		throw new RuntimeException("not implemneted");
 	}
 }

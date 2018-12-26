@@ -25,16 +25,18 @@
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-				<form:select path="userAccountId" disabled="${readonly}">
+				<form:select path="userBidId" disabled="${readonly}">
 					<form:options items="${userAccountsChoices}" />
 				</form:select>
-				<form:errors path="userAccountId" cssClass="red-text" />
-				<label for="userAccountId">user account</label>
+				<form:errors path="userBidId" cssClass="red-text" />
+				<label for="userBidId">user account</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="statusBid" type="text" disabled="${readonly}" />
+				<form:select path="statusBid" disabled="${readonly}">
+					<form:options items="${statusBidChoices}" />
+				</form:select>
 				<form:errors path="statusBid" cssClass="red-text" />
 				<label for="statusBid">status</label>
 			</div>

@@ -33,8 +33,8 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 			@Override
 			public IFeedback doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getItem().getId());
-				pStmt.setInt(2, entity.getUserAccountFrom().getId());
-				pStmt.setInt(3, entity.getUserAccountWhom().getId());
+				pStmt.setInt(2, entity.getUserFrom().getId());
+				pStmt.setInt(3, entity.getUserWhom().getId());
 				pStmt.setInt(4, entity.getCommunication());
 				pStmt.setInt(5, entity.getShippingTime());
 				pStmt.setInt(6, entity.getShippingCharges());
@@ -58,8 +58,8 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 			@Override
 			public IFeedback doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getItem().getId());
-				pStmt.setInt(2, entity.getUserAccountFrom().getId());
-				pStmt.setInt(3, entity.getUserAccountWhom().getId());
+				pStmt.setInt(2, entity.getUserFrom().getId());
+				pStmt.setInt(3, entity.getUserWhom().getId());
 				pStmt.setInt(4, entity.getCommunication());
 				pStmt.setInt(5, entity.getShippingTime());
 				pStmt.setInt(6, entity.getShippingCharges());
@@ -116,7 +116,7 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 			if (columns.contains("user_from_email")) {
 				userAccountFrom.setEmail(resultSet.getString("user_from_email"));
 			}
-			entity.setUserAccountFrom(userAccountFrom);
+			entity.setUserFrom(userAccountFrom);
 		}
 
 		final Integer userAccountWhomId = (Integer) resultSet.getObject("user_whom_id");
@@ -126,7 +126,7 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 			if (columns.contains("user_whom_email")) {
 				userAccountWhom.setEmail(resultSet.getString("user_whom_email"));
 			}
-			entity.setUserAccountWhom(userAccountWhom);
+			entity.setUserWhom(userAccountWhom);
 		}
 		return entity;
 	}
@@ -158,5 +158,10 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 	@Override
 	public long getCount(FeedbackFilter filter) {
 		return executeCountQuery("");
+	}
+
+	@Override
+	public IFeedback getFullInfo(Integer id) {
+		throw new RuntimeException("not implemneted");
 	}
 }

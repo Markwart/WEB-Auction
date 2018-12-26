@@ -7,7 +7,7 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 public class Message extends BaseEntity implements IMessage {
 
 	private String theme, text;
-	private IUserAccount userAccountFrom, userAccountWhom;
+	private IUserAccount userFrom, userWhom;
 	private IItem item;
 
 	@Override
@@ -31,23 +31,23 @@ public class Message extends BaseEntity implements IMessage {
 	}
 
 	@Override
-	public IUserAccount getUserAccountFrom() {
-		return userAccountFrom;
+	public IUserAccount getUserFrom() {
+		return userFrom;
 	}
 
 	@Override
-	public void setUserAccountFrom(final IUserAccount userAccountFrom) {
-		this.userAccountFrom = userAccountFrom;
+	public void setUserFrom(IUserAccount userFrom) {
+		this.userFrom = userFrom;
 	}
 
 	@Override
-	public IUserAccount getUserAccountWhom() {
-		return userAccountWhom;
+	public IUserAccount getUserWhom() {
+		return userWhom;
 	}
 
 	@Override
-	public void setUserAccountWhom(final IUserAccount userAccountWhom) {
-		this.userAccountWhom = userAccountWhom;
+	public void setUserWhom(IUserAccount userWhom) {
+		this.userWhom = userWhom;
 	}
 
 	@Override
@@ -62,9 +62,8 @@ public class Message extends BaseEntity implements IMessage {
 
 	@Override
 	public String toString() {
-		return "Message [theme=" + theme + ", text=" + text + ", userAccountFrom=" + userAccountFrom
-				+ ", userAccountWhom=" + userAccountWhom + ", item=" + item + ", getId()=" + getId() + ", getCreated()="
-				+ getCreated() + ", getUpdated()=" + getUpdated() + "]";
+		return "Message [theme=" + theme + ", text=" + text + ", userAccountFrom=" + userFrom + ", userAccountWhom="
+				+ userWhom + ", item=" + item + ", getId()=" + getId() + ", getCreated()=" + getCreated()
+				+ ", getUpdated()=" + getUpdated() + "]";
 	}
-
 }

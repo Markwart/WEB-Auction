@@ -10,4 +10,6 @@ public interface IFeedbackDao extends IDao<IFeedback, Integer> {
 	List<IFeedback> find(FeedbackFilter filter);
 
 	long getCount(FeedbackFilter filter);
+
+	IFeedback getFullInfo(Integer id);
 }

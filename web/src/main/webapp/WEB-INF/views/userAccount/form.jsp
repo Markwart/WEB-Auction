@@ -49,9 +49,9 @@
         </div>
          <div class="row">
             <div class="input-field  col s12">
-                <form:input path="personalData.userName" disabled="${readonly}" />
-                <form:errors path="personalData.userName" cssClass="red-text" />
-                <label for="personalData.userName">username</label>
+                <form:input path="personalData.username" disabled="${readonly}" />
+                <form:errors path="personalData.username" cssClass="red-text" />
+                <label for="personalData.username">username</label>
             </div>
         </div>
 		

@@ -27,4 +27,6 @@ public interface IFeedbackService {
 	List<IFeedback> find(FeedbackFilter filter);
 
 	long getCount(FeedbackFilter filter);
+
+	IFeedback getFullInfo(Integer id);
 }

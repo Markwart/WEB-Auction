@@ -3,6 +3,7 @@ package com.itacademy.jd2.mm.auction.jdbc.impl.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
@@ -12,7 +13,7 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 public class Item extends BaseEntity implements IItem {
 
-	private String name, image, text, statusAuction;
+	private String name, image, text;
 	private Integer year;
 	private Date auctionEnd;
 	private BigDecimal startingPrice;
@@ -21,6 +22,8 @@ public class Item extends BaseEntity implements IItem {
 	private ICondition condition;
 	private IComposition composition;
 	private IUserAccount seller;
+
+	private StatusAuction statusAuction;
 
 	@Override
 	public String getName() {
@@ -133,13 +136,12 @@ public class Item extends BaseEntity implements IItem {
 	}
 
 	@Override
-	public String getStatusAuction() {
-		return statusAuction;
-	}
-
-	@Override
-	public void setStatusAuction(final String statusAuction) {
+	public void setStatusAuction(StatusAuction statusAuction) {
 		this.statusAuction = statusAuction;
 	}
 
+	@Override
+	public StatusAuction getStatusAuction() {
+		return statusAuction;
+	}
 }

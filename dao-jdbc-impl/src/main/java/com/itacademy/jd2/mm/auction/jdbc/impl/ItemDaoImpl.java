@@ -10,6 +10,7 @@ import java.util.Set;
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.filter.ItemFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Category;
@@ -46,7 +47,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 				pStmt.setString(9, entity.getImage());
 				pStmt.setString(10, entity.getText());
 				pStmt.setInt(11, entity.getSeller().getId());
-				pStmt.setString(12, entity.getStatusAuction());
+				pStmt.setObject(12, entity.getStatusAuction());
 				pStmt.setObject(13, entity.getUpdated(), Types.TIMESTAMP);
 				pStmt.setInt(14, entity.getId());
 
@@ -75,7 +76,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 				pStmt.setString(9, entity.getImage());
 				pStmt.setString(10, entity.getText());
 				pStmt.setInt(11, entity.getSeller().getId());
-				pStmt.setString(12, entity.getStatusAuction());
+				pStmt.setObject(12, entity.getStatusAuction());
 				pStmt.setObject(13, entity.getCreated(), Types.TIMESTAMP);
 				pStmt.setObject(14, entity.getUpdated(), Types.TIMESTAMP);
 
@@ -108,7 +109,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		entity.setYear(resultSet.getInt("year"));
 		entity.setImage(resultSet.getString("image"));
 		entity.setText(resultSet.getString("text"));
-		entity.setStatusAuction(resultSet.getString("status_auction"));
+		entity.setStatusAuction((StatusAuction) resultSet.getObject("status_auction"));
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 
@@ -171,5 +172,10 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 	@Override
 	public long getCount(ItemFilter filter) {
 		return executeCountQuery("");
+	}
+
+	@Override
+	public IItem getFullInfo(Integer id) {
+		throw new RuntimeException("not implemneted");
 	}
 }

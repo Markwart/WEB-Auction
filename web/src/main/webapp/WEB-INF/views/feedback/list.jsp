@@ -24,8 +24,8 @@
             <tr class="font">
                 <td><c:out value="${feedback.id}" /></td>
                 <td><c:out value="${feedback.itemName}" /></td>
-                <td><c:out value="${feedback.userAccountFromEmail}" /></td>
-                <td><c:out value="${feedback.userAccountWhomEmail}" /></td>
+                <td><c:out value="${feedback.userFromEmail}" /></td>
+                <td><c:out value="${feedback.userWhomEmail}" /></td>
                 <td><c:out value="${feedback.communication}" /></td>
                 <td><c:out value="${feedback.shippingTime}" /></td>
                 <td><c:out value="${feedback.shippingCharges}" /></td>

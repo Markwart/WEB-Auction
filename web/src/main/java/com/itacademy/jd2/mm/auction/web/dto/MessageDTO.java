@@ -8,8 +8,8 @@ public class MessageDTO {
 
 	private String theme, text;
 
-	private Integer userAccountFromId, userAccountWhomId;
-	private String userAccountFromEmail, userAccountWhomEmail;
+	private Integer userFromId, userWhomId;
+	private String userFromEmail, userWhomEmail;
 
 	private Integer itemId;
 	private String itemName;
@@ -25,20 +25,36 @@ public class MessageDTO {
 		this.itemName = itemName;
 	}
 
-	public String getUserAccountFromEmail() {
-		return userAccountFromEmail;
+	public Integer getUserFromId() {
+		return userFromId;
 	}
 
-	public void setUserAccountFromEmail(String userAccountFromEmail) {
-		this.userAccountFromEmail = userAccountFromEmail;
+	public void setUserFromId(Integer userFromId) {
+		this.userFromId = userFromId;
 	}
 
-	public String getUserAccountWhomEmail() {
-		return userAccountWhomEmail;
+	public Integer getUserWhomId() {
+		return userWhomId;
 	}
 
-	public void setUserAccountWhomEmail(String userAccountWhomEmail) {
-		this.userAccountWhomEmail = userAccountWhomEmail;
+	public void setUserWhomId(Integer userWhomId) {
+		this.userWhomId = userWhomId;
+	}
+
+	public String getUserFromEmail() {
+		return userFromEmail;
+	}
+
+	public void setUserFromEmail(String userFromEmail) {
+		this.userFromEmail = userFromEmail;
+	}
+
+	public String getUserWhomEmail() {
+		return userWhomEmail;
+	}
+
+	public void setUserWhomEmail(String userWhomEmail) {
+		this.userWhomEmail = userWhomEmail;
 	}
 
 	public Integer getId() {
@@ -63,22 +79,6 @@ public class MessageDTO {
 
 	public void setText(String text) {
 		this.text = text;
-	}
-
-	public Integer getUserAccountFromId() {
-		return userAccountFromId;
-	}
-
-	public void setUserAccountFromId(Integer userAccountFromId) {
-		this.userAccountFromId = userAccountFromId;
-	}
-
-	public Integer getUserAccountWhomId() {
-		return userAccountWhomId;
-	}
-
-	public void setUserAccountWhomId(Integer userAccountWhomId) {
-		this.userAccountWhomId = userAccountWhomId;
 	}
 
 	public Integer getItemId() {

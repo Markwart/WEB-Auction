@@ -108,7 +108,7 @@ public class FeedbackController extends AbstractController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final IFeedback dbModel = feedbackService.get(id);
+		final IFeedback dbModel = feedbackService.getFullInfo(id);
 		final FeedbackDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
@@ -119,7 +119,7 @@ public class FeedbackController extends AbstractController {
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		final FeedbackDTO dto = toDtoConverter.apply(feedbackService.get(id));
+		final FeedbackDTO dto = toDtoConverter.apply(feedbackService.getFullInfo(id));
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);

@@ -5,9 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
@@ -19,28 +22,42 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 public class Item extends BaseEntity implements IItem {
 
 	@Column
-	private String name, image, text, statusAuction;
+	private String name, image, text;
 	@Column
 	private Integer year;
 	@Column
 	private Date auctionEnd;
 	@Column
 	private BigDecimal startingPrice;
-	
+
+	@Column
+	@Enumerated(EnumType.STRING)
+	private StatusAuction statusAuction;
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Category.class)
 	private ICategory category;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = CountryOrigin.class)
 	private ICountryOrigin countryOrigin;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Condition.class)
 	private ICondition condition;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Composition.class)
 	private IComposition composition;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = UserAccount.class)
 	private IUserAccount seller;
+
+	@Override
+	public StatusAuction getStatusAuction() {
+		return statusAuction;
+	}
+
+	@Override
+	public void setStatusAuction(StatusAuction statusAuction) {
+		this.statusAuction = statusAuction;
+	}
 
 	@Override
 	public String getName() {
@@ -151,15 +168,4 @@ public class Item extends BaseEntity implements IItem {
 	public void setSeller(final IUserAccount seller) {
 		this.seller = seller;
 	}
-
-	@Override
-	public String getStatusAuction() {
-		return statusAuction;
-	}
-
-	@Override
-	public void setStatusAuction(final String statusAuction) {
-		this.statusAuction = statusAuction;
-	}
-
 }

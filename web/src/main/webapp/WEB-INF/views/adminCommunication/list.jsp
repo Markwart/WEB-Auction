@@ -20,7 +20,7 @@
                 <td><c:out value="${adminCommunication.id}" /></td>
                 <td><c:out value="${adminCommunication.theme}" /></td>
                 <td><c:out value="${adminCommunication.text}" /></td>
-                <td><c:out value="${adminCommunication.userAccountEmail}" /></td>
+                <td><c:out value="${adminCommunication.userFromEmail}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${adminCommunication.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${adminCommunication.updated}" /></td>
                 <td class="right"><a class="btn-floating" href="${pagesAdminCommunication}/${adminCommunication.id}"><i class="material-icons">info</i></a> <a

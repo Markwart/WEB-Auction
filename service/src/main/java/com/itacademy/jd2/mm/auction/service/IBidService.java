@@ -27,4 +27,6 @@ public interface IBidService {
 	List<IBid> find(BidFilter filter);
 
     long getCount(BidFilter filter);
+
+	IBid getFullInfo(Integer id);
 }

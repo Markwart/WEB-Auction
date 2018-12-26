@@ -32,7 +32,7 @@ public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunicati
 			@Override
 			public IAdminCommunication doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getTheme());
-				pStmt.setInt(2, entity.getUserAccount().getId());
+				pStmt.setInt(2, entity.getUserFrom().getId());
 				pStmt.setString(3, entity.getText());
 				pStmt.setObject(4, entity.getUpdated(), Types.TIMESTAMP);
 				pStmt.setInt(5, entity.getId());
@@ -53,7 +53,7 @@ public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunicati
 			@Override
 			public IAdminCommunication doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getTheme());
-				pStmt.setInt(2, entity.getUserAccount().getId());
+				pStmt.setInt(2, entity.getUserFrom().getId());
 				pStmt.setString(3, entity.getText());
 				pStmt.setObject(4, entity.getCreated(), Types.TIMESTAMP);
 				pStmt.setObject(5, entity.getUpdated(), Types.TIMESTAMP);
@@ -93,7 +93,7 @@ public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunicati
 			if (columns.contains("user_email")) {
 				userAccount.setEmail(resultSet.getString("user_email"));
 			}
-			entity.setUserAccount(userAccount);
+			entity.setUserFrom(userAccount);
 		}
 
 		return entity;
@@ -122,5 +122,10 @@ public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunicati
 	@Override
 	public long getCount(AdminCommunicationFilter filter) {
 		return executeCountQuery("");
+	}
+
+	@Override
+	public IAdminCommunication getFullInfo(Integer id) {
+		throw new RuntimeException("not implemneted");
 	}
 }

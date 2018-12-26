@@ -19,10 +19,10 @@ public class AdminCommunicationToDTOConverter implements Function<IAdminCommunic
         dto.setTheme(entity.getTheme());
         dto.setText(entity.getText());
         
-        final IUserAccount userAccount = entity.getUserAccount();
+        final IUserAccount userAccount = entity.getUserFrom();
         if (userAccount != null) {
-            dto.setUserAccountId(userAccount.getId());
-            dto.setUserAccountEmail(userAccount.getEmail());
+            dto.setUserFromId(userAccount.getId());
+            dto.setUserFromEmail(userAccount.getEmail());
         }
         
         dto.setCreated(entity.getCreated());

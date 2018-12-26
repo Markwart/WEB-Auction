@@ -10,4 +10,6 @@ public interface IBidDao extends IDao<IBid, Integer> {
 	List<IBid> find(BidFilter filter);
 
 	long getCount(BidFilter filter);
+
+	IBid getFullInfo(Integer id);
 }

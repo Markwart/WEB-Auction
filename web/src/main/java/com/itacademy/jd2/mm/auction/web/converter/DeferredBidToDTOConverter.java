@@ -17,12 +17,12 @@ public class DeferredBidToDTOConverter implements Function<IDeferredBid, Deferre
 		final DeferredBidDTO dto = new DeferredBidDTO();
 		dto.setId(entity.getId());
 		dto.setPriceBid(entity.getPriceBid());
-		dto.setStatusBid(entity.getStatusBid());
+		dto.setStatusBid(entity.getStatusBid().name());
 
-		final IUserAccount userAccount = entity.getUserAccount();
+		final IUserAccount userAccount = entity.getUserBid();
 		if (userAccount != null) {
-			dto.setUserAccountId(userAccount.getId());
-			dto.setUserAccountEmail(userAccount.getEmail());
+			dto.setUserBidId(userAccount.getId());
+			dto.setUserBidEmail(userAccount.getEmail());
 		}
 
 		final IItem item = entity.getItem();

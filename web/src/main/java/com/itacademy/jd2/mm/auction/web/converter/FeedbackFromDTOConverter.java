@@ -36,12 +36,12 @@ public class FeedbackFromDTOConverter implements Function<FeedbackDTO, IFeedback
 		entity.setComment(dto.getComment());
 
 		final IUserAccount userAccountFrom = userAccountFromService.createEntity();
-		userAccountFrom.setId(dto.getUserAccountFromId());
-		entity.setUserAccountFrom(userAccountFrom);
+		userAccountFrom.setId(dto.getUserFromId());
+		entity.setUserFrom(userAccountFrom);
 
 		final IUserAccount userAccountWhom = userAccountWhomService.createEntity();
-		userAccountWhom.setId(dto.getUserAccountWhomId());
-		entity.setUserAccountWhom(userAccountWhom);
+		userAccountWhom.setId(dto.getUserWhomId());
+		entity.setUserWhom(userAccountWhom);
 		
 		final IItem item = itemService.createEntity();
 		item.setId(dto.getItemId());

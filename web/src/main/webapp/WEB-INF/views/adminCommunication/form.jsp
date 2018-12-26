@@ -23,14 +23,14 @@
 		</div>
 		 <div class="row">
             <div class="input-field col s12">
-                <form:select path="userAccountId" disabled="${readonly}">
+                <form:select path="userFromId" disabled="${readonly}">
                     <form:options items="${userAccountsChoices}" />
                 </form:select>
-                <form:errors path="userAccountId" cssClass="red-text" />
-                <label for="userAccountId">user account</label>
+                <form:errors path="userFromId" cssClass="red-text" />
+                <label for="userFromId">user account</label>
             </div>
         </div>
-		
+		 
 		<div class="row">
 			<div class="col s6"></div>
 			<div class="col s3">

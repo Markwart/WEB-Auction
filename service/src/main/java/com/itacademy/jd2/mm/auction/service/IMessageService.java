@@ -27,4 +27,6 @@ public interface IMessageService {
 	List<IMessage> find(MessageFilter filter);
 
     long getCount(MessageFilter filter);
+
+	IMessage getFullInfo(Integer id);
 }

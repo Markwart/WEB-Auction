@@ -79,4 +79,8 @@ public class ItemServiceImpl implements IItemService {
 		return dao.getCount(filter);
 	}
 
+	@Override
+    public IItem getFullInfo(Integer id) {
+        return dao.getFullInfo(id);
+    }
 }

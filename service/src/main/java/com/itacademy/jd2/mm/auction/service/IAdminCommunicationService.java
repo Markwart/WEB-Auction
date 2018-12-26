@@ -27,4 +27,6 @@ public interface IAdminCommunicationService {
 	List<IAdminCommunication> find(AdminCommunicationFilter filter);
 
     long getCount(AdminCommunicationFilter filter);
+
+	IAdminCommunication getFullInfo(Integer id);
 }

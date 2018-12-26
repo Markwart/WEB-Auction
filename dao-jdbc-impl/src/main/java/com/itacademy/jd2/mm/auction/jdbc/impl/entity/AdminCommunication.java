@@ -1,13 +1,12 @@
 package com.itacademy.jd2.mm.auction.jdbc.impl.entity;
 
-
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAdminCommunication;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 public class AdminCommunication extends BaseEntity implements IAdminCommunication {
 
 	private String theme, text;
-	private IUserAccount userAccount;
+	private IUserAccount userFrom;
 
 	@Override
 	public String getTheme() {
@@ -30,19 +29,19 @@ public class AdminCommunication extends BaseEntity implements IAdminCommunicatio
 	}
 
 	@Override
-	public IUserAccount getUserAccount() {
-		return userAccount;
-	}
-
-	@Override
-	public void setUserAccount(final IUserAccount userAccount) {
-		this.userAccount = userAccount;
-	}
-
-	@Override
 	public String toString() {
-		return "AdminCommunication [theme=" + theme + ", text=" + text + ", userAccount=" + userAccount + ", getId()="
+		return "AdminCommunication [theme=" + theme + ", text=" + text + ", userAccount=" + userFrom + ", getId()="
 				+ getId() + ", getCreated()=" + getCreated() + ", getUpdated()=" + getUpdated() + "]";
+	}
+
+	@Override
+	public void setUserFrom(IUserAccount userFrom) {
+		this.userFrom = userFrom;
+	}
+
+	@Override
+	public IUserAccount getUserFrom() {
+		return userFrom;
 	}
 
 }

@@ -12,23 +12,24 @@ public class AdminCommunicationDTO {
 	
 	private String theme, text;
 	
-	private Integer userAccountId;
-	private String userAccountEmail;
+	private Integer userFromId;
+	private String userFromEmail;
 
-	public String getUserAccountEmail() {
-		return userAccountEmail;
+
+	public Integer getUserFromId() {
+		return userFromId;
 	}
 
-	public void setUserAccountEmail(String userAccountEmail) {
-		this.userAccountEmail = userAccountEmail;
+	public void setUserFromId(Integer userFromId) {
+		this.userFromId = userFromId;
 	}
 
-	public Integer getUserAccountId() {
-		return userAccountId;
+	public String getUserFromEmail() {
+		return userFromEmail;
 	}
 
-	public void setUserAccountId(Integer userAccountId) {
-		this.userAccountId = userAccountId;
+	public void setUserFromEmail(String userFromEmail) {
+		this.userFromEmail = userFromEmail;
 	}
 
 	public String getTheme() {

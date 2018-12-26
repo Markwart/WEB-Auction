@@ -10,30 +10,14 @@ public class FeedbackDTO {
 
 	private String comment;
 
-	private Integer userAccountFromId, userAccountWhomId;
-	private String userAccountFromEmail, userAccountWhomEmail;
+	private Integer userFromId, userWhomId;
+	private String userFromEmail, userWhomEmail;
 
 	private Integer itemId;
 	private String itemName;
 
 	private Date created;
 	private Date updated;
-
-	public String getUserAccountFromEmail() {
-		return userAccountFromEmail;
-	}
-
-	public void setUserAccountFromEmail(String userAccountFromEmail) {
-		this.userAccountFromEmail = userAccountFromEmail;
-	}
-
-	public String getUserAccountWhomEmail() {
-		return userAccountWhomEmail;
-	}
-
-	public void setUserAccountWhomEmail(String userAccountWhomEmail) {
-		this.userAccountWhomEmail = userAccountWhomEmail;
-	}
 
 	public String getItemName() {
 		return itemName;
@@ -91,22 +75,6 @@ public class FeedbackDTO {
 		this.comment = comment;
 	}
 
-	public Integer getUserAccountFromId() {
-		return userAccountFromId;
-	}
-
-	public void setUserAccountFromId(Integer userAccountFromId) {
-		this.userAccountFromId = userAccountFromId;
-	}
-
-	public Integer getUserAccountWhomId() {
-		return userAccountWhomId;
-	}
-
-	public void setUserAccountWhomId(Integer userAccountWhomId) {
-		this.userAccountWhomId = userAccountWhomId;
-	}
-
 	public Integer getItemId() {
 		return itemId;
 	}
@@ -129,6 +97,38 @@ public class FeedbackDTO {
 
 	public void setUpdated(final Date updated) {
 		this.updated = updated;
+	}
+
+	public Integer getUserFromId() {
+		return userFromId;
+	}
+
+	public void setUserFromId(Integer userFromId) {
+		this.userFromId = userFromId;
+	}
+
+	public Integer getUserWhomId() {
+		return userWhomId;
+	}
+
+	public void setUserWhomId(Integer userWhomId) {
+		this.userWhomId = userWhomId;
+	}
+
+	public String getUserFromEmail() {
+		return userFromEmail;
+	}
+
+	public void setUserFromEmail(String userFromEmail) {
+		this.userFromEmail = userFromEmail;
+	}
+
+	public String getUserWhomEmail() {
+		return userWhomEmail;
+	}
+
+	public void setUserWhomEmail(String userWhomEmail) {
+		this.userWhomEmail = userWhomEmail;
 	}
 
 }

@@ -35,21 +35,21 @@
 		
 		<div class="row">
 			<div class="input-field col s12">
-				<form:select path="userAccountFromId" disabled="${readonly}">
+				<form:select path="userFromId" disabled="${readonly}">
 					<form:options items="${userAccountsChoices}" />
 				</form:select>
-				<form:errors path="userAccountFromId" cssClass="red-text" />
-				<label for="userAccountFromId">from</label>
+				<form:errors path="userFromId" cssClass="red-text" />
+				<label for="userFromId">from</label>
 			</div>
 		</div>
 		
 		<div class="row">
 			<div class="input-field col s12">
-				<form:select path="userAccountWhomId" disabled="${readonly}">
+				<form:select path="userWhomId" disabled="${readonly}">
 					<form:options items="${userAccountsChoices}" />
 				</form:select>
-				<form:errors path="userAccountWhomId" cssClass="red-text" />
-				<label for="userAccountWhomId">whom</label>
+				<form:errors path="userWhomId" cssClass="red-text" />
+				<label for="userWhomId">whom</label>
 			</div>
 		</div>
 

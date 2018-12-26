@@ -23,8 +23,8 @@
                 <td><c:out value="${message.itemName}" /></td>
                 <td><c:out value="${message.theme}" /></td>
                 <td><c:out value="${message.text}" /></td>
-                <td><c:out value="${message.userAccountFromEmail}" /></td>
-                <td><c:out value="${message.userAccountWhomEmail}" /></td>
+                <td><c:out value="${message.userFromEmail}" /></td>
+                <td><c:out value="${message.userWhomEmail}" /></td>
                 <td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${message.created}" /></td>
                 <td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${message.updated}" /></td>
                 <td class="right"><a class="btn-floating" href="${pagesMessage}/${message.id}"><i class="material-icons">info</i></a> <a

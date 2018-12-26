@@ -25,7 +25,7 @@ public class ItemToDTOConverter implements Function<IItem, ItemDTO> {
 		dto.setText(entity.getText());
 		dto.setAuctionEnd(entity.getAuctionEnd());
 		dto.setStartingPrice(entity.getStartingPrice());
-		dto.setStatusAuction(entity.getStatusAuction());
+		dto.setStatusAuction(entity.getStatusAuction().name());
 
 		final IUserAccount userAccount = entity.getSeller();
 		if (userAccount != null) {
@@ -36,21 +36,25 @@ public class ItemToDTOConverter implements Function<IItem, ItemDTO> {
 		final ICategory category = entity.getCategory();
 		if (category != null) {
 			dto.setCategoryId(category.getId());
+			dto.setCategoryName(category.getName());
 		}
 
 		final ICondition condition = entity.getCondition();
 		if (condition != null) {
 			dto.setConditionId(condition.getId());
+			dto.setConditionName(condition.getName());
 		}
 
 		final IComposition composition = entity.getComposition();
 		if (composition != null) {
 			dto.setCompositionId(composition.getId());
+			dto.setCompositionName(composition.getName());
 		}
 
 		final ICountryOrigin countryOrigin = entity.getCountryOrigin();
 		if (countryOrigin != null) {
 			dto.setCountryOriginId(countryOrigin.getId());
+			dto.setCountryOriginName(countryOrigin.getName());
 		}
 
 		dto.setCreated(entity.getCreated());

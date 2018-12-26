@@ -5,6 +5,7 @@ import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
@@ -43,7 +44,7 @@ public class ItemFromDTOConverter implements Function<ItemDTO, IItem> {
         entity.setImage(dto.getImage());
         entity.setText(dto.getText());
         entity.setStartingPrice(dto.getStartingPrice());
-        entity.setStatusAuction(dto.getStatusAuction());
+        entity.setStatusAuction(StatusAuction.valueOf(dto.getStatusAuction()));
         entity.setAuctionEnd(dto.getAuctionEnd());
         entity.setYear(dto.getYear());
 

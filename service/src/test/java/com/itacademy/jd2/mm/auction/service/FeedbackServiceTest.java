@@ -17,7 +17,7 @@ public class FeedbackServiceTest extends AbstractTest {
 	public void testCreate() {
 		final IFeedback entity = saveNewFeedback();
 
-		final IFeedback entityFromDb = feedbackService.get(entity.getId());
+		final IFeedback entityFromDb = feedbackService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getCommunication(), entityFromDb.getCommunication());
@@ -26,8 +26,8 @@ public class FeedbackServiceTest extends AbstractTest {
 		assertEquals(entity.getItemDescription(), entityFromDb.getItemDescription());
 		assertEquals(entity.getComment(), entityFromDb.getComment());
 		assertEquals(entity.getItem().getId(), entityFromDb.getItem().getId());
-		assertEquals(entity.getUserAccountFrom().getId(), entityFromDb.getUserAccountFrom().getId());
-		assertEquals(entity.getUserAccountWhom().getId(), entityFromDb.getUserAccountWhom().getId());
+		assertEquals(entity.getUserFrom().getId(), entityFromDb.getUserFrom().getId());
+		assertEquals(entity.getUserWhom().getId(), entityFromDb.getUserWhom().getId());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
@@ -43,12 +43,12 @@ public class FeedbackServiceTest extends AbstractTest {
 		Thread.sleep(DELAY);
 		feedbackService.save(entity);
 
-		final IFeedback entityFromDb = feedbackService.get(entity.getId());
+		final IFeedback entityFromDb = feedbackService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getItem().getId(), entityFromDb.getItem().getId());
-		assertEquals(entity.getUserAccountFrom().getId(), entityFromDb.getUserAccountFrom().getId());
-		assertEquals(entity.getUserAccountWhom().getId(), entityFromDb.getUserAccountWhom().getId());
+		assertEquals(entity.getUserFrom().getId(), entityFromDb.getUserFrom().getId());
+		assertEquals(entity.getUserWhom().getId(), entityFromDb.getUserWhom().getId());
 		assertEquals(entity.getCommunication(), entityFromDb.getCommunication());
 		assertEquals(entity.getShippingTime(), entityFromDb.getShippingTime());
 		assertEquals(entity.getShippingCharges(), entityFromDb.getShippingCharges());
@@ -74,9 +74,9 @@ public class FeedbackServiceTest extends AbstractTest {
 		final List<IFeedback> allEntities = feedbackService.getAll();
 
 		for (final IFeedback entityFromDb : allEntities) {
-			assertNotNull(entityFromDb.getItem().getId());
-			assertNotNull(entityFromDb.getUserAccountFrom().getId());
-			assertNotNull(entityFromDb.getUserAccountWhom().getId());
+			assertNotNull(entityFromDb.getItem());
+			assertNotNull(entityFromDb.getUserFrom());
+			assertNotNull(entityFromDb.getUserWhom());
 			assertNotNull(entityFromDb.getCommunication());
 			assertNotNull(entityFromDb.getShippingTime());
 			assertNotNull( entityFromDb.getShippingCharges());

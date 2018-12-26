@@ -79,4 +79,8 @@ public class AdminCommunicationServiceImpl implements IAdminCommunicationService
 		return dao.getCount(filter);
 	}
 
+	@Override
+    public IAdminCommunication getFullInfo(Integer id) {
+        return dao.getFullInfo(id);
+    }
 }

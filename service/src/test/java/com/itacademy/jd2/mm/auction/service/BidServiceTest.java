@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 
 public class BidServiceTest extends AbstractTest {
@@ -17,13 +18,13 @@ public class BidServiceTest extends AbstractTest {
 	public void testCreate() {
 		final IBid entity = saveNewBid();
 
-		final IBid entityFromDb = bidService.get(entity.getId());
+		final IBid entityFromDb = bidService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getPriceBid(), entityFromDb.getPriceBid());
 		assertEquals(entity.getStatusBid(), entityFromDb.getStatusBid());
 		assertEquals(entity.getItem().getId(), entityFromDb.getItem().getId());
-		assertEquals(entity.getUserAccount().getId(), entityFromDb.getUserAccount().getId());
+		assertEquals(entity.getUserBid().getId(), entityFromDb.getUserBid().getId());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
@@ -35,16 +36,17 @@ public class BidServiceTest extends AbstractTest {
 	public void testUpdate() throws InterruptedException {
 		final IBid entity = saveNewBid();
 
-		String newStatusBid = entity.getStatusBid() + "_updated";
+		@SuppressWarnings("static-access")
+		StatusBid newStatusBid = entity.getStatusBid().cancelled;
 		entity.setStatusBid(newStatusBid);
 		Thread.sleep(DELAY);
 		bidService.save(entity);
 
-		final IBid entityFromDb = bidService.get(entity.getId());
+		final IBid entityFromDb = bidService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getItem().getId(), entityFromDb.getItem().getId());
-		assertEquals(entity.getUserAccount().getId(), entityFromDb.getUserAccount().getId());
+		assertEquals(entity.getUserBid().getId(), entityFromDb.getUserBid().getId());
 		assertEquals(entity.getPriceBid(), entityFromDb.getPriceBid());
 		assertEquals(entity.getStatusBid(), entityFromDb.getStatusBid());
 		assertNotNull(entityFromDb.getId());
@@ -66,8 +68,8 @@ public class BidServiceTest extends AbstractTest {
 		final List<IBid> allEntities = bidService.getAll();
 
 		for (final IBid entityFromDb : allEntities) {
-			assertNotNull(entityFromDb.getItem().getId());
-			assertNotNull(entityFromDb.getUserAccount().getId());
+			assertNotNull(entityFromDb.getItem());
+			assertNotNull(entityFromDb.getUserBid());
 			assertNotNull(entityFromDb.getPriceBid());
 			assertNotNull(entityFromDb.getStatusBid());
 			assertNotNull(entityFromDb.getId());

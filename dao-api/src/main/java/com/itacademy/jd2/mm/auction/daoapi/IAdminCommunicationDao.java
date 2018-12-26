@@ -11,4 +11,6 @@ public interface IAdminCommunicationDao extends IDao<IAdminCommunication, Intege
 
 	long getCount(AdminCommunicationFilter filter);
 
+	IAdminCommunication getFullInfo(Integer id);
+
 }

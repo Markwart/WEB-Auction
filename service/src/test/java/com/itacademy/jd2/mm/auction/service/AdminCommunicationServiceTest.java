@@ -17,12 +17,12 @@ public class AdminCommunicationServiceTest extends AbstractTest{
     public void testCreate() {
         final IAdminCommunication entity = saveNewAdminCommunication();
 
-        final IAdminCommunication entityFromDb = adminCommunicationService.get(entity.getId());
+        final IAdminCommunication entityFromDb = adminCommunicationService.getFullInfo(entity.getId());
 
         assertNotNull(entityFromDb);
         assertEquals(entity.getTheme(), entityFromDb.getTheme());
         assertEquals(entity.getText(), entityFromDb.getText());
-        assertEquals(entity.getUserAccount().getId(), entityFromDb.getUserAccount().getId());
+        assertEquals(entity.getUserFrom().getId(), entityFromDb.getUserFrom().getId());
         assertNotNull(entityFromDb.getId());
         assertNotNull(entityFromDb.getCreated());
         assertNotNull(entityFromDb.getUpdated());
@@ -38,12 +38,12 @@ public class AdminCommunicationServiceTest extends AbstractTest{
 	        Thread.sleep(DELAY);
 	        adminCommunicationService.save(entity);
 
-	        final IAdminCommunication entityFromDb = adminCommunicationService.get(entity.getId());
+	        final IAdminCommunication entityFromDb = adminCommunicationService.getFullInfo(entity.getId());
 
 	        assertNotNull(entityFromDb);
 	        assertEquals(newTheme, entityFromDb.getTheme());
 	        assertEquals(entity.getText(), entityFromDb.getText());
-	        assertEquals(entity.getUserAccount().getId(), entityFromDb.getUserAccount().getId());
+	        assertEquals(entity.getUserFrom().getId(), entityFromDb.getUserFrom().getId());
 	        assertNotNull(entityFromDb.getId());
 	        assertNotNull(entityFromDb.getCreated());
 	        assertNotNull(entityFromDb.getUpdated());
@@ -65,7 +65,7 @@ public class AdminCommunicationServiceTest extends AbstractTest{
 	        for (final IAdminCommunication entityFromDb : allEntities) {
 	            assertNotNull(entityFromDb.getTheme());
 	            assertNotNull(entityFromDb.getText());
-	            assertNotNull(entityFromDb.getUserAccount().getId());
+	            assertNotNull(entityFromDb.getUserFrom());
 	            assertNotNull(entityFromDb.getId());
 	            assertNotNull(entityFromDb.getCreated());
 	            assertNotNull(entityFromDb.getUpdated());

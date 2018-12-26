@@ -11,22 +11,53 @@ public class ItemDTO {
 
 	private String name, image, text, statusAuction;
 	private Integer year;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date auctionEnd;
-	
+
 	private BigDecimal startingPrice;
-	private Integer categoryId;
-	private Integer countryOriginId;
-	private Integer conditionId;
-	private Integer compositionId;
-	
+
+	private Integer categoryId, countryOriginId, conditionId, compositionId;
+	private String categoryName, countryOriginName, conditionName, compositionName;
+
 	private Integer sellerId;
 	private String sellerEmail;
 
 	private Date created;
 	private Date updated;
-	
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getCountryOriginName() {
+		return countryOriginName;
+	}
+
+	public void setCountryOriginName(String countryOriginName) {
+		this.countryOriginName = countryOriginName;
+	}
+
+	public String getConditionName() {
+		return conditionName;
+	}
+
+	public void setConditionName(String conditionName) {
+		this.conditionName = conditionName;
+	}
+
+	public String getCompositionName() {
+		return compositionName;
+	}
+
+	public void setCompositionName(String compositionName) {
+		this.compositionName = compositionName;
+	}
+
 	public String getSellerEmail() {
 		return sellerEmail;
 	}

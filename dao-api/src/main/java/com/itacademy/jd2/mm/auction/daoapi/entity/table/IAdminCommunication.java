@@ -10,8 +10,9 @@ public interface IAdminCommunication extends IBaseEntity {
 	String getText();
 
 	void setText(String text);
+
+	void setUserFrom(IUserAccount userFrom);
+
+	IUserAccount getUserFrom();
 	
-	IUserAccount getUserAccount();
-	
-	void setUserAccount(IUserAccount userAccount);
 }

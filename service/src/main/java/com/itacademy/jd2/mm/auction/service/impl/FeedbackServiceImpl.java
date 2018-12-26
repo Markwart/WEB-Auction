@@ -78,5 +78,9 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	public long getCount(FeedbackFilter filter) {
 		return dao.getCount(filter);
 	}
-
+	
+	@Override
+    public IFeedback getFullInfo(Integer id) {
+        return dao.getFullInfo(id);
+    }
 }

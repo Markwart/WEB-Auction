@@ -17,7 +17,7 @@ public class ItemServiceTest extends AbstractTest{
 	public void testCreate() {
 		final IItem entity = saveNewItem();
 
-		final IItem entityFromDb = itemService.get(entity.getId());
+		final IItem entityFromDb = itemService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getName(), entityFromDb.getName());
@@ -48,7 +48,7 @@ public class ItemServiceTest extends AbstractTest{
 		Thread.sleep(DELAY);
 		itemService.save(entity);
 
-		final IItem entityFromDb = itemService.get(entity.getId());
+		final IItem entityFromDb = itemService.getFullInfo(entity.getId());
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getName(), entityFromDb.getName());
@@ -85,14 +85,14 @@ public class ItemServiceTest extends AbstractTest{
 			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getAuctionEnd());
 			assertNotNull(entityFromDb.getStartingPrice());
-			assertNotNull(entityFromDb.getCategory().getId());
+			assertNotNull(entityFromDb.getCategory());
 			assertNotNull(entityFromDb.getYear());
-			assertNotNull(entityFromDb.getCountryOrigin().getId());
-			assertNotNull(entityFromDb.getCondition().getId());
-			assertNotNull(entityFromDb.getComposition().getId());
+			assertNotNull(entityFromDb.getCountryOrigin());
+			assertNotNull(entityFromDb.getCondition());
+			assertNotNull(entityFromDb.getComposition());
 			assertNotNull(entityFromDb.getImage());
 			assertNotNull(entityFromDb.getText());
-			assertNotNull(entityFromDb.getSeller().getId());
+			assertNotNull(entityFromDb.getSeller());
 			assertNotNull(entityFromDb.getStatusAuction());
 			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getCreated());

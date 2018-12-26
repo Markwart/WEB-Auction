@@ -4,17 +4,17 @@ import java.util.Date;
 
 public class PersonalDataDTO {
 
-	private String userName, firstName, lastName, adress;
+	private String username, firstName, lastName, adress;
 
 	private Date created;
 	private Date updated;
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getFirstName() {

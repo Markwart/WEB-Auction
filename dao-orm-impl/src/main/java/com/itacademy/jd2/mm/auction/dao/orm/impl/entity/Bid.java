@@ -4,9 +4,12 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
@@ -18,13 +21,25 @@ public class Bid extends BaseEntity implements IBid {
 	private BigDecimal priceBid;
 	
 	@Column
-	private String statusBid;
+	@Enumerated(EnumType.STRING)
+	private StatusBid statusBid;
 	
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = UserAccount.class)
-	private IUserAccount userAccount;
+	private IUserAccount userBid;
 	
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Item.class)
 	private IItem item;
+
+	
+	@Override
+	public IUserAccount getUserBid() {
+		return userBid;
+	}
+
+	@Override
+	public void setUserBid(IUserAccount userBid) {
+		this.userBid = userBid;
+	}
 
 	@Override
 	public BigDecimal getPriceBid() {
@@ -37,23 +52,13 @@ public class Bid extends BaseEntity implements IBid {
 	}
 
 	@Override
-	public String getStatusBid() {
+	public StatusBid getStatusBid() {
 		return statusBid;
 	}
 
 	@Override
-	public void setStatusBid(final String statusBid) {
+	public void setStatusBid(StatusBid statusBid) {
 		this.statusBid = statusBid;
-	}
-
-	@Override
-	public IUserAccount getUserAccount() {
-		return userAccount;
-	}
-
-	@Override
-	public void setUserAccount(final IUserAccount userAccount) {
-		this.userAccount = userAccount;
 	}
 
 	@Override

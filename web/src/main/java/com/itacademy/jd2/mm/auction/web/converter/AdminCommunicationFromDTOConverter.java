@@ -27,8 +27,8 @@ public class AdminCommunicationFromDTOConverter implements Function<AdminCommuni
         entity.setText(dto.getText());
 
         final IUserAccount userAccount = userAccountService.createEntity();
-        userAccount.setId(dto.getUserAccountId());
-        entity.setUserAccount(userAccount);
+        userAccount.setId(dto.getUserFromId());
+        entity.setUserFrom(userAccount);
         
         return entity;
     }

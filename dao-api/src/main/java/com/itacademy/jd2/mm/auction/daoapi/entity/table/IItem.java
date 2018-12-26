@@ -3,6 +3,8 @@ package com.itacademy.jd2.mm.auction.daoapi.entity.table;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
+
 public interface IItem extends IBaseEntity {
 
 	String getName();
@@ -38,6 +40,6 @@ public interface IItem extends IBaseEntity {
 	IUserAccount getSeller();
 	void setSeller(IUserAccount seller);
 	
-	String getStatusAuction();
-	void setStatusAuction(String statusAuction);
+	StatusAuction getStatusAuction();
+	void setStatusAuction(StatusAuction statusAuction);
 }

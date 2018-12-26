@@ -33,8 +33,8 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 			@Override
 			public IMessage doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getItem().getId());
-				pStmt.setInt(2, entity.getUserAccountFrom().getId());
-				pStmt.setInt(3, entity.getUserAccountWhom().getId());
+				pStmt.setInt(2, entity.getUserFrom().getId());
+				pStmt.setInt(3, entity.getUserWhom().getId());
 				pStmt.setString(4, entity.getTheme());
 				pStmt.setString(5, entity.getText());
 				pStmt.setObject(6, entity.getUpdated(), Types.TIMESTAMP);
@@ -55,8 +55,8 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 			@Override
 			public IMessage doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getItem().getId());
-				pStmt.setInt(2, entity.getUserAccountFrom().getId());
-				pStmt.setInt(3, entity.getUserAccountWhom().getId());
+				pStmt.setInt(2, entity.getUserFrom().getId());
+				pStmt.setInt(3, entity.getUserWhom().getId());
 				pStmt.setString(4, entity.getTheme());
 				pStmt.setString(5, entity.getText());
 				pStmt.setObject(6, entity.getCreated(), Types.TIMESTAMP);
@@ -107,7 +107,7 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 			if (columns.contains("user_from_email")) {
 				userAccountFrom.setEmail(resultSet.getString("user_from_email"));
 			}
-			entity.setUserAccountFrom(userAccountFrom);
+			entity.setUserFrom(userAccountFrom);
 		}
 
 		final Integer userAccountWhomId = (Integer) resultSet.getObject("user_whom_id");
@@ -117,7 +117,7 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 			if (columns.contains("user_whom_email")) {
 				userAccountWhom.setEmail(resultSet.getString("user_whom_email"));
 			}
-			entity.setUserAccountWhom(userAccountWhom);
+			entity.setUserWhom(userAccountWhom);
 		}
 		return entity;
 	}
@@ -149,5 +149,10 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 	@Override
 	public long getCount(MessageFilter filter) {
 		return executeCountQuery("");
+	}
+
+	@Override
+	public IMessage getFullInfo(Integer id) {
+		throw new RuntimeException("not implemneted");
 	}
 }
