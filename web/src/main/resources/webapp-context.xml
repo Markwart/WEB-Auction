@@ -10,8 +10,9 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<import resource="security-context.xml" />
-	<context:property-placeholder location="classpath:jdbc.properties"
-		ignore-unresolvable="false" />
+	
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/project-datasource" />
+	
 	<import resource="service-context.xml" />
 
 	<context:component-scan base-package="com.itacademy.jd2.mm.auction.web.converter" />

@@ -3,6 +3,7 @@ package com.itacademy.jd2.mm.auction.web.security;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,7 +18,7 @@ import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 @Component("customAuthenticationProvider")
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-	// TODO inject UserService
+	@Autowired
 	private IUserAccountService userAccountService;
 
 	@Override
@@ -25,19 +26,17 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		final String username = authentication.getPrincipal() + "";
 		final String password = authentication.getCredentials() + "";
 
-		// TODO find use by login
-		for (IUserAccount user : userAccountService.getAll()) {
-			if (!user.getEmail().equals(username)) {
-				throw new BadCredentialsException("1000");
-			}
-		}
-
-		// TODO verify password (DB contains hash - not a plain password)
-		if (!"nimda".equals(password)) {
+		IUserAccount account = userAccountService.getUserByLogin(username);
+		if (account == null) {
 			throw new BadCredentialsException("1000");
 		}
 
-		final int userId = 1; // FIXME: it should be the real user id from DB
+		// TODO verify password (DB contains hash - not a plain password)
+		if (!account.getPassword().equals(password)) {
+			throw new BadCredentialsException("1000");
+		}
+
+		final int userId = account.getId(); 
 
 		List<String> userRoles = new ArrayList<>();// TODO get list of user's
 		// roles
@@ -48,12 +47,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			authorities.add(new SimpleGrantedAuthority(roleName));
 		}
 		return new ExtendedUsernamePasswordAuthenticationToken(userId, username, password, authorities);
-
 	}
 
 	@Override
 	public boolean supports(final Class<?> authentication) {
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
-
 }

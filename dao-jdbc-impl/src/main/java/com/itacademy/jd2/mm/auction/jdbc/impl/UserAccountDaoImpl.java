@@ -114,4 +114,9 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 		userAccount.setPersonalData(personalDataDao.get(id));
 		return userAccount;
 	}
+
+	@Override
+	public IUserAccount getUserByLogin(String username) {
+		throw new RuntimeException("not implemented");
+	}
 }

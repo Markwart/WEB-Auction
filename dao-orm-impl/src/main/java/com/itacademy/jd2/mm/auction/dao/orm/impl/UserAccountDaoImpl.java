@@ -109,4 +109,22 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}
 	}
+
+	@Override
+	public IUserAccount getUserByLogin(String username) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IUserAccount> cq = cb.createQuery(IUserAccount.class);
+		final Root<UserAccount> from = cq.from(UserAccount.class);
+
+		cq.select(from);
+
+
+		cq.where(cb.equal(from.get(UserAccount_.email), username));
+
+		final TypedQuery<IUserAccount> q = em.createQuery(cq);
+
+		return getSingleResult(q);
+	}
 }
