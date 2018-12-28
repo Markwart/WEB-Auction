@@ -11,44 +11,49 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
+import com.itacademy.jd2.mm.auction.service.IUserAccountService;
+
 @Component("customAuthenticationProvider")
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    // TODO inject UserService
-	//private IUserAccountService userAccountService;
+	// TODO inject UserService
+	private IUserAccountService userAccountService;
 
-    @Override
-    public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
-        final String username = authentication.getPrincipal() + "";
-        final String password = authentication.getCredentials() + "";
+	@Override
+	public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
+		final String username = authentication.getPrincipal() + "";
+		final String password = authentication.getCredentials() + "";
 
-        // TODO find use by login
-        if (!"admin".equals(username)) {
-            throw new BadCredentialsException("1000");
-        }
+		// TODO find use by login
+		for (IUserAccount user : userAccountService.getAll()) {
+			if (!user.getEmail().equals(username)) {
+				throw new BadCredentialsException("1000");
+			}
+		}
 
-        // TODO verify password (DB contains hash - not a plain password)
-        if (!"nimda".equals(password)) {
-            throw new BadCredentialsException("1000");
-        }
+		// TODO verify password (DB contains hash - not a plain password)
+		if (!"nimda".equals(password)) {
+			throw new BadCredentialsException("1000");
+		}
 
-        final int userId = 1; // FIXME: it should be the real user id from DB
+		final int userId = 1; // FIXME: it should be the real user id from DB
 
-        List<String> userRoles = new ArrayList<>();// TODO get list of user's
-        // roles
-        userRoles.add("ROLE_"+"admin");  // !!! ROLE_  prefix is required 
+		List<String> userRoles = new ArrayList<>();// TODO get list of user's
+		// roles
+		userRoles.add("ROLE_" + "admin"); // !!! ROLE_ prefix is required
 
-        final List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for (String roleName : userRoles) {
-            authorities.add(new SimpleGrantedAuthority(roleName));
-        }
-        return new ExtendedUsernamePasswordAuthenticationToken(userId, username, password, authorities);
+		final List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		for (String roleName : userRoles) {
+			authorities.add(new SimpleGrantedAuthority(roleName));
+		}
+		return new ExtendedUsernamePasswordAuthenticationToken(userId, username, password, authorities);
 
-    }
+	}
 
-    @Override
-    public boolean supports(final Class<?> authentication) {
-        return authentication.equals(UsernamePasswordAuthenticationToken.class);
-    }
+	@Override
+	public boolean supports(final Class<?> authentication) {
+		return authentication.equals(UsernamePasswordAuthenticationToken.class);
+	}
 
 }

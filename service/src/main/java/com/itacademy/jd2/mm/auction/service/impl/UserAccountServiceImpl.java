@@ -8,8 +8,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itacademy.jd2.mm.auction.daoapi.IAdminCommunicationDao;
+import com.itacademy.jd2.mm.auction.daoapi.IBidDao;
+import com.itacademy.jd2.mm.auction.daoapi.IDeferredBidDao;
+import com.itacademy.jd2.mm.auction.daoapi.IFeedbackDao;
+import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
+import com.itacademy.jd2.mm.auction.daoapi.IMessageDao;
 import com.itacademy.jd2.mm.auction.daoapi.IPersonalDataDao;
 import com.itacademy.jd2.mm.auction.daoapi.IUserAccountDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAdminCommunication;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
@@ -22,14 +34,28 @@ public class UserAccountServiceImpl implements IUserAccountService {
 
 	private IUserAccountDao dao;
 	private IPersonalDataDao personalDataDao;
+	private IAdminCommunicationDao adminCommunicationDao;
+	private IFeedbackDao feedbackDao;
+	private IMessageDao messageDao;
+	private IBidDao bidDao;
+	private IDeferredBidDao deferredBidDao;
+	private IItemDao itemDao;
 
 	@Autowired
-	public UserAccountServiceImpl(IUserAccountDao dao, IPersonalDataDao personalDataDao) {
+	public UserAccountServiceImpl(IUserAccountDao dao, IPersonalDataDao personalDataDao,
+			IAdminCommunicationDao adminCommunicationDao, IFeedbackDao feedbackDao, IMessageDao messageDao,
+			IBidDao bidDao, IDeferredBidDao deferredBidDao, IItemDao itemDao) {
 		super();
 		this.dao = dao;
 		this.personalDataDao = personalDataDao;
+		this.adminCommunicationDao = adminCommunicationDao;
+		this.feedbackDao = feedbackDao;
+		this.messageDao = messageDao;
+		this.bidDao = bidDao;
+		this.deferredBidDao = deferredBidDao;
+		this.itemDao = itemDao;
 	}
-	
+
 	@Override
 	public IUserAccount get(final Integer id) {
 		final IUserAccount entity = dao.get(id);
@@ -53,21 +79,55 @@ public class UserAccountServiceImpl implements IUserAccountService {
 		} else {
 			dao.update(entity);
 			LOGGER.debug("user_account updated: {}", entity);
-		}			
+		}
 	}
 
 	@Override
 	public void delete(final Integer id) {
 		LOGGER.info("delete user_account by id: {}", id);
+		deleteRelatedEntities(id);
 		personalDataDao.delete(id);
-		dao.delete(id);			
+		dao.delete(id);
+	}
+
+	private void deleteRelatedEntities(final Integer id) {
+		for (IAdminCommunication adminCommunication : adminCommunicationDao.selectAll()) {
+			if (adminCommunication.getUserFrom().getId().equals(id)) {
+				adminCommunicationDao.delete(adminCommunication.getId());
+			}
+		}
+		for (IItem item : itemDao.selectAll()) {
+			if (item.getSeller().getId().equals(id)) {
+				itemDao.delete(item.getId());
+			}
+		}
+		for (IBid bid : bidDao.selectAll()) {
+			if (bid.getUserBid().getId().equals(id)) {
+				bidDao.delete(bid.getId());
+			}
+		}
+		for (IDeferredBid deferredBid : deferredBidDao.selectAll()) {
+			if (deferredBid.getUserBid().getId().equals(id)) {
+				deferredBidDao.delete(deferredBid.getId());
+			}
+		}
+		for (IFeedback feedback : feedbackDao.selectAll()) {
+			if (feedback.getUserFrom().getId().equals(id) || feedback.getUserWhom().getId().equals(id)) {
+				feedbackDao.delete(feedback.getId());
+			}
+		}
+		for (IMessage message : messageDao.selectAll()) {
+			if (message.getUserFrom().getId().equals(id) || message.getUserWhom().getId().equals(id)) {
+				messageDao.delete(message.getId());
+			}
+		}
 	}
 
 	@Override
 	public void deleteAll() {
 		LOGGER.info("delete all user_accounts");
 		personalDataDao.deleteAll();
-		dao.deleteAll();		
+		dao.deleteAll();
 	}
 
 	@Override

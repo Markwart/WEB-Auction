@@ -8,8 +8,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itacademy.jd2.mm.auction.daoapi.IBidDao;
+import com.itacademy.jd2.mm.auction.daoapi.IDeferredBidDao;
+import com.itacademy.jd2.mm.auction.daoapi.IFeedbackDao;
 import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
+import com.itacademy.jd2.mm.auction.daoapi.IMessageDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.filter.ItemFilter;
 import com.itacademy.jd2.mm.auction.service.IItemService;
 
@@ -19,11 +27,20 @@ public class ItemServiceImpl implements IItemService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ItemServiceImpl.class);
 
 	private IItemDao dao;
+	private IBidDao bidDao;
+	private IDeferredBidDao deferredBidDao;
+	private IMessageDao messageDao;
+	private IFeedbackDao feedbackDao;
 
 	@Autowired
-	public ItemServiceImpl(IItemDao dao) {
+	public ItemServiceImpl(IItemDao dao, IBidDao bidDao, IDeferredBidDao deferredBidDao, IMessageDao messageDao,
+			IFeedbackDao feedbackDao) {
 		super();
 		this.dao = dao;
+		this.bidDao = bidDao;
+		this.deferredBidDao = deferredBidDao;
+		this.messageDao = messageDao;
+		this.feedbackDao = feedbackDao;
 	}
 
 	@Override
@@ -55,7 +72,31 @@ public class ItemServiceImpl implements IItemService {
 	@Override
 	public void delete(Integer id) {
 		LOGGER.info("delete item by id: {}", id);
+		deleteRelatedEntities(id);
 		dao.delete(id);
+	}
+
+	private void deleteRelatedEntities(final Integer id) {
+		for (IBid bid : bidDao.selectAll()) {
+			if (bid.getUserBid().getId().equals(id)) {
+				bidDao.delete(bid.getId());
+			}
+		}
+		for (IDeferredBid deferredBid : deferredBidDao.selectAll()) {
+			if (deferredBid.getUserBid().getId().equals(id)) {
+				deferredBidDao.delete(deferredBid.getId());
+			}
+		}
+		for (IFeedback feedback : feedbackDao.selectAll()) {
+			if (feedback.getUserFrom().getId().equals(id) || feedback.getUserWhom().getId().equals(id)) {
+				feedbackDao.delete(feedback.getId());
+			}
+		}
+		for (IMessage message : messageDao.selectAll()) {
+			if (message.getUserFrom().getId().equals(id) || message.getUserWhom().getId().equals(id)) {
+				messageDao.delete(message.getId());
+			}
+		}
 	}
 
 	@Override
@@ -80,7 +121,7 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	@Override
-    public IItem getFullInfo(Integer id) {
-        return dao.getFullInfo(id);
-    }
+	public IItem getFullInfo(Integer id) {
+		return dao.getFullInfo(id);
+	}
 }
