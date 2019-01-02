@@ -91,6 +91,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
 	}
 
 	private void deleteRelatedEntities(final Integer id) {
+
 		for (IAdminCommunication adminCommunication : adminCommunicationDao.selectAll()) {
 			if (adminCommunication.getUserFrom().getId().equals(id)) {
 				adminCommunicationDao.delete(adminCommunication.getId());

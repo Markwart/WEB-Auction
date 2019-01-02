@@ -30,4 +30,7 @@ public interface IItemService {
 
 	IItem getFullInfo(Integer id);
 
+	/*@Transactional
+	List<IItem> search(String text);*/
+
 }

@@ -12,6 +12,7 @@
 	<import resource="security-context.xml" />
 	
 	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/project-datasource" />
+	<!-- <jee:jndi-lookup id="smtpProps" jndi-name="smtp" /> -->
 	
 	<import resource="service-context.xml" />
 

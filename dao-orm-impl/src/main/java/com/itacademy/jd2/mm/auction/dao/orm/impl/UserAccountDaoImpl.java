@@ -28,7 +28,7 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 
 	@Override
 	public IUserAccount createEntity() {
-		final UserAccount userAccount = new UserAccount();
+		final IUserAccount userAccount = new UserAccount();
 		return userAccount;
 	}
 
@@ -119,7 +119,6 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 		final Root<UserAccount> from = cq.from(UserAccount.class);
 
 		cq.select(from);
-
 
 		cq.where(cb.equal(from.get(UserAccount_.email), username));
 

@@ -1,12 +1,30 @@
 package com.itacademy.jd2.mm.auction.daoapi.filter;
 
 public class ItemFilter extends AbstractFilter {
+	
+	private String name, text;
 
 	private boolean fetchUserAccount;
 	private boolean fetchCategory;
 	private boolean fetchCondition;
 	private boolean fetchComposition;
 	private boolean fetchCountryOrigin;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
 
 	public boolean getFetchUserAccount() {
 		return fetchUserAccount;

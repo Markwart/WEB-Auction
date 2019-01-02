@@ -12,4 +12,6 @@ public interface IItemDao extends IDao<IItem, Integer> {
 	long getCount(ItemFilter filter);
 
 	IItem getFullInfo(Integer id);
+
+	//List<IItem> search(String text);
 }

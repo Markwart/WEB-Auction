@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<h2>Login with Username and Password</h2>
+<h2 class="center">Login with Username and Password</h2>
 <div class="row">
     <div class="col s3"></div>
     <div class="col s6">

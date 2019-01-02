@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.daoapi.IPersonalDataDao;
 import com.itacademy.jd2.mm.auction.daoapi.IUserAccountDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.UserAccount;
@@ -38,7 +39,7 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 				String.format("update %s set role=?, email=?, password=?, updated=? where id=?", getTableName())) {
 			@Override
 			public IUserAccount doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
-				pStmt.setInt(1, entity.getRole());
+				pStmt.setObject(1, entity.getRole());
 				pStmt.setString(2, entity.getEmail());
 				pStmt.setString(3, entity.getPassword());
 				pStmt.setObject(4, entity.getUpdated(), Types.TIMESTAMP);
@@ -57,7 +58,7 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 
 			@Override
 			public IUserAccount doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
-				pStmt.setInt(1, entity.getRole());
+				pStmt.setObject(1, entity.getRole());
 				pStmt.setString(2, entity.getEmail());
 				pStmt.setString(3, entity.getPassword());
 				pStmt.setObject(4, entity.getCreated(), Types.TIMESTAMP);
@@ -86,7 +87,7 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 	protected IUserAccount parseRow(final ResultSet resultSet) throws SQLException {
 		final IUserAccount entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
-		entity.setRole(resultSet.getInt("role"));
+		entity.setRole((Roles) resultSet.getObject("role"));
 		entity.setEmail(resultSet.getString("email"));
 		entity.setPassword(resultSet.getString("password"));
 		entity.setCreated(resultSet.getTimestamp("created"));

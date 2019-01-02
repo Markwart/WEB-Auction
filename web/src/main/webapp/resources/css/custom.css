@@ -1,3 +1,20 @@
+.current-user {
+	font-weight: bold;
+	/* font-size: 100%; */
+	display: flex;
+    align-items: center;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+   /*  line-height: initial; */
+    text-align: center;
+}
+
+.current-user .material-icons{
+	padding-left: 5px;
+	font-size: 30px;
+}
+
 .item-table td {
 	border-right: 1px solid lightgrey;
 }
@@ -16,8 +33,9 @@
 }
 
 nav {
-	color: #fff;
 	background-color: #4caf88;
+	line-height: 40px;
+	height: auto;
 }
 
 .page-footer {
@@ -56,4 +74,14 @@ main {
 .switch label input[type=checkbox]:checked ~.lever:before, .switch label input[type=checkbox]:checked
     ~.lever:after {
 	left: 18px;
+}
+
+.menu-position-center {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.nav-wrapper.container {
+	height: auto;
 }

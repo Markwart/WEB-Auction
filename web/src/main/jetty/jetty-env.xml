@@ -15,11 +15,11 @@
 
 	</New>
 
-<!-- 	<New id="smtpProps" class="org.eclipse.jetty.plus.jndi.Resource">
+	<!-- <New id="smtpProps" class="org.eclipse.jetty.plus.jndi.Resource">
 		<Arg></Arg>
 		<Arg>smtp</Arg>
 		<Arg>
-			<New class="com.itacademy.jd2.dz.cardealer.service.jndi.SmtpProperties">
+			<New class="com.itacademy.jd2.mm.auction.service.jndi.SmtpProperties">
 				<Set name="from">**********</Set>
 				<Set name="host">**********</Set>
 				<Set name="port">25</Set>
@@ -27,6 +27,6 @@
 				<Set name="password">**********</Set>
 			</New>
 		</Arg>
-	</New> -->
+	</New>  -->
 </Configure>
 

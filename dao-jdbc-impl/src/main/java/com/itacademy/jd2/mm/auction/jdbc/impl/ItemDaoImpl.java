@@ -178,4 +178,9 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 	public IItem getFullInfo(Integer id) {
 		throw new RuntimeException("not implemneted");
 	}
+
+	/*@Override
+	public List<IItem> search(String text) {
+		throw new RuntimeException("not implemneted");
+	}*/
 }

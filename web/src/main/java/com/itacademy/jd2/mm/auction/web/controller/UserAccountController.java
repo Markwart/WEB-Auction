@@ -1,5 +1,6 @@
 package com.itacademy.jd2.mm.auction.web.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
@@ -68,9 +70,8 @@ public class UserAccountController extends AbstractController {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		final Map<String, Object> hashMap = new HashMap<>();
-		final IUserAccount newEntity = userAccountService.createEntity();
-		hashMap.put("formModel", toDtoConverter.apply(newEntity));
-
+		hashMap.put("formModel", new UserAccountDTO());
+		loadCommonFormModels(hashMap);
 		return new ModelAndView("userAccount.edit", hashMap);
 	}
 
@@ -79,7 +80,7 @@ public class UserAccountController extends AbstractController {
 		if (result.hasErrors()) {
 			final Map<String, Object> hashMap = new HashMap<>();
 			hashMap.put("formModel", formModel);
-			
+			loadCommonFormModels(hashMap);
 			return "userAccount.edit";
 		} else {
 			final IUserAccount entity = fromDtoConverter.apply(formModel);
@@ -102,7 +103,7 @@ public class UserAccountController extends AbstractController {
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 		hashMap.put("readonly", true);
-
+		loadCommonFormModels(hashMap);
 		return new ModelAndView("userAccount.edit", hashMap);
 	}
 
@@ -112,7 +113,15 @@ public class UserAccountController extends AbstractController {
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
-
+		loadCommonFormModels(hashMap);
 		return new ModelAndView("userAccount.edit", hashMap);
+	}
+
+	private void loadCommonFormModels(final Map<String, Object> hashMap) {
+		final List<Roles> rolesList = Arrays.asList(Roles.values());
+		
+		final Map<String, String> rolesMap = rolesList.stream()
+				.collect(Collectors.toMap(Roles::name, Roles::name));
+		hashMap.put("rolesChoices", rolesMap);
 	}
 }

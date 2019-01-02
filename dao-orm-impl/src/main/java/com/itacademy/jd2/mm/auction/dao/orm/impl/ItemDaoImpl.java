@@ -149,4 +149,23 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}
 	}
+
+	/*@SuppressWarnings("unchecked")
+	@Override
+	public List<IItem> search(String text) {
+
+		EntityManager em = getEntityManager();
+		FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
+
+		// create native Lucene query unsing the query DSL
+		// alternatively you can write the Lucene query using the Lucene query parser
+		// or the Lucene programmatic API. The Hibernate Search DSL is recommended though
+		QueryBuilder qb = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Item.class).get();
+		org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("text", "name").matching(text).createQuery();
+
+		// wrap Lucene query in a javax.persistence.Query
+		javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Item.class);
+
+		return jpaQuery.getResultList();
+	}*/
 }

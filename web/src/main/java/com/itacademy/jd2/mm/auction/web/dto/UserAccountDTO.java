@@ -9,7 +9,7 @@ public class UserAccountDTO {
 
 	private Integer id;
 
-	private Integer role;
+	private String role;
 	private String email;
 	private String password;
 
@@ -36,14 +36,6 @@ public class UserAccountDTO {
 		this.id = id;
 	}
 
-	public Integer getRole() {
-		return role;
-	}
-
-	public void setRole(Integer role) {
-		this.role = role;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -57,7 +49,7 @@ public class UserAccountDTO {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password =password; //PasswordUtils.generateSecurePassword(password, PasswordUtils.getSalt(30)
 	}
 
 	public Date getCreated() {
@@ -76,4 +68,11 @@ public class UserAccountDTO {
 		this.updated = updated;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 }

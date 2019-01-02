@@ -1,10 +1,8 @@
 package com.itacademy.jd2.mm.auction.daoapi.entity.table;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
+
 public interface IUserAccount  extends IBaseEntity{
-
-	Integer getRole();
-
-	void setRole(Integer role);
 
 	String getEmail();
 
@@ -17,5 +15,8 @@ public interface IUserAccount  extends IBaseEntity{
 	IPersonalData getPersonalData();
 	
 	void setPersonalData(IPersonalData data);
-	
+
+	void setRole(Roles role);
+
+	Roles getRole();
 }

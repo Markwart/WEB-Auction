@@ -5,21 +5,26 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.itacademy.jd2.mm.auction.dao.orm.PasswordUtils;
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 @Entity
 public class UserAccount extends BaseEntity implements IUserAccount {
-
+	
 	@Column
-	private Integer role;
+	@Enumerated(EnumType.STRING)
+	private Roles role;
 
 	@Column
 	private String email;
@@ -36,12 +41,12 @@ public class UserAccount extends BaseEntity implements IUserAccount {
 	private Set<IItem> items = new HashSet<>();
 
 	@Override
-	public Integer getRole() {
+	public Roles getRole() {
 		return role;
 	}
 
 	@Override
-	public void setRole(final Integer role) {
+	public void setRole(Roles role) {
 		this.role = role;
 	}
 
@@ -62,7 +67,7 @@ public class UserAccount extends BaseEntity implements IUserAccount {
 
 	@Override
 	public void setPassword(final String password) {
-		this.password = password;
+		this.password = PasswordUtils.generateSecurePassword(password, PasswordUtils.getSalt(25));
 	}
 
 	@Override

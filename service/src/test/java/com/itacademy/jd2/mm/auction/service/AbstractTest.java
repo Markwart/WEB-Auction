@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAdminCommunication;
@@ -240,7 +241,7 @@ public abstract class AbstractTest {
 
 	protected IUserAccount saveNewUserAccount() {
 		final IUserAccount entity = userAccountService.createEntity();
-		entity.setRole(getRANDOM().nextInt(2));
+		entity.setRole(Roles.user);
 		entity.setEmail("email-" + getRandomPrefix());
 		entity.setPassword("password-" + getRandomPrefix());
 		userAccountService.save(entity);

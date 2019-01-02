@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
@@ -92,7 +93,7 @@ public class UserAccountServiceTest extends AbstractTest {
 	@Test
 	public void createWithPersonalDataTest() {
 		final IUserAccount entity = userAccountService.createEntity();
-		entity.setRole(getRANDOM().nextInt(2));
+		entity.setRole(Roles.user);
 		entity.setEmail("email-" + getRandomPrefix());
 		entity.setPassword("password-" + getRandomPrefix());
 

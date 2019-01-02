@@ -12,10 +12,24 @@
 
 	<context:component-scan
 		base-package="com.itacademy.jd2.mm.auction.web.security" />
+		
+		 <!-- <global-method-security pre-post-annotations="enabled"/> -->
 
 	<http>
-		<!-- <intercept-url pattern="/brand**" access="hasRole('admin')" /> -->
-		<intercept-url pattern="/cond**" access="!isAnonymous()" />
+		<!-- <intercept-url pattern="/brand**" access="!isAnonymous()" /> --> 
+		<intercept-url pattern="/cond**" access="hasRole('admin')" />
+		<intercept-url pattern="/categ**" access="hasRole('admin')" />
+		<intercept-url pattern="/comp**" access="hasRole('admin')" /> 
+		<intercept-url pattern="/country**" access="hasRole('admin')" />
+		<intercept-url pattern="/paym**" access="hasRole('admin')" />
+		<intercept-url pattern="/ship**" access="hasRole('admin')" />
+		<intercept-url pattern="/step**" access="hasRole('admin')" />
+		<intercept-url pattern="/bid**" access="hasRole('admin')" />
+		<intercept-url pattern="/deferred**" access="hasRole('admin')" />
+		<!-- <intercept-url pattern="/user**" access="hasRole('admin')" /> -->
+		<intercept-url pattern="/mess**" access="hasAnyRole('admin', 'moderator')" />
+		<intercept-url pattern="/admin**" access="hasAnyRole('admin', 'moderator')" />
+		<intercept-url pattern="/auctionDur**" access="hasRole('admin')" />
 		
 		<form-login login-page="/login" default-target-url="/"
 			authentication-failure-url="/login?error" username-parameter="username"

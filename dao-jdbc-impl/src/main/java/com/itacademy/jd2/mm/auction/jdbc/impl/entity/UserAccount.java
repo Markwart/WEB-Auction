@@ -1,24 +1,15 @@
 package com.itacademy.jd2.mm.auction.jdbc.impl.entity;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 public class UserAccount extends BaseEntity implements IUserAccount {
 
-	private Integer role;
+	private Roles role;
 	private String email;
 	private String password;
 	private IPersonalData personalData;
-
-	@Override
-	public Integer getRole() {
-		return role;
-	}
-
-	@Override
-	public void setRole(final Integer role) {
-		this.role = role;
-	}
 
 	@Override
 	public String getEmail() {
@@ -54,6 +45,16 @@ public class UserAccount extends BaseEntity implements IUserAccount {
 	@Override
 	public void setPersonalData(IPersonalData personalData) {
 		this.personalData = personalData;
+	}
+
+	@Override
+	public void setRole(Roles role) {
+		this.role = role;
+	}
+
+	@Override
+	public Roles getRole() {
+		return role;
 	}
 
 }

@@ -12,6 +12,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import com.itacademy.jd2.mm.auction.dao.orm.PasswordUtils;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 
@@ -30,18 +31,17 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		if (account == null) {
 			throw new BadCredentialsException("1000");
 		}
-
-		// TODO verify password (DB contains hash - not a plain password)
+		//!PasswordUtils.verifyUserPassword(password, account.getPassword(), PasswordUtils.getSalt(25))
 		if (!account.getPassword().equals(password)) {
 			throw new BadCredentialsException("1000");
 		}
 
-		final int userId = account.getId(); 
+		final int userId = account.getId();
 
-		List<String> userRoles = new ArrayList<>();// TODO get list of user's
-		// roles
-		userRoles.add("ROLE_" + "admin"); // !!! ROLE_ prefix is required
-
+		List<String> userRoles = new ArrayList<>();
+		userRoles.add("ROLE_" + account.getRole());
+		
+		
 		final List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		for (String roleName : userRoles) {
 			authorities.add(new SimpleGrantedAuthority(roleName));

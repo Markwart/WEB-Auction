@@ -19,10 +19,15 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 @Entity
+//@Indexed
 public class Item extends BaseEntity implements IItem {
 
 	@Column
-	private String name, image, text;
+	//@Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
+	private String name, text;
+	
+	@Column
+	private String image;
 	@Column
 	private Integer year;
 	@Column

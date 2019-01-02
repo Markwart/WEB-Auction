@@ -37,10 +37,14 @@ import com.itacademy.jd2.mm.auction.web.converter.ItemFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.ItemToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.dto.ItemDTO;
 import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
+import com.itacademy.jd2.mm.auction.web.dto.search.ItemSearchDTO;
 
 @Controller
 @RequestMapping(value = "/item")
 public class ItemController extends AbstractController {
+
+	private static final String SEARCH_FORM_MODEL = "searchFormItem";
+	private static final String SEARCH_DTO = ItemController.class.getSimpleName() + "_SEACH_DTO";
 
 	private IItemService itemService;
 	private IUserAccountService userAccountService;
@@ -68,8 +72,8 @@ public class ItemController extends AbstractController {
 		this.fromDtoConverter = fromDtoConverter;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView index(final HttpServletRequest req,
+	@RequestMapping(method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView index(final HttpServletRequest req, @ModelAttribute(SEARCH_FORM_MODEL) ItemSearchDTO searchDto,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
 
@@ -77,7 +81,22 @@ public class ItemController extends AbstractController {
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
 
+		if (req.getMethod().equalsIgnoreCase("get")) {
+			searchDto = getSearchDTO(req);
+		} else {
+			req.getSession().setAttribute(SEARCH_DTO, searchDto);
+		}
+
 		final ItemFilter filter = new ItemFilter();
+
+		if (searchDto.getName() != null) {
+			filter.setName(searchDto.getName());
+		}
+
+		if (searchDto.getText() != null) {
+			filter.setText(searchDto.getText());
+		}
+
 		prepareFilter(gridState, filter);
 		gridState.setTotalCount(itemService.getCount(filter));
 
@@ -92,6 +111,8 @@ public class ItemController extends AbstractController {
 
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
+		models.put(SEARCH_FORM_MODEL, searchDto);
+
 		return new ModelAndView("item.list", models);
 	}
 
@@ -103,7 +124,7 @@ public class ItemController extends AbstractController {
 		return new ModelAndView("item.edit", hashMap);
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Object save(@Valid @ModelAttribute("formModel") final ItemDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
 			final Map<String, Object> hashMap = new HashMap<>();
@@ -177,9 +198,18 @@ public class ItemController extends AbstractController {
 		final Map<Integer, String> countryOriginMap = countryOrigin.stream()
 				.collect(Collectors.toMap(ICountryOrigin::getId, ICountryOrigin::getName));
 		hashMap.put("countryOriginChoices", countryOriginMap);
-		
+
 		final Map<String, String> statusAuctionMap = statusAuctionList.stream()
 				.collect(Collectors.toMap(StatusAuction::name, StatusAuction::name));
 		hashMap.put("statusAuctionChoices", statusAuctionMap);
+	}
+
+	private ItemSearchDTO getSearchDTO(final HttpServletRequest req) {
+		ItemSearchDTO searchDTO = (ItemSearchDTO) req.getSession().getAttribute(SEARCH_DTO);
+		if (searchDTO == null) {
+			searchDTO = new ItemSearchDTO();
+			req.getSession().setAttribute(SEARCH_DTO, searchDTO);
+		}
+		return searchDTO;
 	}
 }

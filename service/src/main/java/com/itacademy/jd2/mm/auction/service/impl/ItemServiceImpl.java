@@ -77,6 +77,7 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	private void deleteRelatedEntities(final Integer id) {
+		
 		for (IBid bid : bidDao.selectAll()) {
 			if (bid.getUserBid().getId().equals(id)) {
 				bidDao.delete(bid.getId());
@@ -124,4 +125,9 @@ public class ItemServiceImpl implements IItemService {
 	public IItem getFullInfo(Integer id) {
 		return dao.getFullInfo(id);
 	}
+	
+	/*@Override
+    public List<IItem> search(String text) {
+        return dao.search(text);
+    }*/
 }
