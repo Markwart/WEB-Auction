@@ -1,4 +1,4 @@
-package com.itacademy.jd2.mm.auction.dao.orm;
+package com.itacademy.jd2.mm.auction.service.hashpassword;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -10,7 +10,8 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 public class PasswordUtils {
-
+	
+	static String salt = "yukyuky";
 	private static final Random RANDOM = new SecureRandom();
 	private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	private static final int ITERATIONS = 10000;
@@ -37,7 +38,7 @@ public class PasswordUtils {
 		}
 	}
 
-	public static String generateSecurePassword(String password, String salt) {
+	public static String generateSecurePassword(String password) {
 		String returnValue = null;
 		byte[] securePassword = hash(password.toCharArray(), salt.getBytes());
 
@@ -46,11 +47,11 @@ public class PasswordUtils {
 		return returnValue;
 	}
 
-	public static boolean verifyUserPassword(String providedPassword, String securedPassword, String salt) {
+	public static boolean verifyUserPassword(String providedPassword, String securedPassword) {
 		boolean returnValue = false;
 
 		// Generate New secure password with the same salt
-		String newSecurePassword = generateSecurePassword(providedPassword, salt);
+		String newSecurePassword = generateSecurePassword(providedPassword);
 
 		// Check if two passwords are equal
 		returnValue = newSecurePassword.equalsIgnoreCase(securedPassword);

@@ -11,7 +11,7 @@
 	<artifactId>dao-orm-impl</artifactId>
 	<name>dao-orm-impl</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -63,11 +63,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
-		<!--  <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search-orm</artifactId>
-        </dependency>  -->
+ 
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-orm</artifactId>
+		</dependency>
 
 	</dependencies>
 

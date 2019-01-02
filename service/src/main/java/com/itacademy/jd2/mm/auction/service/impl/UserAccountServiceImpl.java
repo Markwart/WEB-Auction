@@ -26,6 +26,7 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
+import com.itacademy.jd2.mm.auction.service.hashpassword.PasswordUtils;
 
 @Service
 public class UserAccountServiceImpl implements IUserAccountService {
@@ -66,20 +67,6 @@ public class UserAccountServiceImpl implements IUserAccountService {
 	public List<IUserAccount> getAll() {
 		final List<IUserAccount> all = dao.selectAll();
 		return all;
-	}
-
-	@Override
-	public void save(final IUserAccount entity) {
-		final Date modefeOn = new Date();
-		entity.setUpdated(modefeOn);
-		if (entity.getId() == null) {
-			entity.setCreated(modefeOn);
-			dao.insert(entity);
-			LOGGER.debug("new user_account created: {}", entity);
-		} else {
-			dao.update(entity);
-			LOGGER.debug("user_account updated: {}", entity);
-		}
 	}
 
 	@Override
@@ -165,6 +152,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
 
 		if (userAccount.getId() == null) {
 			userAccount.setCreated(modifiedDate);
+			userAccount.setPassword(PasswordUtils.generateSecurePassword(userAccount.getPassword()));
 			dao.insert(userAccount);
 
 			personalData.setId(userAccount.getId());

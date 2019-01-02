@@ -13,7 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
-import com.itacademy.jd2.mm.auction.dao.orm.PasswordUtils;
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
@@ -67,7 +66,7 @@ public class UserAccount extends BaseEntity implements IUserAccount {
 
 	@Override
 	public void setPassword(final String password) {
-		this.password = PasswordUtils.generateSecurePassword(password, PasswordUtils.getSalt(25));
+		this.password = password;
 	}
 
 	@Override

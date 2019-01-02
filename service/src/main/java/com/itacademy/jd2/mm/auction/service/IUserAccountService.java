@@ -15,26 +15,23 @@ public interface IUserAccountService {
 	List<IUserAccount> getAll();
 
 	@Transactional
-	void save(IUserAccount entity);
-
-	@Transactional
 	void delete(Integer id);
 
 	@Transactional
 	void deleteAll();
 
 	IUserAccount createEntity();
-	
+
 	IPersonalData createPersonalDataEntity();
-	
+
 	IUserAccount getPersonalData(final Integer id);
-	
+
 	@Transactional
 	void save(IUserAccount entity, IPersonalData personalDataEntity);
-	
+
 	List<IUserAccount> find(UserAccountFilter filter);
 
-    long getCount(UserAccountFilter filter);
+	long getCount(UserAccountFilter filter);
 
 	IUserAccount getUserByLogin(String username);
 }

@@ -24,6 +24,7 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IStepBlock;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
@@ -241,10 +242,17 @@ public abstract class AbstractTest {
 
 	protected IUserAccount saveNewUserAccount() {
 		final IUserAccount entity = userAccountService.createEntity();
+		final IPersonalData personalDataEntity = userAccountService.createPersonalDataEntity();
 		entity.setRole(Roles.user);
 		entity.setEmail("email-" + getRandomPrefix());
 		entity.setPassword("password-" + getRandomPrefix());
-		userAccountService.save(entity);
+		personalDataEntity.setFirstName("first_name-" + getRandomPrefix());
+		personalDataEntity.setLastName("last_name-" + getRandomPrefix());
+		personalDataEntity.setAdress("adress-" + getRandomPrefix());
+		personalDataEntity.setUsername("username-" + getRandomPrefix());
+		personalDataEntity.setId(entity.getId());
+		entity.setPersonalData(personalDataEntity);
+		userAccountService.save(entity, personalDataEntity);
 		return entity;
 	}
 

@@ -39,3 +39,72 @@
 15:52:20.224 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
 15:52:20.827 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'my-unit'
 15:52:23.075 [Thread-1] INFO  org.springframework.context.support.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@18078bef: startup date [Fri Dec 28 15:52:18 MSK 2018]; root of context hierarchy
+21:11:48.420 [main] INFO  org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+21:11:48.437 [main] INFO  org.springframework.test.context.support.DefaultTestContextBootstrapper - Could not instantiate TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [javax/servlet/ServletContext]
+21:11:48.437 [main] INFO  org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@36902638, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@223d2c72, org.springframework.test.context.support.DirtiesContextTestExecutionListener@8f4ea7c, org.springframework.test.context.transaction.TransactionalTestExecutionListener@436813f3, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@74fe5c40]
+21:11:48.484 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [service-context-test.xml]
+21:11:48.562 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [service-context.xml]
+21:11:48.578 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [dao-context.xml]
+21:11:48.703 [main] INFO  org.springframework.context.support.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@368f2016: startup date [Wed Jan 02 21:11:48 MSK 2019]; root of context hierarchy
+21:11:49.007 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'my-unit'
+21:11:49.022 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: my-unit
+	...]
+21:11:49.116 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.3.8.Final}
+21:11:49.116 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+21:11:49.116 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+21:11:49.257 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+21:11:49.897 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+21:11:49.900 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+21:11:50.048 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+21:11:50.126 [main] INFO  org.hibernate.search.engine.Version - HSEARCH000034: Hibernate Search 5.0.1.Final
+21:11:50.516 [main] WARN  org.hibernate.search.engine.impl.ConfigContext - HSEARCH000075: Configuration setting hibernate.search.lucene_version was not specified: using LUCENE_CURRENT.
+21:11:50.594 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'my-unit'
+21:11:52.084 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 42804
+21:11:52.084 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - ОШИБКА: столбец "role" имеет тип integer, а выражение - character varying
+  Hint: Перепишите выражение или преобразуйте его тип.
+  Position: 92
+21:11:52.162 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 42804
+21:11:52.162 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - ОШИБКА: столбец "role" имеет тип integer, а выражение - character varying
+  Hint: Перепишите выражение или преобразуйте его тип.
+  Position: 92
+21:11:52.209 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 42804
+21:11:52.209 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - ОШИБКА: столбец "role" имеет тип integer, а выражение - character varying
+  Hint: Перепишите выражение или преобразуйте его тип.
+  Position: 92
+21:11:52.287 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 42804
+21:11:52.287 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - ОШИБКА: столбец "role" имеет тип integer, а выражение - character varying
+  Hint: Перепишите выражение или преобразуйте его тип.
+  Position: 92
+21:11:52.334 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 42804
+21:11:52.334 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - ОШИБКА: столбец "role" имеет тип integer, а выражение - character varying
+  Hint: Перепишите выражение или преобразуйте его тип.
+  Position: 92
+21:11:52.365 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 42804
+21:11:52.365 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - ОШИБКА: столбец "role" имеет тип integer, а выражение - character varying
+  Hint: Перепишите выражение или преобразуйте его тип.
+  Position: 92
+21:11:52.381 [Thread-1] INFO  org.springframework.context.support.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@368f2016: startup date [Wed Jan 02 21:11:48 MSK 2019]; root of context hierarchy
+21:16:54.347 [main] INFO  org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+21:16:54.356 [main] INFO  org.springframework.test.context.support.DefaultTestContextBootstrapper - Could not instantiate TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [javax/servlet/ServletContext]
+21:16:54.360 [main] INFO  org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@36902638, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@223d2c72, org.springframework.test.context.support.DirtiesContextTestExecutionListener@8f4ea7c, org.springframework.test.context.transaction.TransactionalTestExecutionListener@436813f3, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@74fe5c40]
+21:16:54.404 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [service-context-test.xml]
+21:16:54.487 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [service-context.xml]
+21:16:54.505 [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [dao-context.xml]
+21:16:54.626 [main] INFO  org.springframework.context.support.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@368f2016: startup date [Wed Jan 02 21:16:54 MSK 2019]; root of context hierarchy
+21:16:54.935 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'my-unit'
+21:16:54.960 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: my-unit
+	...]
+21:16:55.058 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {4.3.8.Final}
+21:16:55.060 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+21:16:55.061 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+21:16:55.207 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+21:16:55.556 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+21:16:55.564 [main] INFO  org.hibernate.engine.jdbc.internal.LobCreatorBuilder - HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+21:16:55.722 [main] INFO  org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory - HHH000397: Using ASTQueryTranslatorFactory
+21:16:55.802 [main] INFO  org.hibernate.search.engine.Version - HSEARCH000034: Hibernate Search 5.0.1.Final
+21:16:56.176 [main] WARN  org.hibernate.search.engine.impl.ConfigContext - HSEARCH000075: Configuration setting hibernate.search.lucene_version was not specified: using LUCENE_CURRENT.
+21:16:56.256 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'my-unit'
+21:16:58.745 [Thread-1] INFO  org.springframework.context.support.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@368f2016: startup date [Wed Jan 02 21:16:54 MSK 2019]; root of context hierarchy
+21:16:58.746 [Thread-1] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'my-unit'
