@@ -28,10 +28,14 @@ import com.itacademy.jd2.mm.auction.web.converter.UserAccountFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.UserAccountToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.dto.UserAccountDTO;
 import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
+import com.itacademy.jd2.mm.auction.web.dto.search.UserAccountSearchDTO;
 
 @Controller
 @RequestMapping(value = "/userAccount")
 public class UserAccountController extends AbstractController {
+
+	private static final String SEARCH_FORM_MODEL = "searchFormModel";
+	private static final String SEARCH_DTO = UserAccountController.class.getSimpleName() + "_SEACH_DTO";
 
 	private IUserAccountService userAccountService;
 
@@ -47,15 +51,26 @@ public class UserAccountController extends AbstractController {
 		this.fromDtoConverter = fromDtoConverter;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView index(final HttpServletRequest req,
+			@ModelAttribute(SEARCH_FORM_MODEL) UserAccountSearchDTO searchDto,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
 
+		if (req.getMethod().equalsIgnoreCase("get")) {
+			searchDto = getSearchDTO(req);
+		} else {
+			req.getSession().setAttribute(SEARCH_DTO, searchDto);
+		}
+
 		final UserAccountFilter filter = new UserAccountFilter();
+		if (searchDto.getEmail() != null) {
+            filter.setEmail(searchDto.getEmail());
+        }
+		
 		prepareFilter(gridState, filter);
 
 		final List<IUserAccount> entities = userAccountService.find(filter);
@@ -64,6 +79,7 @@ public class UserAccountController extends AbstractController {
 
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
+		models.put(SEARCH_FORM_MODEL, searchDto);
 		return new ModelAndView("userAccount.list", models);
 	}
 
@@ -119,9 +135,17 @@ public class UserAccountController extends AbstractController {
 
 	private void loadCommonFormModels(final Map<String, Object> hashMap) {
 		final List<Roles> rolesList = Arrays.asList(Roles.values());
-		
-		final Map<String, String> rolesMap = rolesList.stream()
-				.collect(Collectors.toMap(Roles::name, Roles::name));
+
+		final Map<String, String> rolesMap = rolesList.stream().collect(Collectors.toMap(Roles::name, Roles::name));
 		hashMap.put("rolesChoices", rolesMap);
+	}
+
+	private UserAccountSearchDTO getSearchDTO(final HttpServletRequest req) {
+		UserAccountSearchDTO searchDTO = (UserAccountSearchDTO) req.getSession().getAttribute(SEARCH_DTO);
+		if (searchDTO == null) {
+			searchDTO = new UserAccountSearchDTO();
+			req.getSession().setAttribute(SEARCH_DTO, searchDTO);
+		}
+		return searchDTO;
 	}
 }

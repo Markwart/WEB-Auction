@@ -10,6 +10,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
@@ -19,11 +25,11 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 @Entity
-//@Indexed
+@Indexed
 public class Item extends BaseEntity implements IItem {
 
 	@Column
-	//@Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
+	@Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
 	private String name, text;
 	
 	@Column

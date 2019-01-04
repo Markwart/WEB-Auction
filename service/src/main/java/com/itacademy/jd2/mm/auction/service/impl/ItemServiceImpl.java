@@ -77,24 +77,24 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	private void deleteRelatedEntities(final Integer id) {
-		
-		for (IBid bid : bidDao.selectAll()) {
-			if (bid.getUserBid().getId().equals(id)) {
+
+		for (IBid bid : dao.findRelatedBids(id)) {
+			if (bid.getItem().getId().equals(id)) {
 				bidDao.delete(bid.getId());
 			}
 		}
-		for (IDeferredBid deferredBid : deferredBidDao.selectAll()) {
-			if (deferredBid.getUserBid().getId().equals(id)) {
+		for (IDeferredBid deferredBid : dao.findRelatedDeferredBids(id)) {
+			if (deferredBid.getItem().getId().equals(id)) {
 				deferredBidDao.delete(deferredBid.getId());
 			}
 		}
-		for (IFeedback feedback : feedbackDao.selectAll()) {
-			if (feedback.getUserFrom().getId().equals(id) || feedback.getUserWhom().getId().equals(id)) {
+		for (IFeedback feedback : dao.findRelatedFeedback(id)) {
+			if (feedback.getItem().getId().equals(id)) {
 				feedbackDao.delete(feedback.getId());
 			}
 		}
-		for (IMessage message : messageDao.selectAll()) {
-			if (message.getUserFrom().getId().equals(id) || message.getUserWhom().getId().equals(id)) {
+		for (IMessage message : dao.findRelatedMessages(id)) {
+			if (message.getItem().getId().equals(id)) {
 				messageDao.delete(message.getId());
 			}
 		}
@@ -125,9 +125,9 @@ public class ItemServiceImpl implements IItemService {
 	public IItem getFullInfo(Integer id) {
 		return dao.getFullInfo(id);
 	}
-	
-	/*@Override
-    public List<IItem> search(String text) {
-        return dao.search(text);
-    }*/
+
+	@Override
+	public List<IItem> search(String text) {
+		return dao.search(text);
+	}
 }

@@ -11,17 +11,31 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.jpa.criteria.OrderImpl;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Repository;
 
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Bid;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Bid_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Category_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Composition_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Condition_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.CountryOrigin_;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.DeferredBid;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.DeferredBid_;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Feedback;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Feedback_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Item;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Item_;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Message;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Message_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.UserAccount_;
 import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.filter.ItemFilter;
 
 @Repository
@@ -66,7 +80,6 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
 
 		final CriteriaQuery<IItem> cq = cb.createQuery(IItem.class);
-
 		final Root<Item> from = cq.from(Item.class);
 
 		cq.select(from);
@@ -150,7 +163,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		}
 	}
 
-	/*@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<IItem> search(String text) {
 
@@ -159,7 +172,8 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 
 		// create native Lucene query unsing the query DSL
 		// alternatively you can write the Lucene query using the Lucene query parser
-		// or the Lucene programmatic API. The Hibernate Search DSL is recommended though
+		// or the Lucene programmatic API. The Hibernate Search DSL is recommended
+		// though
 		QueryBuilder qb = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Item.class).get();
 		org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("text", "name").matching(text).createQuery();
 
@@ -167,5 +181,69 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Item.class);
 
 		return jpaQuery.getResultList();
-	}*/
+	}
+
+	@Override
+	public List<IBid> findRelatedBids(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IBid> cq = cb.createQuery(IBid.class);
+		final Root<Bid> from = cq.from(Bid.class);
+		
+		cq.select(from);
+		cq.where(cb.equal(from.get(Bid_.item), id));
+
+		final TypedQuery<IBid> q = em.createQuery(cq);
+		final List<IBid> resultList = q.getResultList();
+		return resultList;
+	}
+	
+	@Override
+	public List<IDeferredBid> findRelatedDeferredBids(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IDeferredBid> cq = cb.createQuery(IDeferredBid.class);
+		final Root<DeferredBid> from = cq.from(DeferredBid.class);
+		
+		cq.select(from);
+		cq.where(cb.equal(from.get(DeferredBid_.item), id));
+
+		final TypedQuery<IDeferredBid> q = em.createQuery(cq);
+		final List<IDeferredBid> resultList = q.getResultList();
+		return resultList;
+	}
+	
+	@Override
+	public List<IFeedback> findRelatedFeedback(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IFeedback> cq = cb.createQuery(IFeedback.class);
+		final Root<Feedback> from = cq.from(Feedback.class);
+		
+		cq.select(from);
+		cq.where(cb.equal(from.get(Feedback_.item), id));
+
+		final TypedQuery<IFeedback> q = em.createQuery(cq);
+		final List<IFeedback> resultList = q.getResultList();
+		return resultList;
+	}
+	
+	@Override
+	public List<IMessage> findRelatedMessages(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IMessage> cq = cb.createQuery(IMessage.class);
+		final Root<Message> from = cq.from(Message.class);
+		
+		cq.select(from);
+		cq.where(cb.equal(from.get(Message_.item), id));
+
+		final TypedQuery<IMessage> q = em.createQuery(cq);
+		final List<IMessage> resultList = q.getResultList();
+		return resultList;
+	}
 }

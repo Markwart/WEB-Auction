@@ -2,17 +2,26 @@ package com.itacademy.jd2.mm.auction.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+
 public class FeedbackDTO {
 
 	private Integer id;
 
+	@NotNull
+	@DecimalMin(value = "1")
+	@DecimalMax(value = "5")
 	private Integer communication, shippingTime, shippingCharges, itemDescription;
-
+	
+	@NotNull
 	private String comment;
-
+	
+	@NotNull
 	private Integer userFromId, userWhomId;
 	private String userFromEmail, userWhomEmail;
-
+	@NotNull
 	private Integer itemId;
 	private String itemName;
 

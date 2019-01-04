@@ -2,14 +2,20 @@ package com.itacademy.jd2.mm.auction.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+
 public class AuctionDurationDTO {
 
 	private Integer id;
 
+	@NotNull
+	@DecimalMin(value = "1440")
+	@DecimalMax(value = "43200")
 	private Integer min;
 
 	private Date created;
-
 	private Date updated;
 
 	public Integer getId() {

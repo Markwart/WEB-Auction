@@ -3,17 +3,23 @@ package com.itacademy.jd2.mm.auction.web.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+
 public class DeferredBidDTO {
 
 	private Integer id;
 
+	@NotNull
+	@DecimalMin(value = "0.1")
 	private BigDecimal priceBid;
 	
 	private String statusBid;
 	
+	@NotNull
 	private Integer userBidId;
 	private String userBidEmail;
-	
+	@NotNull
 	private Integer itemId;
 	private String itemName;
 

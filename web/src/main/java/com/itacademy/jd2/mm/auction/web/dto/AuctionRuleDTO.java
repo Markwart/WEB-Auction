@@ -2,17 +2,13 @@ package com.itacademy.jd2.mm.auction.web.dto;
 
 import java.util.Date;
 
-import javax.validation.constraints.Size;
-
 public class AuctionRuleDTO {
 
 	private Integer id;
 
 	private Date created;
-
 	private Date updated;
 	
-	@Size(min = 1, max = 30)
 	private String index, theme, text;
 
 	public String getIndex() {

@@ -124,12 +124,6 @@ public class AdminCommunicationController extends AbstractController {
 	private void loadCommonFormModels(final Map<String, Object> hashMap) {
 		final List<IUserAccount> userAccounts = userAccountService.getAll();
 
-		/*
-		 * final Map<Integer, String> userAccountsMap = new HashMap<>(); for (final
-		 * IUserAccount iUserAccount : userAccounts) {
-		 * userAccountsMap.put(iUserAccount.getId(), iUserAccount.getEmail()); }
-		 */
-
 		final Map<Integer, String> userAccountsMap = userAccounts.stream()
 				.collect(Collectors.toMap(IUserAccount::getId, IUserAccount::getEmail));
 		hashMap.put("userAccountsChoices", userAccountsMap);

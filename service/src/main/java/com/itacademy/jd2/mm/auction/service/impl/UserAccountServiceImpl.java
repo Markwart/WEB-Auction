@@ -16,6 +16,7 @@ import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
 import com.itacademy.jd2.mm.auction.daoapi.IMessageDao;
 import com.itacademy.jd2.mm.auction.daoapi.IPersonalDataDao;
 import com.itacademy.jd2.mm.auction.daoapi.IUserAccountDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAdminCommunication;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
@@ -41,7 +42,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
 	private IBidDao bidDao;
 	private IDeferredBidDao deferredBidDao;
 	private IItemDao itemDao;
-
+	
 	@Autowired
 	public UserAccountServiceImpl(IUserAccountDao dao, IPersonalDataDao personalDataDao,
 			IAdminCommunicationDao adminCommunicationDao, IFeedbackDao feedbackDao, IMessageDao messageDao,
@@ -79,33 +80,33 @@ public class UserAccountServiceImpl implements IUserAccountService {
 
 	private void deleteRelatedEntities(final Integer id) {
 
-		for (IAdminCommunication adminCommunication : adminCommunicationDao.selectAll()) {
+		for (IAdminCommunication adminCommunication : dao.findRelatedAdminCommunication(id)) {
 			if (adminCommunication.getUserFrom().getId().equals(id)) {
 				adminCommunicationDao.delete(adminCommunication.getId());
 			}
 		}
-		for (IItem item : itemDao.selectAll()) {
+		for (IItem item : dao.findRelatedItems(id)) {
 			if (item.getSeller().getId().equals(id)) {
 				itemDao.delete(item.getId());
 			}
 		}
-		for (IBid bid : bidDao.selectAll()) {
+		for (IBid bid : dao.findRelatedBids(id)) {
 			if (bid.getUserBid().getId().equals(id)) {
 				bidDao.delete(bid.getId());
 			}
 		}
-		for (IDeferredBid deferredBid : deferredBidDao.selectAll()) {
+		for (IDeferredBid deferredBid : dao.findRelatedDeferredBids(id)) {
 			if (deferredBid.getUserBid().getId().equals(id)) {
 				deferredBidDao.delete(deferredBid.getId());
 			}
 		}
-		for (IFeedback feedback : feedbackDao.selectAll()) {
-			if (feedback.getUserFrom().getId().equals(id) || feedback.getUserWhom().getId().equals(id)) {
+		for (IFeedback feedback : dao.findRelatedFeedback(id)) {
+			if (feedback.getUserFrom().getId().equals(id) | feedback.getUserWhom().getId().equals(id)) {
 				feedbackDao.delete(feedback.getId());
 			}
 		}
-		for (IMessage message : messageDao.selectAll()) {
-			if (message.getUserFrom().getId().equals(id) || message.getUserWhom().getId().equals(id)) {
+		for (IMessage message : dao.findRelatedMessages(id)) {
+			if (message.getUserFrom().getId().equals(id) | message.getUserWhom().getId().equals(id)) {
 				messageDao.delete(message.getId());
 			}
 		}
@@ -153,15 +154,18 @@ public class UserAccountServiceImpl implements IUserAccountService {
 		if (userAccount.getId() == null) {
 			userAccount.setCreated(modifiedDate);
 			userAccount.setPassword(PasswordUtils.generateSecurePassword(userAccount.getPassword()));
+			userAccount.setRole(Roles.user);
 			dao.insert(userAccount);
+			//SendMailTLS.sendMail();
 
 			personalData.setId(userAccount.getId());
 			personalData.setCreated(modifiedDate);
 			personalData.setUserAccount(userAccount);
 			personalDataDao.insert(personalData);
-
+			
 			userAccount.setPersonalData(personalData);
 		} else {
+			userAccount.setPassword(PasswordUtils.generateSecurePassword(userAccount.getPassword()));
 			dao.update(userAccount);
 			personalDataDao.update(personalData);
 		}

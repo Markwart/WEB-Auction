@@ -12,10 +12,10 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMailTLS {
 
-	public static void main(String[] args) {
+	public static void sendMail() {
 
 		final String username = "watashiwajanaidesu@gmail.com";
-		final String password = "123";
+		final String password = "932000mark";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -37,12 +37,9 @@ public class SendMailTLS {
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse("watashiwajanaidesu@gmail.com"));
 			message.setSubject("Testing Subject");
-			message.setText("Dear Mail Crawler,"
-				+ "\n\n No spam to my email, please!");
+			message.setText("New account created");
 
 			Transport.send(message);
-
-			System.out.println("Done");
 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);

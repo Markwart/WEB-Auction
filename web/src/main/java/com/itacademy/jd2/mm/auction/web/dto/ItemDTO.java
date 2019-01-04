@@ -3,6 +3,9 @@ package com.itacademy.jd2.mm.auction.web.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class ItemDTO {
@@ -10,16 +13,21 @@ public class ItemDTO {
 	private Integer id;
 
 	private String name, image, text, statusAuction;
+
 	private Integer year;
 
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date auctionEnd;
 
+	@NotNull
+	@DecimalMin(value = "0.1")
 	private BigDecimal startingPrice;
 
+	@NotNull
 	private Integer categoryId, countryOriginId, conditionId, compositionId;
 	private String categoryName, countryOriginName, conditionName, compositionName;
-
+	@NotNull
 	private Integer sellerId;
 	private String sellerEmail;
 

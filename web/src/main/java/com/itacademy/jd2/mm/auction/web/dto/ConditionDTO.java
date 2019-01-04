@@ -12,7 +12,6 @@ public class ConditionDTO {
 	private String name;
 
 	private Date created;
-
 	private Date updated;
 
 	public Integer getId() {

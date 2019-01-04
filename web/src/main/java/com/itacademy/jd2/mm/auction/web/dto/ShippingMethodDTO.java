@@ -3,6 +3,8 @@ package com.itacademy.jd2.mm.auction.web.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class ShippingMethodDTO {
@@ -14,10 +16,11 @@ public class ShippingMethodDTO {
 	
 	private String deliveryTime;
 	
+	@NotNull
+	@DecimalMin(value = "0.0")
 	private BigDecimal cost;
 	
 	private Date created;
-
 	private Date updated;
 
 	public String getDeliveryTime() {

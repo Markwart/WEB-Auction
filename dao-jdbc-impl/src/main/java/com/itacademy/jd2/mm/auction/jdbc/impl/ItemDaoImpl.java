@@ -11,7 +11,11 @@ import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.filter.ItemFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Category;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.Composition;
@@ -179,8 +183,28 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		throw new RuntimeException("not implemneted");
 	}
 
-	/*@Override
+	@Override
 	public List<IItem> search(String text) {
 		throw new RuntimeException("not implemneted");
-	}*/
+	}
+
+	@Override
+	public List<IBid> findRelatedBids(Integer id) {
+		throw new RuntimeException("not implemneted");
+	}
+
+	@Override
+	public List<IDeferredBid> findRelatedDeferredBids(Integer id) {
+		throw new RuntimeException("not implemneted");
+	}
+
+	@Override
+	public List<IFeedback> findRelatedFeedback(Integer id) {
+		throw new RuntimeException("not implemneted");
+	}
+
+	@Override
+	public List<IMessage> findRelatedMessages(Integer id) {
+		throw new RuntimeException("not implemneted");
+	}
 }

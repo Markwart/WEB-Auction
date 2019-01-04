@@ -4,19 +4,28 @@ import java.util.Date;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
 
 public class UserAccountDTO {
 
 	private Integer id;
 
-	private String role;
+	private Roles role;
+
+	@Email
 	private String email;
+	
+	@NotNull
+	@Size(min = 6, max = 30)
 	private String password;
 
 	private Date created;
 	private Date updated;
 	
-	@NotNull
     @Valid
     private PersonalDataDTO personalData = new PersonalDataDTO();
 	
@@ -49,7 +58,7 @@ public class UserAccountDTO {
 	}
 
 	public void setPassword(String password) {
-		this.password =password; //PasswordUtils.generateSecurePassword(password, PasswordUtils.getSalt(30)
+		this.password =password; 
 	}
 
 	public Date getCreated() {
@@ -68,11 +77,11 @@ public class UserAccountDTO {
 		this.updated = updated;
 	}
 
-	public String getRole() {
+	public Roles getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Roles role) {
 		this.role = role;
 	}
 }

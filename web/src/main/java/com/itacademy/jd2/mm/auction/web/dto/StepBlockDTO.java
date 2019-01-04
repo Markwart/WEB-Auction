@@ -2,6 +2,7 @@ package com.itacademy.jd2.mm.auction.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -13,10 +14,10 @@ public class StepBlockDTO {
 	private String name;
 	
 	@NotNull
+	@DecimalMin(value = "0.1")
 	private Integer step_1, step_2, step_3, step_4, step_5;
 	
 	private Date created;
-
 	private Date updated;
 
 	public Integer getId() {

@@ -12,7 +12,6 @@ public class CompositionDTO {
 	private String name;
 
 	private Date created;
-
 	private Date updated;
 
 	public Integer getId() {

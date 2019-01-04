@@ -12,7 +12,6 @@ public class CountryOriginDTO {
 	private String name;
 
 	private Date created;
-
 	private Date updated;
 
 	public Integer getId() {

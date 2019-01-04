@@ -2,15 +2,20 @@ package com.itacademy.jd2.mm.auction.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class MessageDTO {
 
 	private Integer id;
 
+	@NotNull
 	private String theme, text;
 
+	@NotNull
 	private Integer userFromId, userWhomId;
 	private String userFromEmail, userWhomEmail;
-
+	
+	@NotNull
 	private Integer itemId;
 	private String itemName;
 

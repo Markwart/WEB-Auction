@@ -132,12 +132,6 @@ public class DeferredBidController extends AbstractController {
 		final List<IItem> items = itemService.getAll();
 		final List<StatusBid> statusBidList = Arrays.asList(StatusBid.values());
 
-		/*
-		 * final Map<Integer, String> userAccountsMap = new HashMap<>(); for (final
-		 * IUserAccount iUserAccount : userAccounts) {
-		 * userAccountsMap.put(iUserAccount.getId(), iUserAccount.getEmail()); }
-		 */
-
 		final Map<Integer, String> userAccountsMap = userAccounts.stream()
 				.collect(Collectors.toMap(IUserAccount::getId, IUserAccount::getEmail));
 		hashMap.put("userAccountsChoices", userAccountsMap);

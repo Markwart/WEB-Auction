@@ -17,19 +17,19 @@
 
 	<http>
 		<!-- <intercept-url pattern="/brand**" access="!isAnonymous()" /> --> 
-		<intercept-url pattern="/cond**" access="hasRole('admin')" />
-		<intercept-url pattern="/categ**" access="hasRole('admin')" />
-		<intercept-url pattern="/comp**" access="hasRole('admin')" /> 
-		<intercept-url pattern="/country**" access="hasRole('admin')" />
-		<intercept-url pattern="/paym**" access="hasRole('admin')" />
-		<intercept-url pattern="/ship**" access="hasRole('admin')" />
-		<intercept-url pattern="/step**" access="hasRole('admin')" />
-		<intercept-url pattern="/bid**" access="hasRole('admin')" />
-		<intercept-url pattern="/deferred**" access="hasRole('admin')" />
-		<intercept-url pattern="/user**" access="hasRole('admin')" />
+		<intercept-url pattern="/cond**" access="hasAnyRole('admin', 'moderator')" />
+		<intercept-url pattern="/categ**" access="hasAnyRole('admin', 'moderator')" />
+		<intercept-url pattern="/comp**" access="hasAnyRole('admin', 'moderator')" /> 
+		<intercept-url pattern="/country**" access="hasAnyRole('admin', 'moderator')" />
+		<intercept-url pattern="/paym**" access="hasAnyRole('admin', 'moderator')" />
+		<intercept-url pattern="/ship**" access="hasAnyRole('admin', 'moderator')" />
+		<intercept-url pattern="/step**" access="hasAnyRole('admin', 'moderator')" />
+		<intercept-url pattern="/bid**" access="hasAnyRole('admin', 'moderator')" />
+		<intercept-url pattern="/deferred**" access="hasAnyRole('admin', 'moderator')" />
+		<intercept-url pattern="/user**" access="hasAnyRole('admin', 'moderator')" /> 
 		<intercept-url pattern="/mess**" access="hasAnyRole('admin', 'moderator')" />
 		<intercept-url pattern="/admin**" access="hasAnyRole('admin', 'moderator')" />
-		<intercept-url pattern="/auctionDur**" access="hasRole('admin')" />
+		<intercept-url pattern="/auctionDur**" access="hasAnyRole('admin', 'moderator')" />
 		
 		<form-login login-page="/login" default-target-url="/"
 			authentication-failure-url="/login?error" username-parameter="username"

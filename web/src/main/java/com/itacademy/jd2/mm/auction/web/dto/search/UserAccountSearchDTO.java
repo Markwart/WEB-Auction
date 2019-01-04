@@ -1,6 +1,6 @@
-package com.itacademy.jd2.mm.auction.daoapi.filter;
+package com.itacademy.jd2.mm.auction.web.dto.search;
 
-public class UserAccountFilter extends AbstractFilter {
+public class UserAccountSearchDTO {
 	
 	private String email;
 
@@ -11,5 +11,5 @@ public class UserAccountFilter extends AbstractFilter {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
 }
