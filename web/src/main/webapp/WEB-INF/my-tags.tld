@@ -20,5 +20,14 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>i18n</name>
+		<tag-class>com.itacademy.jd2.mm.auction.web.tag.i18n.I18N</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<name>key</name>
+			<required>true</required>
+		</attribute>
+	</tag>
 	
 </taglib>

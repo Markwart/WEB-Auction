@@ -8,7 +8,7 @@
 <table class="bordered highlight">
     <tbody>
         <tr>
-            <th><mytaglib:sort-link pageUrl="${pagesAuctionRule}" column="id">id</mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesAuctionRule}" column="id"><mytaglib:i18n key="table.column.id" /></mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesAuctionRule}" column="index">index</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesAuctionRule}" column="theme">theme</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesAuctionRule}" column="text">text</mytaglib:sort-link></th>
@@ -26,10 +26,10 @@
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${auctionRule.updated}" /></td>
                 <td class="right"><a class="btn-floating" href="${pagesAuctionRule}/${auctionRule.id}"><i class="material-icons">info</i></a>
                 
-                <sec:authorize access="hasRole('admin')"> 
+                <sec:authorize access="hasRole('admin')">  
                 <a class="btn-floating" href="${pagesAuctionRule}/${auctionRule.id}/edit"><i class="material-icons">edit</i></a> 
                 <a class="btn-floating red" href="${pagesAuctionRule}/${auctionRule.id}/delete"><i class="material-icons">delete</i></a>
-                </sec:authorize></td>
+                </sec:authorize> </td>
             </tr>
         </c:forEach>
     </tbody>

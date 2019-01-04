@@ -28,6 +28,7 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 import com.itacademy.jd2.mm.auction.service.hashpassword.PasswordUtils;
+import com.itacademy.jd2.mm.auction.service.mail.SendMailTLS;
 
 @Service
 public class UserAccountServiceImpl implements IUserAccountService {
@@ -156,7 +157,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
 			userAccount.setPassword(PasswordUtils.generateSecurePassword(userAccount.getPassword()));
 			userAccount.setRole(Roles.user);
 			dao.insert(userAccount);
-			//SendMailTLS.sendMail();
+			SendMailTLS.sendMail();
 
 			personalData.setId(userAccount.getId());
 			personalData.setCreated(modifiedDate);

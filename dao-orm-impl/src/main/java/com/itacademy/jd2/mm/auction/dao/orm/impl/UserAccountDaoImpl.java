@@ -63,6 +63,11 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 
 		from.fetch(UserAccount_.personalData, JoinType.LEFT);
 
+		
+		
+		//TODO добавить where satatement
+		
+		
 		final String sortColumn = filter.getSortColumn();
 		if (sortColumn != null) {
 			final Path<?> expression = getSortPath(from, sortColumn);

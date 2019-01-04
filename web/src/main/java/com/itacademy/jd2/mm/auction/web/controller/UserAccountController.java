@@ -91,7 +91,7 @@ public class UserAccountController extends AbstractController {
 		return new ModelAndView("userAccount.edit", hashMap);
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Object save(@Valid @ModelAttribute("formModel") final UserAccountDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
 			final Map<String, Object> hashMap = new HashMap<>();

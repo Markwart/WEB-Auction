@@ -1,51 +1,54 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <header>
 	<nav>
 		<div class="nav-wrapper container">
 
 			<!-- Dropdown Structure -->
-			<sec:authorize access="hasAnyRole('admin', 'moderator')">
-				<ul id="dropdown1" class="dropdown-content">
-					<li><a href="${pagesCategory}">Category</a></li>
-					<li><a href="${pagesComposition}">Composition</a></li>
-					<li><a href="${pagesCondition}">Condition</a></li>
-					<li><a href="${pagesCountryOrigin}">Origin country</a></li>
-					<li><a href="${pagesPaymentMethod}">Payment</a></li>
-					<li><a href="${pagesShippingMethod}">Shipping</a></li>
-					<li><a href="${pagesStepBlock}">Step blocks</a></li>
-					<li><a href="${pagesAuctionDuration}">Auction duration</a></li>
-					<!-- <li class="divider"></li> -->
-				</ul>
-				<ul id="dropdown2" class="dropdown-content">
-					<li><a href="${pagesUserAccount}">User accounts</a></li>
-					<li><a href="${pagesAdminCommunication}">Admin
-							communication</a></li>
-					<li><a href="${pagesMessage}">Messages</a></li>
-					<li><a href="${pagesBid}">Bids</a></li>
-					<li><a href="${pagesDeferredBid}">Deferred bids</a></li>
-					<!-- <li class="divider"></li> -->
-				</ul>
-			</sec:authorize>
+			<%-- <sec:authorize access="hasAnyRole('admin', 'moderator')"> --%>
+			<ul id="dropdown1" class="dropdown-content">
+				<li><a href="${pagesCategory}">Category</a></li>
+				<li><a href="${pagesComposition}">Composition</a></li>
+				<li><a href="${pagesCondition}">Condition</a></li>
+				<li><a href="${pagesCountryOrigin}">Origin country</a></li>
+				<li><a href="${pagesPaymentMethod}">Payment</a></li>
+				<li><a href="${pagesShippingMethod}">Shipping</a></li>
+				<li><a href="${pagesStepBlock}">Step blocks</a></li>
+				<li><a href="${pagesAuctionDuration}">Auction duration</a></li>
+				<li class="divider"></li>
+			</ul>
+			<ul id="dropdown2" class="dropdown-content">
+				<li><a href="${pagesUserAccount}">User accounts</a></li>
+				<li><a href="${pagesAdminCommunication}">Admin
+						communication</a></li>
+				<li><a href="${pagesMessage}">Messages</a></li>
+				<li><a href="${pagesBid}">Bids</a></li>
+				<li><a href="${pagesDeferredBid}">Deferred bids</a></li>
+				<li class="divider"></li>
+			</ul>
+			<%-- </sec:authorize> --%>
 			<nav>
 				<div class="nav-wrapper">
-					<a href="#!" class="brand-logo">Auction</a>
+					<a href="#!" class="brand-logo">Web-Auction</a>
 					<ul class="right hide-on-med-and-down">
 						<li><a href="${contextPath}">home</a></li>
 						<li><a href="${pagesAuctionRule}">Auction rules</a></li>
 						<li><a href="${pagesFeedback}">Feedback</a></li>
 						<li><a href="${pagesItem}">Items</a></li>
+						<li><a href="${contextPath}?language=ru">RU</a></li>
+						<li><a href="${contextPath}?language=en">EN</a></li>
 
 						<!-- Dropdown Trigger -->
-						<sec:authorize access="hasAnyRole('admin', 'moderator')">
-							<li><a class="dropdown-trigger" href="#!"
-								data-target="dropdown1">Working settings<i
-									class="material-icons right">arrow_drop_down</i></a></li>
-							<li><a class="dropdown-trigger" href="#!"
-								data-target="dropdown2">Manage users<i
-									class="material-icons right">arrow_drop_down</i></a></li>
-						</sec:authorize>
+						<%-- 	<sec:authorize access="hasAnyRole('admin', 'moderator')"> --%>
+						<li><a class="dropdown-trigger" href="#!"
+							data-target="dropdown1">Working settings<i
+								class="material-icons right">arrow_drop_down</i></a></li>
+						<li><a class="dropdown-trigger" href="#!"
+							data-target="dropdown2">Manage users<i
+								class="material-icons right">arrow_drop_down</i></a></li>
+						<%-- </sec:authorize> --%>
 					</ul>
 				</div>
 			</nav>

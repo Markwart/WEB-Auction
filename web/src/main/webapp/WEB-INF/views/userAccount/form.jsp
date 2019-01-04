@@ -4,7 +4,7 @@
 
 <h4 class="header">Edit user account</h4>
 <div class="row">
-	<form:form class="col s12" method="POST" action="${pagesUserAccount}"
+	<form:form class="col s12" method="POST" action="${pagesUserAccount}/add"
 		modelAttribute="formModel">
 
 		<form:input path="id" type="hidden" />
