@@ -25,10 +25,10 @@ public class AuctionDurationDaoImpl extends AbstractDaoImpl<IAuctionDuration, In
 	@Override
 	public void update(IAuctionDuration entity) {
 		executeStatement(new PreparedStatementAction<IAuctionDuration>(
-				String.format("update %s set min=?, updated=? where id=?", getTableName())) {
+				String.format("update %s set day=?, updated=? where id=?", getTableName())) {
 			@Override
 			public IAuctionDuration doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
-				pStmt.setInt(1, entity.getMin());
+				pStmt.setInt(1, entity.getDay());
 				pStmt.setObject(2, entity.getUpdated(), Types.TIMESTAMP);
 				pStmt.setInt(3, entity.getId());
 
@@ -41,11 +41,11 @@ public class AuctionDurationDaoImpl extends AbstractDaoImpl<IAuctionDuration, In
 	@Override
 	public void insert(IAuctionDuration entity) {
 		executeStatement(new PreparedStatementAction<IAuctionDuration>(
-				String.format("insert into %s (min, created, updated) values(?,?,?)", getTableName()), true) {
+				String.format("insert into %s (day, created, updated) values(?,?,?)", getTableName()), true) {
 
 			@Override
 			public IAuctionDuration doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
-				pStmt.setInt(1, entity.getMin());
+				pStmt.setInt(1, entity.getDay());
 				pStmt.setObject(2, entity.getCreated(), Types.TIMESTAMP);
 				pStmt.setObject(3, entity.getUpdated(), Types.TIMESTAMP);
 
@@ -72,7 +72,7 @@ public class AuctionDurationDaoImpl extends AbstractDaoImpl<IAuctionDuration, In
 	protected IAuctionDuration parseRow(final ResultSet resultSet) throws SQLException {
 		final IAuctionDuration entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
-		entity.setMin(resultSet.getInt("min"));
+		entity.setDay(resultSet.getInt("day"));
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;

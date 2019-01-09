@@ -12,4 +12,8 @@ public interface IDeferredBidDao extends IDao<IDeferredBid, Integer> {
 	long getCount(DeferredBidFilter filter);
 
 	IDeferredBid getFullInfo(Integer id);
+
+	List<IDeferredBid> findRelatedDeferredBidsByItem(Integer id);
+
+	List<IDeferredBid> findRelatedDeferredBidsByUser(Integer id);
 }

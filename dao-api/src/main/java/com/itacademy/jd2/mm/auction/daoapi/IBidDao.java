@@ -12,4 +12,8 @@ public interface IBidDao extends IDao<IBid, Integer> {
 	long getCount(BidFilter filter);
 
 	IBid getFullInfo(Integer id);
+
+	List<IBid> findRelatedBidsByItem(Integer id);
+
+	List<IBid> findRelatedBidsByUser(Integer id);
 }

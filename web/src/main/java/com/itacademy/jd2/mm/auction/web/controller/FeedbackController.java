@@ -29,6 +29,7 @@ import com.itacademy.jd2.mm.auction.web.converter.FeedbackFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.FeedbackToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.dto.FeedbackDTO;
 import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
+import com.itacademy.jd2.mm.auction.web.security.AuthHelper;
 
 @Controller
 @RequestMapping(value = "/feedback")
@@ -53,10 +54,12 @@ public class FeedbackController extends AbstractController {
 		this.fromDtoConverter = fromDtoConverter;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView index(final HttpServletRequest req,
+	@RequestMapping(value = { "", "/private" }, method = RequestMethod.GET)
+	public ModelAndView index2(final HttpServletRequest req,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
+
+		Integer loggedUserId = AuthHelper.getLoggedUserId();
 
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
@@ -70,7 +73,10 @@ public class FeedbackController extends AbstractController {
 		filter.setFetchUserAccountWhom(true);
 		filter.setFetchItem(true);
 
-		final List<IFeedback> entities = feedbackService.find(filter);
+		if (!req.getRequestURI().contains("/private")) {
+			loggedUserId = null;
+		}
+		final List<IFeedback> entities = feedbackService.find(filter, loggedUserId);
 		List<FeedbackDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
 		final Map<String, Object> models = new HashMap<>();

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IDeferredBidDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
 import com.itacademy.jd2.mm.auction.daoapi.filter.DeferredBidFilter;
 import com.itacademy.jd2.mm.auction.service.IDeferredBidService;
@@ -44,6 +45,7 @@ public class DeferredBidServiceImpl implements IDeferredBidService {
 		entity.setUpdated(modefeOn);
 		if (entity.getId() == null) {
 			entity.setCreated(modefeOn);
+			entity.setStatusBid(StatusBid.made);
 			dao.insert(entity);
 			LOGGER.debug("new deferred_bid created: {}", entity);
 		} else {

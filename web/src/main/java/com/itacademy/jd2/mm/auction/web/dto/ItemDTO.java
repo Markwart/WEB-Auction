@@ -16,8 +16,7 @@ public class ItemDTO {
 
 	private Integer year;
 
-	@NotNull
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	//@DateTimeFormat(pattern = "yyyy-MM-dd") //hh:mm:ss a
 	private Date auctionEnd;
 
 	@NotNull
@@ -25,11 +24,13 @@ public class ItemDTO {
 	private BigDecimal startingPrice;
 
 	@NotNull
-	private Integer categoryId, countryOriginId, conditionId, compositionId;
+	private Integer categoryId, countryOriginId, conditionId, compositionId, durationId;
 	private String categoryName, countryOriginName, conditionName, compositionName;
 	@NotNull
 	private Integer sellerId;
 	private String sellerEmail;
+	
+	private Integer durationDay;
 
 	private Date created;
 	private Date updated;
@@ -136,6 +137,22 @@ public class ItemDTO {
 
 	public void setYear(Integer year) {
 		this.year = year;
+	}
+
+	public Integer getDurationId() {
+		return durationId;
+	}
+
+	public void setDurationId(Integer durationId) {
+		this.durationId = durationId;
+	}
+
+	public Integer getDurationDay() {
+		return durationDay;
+	}
+
+	public void setDurationDay(Integer durationDay) {
+		this.durationDay = durationDay;
 	}
 
 	public Date getAuctionEnd() {

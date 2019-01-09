@@ -75,8 +75,8 @@ public class AuctionDurationDaoImpl extends AbstractDaoImpl<IAuctionDuration, In
             return AuctionDuration_.updated;
         case "id":
             return AuctionDuration_.id;
-        case "min":
-            return AuctionDuration_.min;
+        case "day":
+            return AuctionDuration_.day;
         default:
             throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
         }

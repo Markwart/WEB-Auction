@@ -2,6 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <%@ taglib prefix="jspFragments" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <h4 class="header">Payment method</h4>
 <table class="bordered highlight">
@@ -19,12 +20,17 @@
                 <td><c:out value="${paymentMethod.name}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${paymentMethod.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${paymentMethod.updated}" /></td>
-                <td class="right"><a class="btn-floating" href="${pagesPaymentMethod}/${paymentMethod.id}"><i class="material-icons">info</i></a> <a
-                    class="btn-floating" href="${pagesPaymentMethod}/${paymentMethod.id}/edit"><i class="material-icons">edit</i></a> <a
-                    class="btn-floating red" href="${pagesPaymentMethod}/${paymentMethod.id}/delete"><i class="material-icons">delete</i></a></td>
+                <td class="right"><a class="btn-floating" href="${pagesPaymentMethod}/${paymentMethod.id}"><i class="material-icons">info</i></a> 
+                
+                <sec:authorize access="hasRole('admin')">
+                <a class="btn-floating" href="${pagesPaymentMethod}/${paymentMethod.id}/edit"><i class="material-icons">edit</i></a> 
+                <a class="btn-floating red" href="${pagesPaymentMethod}/${paymentMethod.id}/delete"><i class="material-icons">delete</i></a>
+                </sec:authorize></td>
             </tr>
         </c:forEach>
     </tbody>
 </table>
 <jspFragments:paging />
+<sec:authorize access="hasRole('admin')">
 <a class="waves-effect waves-light btn right" href="${pagesPaymentMethod}/add"><i class="material-icons">add</i></a>
+</sec:authorize>

@@ -1,5 +1,6 @@
 package com.itacademy.jd2.mm.auction.dao.orm.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.jpa.criteria.OrderImpl;
@@ -56,7 +58,7 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 	}
 
 	@Override
-	public List<IMessage> find(MessageFilter filter) {
+	public List<IMessage> find(MessageFilter filter, Integer id) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
 
@@ -65,6 +67,10 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 		final Root<Message> from = cq.from(Message.class);
 
 		cq.select(from);
+		if (id != null) {
+			cq.where(cb.equal(from.get(Message_.userFrom), id));
+			//cq.where(cb.equal(from.get(Message_.userWhom), id));
+		} // only for logged user
 
 		if (filter.getFetchUserAccountFrom()) {
 			from.fetch(Message_.userFrom, JoinType.LEFT);
@@ -123,5 +129,39 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 		default:
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}
+	}
+	
+	@Override
+	public List<IMessage> findRelatedMessagesByItem(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IMessage> cq = cb.createQuery(IMessage.class);
+		final Root<Message> from = cq.from(Message.class);
+		
+		cq.select(from);
+		cq.where(cb.equal(from.get(Message_.item), id));
+
+		final TypedQuery<IMessage> q = em.createQuery(cq);
+		final List<IMessage> resultList = q.getResultList();
+		return resultList;
+	}
+	
+	@Override
+	public List<IMessage> findRelatedMessagesByUser(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IMessage> cq = cb.createQuery(IMessage.class);
+		final Root<Message> from = cq.from(Message.class);
+
+		cq.select(from);
+		final List<Predicate> ands = new ArrayList<>();
+		ands.add(cb.equal(from.get(Message_.userFrom), id));
+		ands.add(cb.equal(from.get(Message_.userWhom), id));
+
+		final TypedQuery<IMessage> q = em.createQuery(cq);
+		final List<IMessage> resultList = q.getResultList();
+		return resultList;
 	}
 }

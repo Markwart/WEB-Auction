@@ -123,7 +123,7 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 	}
 
 	@Override
-	public List<IMessage> find(MessageFilter filter) {
+	public List<IMessage> find(MessageFilter filter, Integer id) {
 		final StringBuilder sqlTile;
 		if (filter.getFetchUserAccountFrom() & filter.getFetchItem()) {
 			sqlTile = new StringBuilder(String.format(
@@ -154,5 +154,15 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 	@Override
 	public IMessage getFullInfo(Integer id) {
 		throw new RuntimeException("not implemneted");
+	}
+
+	@Override
+	public List<IMessage> findRelatedMessagesByItem(Integer id) {
+		throw new RuntimeException("not implemented");
+	}
+
+	@Override
+	public List<IMessage> findRelatedMessagesByUser(Integer id) {
+		throw new RuntimeException("not implemented");
 	}
 }

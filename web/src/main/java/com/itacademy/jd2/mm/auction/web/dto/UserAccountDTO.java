@@ -20,7 +20,7 @@ public class UserAccountDTO {
 	private String email;
 	
 	@NotNull
-	@Size(min = 6, max = 30)
+	@Size(min = 6, max = 40)
 	private String password;
 
 	private Date created;

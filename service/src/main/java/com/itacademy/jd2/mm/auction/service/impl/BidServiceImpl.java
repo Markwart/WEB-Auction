@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IBidDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.filter.BidFilter;
 import com.itacademy.jd2.mm.auction.service.IBidService;
@@ -44,6 +45,7 @@ public class BidServiceImpl implements IBidService {
 		entity.setUpdated(modefeOn);
 		if (entity.getId() == null) {
 			entity.setCreated(modefeOn);
+			entity.setStatusBid(StatusBid.made);
 			dao.insert(entity);
 			LOGGER.debug("new bid created: {}", entity);
 		} else {

@@ -20,7 +20,7 @@
 				<label for="theme">theme</label>
 			</div>
 			<div class="input-field col s12">
-				<form:input path="text" type="text" disabled="${readonly}" />
+				<form:textarea path="text" type="text" disabled="${readonly}" />
 				<form:errors path="text" cssClass="red-text" />
 				<label for="text">text</label>
 			</div>
@@ -31,11 +31,11 @@
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">сохранить</button>
+					<button class="btn waves-effect waves-light right" type="submit">save</button>
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right" href="${pagesAuctionRule}">к списку<i
+				<a class="btn waves-effect waves-light right" href="${pagesAuctionRule}">list<i
 					class="material-icons right"></i>
 				</a>
 			</div>

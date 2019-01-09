@@ -70,8 +70,8 @@ public class MessageServiceImpl implements IMessageService {
 	}
 
 	@Override
-	public List<IMessage> find(MessageFilter filter) {
-		return dao.find(filter);
+	public List<IMessage> find(MessageFilter filter, Integer id) {
+		return dao.find(filter, id);
 	}
 
 	@Override

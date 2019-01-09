@@ -128,4 +128,9 @@ public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunicati
 	public IAdminCommunication getFullInfo(Integer id) {
 		throw new RuntimeException("not implemneted");
 	}
+
+	@Override
+	public List<IAdminCommunication> findRelatedAdminCommunicationByUser(Integer id) {
+		throw new RuntimeException("not implemented");
+	}
 }

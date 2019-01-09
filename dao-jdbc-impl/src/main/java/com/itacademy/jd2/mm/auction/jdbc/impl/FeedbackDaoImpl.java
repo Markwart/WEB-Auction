@@ -132,7 +132,7 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 	}
 
 	@Override
-	public List<IFeedback> find(FeedbackFilter filter) {
+	public List<IFeedback> find(FeedbackFilter filter, Integer id) {
 		final StringBuilder sqlTile;
 		if (filter.getFetchUserAccountFrom() & filter.getFetchUserAccountWhom() & filter.getFetchItem()) {
 			sqlTile = new StringBuilder(String.format(
@@ -163,5 +163,15 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 	@Override
 	public IFeedback getFullInfo(Integer id) {
 		throw new RuntimeException("not implemneted");
+	}
+
+	@Override
+	public List<IFeedback> findRelatedFeedbackByItem(Integer id) {
+		throw new RuntimeException("not implemented");
+	}
+
+	@Override
+	public List<IFeedback> findRelatedFeedbackByUser(Integer id) {
+		throw new RuntimeException("not implemented");
 	}
 }

@@ -1,5 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-  <entry key="table.column.id">ID</entry>
+
+	<!-- Table columns -->
+	<entry key="table.column.id">ID</entry>
+	<entry key="table.column.created">CREATED</entry>
+	<entry key="table.column.updated">UPDATED</entry>
+	<entry key="table.column.theme">THEME</entry>
+	<entry key="table.column.text">DESCRIPTION</entry>
+	<entry key="table.column.index">NUMBER</entry>
+	<entry key="table.column.item-name">ITEM NAME</entry>
+	<entry key="table.column.seller">SELLER</entry>
+	<entry key="table.column.comment">COMMENT</entry>
+	<entry key="table.column.from">FROM</entry>
+	<entry key="table.column.name">NAME</entry>
+	<entry key="table.column.image">IMAGE</entry>
+	<entry key="table.column.price">ITEM PRICE</entry>
+	<entry key="table.column.ends">TIME ENDS</entry>
+	<entry key="table.column.status">STATUS</entry>
+
+	<!-- Sections -->
+	<entry key="main">Web-Auction</entry>
+
+	<entry key="section.home">Home page</entry>
+	<entry key="section.rule">Auction rules</entry>
+	<entry key="section.feedback">Feedback</entry>
+	<entry key="section.item">Items</entry>
+	<entry key="section.help">Help</entry>
+	<entry key="section.setting">Settings</entry>
+	<entry key="section.my-item">My items</entry>
+	<entry key="section.watch-list">Watch list</entry>
+
+	<entry key="section.work-set">Working settings</entry>
+	<entry key="section.category">Category</entry>
+	<entry key="section.composition">Composition</entry>
+	<entry key="section.condition">Condition</entry>
+	<entry key="section.country">Origin country</entry>
+	<entry key="section.payment">Payment</entry>
+	<entry key="section.shipping">Shipping</entry>
+	<entry key="section.step-block">Bidding steps</entry>
+	<entry key="section.duration">Auction duration</entry>
+
+	<entry key="section.manage-users">Manage users</entry>
+	<entry key="section.account">User accounts</entry>
+	<entry key="section.admin-communication">Admin communication</entry>
+	<entry key="section.message">Messages</entry>
+	<entry key="section.bid">Bids</entry>
+	<entry key="section.deferred-bid">Deferred bids</entry>
+
+	<entry key="login">Login</entry>
+	<entry key="logout">Logout</entry>
+	<entry key="registration">Register new account</entry>
+	<entry key="login.header">Login with email and password</entry>
+	<entry key="password">Password:</entry>
+	<entry key="email">Email:</entry>
+	<entry key="guest">Guest</entry>
+	<entry key="admin">Admin</entry>
+	<entry key="moderator">Moderator</entry>
+	<entry key="user">User</entry>
+
 </properties>

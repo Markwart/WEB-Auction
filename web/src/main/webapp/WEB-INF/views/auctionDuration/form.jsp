@@ -10,9 +10,9 @@
 		
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="min" disabled="${readonly}" />
-				<form:errors path="min" cssClass="red-text" />
-				<label for="min">duration (in minutes)</label>
+				<form:input path="day" disabled="${readonly}" />
+				<form:errors path="day" cssClass="red-text" />
+				<label for="day">duration (days)</label>
 			</div>
 		
 		</div>
@@ -22,11 +22,11 @@
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">сохранить</button>
+					<button class="btn waves-effect waves-light right" type="submit">save</button>
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right" href="${pagesAuctionDuration}">к списку<i
+				<a class="btn waves-effect waves-light right" href="${pagesAuctionDuration}">list<i
 					class="material-icons right"></i>
 				</a>
 			</div>

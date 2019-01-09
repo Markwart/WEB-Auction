@@ -81,32 +81,32 @@ public class UserAccountServiceImpl implements IUserAccountService {
 
 	private void deleteRelatedEntities(final Integer id) {
 
-		for (IAdminCommunication adminCommunication : dao.findRelatedAdminCommunication(id)) {
+		for (IAdminCommunication adminCommunication : adminCommunicationDao.findRelatedAdminCommunicationByUser(id)) {
 			if (adminCommunication.getUserFrom().getId().equals(id)) {
 				adminCommunicationDao.delete(adminCommunication.getId());
 			}
 		}
-		for (IItem item : dao.findRelatedItems(id)) {
+		for (IItem item : itemDao.findRelatedItemsBySeller(id)) {
 			if (item.getSeller().getId().equals(id)) {
 				itemDao.delete(item.getId());
 			}
 		}
-		for (IBid bid : dao.findRelatedBids(id)) {
+		for (IBid bid : bidDao.findRelatedBidsByUser(id)) {
 			if (bid.getUserBid().getId().equals(id)) {
 				bidDao.delete(bid.getId());
 			}
 		}
-		for (IDeferredBid deferredBid : dao.findRelatedDeferredBids(id)) {
+		for (IDeferredBid deferredBid : deferredBidDao.findRelatedDeferredBidsByUser(id)) {
 			if (deferredBid.getUserBid().getId().equals(id)) {
 				deferredBidDao.delete(deferredBid.getId());
 			}
 		}
-		for (IFeedback feedback : dao.findRelatedFeedback(id)) {
+		for (IFeedback feedback : feedbackDao.findRelatedFeedbackByUser(id)) {
 			if (feedback.getUserFrom().getId().equals(id) | feedback.getUserWhom().getId().equals(id)) {
 				feedbackDao.delete(feedback.getId());
 			}
 		}
-		for (IMessage message : dao.findRelatedMessages(id)) {
+		for (IMessage message : messageDao.findRelatedMessagesByUser(id)) {
 			if (message.getUserFrom().getId().equals(id) | message.getUserWhom().getId().equals(id)) {
 				messageDao.delete(message.getId());
 			}

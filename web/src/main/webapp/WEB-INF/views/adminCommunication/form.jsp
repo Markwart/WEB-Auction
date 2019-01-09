@@ -35,11 +35,11 @@
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">сохранить</button>
+					<button class="btn waves-effect waves-light right" type="submit">save</button>
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right" href="${pagesAdminCommunication}">к списку<i
+				<a class="btn waves-effect waves-light right" href="${pagesAdminCommunication}">list<i
 					class="material-icons right"></i>
 				</a>
 			</div>

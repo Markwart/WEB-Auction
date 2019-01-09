@@ -112,4 +112,20 @@ public class AdminCommunicationDaoImpl extends AbstractDaoImpl<IAdminCommunicati
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}
 	}
+	
+	@Override
+	public List<IAdminCommunication> findRelatedAdminCommunicationByUser(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IAdminCommunication> cq = cb.createQuery(IAdminCommunication.class);
+		final Root<AdminCommunication> from = cq.from(AdminCommunication.class);
+
+		cq.select(from);
+		cq.where(cb.equal(from.get(AdminCommunication_.userFrom), id));
+
+		final TypedQuery<IAdminCommunication> q = em.createQuery(cq);
+		final List<IAdminCommunication> resultList = q.getResultList();
+		return resultList;
+	}
 }

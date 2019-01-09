@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 import org.springframework.stereotype.Component;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
@@ -23,7 +24,6 @@ public class ItemToDTOConverter implements Function<IItem, ItemDTO> {
 		dto.setImage(entity.getImage());
 		dto.setYear(entity.getYear());
 		dto.setText(entity.getText());
-		dto.setAuctionEnd(entity.getAuctionEnd());
 		dto.setStartingPrice(entity.getStartingPrice());
 		dto.setStatusAuction(entity.getStatusAuction().name());
 
@@ -56,7 +56,14 @@ public class ItemToDTOConverter implements Function<IItem, ItemDTO> {
 			dto.setCountryOriginId(countryOrigin.getId());
 			dto.setCountryOriginName(countryOrigin.getName());
 		}
+		
+		final IAuctionDuration duration = entity.getDuration();
+		if (duration != null) {
+			dto.setDurationId(duration.getId());
+			dto.setDurationDay(duration.getDay());
+		}
 
+		dto.setAuctionEnd(entity.getAuctionEnd());
 		dto.setCreated(entity.getCreated());
 		dto.setUpdated(entity.getUpdated());
 		return dto;

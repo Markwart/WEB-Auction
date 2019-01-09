@@ -1,47 +1,3 @@
-.current-user {
-	font-weight: bold;
-	/* font-size: 100%; */
-	display: flex;
-    align-items: center;
-    position: absolute;
-    right: 15px;
-    top: 0px;
-   /*  line-height: initial; */
-    text-align: center;
-}
-
-.current-user .material-icons{
-	padding-left: 5px;
-	font-size: 30px;
-}
-
-.item-table td {
-	border-right: 1px solid lightgrey;
-}
-
-.no-transfer {
-	white-space: nowrap;
-}
-
-.font {
-	font-size: 12px;
-}
-
-.offset-class {
-	transform: translateX(-10%);
-	width: 90vw;
-}
-
-nav {
-	background-color: #4caf88;
-	line-height: 40px;
-	height: auto;
-}
-
-.page-footer {
-	background-color: #4caf88;
-}
-
 body {
 	display: flex;
 	min-height: 100vh;
@@ -76,12 +32,118 @@ main {
 	left: 18px;
 }
 
-.menu-position-center {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
+.page-footer {
+	background-color: #4caf88;
 }
 
-.nav-wrapper.container {
-	height: 50px;
+/* Changes */
+nav {
+	background-color: #4caf88;
+}
+
+body .row nav .button-reset i {
+	padding: 0;
+}
+
+.current-user {
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	position: absolute;
+	right: 15px;
+	top: 0px;
+	/*  line-height: initial; */
+	text-align: center;
+}
+
+.current-user .material-icons {
+	padding-left: 5px;
+	font-size: 30px;
+}
+
+.locale {
+	font-weight: bold;
+	position: absolute;
+	top: 0rem;
+	text-align: center;
+}
+
+nav .brand-logo {
+	padding-left: 1rem;
+}
+
+nav .input-field {
+	display: flex;
+}
+
+nav .input-field label.active i, nav .input-field label i {
+	color: black;
+}
+
+.nav-wrapper .input-field input[type=search] {
+	padding-left: 5.5rem;
+}
+
+.search-from-db {
+	height: 5rem;
+	background-color: transparent;
+}
+
+.search-from-db .material-icons {
+	font-size: 3rem;
+	padding-top: 0.5rem;
+}
+
+.button-reset, .button-reset:focus {
+	background: transparent;
+	border: none;
+}
+
+.button-reset:hover {
+	transition: 0.5s;
+}
+
+.button-reset:active {
+	transform: scale(0.8);
+	transition: 0.15s;
+}
+
+/* Item properties */
+
+.item-table td {
+	border-right: 1px solid lightgrey;
+}
+
+.no-transfer {
+	white-space: nowrap;
+}
+
+.font-my-set {
+	font-size: 14px;
+}
+
+/* .offset-class {
+	transform: translateX(-10%);
+	width: 90vw;
+} */
+
+.private-menu, .private-menu:hover, .private-menu:active {
+	background: transparent;
+	box-shadow: none;
+	display: flex;
+	align-items: center;
+}
+
+.private-menu-mod {
+	top: 64px !important;
+	width: auto !important;
+}
+
+.private-menu-mod a {
+	white-space: nowrap;
+	font-weight: 500;
+}
+
+.center {
+	padding-top: 70px;
 }

@@ -5,76 +5,69 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<h4 class="header offset-class">Items</h4>
+<h4 class="header offset-class"><mytaglib:i18n key="section.item"></mytaglib:i18n></h4>
 
-  <div class="row">
-    <div class="col s12 m10">
-        <div class="card-panel blue lighten-5">
-            <div class="row">
-                <form:form method="POST" action="${pagesItem}" modelAttribute="searchFormItem">
-                    <div class="input-field col s4">
-                        <form:input path="name" type="text" />
-                        <label for="name">name</label>
-                    </div>
-                    <div class="col s4">
-                        <button class="btn waves-effect waves-light right" type="submit">search</button>
-                    </div>
-                </form:form>
-            </div>
-        </div>
-    </div>
-</div>  
+<div class="row">
+<nav class="search-from-db">
+	<div class="nav-wrapper">
+		<form:form method="POST" action="${pagesItem}" modelAttribute="searchFormModel">
+			<div class="input-field">
+				<form:input path="name" type="search" />
+				<label class="label-icon" for="search">
+				<i class="material-icons">search</i></label>
+				<button class="button-reset" type="button" onclick="form.reset()"><i class="material-icons" >close</i></button>					
+			</div>
+		</form:form>
+	</div>
+</nav>
+</div>
 
 <table class="bordered highlight offset-class">
     <tbody class="item-table">
-        <tr>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="id">id</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="name">name</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="year">year</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="image">image</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="starting_price">starting price</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="auction_end">auction end</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="text">description</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="category_id">category</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="condition_id">condition</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="composition_id">composition</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="country_origin_id">country origin</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="seller_id">seller</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="status_auction">auction status</mytaglib:sort-link></th>
+        <tr class="font-my-set">
+            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="image"><mytaglib:i18n key="table.column.image"></mytaglib:i18n></mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="name"><mytaglib:i18n key="table.column.name"></mytaglib:i18n></mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="starting_price"><mytaglib:i18n key="table.column.price"></mytaglib:i18n></mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="auction_end"><mytaglib:i18n key="table.column.ends"></mytaglib:i18n></mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="seller_id"><mytaglib:i18n key="table.column.seller"></mytaglib:i18n></mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="status_auction"><mytaglib:i18n key="table.column.status"></mytaglib:i18n></mytaglib:sort-link></th>
+            
+            <sec:authorize access="hasAnyRole('admin', 'moderator')">
             <th><mytaglib:sort-link pageUrl="${pagesItem}" column="created">created</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesItem}" column="updated">updated</mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesItem}" column="id">id</mytaglib:sort-link></th>
+            </sec:authorize>
             <th></th>
         </tr>
         <c:forEach var="item" items="${gridItems}" varStatus="loopCounter">
-            <tr class="font">
-                <td><c:out value="${item.id}" /></td>
-                <td><c:out value="${item.name}" /></td>
-                <td><c:out value="${item.year}" /></td>
+            <tr class="font-my-set">
                 <td><c:out value="${item.image}" /></td>
+                <td><c:out value="${item.name}" /></td>
                 <td><c:out value="${item.startingPrice}" /></td>
                 <td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.auctionEnd}" /></td>
-                <td><c:out value="${item.text}" /></td>
-                <td><c:out value="${item.categoryName}" /></td>
-                <td><c:out value="${item.conditionName}" /></td>
-                <td><c:out value="${item.compositionName}" /></td>
-                <td><c:out value="${item.countryOriginName}" /></td>
+                
                 <td><c:out value="${item.sellerEmail}" /></td>
                 <td><c:out value="${item.statusAuction}" /></td>
+                
+                <sec:authorize access="hasAnyRole('admin', 'moderator')">
                 <td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.created}" /></td>
                 <td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updated}" /></td>
+                <td><c:out value="${item.id}" /></td>
+                </sec:authorize>
+                
                 <td class="right"><a class="btn-floating" href="${pagesItem}/${item.id}"><i class="material-icons">info</i></a>
                 
                 <sec:authorize access="hasRole('admin')">
-                 <a class="btn-floating" href="${pagesItem}/${item.id}/edit"><i class="material-icons">edit</i></a> 
-                 <a class="btn-floating red" href="${pagesItem}/${item.id}/delete"><i class="material-icons">delete</i></a>
-                 </sec:authorize></td>
+                <a class="btn-floating" href="${pagesItem}/${item.id}/edit"><i class="material-icons">edit</i></a> 
+                <a class="btn-floating red" href="${pagesItem}/${item.id}/delete"><i class="material-icons">delete</i></a>
+                </sec:authorize></td>
             </tr>
         </c:forEach>
     </tbody>
 </table>
 <jspFragments:paging />
 <sec:authorize access="hasRole('admin')">
-   <a class="waves-effect waves-light btn right" href="${pagesItem}/add"><i class="material-icons">add</i></a>
+<a class="waves-effect waves-light btn right" href="${pagesItem}/add"><i class="material-icons">add</i></a>
 </sec:authorize>
 
 

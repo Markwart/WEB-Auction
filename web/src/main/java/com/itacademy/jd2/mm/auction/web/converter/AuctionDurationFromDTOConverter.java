@@ -19,7 +19,7 @@ public class AuctionDurationFromDTOConverter implements Function<AuctionDuration
 	public IAuctionDuration apply(final AuctionDurationDTO dto) {
 		final IAuctionDuration entity = auctionDurationService.createEntity();
 		entity.setId(dto.getId());
-		entity.setMin(dto.getMin());
+		entity.setDay(dto.getDay());
 		return entity;
 	}
 }

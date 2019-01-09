@@ -118,4 +118,36 @@ public class BidDaoImpl extends AbstractDaoImpl<IBid, Integer> implements IBidDa
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}
 	}
+	
+	@Override
+	public List<IBid> findRelatedBidsByItem(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IBid> cq = cb.createQuery(IBid.class);
+		final Root<Bid> from = cq.from(Bid.class);
+		
+		cq.select(from);
+		cq.where(cb.equal(from.get(Bid_.item), id));
+
+		final TypedQuery<IBid> q = em.createQuery(cq);
+		final List<IBid> resultList = q.getResultList();
+		return resultList;
+	}
+	
+	@Override
+	public List<IBid> findRelatedBidsByUser(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IBid> cq = cb.createQuery(IBid.class);
+		final Root<Bid> from = cq.from(Bid.class);
+
+		cq.select(from);
+		cq.where(cb.equal(from.get(Bid_.userBid), id));
+
+		final TypedQuery<IBid> q = em.createQuery(cq);
+		final List<IBid> resultList = q.getResultList();
+		return resultList;
+	}
 }

@@ -71,7 +71,7 @@
 		
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="comment" type="text" disabled="${readonly}" />
+				<form:textarea path="comment" type="text" disabled="${readonly}" />
 				<form:errors path="comment" cssClass="red-text" />
 				<label for="comment">comment</label>
 			</div>
@@ -81,12 +81,11 @@
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">сохранить</button>
+					<button class="btn waves-effect waves-light right" type="submit">save</button>
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right" href="${pagesFeedback}">к
-					списку<i class="material-icons right"></i>
+				<a class="btn waves-effect waves-light right" href="${pagesFeedback}">list<i class="material-icons right"></i>
 				</a>
 			</div>
 		</div>

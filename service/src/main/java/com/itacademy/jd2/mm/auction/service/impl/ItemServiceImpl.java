@@ -13,6 +13,7 @@ import com.itacademy.jd2.mm.auction.daoapi.IDeferredBidDao;
 import com.itacademy.jd2.mm.auction.daoapi.IFeedbackDao;
 import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
 import com.itacademy.jd2.mm.auction.daoapi.IMessageDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
@@ -57,11 +58,14 @@ public class ItemServiceImpl implements IItemService {
 
 	@Override
 	public void save(IItem entity) {
+		/* final LocalDate now = LocalDate.now(); */
 		final Date modefeOn = new Date();
 		entity.setUpdated(modefeOn);
 		if (entity.getId() == null) {
 			entity.setCreated(modefeOn);
-			dao.insert(entity);
+			entity.setStatusAuction(StatusAuction.OPEN);
+			//entity.setAuctionEnd(new Date(modefeOn.getTime() + (1000 * 60 * 60 * 24 * entity.getDuration().getDay())));
+			//entity.setAuctionEnd(modefeOn);
 			LOGGER.debug("new item created: {}", entity);
 		} else {
 			dao.update(entity);
@@ -78,22 +82,22 @@ public class ItemServiceImpl implements IItemService {
 
 	private void deleteRelatedEntities(final Integer id) {
 
-		for (IBid bid : dao.findRelatedBids(id)) {
+		for (IBid bid : bidDao.findRelatedBidsByItem(id)) {
 			if (bid.getItem().getId().equals(id)) {
 				bidDao.delete(bid.getId());
 			}
 		}
-		for (IDeferredBid deferredBid : dao.findRelatedDeferredBids(id)) {
+		for (IDeferredBid deferredBid : deferredBidDao.findRelatedDeferredBidsByItem(id)) {
 			if (deferredBid.getItem().getId().equals(id)) {
 				deferredBidDao.delete(deferredBid.getId());
 			}
 		}
-		for (IFeedback feedback : dao.findRelatedFeedback(id)) {
+		for (IFeedback feedback : feedbackDao.findRelatedFeedbackByItem(id)) {
 			if (feedback.getItem().getId().equals(id)) {
 				feedbackDao.delete(feedback.getId());
 			}
 		}
-		for (IMessage message : dao.findRelatedMessages(id)) {
+		for (IMessage message : messageDao.findRelatedMessagesByItem(id)) {
 			if (message.getItem().getId().equals(id)) {
 				messageDao.delete(message.getId());
 			}
@@ -112,8 +116,8 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	@Override
-	public List<IItem> find(ItemFilter filter) {
-		return dao.find(filter);
+	public List<IItem> find(ItemFilter filter, Integer id) {
+		return dao.find(filter, id);
 	}
 
 	@Override

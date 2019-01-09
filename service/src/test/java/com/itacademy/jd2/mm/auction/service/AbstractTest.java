@@ -160,7 +160,7 @@ public abstract class AbstractTest {
 
 	protected IAuctionDuration saveNewAuctionDuration() {
 		final IAuctionDuration entity = auctionDurationService.createEntity();
-		entity.setMin(RANDOM.nextInt(10000));
+		entity.setDay(RANDOM.nextInt(100));
 		auctionDurationService.save(entity);
 		return entity;
 	}
@@ -232,6 +232,7 @@ public abstract class AbstractTest {
 		entity.setCountryOrigin(saveNewCountryOrigin());
 		entity.setCondition(saveNewCondition());
 		entity.setComposition(saveNewComposition());
+		entity.setDuration(saveNewAuctionDuration());
 		entity.setImage("mindmap.jpg");
 		entity.setText("text-" + getRandomPrefix());
 		entity.setSeller(saveNewUserAccount());

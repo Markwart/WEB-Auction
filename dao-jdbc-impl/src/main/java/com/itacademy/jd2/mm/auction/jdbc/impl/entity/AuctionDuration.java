@@ -4,21 +4,21 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
 
 public class AuctionDuration extends BaseEntity implements IAuctionDuration {
 
-	private Integer min;
+	private Integer day;
 
 	@Override
-	public Integer getMin() {
-		return min;
+	public Integer getDay() {
+		return day;
 	}
 
 	@Override
-	public void setMin(final Integer min) {
-		this.min = min;
+	public void setDay(final Integer day) {
+		this.day = day;
 	}
 
 	@Override
 	public String toString() {
-		return "AuctionDuration [min=" + min + ", getId()=" + getId() + ", getCreated()=" + getCreated()
+		return "AuctionDuration [day=" + day + ", getId()=" + getId() + ", getCreated()=" + getCreated()
 				+ ", getUpdated()=" + getUpdated() + "]";
 	}
 

@@ -29,6 +29,7 @@ import com.itacademy.jd2.mm.auction.web.converter.MessageFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.MessageToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.dto.MessageDTO;
 import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
+import com.itacademy.jd2.mm.auction.web.security.AuthHelper;
 
 @Controller
 @RequestMapping(value = "/message")
@@ -52,10 +53,12 @@ public class MessageController extends AbstractController {
 		this.fromDtoConverter = fromDtoConverter;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = { "", "/private" }, method = RequestMethod.GET)
 	public ModelAndView index(final HttpServletRequest req,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
+		
+		Integer loggedUserId = AuthHelper.getLoggedUserId();
 
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
@@ -69,7 +72,10 @@ public class MessageController extends AbstractController {
 		filter.setFetchUserAccountWhom(true);
 		filter.setFetchItem(true);
 
-		final List<IMessage> entities = messageService.find(filter);
+		if (!req.getRequestURI().contains("/private")) {
+			loggedUserId = null;
+		}
+		final List<IMessage> entities = messageService.find(filter, loggedUserId);
 		List<MessageDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
 		final Map<String, Object> models = new HashMap<>();

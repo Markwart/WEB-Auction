@@ -42,4 +42,7 @@ public interface IItem extends IBaseEntity {
 	
 	StatusAuction getStatusAuction();
 	void setStatusAuction(StatusAuction statusAuction);
+	
+	IAuctionDuration getDuration();
+	void setDuration(IAuctionDuration duration);
 }

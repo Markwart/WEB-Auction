@@ -1,5 +1,6 @@
 package com.itacademy.jd2.mm.auction.dao.orm.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,34 +9,25 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
-import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Bid;
-import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Bid_;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.AuctionDuration_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Category_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Composition_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Condition_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.CountryOrigin_;
-import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.DeferredBid;
-import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.DeferredBid_;
-import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Feedback;
-import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Feedback_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Item;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Item_;
-import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Message;
-import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Message_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.UserAccount_;
 import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.filter.ItemFilter;
 
 @Repository
@@ -66,6 +58,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		from.fetch(Item_.condition, JoinType.LEFT);
 		from.fetch(Item_.countryOrigin, JoinType.LEFT);
 		from.fetch(Item_.seller, JoinType.LEFT);
+		from.fetch(Item_.duration, JoinType.LEFT);
 
 		cq.where(cb.equal(from.get(Item_.id), id));
 
@@ -75,7 +68,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 	}
 
 	@Override
-	public List<IItem> find(ItemFilter filter) {
+	public List<IItem> find(ItemFilter filter, Integer id) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
 
@@ -83,6 +76,9 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		final Root<Item> from = cq.from(Item.class);
 
 		cq.select(from);
+		if (id != null) {
+			cq.where(cb.equal(from.get(Item_.seller), id));
+		} // only for logged user
 
 		if (filter.getFetchCategory()) {
 			from.fetch(Item_.category, JoinType.LEFT);
@@ -99,6 +95,11 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		if (filter.getFetchUserAccount()) {
 			from.fetch(Item_.seller, JoinType.LEFT);
 		}
+		if (filter.getFetchAuctionDuration()) {
+			from.fetch(Item_.duration, JoinType.LEFT);
+		}
+		
+		applyFilter(filter, cb, cq, from);
 
 		final String sortColumn = filter.getSortColumn();
 		if (sortColumn != null) {
@@ -110,6 +111,23 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		setPaging(filter, q);
 		final List<IItem> resultList = q.getResultList();
 		return resultList;
+	}
+	
+	private void applyFilter(final ItemFilter filter, final CriteriaBuilder cb, final CriteriaQuery<?> cq,
+			final Root<Item> from) {
+		final List<Predicate> ands = new ArrayList<>();
+
+		final String name = filter.getName();
+		if (!StringUtils.isEmpty(name)) {
+			ands.add(cb.equal(from.get(Item_.name), name));
+		}
+		final String text = filter.getText();
+		if (!StringUtils.isEmpty(text)) { 
+			ands.add(cb.equal(from.get(Item_.text), text));
+		}
+		if (!ands.isEmpty()) {
+			cq.where(cb.and(ands.toArray(new Predicate[0])));
+		}
 	}
 
 	@Override
@@ -142,6 +160,8 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 			return from.get(Item_.startingPrice);
 		case "year":
 			return from.get(Item_.year);
+		case "duration_id":
+			return from.get(Item_.duration).get(AuctionDuration_.day);
 		case "image":
 			return from.get(Item_.image);
 		case "text":
@@ -182,68 +202,20 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 
 		return jpaQuery.getResultList();
 	}
-
-	@Override
-	public List<IBid> findRelatedBids(Integer id) {
-		final EntityManager em = getEntityManager();
-		final CriteriaBuilder cb = em.getCriteriaBuilder();
-
-		final CriteriaQuery<IBid> cq = cb.createQuery(IBid.class);
-		final Root<Bid> from = cq.from(Bid.class);
-		
-		cq.select(from);
-		cq.where(cb.equal(from.get(Bid_.item), id));
-
-		final TypedQuery<IBid> q = em.createQuery(cq);
-		final List<IBid> resultList = q.getResultList();
-		return resultList;
-	}
 	
 	@Override
-	public List<IDeferredBid> findRelatedDeferredBids(Integer id) {
+	public List<IItem> findRelatedItemsBySeller(Integer id) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
 
-		final CriteriaQuery<IDeferredBid> cq = cb.createQuery(IDeferredBid.class);
-		final Root<DeferredBid> from = cq.from(DeferredBid.class);
-		
+		final CriteriaQuery<IItem> cq = cb.createQuery(IItem.class);
+		final Root<Item> from = cq.from(Item.class);
+
 		cq.select(from);
-		cq.where(cb.equal(from.get(DeferredBid_.item), id));
+		cq.where(cb.equal(from.get(Item_.seller), id));
 
-		final TypedQuery<IDeferredBid> q = em.createQuery(cq);
-		final List<IDeferredBid> resultList = q.getResultList();
-		return resultList;
-	}
-	
-	@Override
-	public List<IFeedback> findRelatedFeedback(Integer id) {
-		final EntityManager em = getEntityManager();
-		final CriteriaBuilder cb = em.getCriteriaBuilder();
-
-		final CriteriaQuery<IFeedback> cq = cb.createQuery(IFeedback.class);
-		final Root<Feedback> from = cq.from(Feedback.class);
-		
-		cq.select(from);
-		cq.where(cb.equal(from.get(Feedback_.item), id));
-
-		final TypedQuery<IFeedback> q = em.createQuery(cq);
-		final List<IFeedback> resultList = q.getResultList();
-		return resultList;
-	}
-	
-	@Override
-	public List<IMessage> findRelatedMessages(Integer id) {
-		final EntityManager em = getEntityManager();
-		final CriteriaBuilder cb = em.getCriteriaBuilder();
-
-		final CriteriaQuery<IMessage> cq = cb.createQuery(IMessage.class);
-		final Root<Message> from = cq.from(Message.class);
-		
-		cq.select(from);
-		cq.where(cb.equal(from.get(Message_.item), id));
-
-		final TypedQuery<IMessage> q = em.createQuery(cq);
-		final List<IMessage> resultList = q.getResultList();
+		final TypedQuery<IItem> q = em.createQuery(cq);
+		final List<IItem> resultList = q.getResultList();
 		return resultList;
 	}
 }

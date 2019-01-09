@@ -13,4 +13,6 @@ public interface IAdminCommunicationDao extends IDao<IAdminCommunication, Intege
 
 	IAdminCommunication getFullInfo(Integer id);
 
+	List<IAdminCommunication> findRelatedAdminCommunicationByUser(Integer id);
+
 }

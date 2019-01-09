@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
@@ -22,6 +23,7 @@ public class Item extends BaseEntity implements IItem {
 	private ICondition condition;
 	private IComposition composition;
 	private IUserAccount seller;
+	private IAuctionDuration duration;
 
 	private StatusAuction statusAuction;
 
@@ -143,5 +145,15 @@ public class Item extends BaseEntity implements IItem {
 	@Override
 	public StatusAuction getStatusAuction() {
 		return statusAuction;
+	}
+
+	@Override
+	public void setDuration(IAuctionDuration duration) {
+		this.duration = duration;
+	}
+
+	@Override
+	public IAuctionDuration getDuration() {
+		return duration;
 	}
 }

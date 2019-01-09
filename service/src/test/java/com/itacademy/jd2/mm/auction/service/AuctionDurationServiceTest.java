@@ -10,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 
 public class AuctionDurationServiceTest extends AbstractTest {
 
@@ -21,7 +20,7 @@ public class AuctionDurationServiceTest extends AbstractTest {
 		final IAuctionDuration entityFromDb = auctionDurationService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(entity.getMin(), entityFromDb.getMin());
+		assertEquals(entity.getDay(), entityFromDb.getDay());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
@@ -32,15 +31,15 @@ public class AuctionDurationServiceTest extends AbstractTest {
 	public void testUpdate() throws InterruptedException {
 		final IAuctionDuration entity = saveNewAuctionDuration();
 
-		Integer newMin = entity.getMin() + getRandomObjectsCount();
-		entity.setMin(newMin);
+		Integer newMin = entity.getDay() + getRandomObjectsCount();
+		entity.setDay(newMin);
 		Thread.sleep(DELAY);
 		auctionDurationService.save(entity);
 
 		final IAuctionDuration entityFromDb = auctionDurationService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(entity.getMin(), entityFromDb.getMin());
+		assertEquals(entity.getDay(), entityFromDb.getDay());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
@@ -61,7 +60,7 @@ public class AuctionDurationServiceTest extends AbstractTest {
 		final List<IAuctionDuration> allEntities = auctionDurationService.getAll();
 
 		for (final IAuctionDuration entityFromDb : allEntities) {
-			assertNotNull(entityFromDb.getMin());
+			assertNotNull(entityFromDb.getDay());
 			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getCreated());
 			assertNotNull(entityFromDb.getUpdated());

@@ -24,7 +24,7 @@ public interface IItemService {
 
 	IItem createEntity();
 	
-	List<IItem> find(ItemFilter filter);
+	List<IItem> find(ItemFilter filter, Integer id);
 
     long getCount(ItemFilter filter);
 

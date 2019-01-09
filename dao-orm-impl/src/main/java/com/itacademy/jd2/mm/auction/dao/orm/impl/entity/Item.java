@@ -17,6 +17,7 @@ import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.Store;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
@@ -59,6 +60,19 @@ public class Item extends BaseEntity implements IItem {
 
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = UserAccount.class)
 	private IUserAccount seller;
+	
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = AuctionDuration.class)
+	private IAuctionDuration duration;
+
+	@Override
+	public IAuctionDuration getDuration() {
+		return duration;
+	}
+
+	@Override
+	public void setDuration(IAuctionDuration duration) {
+		this.duration = duration;
+	}
 
 	@Override
 	public StatusAuction getStatusAuction() {

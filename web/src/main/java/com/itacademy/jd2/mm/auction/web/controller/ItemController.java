@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Item;
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
@@ -28,6 +28,7 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICountryOrigin;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.ItemFilter;
+import com.itacademy.jd2.mm.auction.service.IAuctionDurationService;
 import com.itacademy.jd2.mm.auction.service.ICategoryService;
 import com.itacademy.jd2.mm.auction.service.ICompositionService;
 import com.itacademy.jd2.mm.auction.service.IConditionService;
@@ -38,20 +39,23 @@ import com.itacademy.jd2.mm.auction.web.converter.ItemFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.ItemToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.dto.ItemDTO;
 import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
+import com.itacademy.jd2.mm.auction.web.dto.search.ItemSearchDTO;
+import com.itacademy.jd2.mm.auction.web.security.AuthHelper;
 
 @Controller
 @RequestMapping(value = "/item")
 public class ItemController extends AbstractController {
 
-	private static final String SEARCH_FORM_MODEL = "searchFormItem";
-	//private static final String SEARCH = ItemController.class.getSimpleName() + "_SEACH";
-	
+	private static final String SEARCH_FORM_MODEL = "searchFormModel";
+	private static final String SEARCH_DTO = ItemController.class.getSimpleName() + "_SEACH_DTO";
+
 	private IItemService itemService;
 	private IUserAccountService userAccountService;
 	private ICategoryService categoryService;
 	private IConditionService conditionService;
 	private ICompositionService compositionService;
 	private ICountryOriginService countryOriginService;
+	private IAuctionDurationService auctionDurationService;
 
 	private ItemToDTOConverter toDtoConverter;
 	private ItemFromDTOConverter fromDtoConverter;
@@ -60,7 +64,8 @@ public class ItemController extends AbstractController {
 	public ItemController(IItemService itemService, IUserAccountService userAccountService,
 			ICategoryService categoryService, IConditionService conditionService,
 			ICompositionService compositionService, ICountryOriginService countryOriginService,
-			ItemToDTOConverter toDtoConverter, ItemFromDTOConverter fromDtoConverter) {
+			ItemToDTOConverter toDtoConverter, ItemFromDTOConverter fromDtoConverter,
+			IAuctionDurationService auctionDurationService) {
 		super();
 		this.itemService = itemService;
 		this.userAccountService = userAccountService;
@@ -68,34 +73,38 @@ public class ItemController extends AbstractController {
 		this.conditionService = conditionService;
 		this.compositionService = compositionService;
 		this.countryOriginService = countryOriginService;
+		this.auctionDurationService = auctionDurationService;
 		this.toDtoConverter = toDtoConverter;
 		this.fromDtoConverter = fromDtoConverter;
+		;
 	}
 
-	@RequestMapping(method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView index(final HttpServletRequest req, @ModelAttribute(SEARCH_FORM_MODEL) Item searchItem,
+	@RequestMapping(value = { "", "/private" }, method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView index(final HttpServletRequest req, @ModelAttribute(SEARCH_FORM_MODEL) ItemSearchDTO searchDTO,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
+		
+		Integer loggedUserId = AuthHelper.getLoggedUserId();
 
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
 
-	/*	if (req.getMethod().equalsIgnoreCase("get")) {
-			searchItem = getSearch(req);
+		if (req.getMethod().equalsIgnoreCase("get")) {
+			searchDTO = getSearchDTO(req);
 		} else {
-			req.getSession().setAttribute(SEARCH, searchItem);
-		}*/
+			req.getSession().setAttribute(SEARCH_DTO, searchDTO);
+		}
 
 		final ItemFilter filter = new ItemFilter();
 
-		/*if (searchItem.getName() != null) {
-			filter.setName(search.getName());
+		if (searchDTO.getName() != null) {
+			filter.setName(searchDTO.getName());
 		}
 
-		if (searchItem.getText() != null) {
-			filter.setText(search.getText());
-		}*/
+		if (searchDTO.getText() != null) {
+			filter.setText(searchDTO.getText());
+		}
 
 		prepareFilter(gridState, filter);
 		gridState.setTotalCount(itemService.getCount(filter));
@@ -105,13 +114,17 @@ public class ItemController extends AbstractController {
 		filter.setFetchCondition(true);
 		filter.setFetchComposition(true);
 		filter.setFetchCountryOrigin(true);
+		filter.setFetchAuctionDuration(true);
 
-		final List<IItem> entities = itemService.find(filter);
+		if (!req.getRequestURI().contains("/private")) {
+			loggedUserId = null;
+		}
+		final List<IItem> entities = itemService.find(filter, loggedUserId);
 		List<ItemDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
-		models.put(SEARCH_FORM_MODEL, searchItem);
+		models.put(SEARCH_FORM_MODEL, searchDTO);
 		return new ModelAndView("item.list", models);
 	}
 
@@ -123,7 +136,7 @@ public class ItemController extends AbstractController {
 		return new ModelAndView("item.edit", hashMap);
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Object save(@Valid @ModelAttribute("formModel") final ItemDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
 			final Map<String, Object> hashMap = new HashMap<>();
@@ -165,12 +178,13 @@ public class ItemController extends AbstractController {
 	}
 
 	private void loadCommonFormModels(final Map<String, Object> hashMap) {
-		final List<IUserAccount> userAccounts = userAccountService.getAll();
-		final List<ICategory> category = categoryService.getAll();
-		final List<ICondition> condition = conditionService.getAll();
-		final List<IComposition> composition = compositionService.getAll();
-		final List<ICountryOrigin> countryOrigin = countryOriginService.getAll();
+		final List<IUserAccount> userAccountsList = userAccountService.getAll();
+		final List<ICategory> categoryList = categoryService.getAll();
+		final List<ICondition> conditionList = conditionService.getAll();
+		final List<IComposition> compositionList = compositionService.getAll();
+		final List<ICountryOrigin> countryOriginList = countryOriginService.getAll();
 		final List<StatusAuction> statusAuctionList = Arrays.asList(StatusAuction.values());
+		final List<IAuctionDuration> auctionDurationList = auctionDurationService.getAll();
 
 		/*
 		 * final Map<Integer, String> userAccountsMap = new HashMap<>(); for (final
@@ -178,37 +192,41 @@ public class ItemController extends AbstractController {
 		 * userAccountsMap.put(iUserAccount.getId(), iUserAccount.getEmail()); }
 		 */
 
-		final Map<Integer, String> userAccountsMap = userAccounts.stream()
+		final Map<Integer, String> userAccountsMap = userAccountsList.stream()
 				.collect(Collectors.toMap(IUserAccount::getId, IUserAccount::getEmail));
 		hashMap.put("sellerChoices", userAccountsMap);
 
-		final Map<Integer, String> categoryMap = category.stream()
+		final Map<Integer, String> categoryMap = categoryList.stream()
 				.collect(Collectors.toMap(ICategory::getId, ICategory::getName));
 		hashMap.put("categoryChoices", categoryMap);
 
-		final Map<Integer, String> conditionMap = condition.stream()
+		final Map<Integer, String> conditionMap = conditionList.stream()
 				.collect(Collectors.toMap(ICondition::getId, ICondition::getName));
 		hashMap.put("conditionChoices", conditionMap);
 
-		final Map<Integer, String> compositionMap = composition.stream()
+		final Map<Integer, String> compositionMap = compositionList.stream()
 				.collect(Collectors.toMap(IComposition::getId, IComposition::getName));
 		hashMap.put("compositionChoices", compositionMap);
 
-		final Map<Integer, String> countryOriginMap = countryOrigin.stream()
+		final Map<Integer, String> countryOriginMap = countryOriginList.stream()
 				.collect(Collectors.toMap(ICountryOrigin::getId, ICountryOrigin::getName));
 		hashMap.put("countryOriginChoices", countryOriginMap);
 
 		final Map<String, String> statusAuctionMap = statusAuctionList.stream()
 				.collect(Collectors.toMap(StatusAuction::name, StatusAuction::name));
 		hashMap.put("statusAuctionChoices", statusAuctionMap);
+		
+		final Map<Integer, Integer> auctionDurationMap = auctionDurationList.stream()
+				.collect(Collectors.toMap(IAuctionDuration::getId, IAuctionDuration::getDay));
+		hashMap.put("auctionDurationChoices", auctionDurationMap);
 	}
 
-	/*private Item getSearch(final HttpServletRequest req) {
-		Item search = (Item) req.getSession().getAttribute(SEARCH);
-		if (search == null) {
-			search = new Item();
-			req.getSession().setAttribute(SEARCH, search);
+	private ItemSearchDTO getSearchDTO(final HttpServletRequest req) {
+		ItemSearchDTO searchDTO = (ItemSearchDTO) req.getSession().getAttribute(SEARCH_DTO);
+		if (searchDTO == null) {
+			searchDTO = new ItemSearchDTO();
+			req.getSession().setAttribute(SEARCH_DTO, searchDTO);
 		}
-		return search;
-	}*/
+		return searchDTO;
+	}
 }

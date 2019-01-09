@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICountryOrigin;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
+import com.itacademy.jd2.mm.auction.service.IAuctionDurationService;
 import com.itacademy.jd2.mm.auction.service.ICategoryService;
 import com.itacademy.jd2.mm.auction.service.ICompositionService;
 import com.itacademy.jd2.mm.auction.service.IConditionService;
@@ -35,6 +37,8 @@ public class ItemFromDTOConverter implements Function<ItemDTO, IItem> {
     private IConditionService conditionService;
     @Autowired
     private ICompositionService compositionService;
+    @Autowired
+    private IAuctionDurationService auctionDurationService;
     
     @Override
     public IItem apply(final ItemDTO dto) {
@@ -67,6 +71,10 @@ public class ItemFromDTOConverter implements Function<ItemDTO, IItem> {
         final ICountryOrigin countryOrigin = countryOriginService.createEntity();
         countryOrigin.setId(dto.getCountryOriginId());
         entity.setCountryOrigin(countryOrigin);
+        
+        final IAuctionDuration duration = auctionDurationService.createEntity();
+        duration.setId(dto.getDurationId());
+        entity.setDuration(duration);
         
         return entity;
     }

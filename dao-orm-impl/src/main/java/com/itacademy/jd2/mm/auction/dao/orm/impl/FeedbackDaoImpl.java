@@ -1,5 +1,6 @@
 package com.itacademy.jd2.mm.auction.dao.orm.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.jpa.criteria.OrderImpl;
@@ -33,7 +35,7 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 		final Feedback feedback = new Feedback();
 		return feedback;
 	}
-	
+
 	@Override
 	public IFeedback getFullInfo(final Integer id) {
 		final EntityManager em = getEntityManager();
@@ -56,15 +58,18 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 	}
 
 	@Override
-	public List<IFeedback> find(FeedbackFilter filter) {
+	public List<IFeedback> find(FeedbackFilter filter, Integer id) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
 
 		final CriteriaQuery<IFeedback> cq = cb.createQuery(IFeedback.class);
-
 		final Root<Feedback> from = cq.from(Feedback.class);
 
 		cq.select(from);
+		if (id != null) {
+			cq.where(cb.equal(from.get(Feedback_.userFrom), id));
+			cq.where(cb.equal(from.get(Feedback_.userWhom), id));
+		} // only for logged user
 
 		if (filter.getFetchUserAccountFrom()) {
 			from.fetch(Feedback_.userFrom, JoinType.LEFT);
@@ -101,7 +106,7 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 		final TypedQuery<Long> q = em.createQuery(cq);
 		return q.getSingleResult();
 	}
-	
+
 	private Path<?> getSortPath(final Root<Feedback> from, final String sortColumn) {
 		switch (sortColumn) {
 		case "created":
@@ -129,5 +134,40 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 		default:
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}
+	}
+
+	@Override
+	public List<IFeedback> findRelatedFeedbackByItem(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IFeedback> cq = cb.createQuery(IFeedback.class);
+		final Root<Feedback> from = cq.from(Feedback.class);
+
+		cq.select(from);
+		cq.where(cb.equal(from.get(Feedback_.item), id));
+
+		final TypedQuery<IFeedback> q = em.createQuery(cq);
+		final List<IFeedback> resultList = q.getResultList();
+		return resultList;
+	}
+
+	@Override
+	public List<IFeedback> findRelatedFeedbackByUser(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IFeedback> cq = cb.createQuery(IFeedback.class);
+		final Root<Feedback> from = cq.from(Feedback.class);
+
+		cq.select(from);
+
+		final List<Predicate> ands = new ArrayList<>();
+		ands.add(cb.equal(from.get(Feedback_.userFrom), id));
+		ands.add(cb.equal(from.get(Feedback_.userWhom), id));
+
+		final TypedQuery<IFeedback> q = em.createQuery(cq);
+		final List<IFeedback> resultList = q.getResultList();
+		return resultList;
 	}
 }

@@ -37,7 +37,7 @@ public class SendMailTLS {
 			message.setFrom(new InternetAddress("watashiwajanaidesu@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse("watashiwajanaidesu@gmail.com"));
-			message.setSubject("Testing Subject");
+			message.setSubject("New account created");
 			message.setText("New account created");
 
 			Transport.send(message);

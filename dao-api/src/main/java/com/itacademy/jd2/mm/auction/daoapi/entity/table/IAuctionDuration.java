@@ -2,7 +2,7 @@ package com.itacademy.jd2.mm.auction.daoapi.entity.table;
 
 public interface IAuctionDuration extends IBaseEntity {
 
-	Integer getMin();
+	Integer getDay();
 	
-	void setMin(Integer min);
+	void setDay(Integer day);
 }

@@ -16,7 +16,6 @@ public class AuthHelper {
             return null;
         }
 
-
         ExtendedUsernamePasswordAuthenticationToken extendedAuth = (ExtendedUsernamePasswordAuthenticationToken) auth;
         return extendedAuth.getId();
     }

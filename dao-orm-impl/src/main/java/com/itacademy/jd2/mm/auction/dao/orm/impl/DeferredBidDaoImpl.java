@@ -118,4 +118,36 @@ public class DeferredBidDaoImpl extends AbstractDaoImpl<IDeferredBid, Integer> i
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}
 	}
+	
+	@Override
+	public List<IDeferredBid> findRelatedDeferredBidsByItem(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IDeferredBid> cq = cb.createQuery(IDeferredBid.class);
+		final Root<DeferredBid> from = cq.from(DeferredBid.class);
+		
+		cq.select(from);
+		cq.where(cb.equal(from.get(DeferredBid_.item), id));
+
+		final TypedQuery<IDeferredBid> q = em.createQuery(cq);
+		final List<IDeferredBid> resultList = q.getResultList();
+		return resultList;
+	}
+	
+	@Override
+	public List<IDeferredBid> findRelatedDeferredBidsByUser(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IDeferredBid> cq = cb.createQuery(IDeferredBid.class);
+		final Root<DeferredBid> from = cq.from(DeferredBid.class);
+
+		cq.select(from);
+		cq.where(cb.equal(from.get(DeferredBid_.userBid), id));
+
+		final TypedQuery<IDeferredBid> q = em.createQuery(cq);
+		final List<IDeferredBid> resultList = q.getResultList();
+		return resultList;
+	}
 }

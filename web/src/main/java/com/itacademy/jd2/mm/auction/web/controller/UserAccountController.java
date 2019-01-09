@@ -50,7 +50,7 @@ public class UserAccountController extends AbstractController {
 		this.toDtoConverter = toDtoConverter;
 		this.fromDtoConverter = fromDtoConverter;
 	}
-
+	
 	@RequestMapping(method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView index(final HttpServletRequest req,
 			@ModelAttribute(SEARCH_FORM_MODEL) UserAccountSearchDTO searchDto,
@@ -70,6 +70,9 @@ public class UserAccountController extends AbstractController {
 		if (searchDto.getEmail() != null) {
             filter.setEmail(searchDto.getEmail());
         }
+		/*if (searchDto.getRole() != null) {
+            filter.setRole(searchDto.getRole());
+        }*/
 		
 		prepareFilter(gridState, filter);
 
@@ -102,7 +105,7 @@ public class UserAccountController extends AbstractController {
 			final IUserAccount entity = fromDtoConverter.apply(formModel);
 			final IPersonalData personalDataEntity = entity.getPersonalData();
 			userAccountService.save(entity, personalDataEntity);
-			return "redirect:/userAccount";
+			return "redirect:/";
 		}
 	}
 

@@ -9,6 +9,15 @@ public class ItemFilter extends AbstractFilter {
 	private boolean fetchCondition;
 	private boolean fetchComposition;
 	private boolean fetchCountryOrigin;
+	private boolean fetchAuctionDuration;
+
+	public boolean getFetchAuctionDuration() {
+		return fetchAuctionDuration;
+	}
+
+	public void setFetchAuctionDuration(boolean fetchAuctionDuration) {
+		this.fetchAuctionDuration = fetchAuctionDuration;
+	}
 
 	public String getName() {
 		return name;

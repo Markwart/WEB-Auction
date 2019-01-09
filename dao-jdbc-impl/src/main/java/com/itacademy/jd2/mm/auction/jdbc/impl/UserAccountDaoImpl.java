@@ -12,12 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.itacademy.jd2.mm.auction.daoapi.IPersonalDataDao;
 import com.itacademy.jd2.mm.auction.daoapi.IUserAccountDao;
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAdminCommunication;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
 import com.itacademy.jd2.mm.auction.jdbc.impl.entity.UserAccount;
@@ -124,36 +118,6 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 
 	@Override
 	public IUserAccount getUserByLogin(String username) {
-		throw new RuntimeException("not implemented");
-	}
-
-	@Override
-	public List<IBid> findRelatedBids(Integer id) {
-		throw new RuntimeException("not implemented");
-	}
-
-	@Override
-	public List<IDeferredBid> findRelatedDeferredBids(Integer id) {
-		throw new RuntimeException("not implemented");
-	}
-
-	@Override
-	public List<IItem> findRelatedItems(Integer id) {
-		throw new RuntimeException("not implemented");
-	}
-
-	@Override
-	public List<IFeedback> findRelatedFeedback(Integer id) {
-		throw new RuntimeException("not implemented");
-	}
-
-	@Override
-	public List<IMessage> findRelatedMessages(Integer id) {
-		throw new RuntimeException("not implemented");
-	}
-
-	@Override
-	public List<IAdminCommunication> findRelatedAdminCommunication(Integer id) {
 		throw new RuntimeException("not implemented");
 	}
 }

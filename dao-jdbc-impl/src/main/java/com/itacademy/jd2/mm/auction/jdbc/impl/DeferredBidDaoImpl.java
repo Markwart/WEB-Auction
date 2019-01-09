@@ -148,4 +148,14 @@ public class DeferredBidDaoImpl extends AbstractDaoImpl<IDeferredBid, Integer> i
 	public IDeferredBid getFullInfo(Integer id) {
 		throw new RuntimeException("not implemneted");
 	}
+
+	@Override
+	public List<IDeferredBid> findRelatedDeferredBidsByItem(Integer id) {
+		throw new RuntimeException("not implemented");
+	}
+
+	@Override
+	public List<IDeferredBid> findRelatedDeferredBidsByUser(Integer id) {
+		throw new RuntimeException("not implemented");
+	}
 }

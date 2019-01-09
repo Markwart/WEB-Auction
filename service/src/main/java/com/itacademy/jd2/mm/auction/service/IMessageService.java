@@ -24,9 +24,9 @@ public interface IMessageService {
 
 	IMessage createEntity();
 	
-	List<IMessage> find(MessageFilter filter);
-
     long getCount(MessageFilter filter);
 
 	IMessage getFullInfo(Integer id);
+
+	List<IMessage> find(MessageFilter filter, Integer id);
 }

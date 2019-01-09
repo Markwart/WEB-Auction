@@ -67,20 +67,20 @@
 			<div class="col s12"></div>
 			<div class="col s4">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">сохранить</button>
+					<button class="btn waves-effect waves-light right" type="submit">save</button>
 				</c:if>
 			</div>
 			<sec:authorize access="hasAnyRole('admin', 'moderator')">
 			<div class="col s4">
 				<a class="btn waves-effect waves-light right"
-					href="${pagesUserAccount}">к списку<i
+					href="${pagesUserAccount}">list<i
 					class="material-icons right"></i>
 				</a>
 			</div>
 			</sec:authorize>
 			<div class="col s4">
 				<a class="btn waves-effect waves-light right"
-					href="${contextPath}">home page<i
+					href="${contextPath}">Home page<i
 					class="material-icons right"></i>
 				</a>
 			</div>

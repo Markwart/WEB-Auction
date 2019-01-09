@@ -7,9 +7,13 @@ import com.itacademy.jd2.mm.auction.daoapi.filter.MessageFilter;
 
 public interface IMessageDao extends IDao<IMessage, Integer> {
 
-	List<IMessage> find(MessageFilter filter);
-
 	long getCount(MessageFilter filter);
 
 	IMessage getFullInfo(Integer id);
+
+	List<IMessage> findRelatedMessagesByItem(Integer id);
+
+	List<IMessage> findRelatedMessagesByUser(Integer id);
+
+	List<IMessage> find(MessageFilter filter, Integer id);
 }

@@ -1,8 +1,19 @@
 package com.itacademy.jd2.mm.auction.daoapi.filter;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
+
 public class UserAccountFilter extends AbstractFilter {
 	
 	private String email;
+	private Roles role;
+
+	public Roles getRole() {
+		return role;
+	}
+
+	public void setRole(Roles role) {
+		this.role = role;
+	}
 
 	public String getEmail() {
 		return email;
@@ -11,5 +22,4 @@ public class UserAccountFilter extends AbstractFilter {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 }

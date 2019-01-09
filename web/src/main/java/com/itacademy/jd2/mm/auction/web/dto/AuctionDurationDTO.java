@@ -11,9 +11,9 @@ public class AuctionDurationDTO {
 	private Integer id;
 
 	@NotNull
-	@DecimalMin(value = "1440")
-	@DecimalMax(value = "43200")
-	private Integer min;
+	@DecimalMin(value = "1")
+	@DecimalMax(value = "30")
+	private Integer day;
 
 	private Date created;
 	private Date updated;
@@ -26,12 +26,12 @@ public class AuctionDurationDTO {
 		this.id = id;
 	}
 
-	public Integer getMin() {
-		return min;
+	public Integer getDay() {
+		return day;
 	}
 
-	public void setMin(Integer min) {
-		this.min = min;
+	public void setDay(Integer day) {
+		this.day = day;
 	}
 
 	public Date getCreated() {

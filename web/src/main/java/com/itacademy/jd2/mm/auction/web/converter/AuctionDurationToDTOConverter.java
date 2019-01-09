@@ -14,7 +14,7 @@ public class AuctionDurationToDTOConverter implements Function<IAuctionDuration,
 	public AuctionDurationDTO apply(final IAuctionDuration entity) {
 		final AuctionDurationDTO dto = new AuctionDurationDTO();
 		dto.setId(entity.getId());
-		dto.setMin(entity.getMin());;
+		dto.setDay(entity.getDay());;
 		dto.setCreated(entity.getCreated());
 		dto.setUpdated(entity.getUpdated());
 		return dto;

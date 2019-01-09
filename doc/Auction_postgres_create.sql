@@ -1,6 +1,6 @@
 CREATE TABLE "user_account" (
 	"id" serial NOT NULL,
-	"role" int NOT NULL,
+	"role" character varying NOT NULL,
 	"email" character varying NOT NULL UNIQUE,
 	"password" character varying NOT NULL,
 	"created" TIMESTAMP NOT NULL,
@@ -16,6 +16,7 @@ CREATE TABLE "item" (
 	"id" serial NOT NULL,
 	"name" character varying NOT NULL,
 	"auction_end" TIMESTAMP NOT NULL,
+	"duration_id" int NOT NULL,
 	"starting_price" DECIMAL NOT NULL,
 	"category_id" int NOT NULL,
 	"year" int NOT NULL,
@@ -133,7 +134,7 @@ CREATE TABLE "feedback" (
 
 CREATE TABLE "auction_duration" (
 	"id" serial NOT NULL,
-	"min" int NOT NULL UNIQUE,
+	"day" int NOT NULL UNIQUE,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
 	CONSTRAINT auction_duration_pk PRIMARY KEY ("id")
@@ -256,11 +257,12 @@ CREATE TABLE "step_block" (
 
 
 
-ALTER TABLE "item" ADD CONSTRAINT "item_fk0" FOREIGN KEY ("category_id") REFERENCES "category"("id");
-ALTER TABLE "item" ADD CONSTRAINT "item_fk1" FOREIGN KEY ("country_origin_id") REFERENCES "country_origin"("id");
-ALTER TABLE "item" ADD CONSTRAINT "item_fk2" FOREIGN KEY ("condition_id") REFERENCES "condition"("id");
-ALTER TABLE "item" ADD CONSTRAINT "item_fk3" FOREIGN KEY ("composition_id") REFERENCES "composition"("id");
-ALTER TABLE "item" ADD CONSTRAINT "item_fk4" FOREIGN KEY ("seller_id") REFERENCES "user_account"("id");
+ALTER TABLE "item" ADD CONSTRAINT "item_fk0" FOREIGN KEY ("duration_id") REFERENCES "auction_duration"("id");
+ALTER TABLE "item" ADD CONSTRAINT "item_fk1" FOREIGN KEY ("category_id") REFERENCES "category"("id");
+ALTER TABLE "item" ADD CONSTRAINT "item_fk2" FOREIGN KEY ("country_origin_id") REFERENCES "country_origin"("id");
+ALTER TABLE "item" ADD CONSTRAINT "item_fk3" FOREIGN KEY ("condition_id") REFERENCES "condition"("id");
+ALTER TABLE "item" ADD CONSTRAINT "item_fk4" FOREIGN KEY ("composition_id") REFERENCES "composition"("id");
+ALTER TABLE "item" ADD CONSTRAINT "item_fk5" FOREIGN KEY ("seller_id") REFERENCES "user_account"("id");
 
 ALTER TABLE "personal_data" ADD CONSTRAINT "personal_data_fk0" FOREIGN KEY ("id") REFERENCES "user_account"("id");
 

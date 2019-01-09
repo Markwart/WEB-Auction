@@ -1,90 +1,106 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
+	
 <header>
 	<nav>
 		<div class="nav-wrapper container">
 
 			<!-- Dropdown Structure -->
-			<%-- <sec:authorize access="hasAnyRole('admin', 'moderator')"> --%>
-			<ul id="dropdown1" class="dropdown-content">
-				<li><a href="${pagesCategory}">Category</a></li>
-				<li><a href="${pagesComposition}">Composition</a></li>
-				<li><a href="${pagesCondition}">Condition</a></li>
-				<li><a href="${pagesCountryOrigin}">Origin country</a></li>
-				<li><a href="${pagesPaymentMethod}">Payment</a></li>
-				<li><a href="${pagesShippingMethod}">Shipping</a></li>
-				<li><a href="${pagesStepBlock}">Step blocks</a></li>
-				<li><a href="${pagesAuctionDuration}">Auction duration</a></li>
-				<li class="divider"></li>
-			</ul>
-			<ul id="dropdown2" class="dropdown-content">
-				<li><a href="${pagesUserAccount}">User accounts</a></li>
-				<li><a href="${pagesAdminCommunication}">Admin
-						communication</a></li>
-				<li><a href="${pagesMessage}">Messages</a></li>
-				<li><a href="${pagesBid}">Bids</a></li>
-				<li><a href="${pagesDeferredBid}">Deferred bids</a></li>
-				<li class="divider"></li>
-			</ul>
-			<%-- </sec:authorize> --%>
+			<sec:authorize access="hasAnyRole('admin', 'moderator')">
+				<ul id="dropdown1" class="dropdown-content">
+					<li><a href="${pagesCategory}"><mytaglib:i18n key="section.category"></mytaglib:i18n></a></li>
+					<li><a href="${pagesComposition}"><mytaglib:i18n key="section.composition"></mytaglib:i18n></a></li>
+					<li><a href="${pagesCondition}"><mytaglib:i18n key="section.condition"></mytaglib:i18n></a></li>
+					<li><a href="${pagesCountryOrigin}"><mytaglib:i18n key="section.country"></mytaglib:i18n></a></li>
+					<li><a href="${pagesPaymentMethod}"><mytaglib:i18n key="section.payment"></mytaglib:i18n></a></li>
+					<li><a href="${pagesShippingMethod}"><mytaglib:i18n key="section.shipping"></mytaglib:i18n></a></li>
+					<li><a href="${pagesStepBlock}"><mytaglib:i18n key="section.step-block"></mytaglib:i18n></a></li>
+					<li><a href="${pagesAuctionDuration}"><mytaglib:i18n key="section.duration"></mytaglib:i18n></a></li>
+					<li class="divider"></li>
+				</ul>
+				<ul id="dropdown2" class="dropdown-content">
+					<li><a href="${pagesUserAccount}"><mytaglib:i18n key="section.account"></mytaglib:i18n></a></li>
+					<li><a href="${pagesAdminCommunication}"><mytaglib:i18n key="section.admin-communication"></mytaglib:i18n></a></li>
+					<li><a href="${pagesMessage}"><mytaglib:i18n key="section.message"></mytaglib:i18n></a></li>
+					<li><a href="${pagesBid}"><mytaglib:i18n key="section.bid"></mytaglib:i18n></a></li>
+					<li><a href="${pagesDeferredBid}"><mytaglib:i18n key="section.deferred-bid"></mytaglib:i18n></a></li>
+					<li class="divider"></li>
+				</ul>
+			</sec:authorize>
 			<nav>
 				<div class="nav-wrapper">
-					<a href="#!" class="brand-logo">Web-Auction</a>
+					<a href="${contextPath}" class="brand-logo" title="Home page"><mytaglib:i18n key="main"></mytaglib:i18n></a>
 					<ul class="right hide-on-med-and-down">
-						<li><a href="${contextPath}">home</a></li>
-						<li><a href="${pagesAuctionRule}">Auction rules</a></li>
-						<li><a href="${pagesFeedback}">Feedback</a></li>
-						<li><a href="${pagesItem}">Items</a></li>
-						<li><a href="${contextPath}?language=ru">RU</a></li>
-						<li><a href="${contextPath}?language=en">EN</a></li>
+						<%-- <li><a href="${contextPath}">Home page</a></li> --%>
+						<li><a href="${pagesAuctionRule}"><mytaglib:i18n key="section.rule"></mytaglib:i18n></a></li>
+						<li><a href="${pagesFeedback}"><mytaglib:i18n key="section.feedback"></mytaglib:i18n></a></li>
+						<li><a href="${pagesItem}"><mytaglib:i18n key="section.item"></mytaglib:i18n></a></li>
+						<li><a href="#!"><mytaglib:i18n key="section.help"></mytaglib:i18n></a></li>
 
 						<!-- Dropdown Trigger -->
-						<%-- 	<sec:authorize access="hasAnyRole('admin', 'moderator')"> --%>
-						<li><a class="dropdown-trigger" href="#!"
-							data-target="dropdown1">Working settings<i
-								class="material-icons right">arrow_drop_down</i></a></li>
-						<li><a class="dropdown-trigger" href="#!"
-							data-target="dropdown2">Manage users<i
-								class="material-icons right">arrow_drop_down</i></a></li>
-						<%-- </sec:authorize> --%>
+						<sec:authorize access="hasAnyRole('admin', 'moderator')">
+							<li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><mytaglib:i18n key="section.work-set"></mytaglib:i18n><i
+									class="material-icons right">arrow_drop_down</i></a></li>
+							<li><a class="dropdown-trigger" href="#!" data-target="dropdown2"><mytaglib:i18n key="section.manage-users"></mytaglib:i18n><i
+									class="material-icons right">arrow_drop_down</i></a></li>
+						</sec:authorize>
 					</ul>
 				</div>
 			</nav>
 		</div>
 
+		<div class="locale">
+			<ul>
+				<li><a href="${contextPath}?language=ru">RU</a></li>
+				<li><a href="${contextPath}?language=en">EN</a></li>
+			</ul>
+		</div>
+
 		<div class="current-user">
-			<sec:authentication property="name" />
+		    <sec:authorize access="!isAnonymous()">
+			    <sec:authentication property="name" />
+			</sec:authorize>
+
 			<sec:authorize access="hasRole('admin')">
-				<div class="right" title="admin">
-					<i class="material-icons">supervisor_account</i>
+				<div class="right" title='<mytaglib:i18n key="admin"></mytaglib:i18n>'>
+					<a class="dropdown-trigger btn private-menu" data-target="dropdown3"><i class="material-icons">supervisor_account</i></a>
 				</div>
 			</sec:authorize>
 
 			<sec:authorize access="hasRole('moderator')">
-				<div class="right" title="moderator">
-					<i class="material-icons">supervisor_account</i>
+				<div class="right" title='<mytaglib:i18n key="moderator"></mytaglib:i18n>'>
+					<a class="dropdown-trigger btn private-menu" data-target="dropdown3"><i class="material-icons">supervisor_account</i></a>
 				</div>
 			</sec:authorize>
 
 			<sec:authorize access="hasRole('user')">
-				<div class="right" title="user">
-					<i class="material-icons">perm_identity</i>
+				<div class="right" title='<mytaglib:i18n key="user"></mytaglib:i18n>'>
+					<a class="dropdown-trigger btn private-menu" data-target="dropdown3"><i class="material-icons">perm_identity</i></a>
 				</div>
 			</sec:authorize>
 
-			<sec:authorize access="!isAnonymous()">
-				<a class="right" href="${contextPath}/execute_logout" title="logout"><i
-					class="material-icons">exit_to_app</i></a>
-			</sec:authorize>
-
 			<sec:authorize access="isAnonymous()">
-				<a class="right" href="${contextPath}/login" title="login"><i
+				<mytaglib:i18n key="guest"></mytaglib:i18n>&nbsp<a class="right" href="${contextPath}/login" title='<mytaglib:i18n key="login"></mytaglib:i18n>'><i
 					class="material-icons">open_in_browser</i></a>
 			</sec:authorize>
-
 		</div>
 
 	</nav>
+
+	<!-- Dropdown Structure -->
+	<ul id="dropdown3" class="dropdown-content private-menu-mod">
+		<li><a href="${pagesItem}/private"><i class="material-icons">storage</i><mytaglib:i18n key="section.my-item"></mytaglib:i18n></a></li>
+		<li class="divider" tabindex="-1"></li>
+		<li><a href="#!"><i class="material-icons">library_books</i><mytaglib:i18n key="section.watch-list"></mytaglib:i18n></a></li>
+		<li class="divider" tabindex="-1"></li>
+		<li><a href="${pagesMessage}/private"><i class="material-icons">mail_outline</i><mytaglib:i18n key="section.message"></mytaglib:i18n></a></li>
+		<li class="divider" tabindex="-1"></li>
+		<li><a href="${pagesFeedback}/private"><i class="material-icons">feedback</i><mytaglib:i18n key="section.feedback"></mytaglib:i18n></a></li>
+		<li class="divider" tabindex="-1"></li>
+		<li><a href="#!"><i class="material-icons">settings</i><mytaglib:i18n key="section.setting"></mytaglib:i18n></a></li>
+		<li class="divider" tabindex="-1"></li>
+		<li><a href="${contextPath}/execute_logout"><i class="material-icons">exit_to_app</i><mytaglib:i18n key="logout"></mytaglib:i18n></a></li>
+	</ul>
+
 </header>

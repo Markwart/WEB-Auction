@@ -1,5 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-  <entry key="table.column.id">Идентификатор</entry>
+
+	<!-- Table columns -->
+	<entry key="table.column.id">ИН</entry>
+	<entry key="table.column.created">СОЗДАНО</entry>
+	<entry key="table.column.updated">ИЗМЕНЕНО</entry>
+	<entry key="table.column.theme">ТЕМА</entry>
+	<entry key="table.column.text">ОПИСАНИЕ</entry>
+	<entry key="table.column.index">НОМЕР</entry>
+	<entry key="table.column.item-name">НАИМЕНОВАНИЕ ЛОТА</entry>
+	<entry key="table.column.seller">ПРОДАВЕЦ</entry>
+	<entry key="table.column.comment">КОММЕНТАРИЙ</entry>
+	<entry key="table.column.from">ОТПРАВИТЕЛЬ</entry>
+	<entry key="table.column.name">НАИМЕНОВАНИЕ</entry>
+	<entry key="table.column.image">ИЗОБРАЖЕНИЕ</entry>
+	<entry key="table.column.price">СТОИМОСТЬ ЛОТА</entry>
+	<entry key="table.column.ends">ОКОНЧАНИЕ ТОРГОВ</entry>
+	<entry key="table.column.status">СТАТУС</entry>
+
+	<!-- Sections -->
+	<entry key="main">Интернет-Аукцион</entry>
+
+	<entry key="section.home">Главная страница</entry>
+	<entry key="section.rule">Правила аукциона</entry>
+	<entry key="section.feedback">Отзывы</entry>
+	<entry key="section.item">Лоты</entry>
+	<entry key="section.help">Помощь</entry>
+	<entry key="section.setting">Настройки</entry>
+	<entry key="section.my-item">Мои лоты</entry>
+	<entry key="section.watch-list">Избранное</entry>
+
+	<entry key="section.work-set">Рабочие настройки</entry>
+	<entry key="section.category">Категория</entry>
+	<entry key="section.composition">Состав</entry>
+	<entry key="section.condition">Состояние</entry>
+	<entry key="section.country">Страна происхождения</entry>
+	<entry key="section.payment">Оплата</entry>
+	<entry key="section.shipping">Доставка</entry>
+	<entry key="section.step-block">Шаги ставок</entry>
+	<entry key="section.duration">Продолжительность аукциона</entry>
+
+	<entry key="section.manage-users">Управление пользователями</entry>
+	<entry key="section.account">Аккаунты пользователей</entry>
+	<entry key="section.admin-communication">Связь с администрацией</entry>
+	<entry key="section.message">Сообщения</entry>
+	<entry key="section.bid">Ставки</entry>
+	<entry key="section.deferred-bid">Отложенные ставки</entry>
+
+	<entry key="login">Войти</entry>
+	<entry key="logout">Выйти</entry>
+	<entry key="registration">Регистрация нового пользователя</entry>
+	<entry key="login.header">Войти с помощью почты и пароля</entry>
+	<entry key="password">Пароль:</entry>
+	<entry key="email">Электронная почта:</entry>
+	<entry key="guest">Гость</entry>
+	<entry key="admin">Админ</entry>
+	<entry key="moderator">Модератор</entry>
+	<entry key="user">Пользователь</entry>
+
 </properties>

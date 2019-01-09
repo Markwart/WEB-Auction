@@ -28,6 +28,7 @@ public class ItemServiceTest extends AbstractTest{
 		assertEquals(entity.getCountryOrigin().getId(), entityFromDb.getCountryOrigin().getId());
 		assertEquals(entity.getCondition().getId(), entityFromDb.getCondition().getId());
 		assertEquals(entity.getComposition().getId(), entityFromDb.getComposition().getId());
+		assertEquals(entity.getDuration().getId(), entityFromDb.getDuration().getId());
 		assertEquals(entity.getImage(), entityFromDb.getImage());
 		assertEquals(entity.getText(), entityFromDb.getText());
 		assertEquals(entity.getSeller().getId(), entityFromDb.getSeller().getId());
@@ -59,6 +60,7 @@ public class ItemServiceTest extends AbstractTest{
 		assertEquals(entity.getCountryOrigin().getId(), entityFromDb.getCountryOrigin().getId());
 		assertEquals(entity.getCondition().getId(), entityFromDb.getCondition().getId());
 		assertEquals(entity.getComposition().getId(), entityFromDb.getComposition().getId());
+		assertEquals(entity.getDuration().getId(), entityFromDb.getDuration().getId());
 		assertEquals(entity.getImage(), entityFromDb.getImage());
 		assertEquals(entity.getText(), entityFromDb.getText());
 		assertEquals(entity.getSeller().getId(), entityFromDb.getSeller().getId());
@@ -90,6 +92,7 @@ public class ItemServiceTest extends AbstractTest{
 			assertNotNull(entityFromDb.getCountryOrigin());
 			assertNotNull(entityFromDb.getCondition());
 			assertNotNull(entityFromDb.getComposition());
+			assertNotNull(entityFromDb.getDuration());
 			assertNotNull(entityFromDb.getImage());
 			assertNotNull(entityFromDb.getText());
 			assertNotNull(entityFromDb.getSeller());
