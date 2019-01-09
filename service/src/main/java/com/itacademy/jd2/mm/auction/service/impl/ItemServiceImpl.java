@@ -1,5 +1,6 @@
 package com.itacademy.jd2.mm.auction.service.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IFeedback;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.filter.ItemFilter;
+import com.itacademy.jd2.mm.auction.service.IAuctionDurationService;
 import com.itacademy.jd2.mm.auction.service.IItemService;
 
 @Service
@@ -32,6 +34,9 @@ public class ItemServiceImpl implements IItemService {
 	private IDeferredBidDao deferredBidDao;
 	private IMessageDao messageDao;
 	private IFeedbackDao feedbackDao;
+	
+    @Autowired
+    private IAuctionDurationService auctionDurationService;
 
 	@Autowired
 	public ItemServiceImpl(IItemDao dao, IBidDao bidDao, IDeferredBidDao deferredBidDao, IMessageDao messageDao,
@@ -58,14 +63,17 @@ public class ItemServiceImpl implements IItemService {
 
 	@Override
 	public void save(IItem entity) {
-		/* final LocalDate now = LocalDate.now(); */
-		final Date modefeOn = new Date();
-		entity.setUpdated(modefeOn);
+		final Date now = new Date();
+		entity.setUpdated(now);
 		if (entity.getId() == null) {
-			entity.setCreated(modefeOn);
+			entity.setCreated(now);
 			entity.setStatusAuction(StatusAuction.OPEN);
-			//entity.setAuctionEnd(new Date(modefeOn.getTime() + (1000 * 60 * 60 * 24 * entity.getDuration().getDay())));
-			//entity.setAuctionEnd(modefeOn);
+			
+			Calendar c = Calendar.getInstance();
+			c.setTime(now);
+			c.add(Calendar.DAY_OF_YEAR, auctionDurationService.get(entity.getDuration().getId()).getDay());
+			entity.setAuctionEnd(c.getTime());
+			dao.insert(entity);
 			LOGGER.debug("new item created: {}", entity);
 		} else {
 			dao.update(entity);

@@ -102,9 +102,9 @@ public class ItemController extends AbstractController {
 			filter.setName(searchDTO.getName());
 		}
 
-		if (searchDTO.getText() != null) {
+		/*if (searchDTO.getText() != null) {
 			filter.setText(searchDTO.getText());
-		}
+		}*/
 
 		prepareFilter(gridState, filter);
 		gridState.setTotalCount(itemService.getCount(filter));
@@ -119,6 +119,7 @@ public class ItemController extends AbstractController {
 		if (!req.getRequestURI().contains("/private")) {
 			loggedUserId = null;
 		}
+		
 		final List<IItem> entities = itemService.find(filter, loggedUserId);
 		List<ItemDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 

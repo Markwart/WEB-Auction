@@ -67,8 +67,10 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 
 		cq.select(from);
 		if (id != null) {
-			cq.where(cb.equal(from.get(Feedback_.userFrom), id));
-			cq.where(cb.equal(from.get(Feedback_.userWhom), id));
+
+			Predicate predicate1 = cb.equal(from.get(Feedback_.userFrom), id);
+			Predicate predicate2 = cb.equal(from.get(Feedback_.userWhom), id);
+			cq.where(cb.or(predicate1, predicate2));
 		} // only for logged user
 
 		if (filter.getFetchUserAccountFrom()) {

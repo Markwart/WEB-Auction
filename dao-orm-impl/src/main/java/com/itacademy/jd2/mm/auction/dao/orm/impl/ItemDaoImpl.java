@@ -99,7 +99,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 			from.fetch(Item_.duration, JoinType.LEFT);
 		}
 		
-		applyFilter(filter, cb, cq, from);
+		/*applyFilter(filter, cb, cq, from);*/
 
 		final String sortColumn = filter.getSortColumn();
 		if (sortColumn != null) {
@@ -113,7 +113,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		return resultList;
 	}
 	
-	private void applyFilter(final ItemFilter filter, final CriteriaBuilder cb, final CriteriaQuery<?> cq,
+	/*private void applyFilter(final ItemFilter filter, final CriteriaBuilder cb, final CriteriaQuery<?> cq,
 			final Root<Item> from) {
 		final List<Predicate> ands = new ArrayList<>();
 
@@ -128,7 +128,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		if (!ands.isEmpty()) {
 			cq.where(cb.and(ands.toArray(new Predicate[0])));
 		}
-	}
+	}*/
 
 	@Override
 	public long getCount(ItemFilter filter) {
