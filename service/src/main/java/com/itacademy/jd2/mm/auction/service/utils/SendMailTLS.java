@@ -1,4 +1,4 @@
-package com.itacademy.jd2.mm.auction.service.mail;
+package com.itacademy.jd2.mm.auction.service.utils;
 
 import java.util.Properties;
 

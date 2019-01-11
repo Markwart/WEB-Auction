@@ -83,7 +83,7 @@ public class ItemController extends AbstractController {
 	public ModelAndView index(final HttpServletRequest req, @ModelAttribute(SEARCH_FORM_MODEL) ItemSearchDTO searchDTO,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
-		
+
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
 
 		final GridStateDTO gridState = getListDTO(req);
@@ -102,10 +102,6 @@ public class ItemController extends AbstractController {
 			filter.setName(searchDTO.getName());
 		}
 
-		/*if (searchDTO.getText() != null) {
-			filter.setText(searchDTO.getText());
-		}*/
-
 		prepareFilter(gridState, filter);
 		gridState.setTotalCount(itemService.getCount(filter));
 
@@ -116,10 +112,10 @@ public class ItemController extends AbstractController {
 		filter.setFetchCountryOrigin(true);
 		filter.setFetchAuctionDuration(true);
 
-		if (!req.getRequestURI().contains("/private")) {
-			loggedUserId = null;
+		if (!req.getRequestURI().contains("/private")) { // get private list
+			loggedUserId = null; 
 		}
-		
+
 		final List<IItem> entities = itemService.find(filter, loggedUserId);
 		List<ItemDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
@@ -216,7 +212,7 @@ public class ItemController extends AbstractController {
 		final Map<String, String> statusAuctionMap = statusAuctionList.stream()
 				.collect(Collectors.toMap(StatusAuction::name, StatusAuction::name));
 		hashMap.put("statusAuctionChoices", statusAuctionMap);
-		
+
 		final Map<Integer, Integer> auctionDurationMap = auctionDurationList.stream()
 				.collect(Collectors.toMap(IAuctionDuration::getId, IAuctionDuration::getDay));
 		hashMap.put("auctionDurationChoices", auctionDurationMap);

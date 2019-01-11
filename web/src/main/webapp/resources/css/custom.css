@@ -109,7 +109,6 @@ nav .input-field label.active i, nav .input-field label i {
 }
 
 /* Item properties */
-
 .item-table td {
 	border-right: 1px solid lightgrey;
 }
@@ -126,7 +125,6 @@ nav .input-field label.active i, nav .input-field label i {
 	transform: translateX(-10%);
 	width: 90vw;
 } */
-
 .private-menu, .private-menu:hover, .private-menu:active {
 	background: transparent;
 	box-shadow: none;
@@ -147,3 +145,6 @@ nav .input-field label.active i, nav .input-field label i {
 .center {
 	padding-top: 70px;
 }
+
+.pagination li.active {
+    background-color: #4caf88;

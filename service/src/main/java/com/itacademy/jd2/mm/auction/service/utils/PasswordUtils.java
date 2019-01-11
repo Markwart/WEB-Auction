@@ -1,4 +1,4 @@
-package com.itacademy.jd2.mm.auction.service.hashpassword;
+package com.itacademy.jd2.mm.auction.service.utils;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

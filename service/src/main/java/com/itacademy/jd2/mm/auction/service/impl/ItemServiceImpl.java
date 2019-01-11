@@ -73,6 +73,7 @@ public class ItemServiceImpl implements IItemService {
 			c.setTime(now);
 			c.add(Calendar.DAY_OF_YEAR, auctionDurationService.get(entity.getDuration().getId()).getDay());
 			entity.setAuctionEnd(c.getTime());
+			
 			dao.insert(entity);
 			LOGGER.debug("new item created: {}", entity);
 		} else {

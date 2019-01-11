@@ -68,8 +68,9 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 
 		cq.select(from);
 		if (id != null) {
-			cq.where(cb.equal(from.get(Message_.userFrom), id));
-			//cq.where(cb.equal(from.get(Message_.userWhom), id));
+			Predicate predicate1 = cb.equal(from.get(Message_.userFrom), id);
+			Predicate predicate2 = cb.equal(from.get(Message_.userWhom), id);
+			cq.where(cb.or(predicate1, predicate2));
 		} // only for logged user
 
 		if (filter.getFetchUserAccountFrom()) {

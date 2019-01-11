@@ -98,8 +98,8 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		if (filter.getFetchAuctionDuration()) {
 			from.fetch(Item_.duration, JoinType.LEFT);
 		}
-		
-		/*applyFilter(filter, cb, cq, from);*/
+
+		// applyFilter(filter, cb, cq, from);
 
 		final String sortColumn = filter.getSortColumn();
 		if (sortColumn != null) {
@@ -107,12 +107,19 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 			cq.orderBy(new OrderImpl(expression, filter.getSortOrder()));
 		}
 
-		final TypedQuery<IItem> q = em.createQuery(cq);
-		setPaging(filter, q);
-		final List<IItem> resultList = q.getResultList();
+		final List<IItem> resultList;
+		final String name = filter.getName();
+		
+		if (!StringUtils.isEmpty(name)) {
+			resultList = search(name);
+		} else {
+			final TypedQuery<IItem> q = em.createQuery(cq);
+			setPaging(filter, q);
+			resultList = q.getResultList();
+		}
 		return resultList;
 	}
-	
+
 	/*private void applyFilter(final ItemFilter filter, final CriteriaBuilder cb, final CriteriaQuery<?> cq,
 			final Root<Item> from) {
 		final List<Predicate> ands = new ArrayList<>();
@@ -121,14 +128,28 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		if (!StringUtils.isEmpty(name)) {
 			ands.add(cb.equal(from.get(Item_.name), name));
 		}
-		final String text = filter.getText();
-		if (!StringUtils.isEmpty(text)) { 
-			ands.add(cb.equal(from.get(Item_.text), text));
-		}
 		if (!ands.isEmpty()) {
 			cq.where(cb.and(ands.toArray(new Predicate[0])));
 		}
 	}*/
+	
+	@Override
+	public List<IItem> search(String text) {
+		EntityManager em = getEntityManager();
+		FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
+
+		// create native Lucene query unsing the query DSL
+		// alternatively you can write the Lucene query using the Lucene query parser
+		// or the Lucene programmatic API. The Hibernate Search DSL is recommended
+		// though
+		QueryBuilder qb = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Item.class).get();
+		org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("text", "name").matching(text).createQuery();
+
+		// wrap Lucene query in a javax.persistence.Query
+		javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Item.class);
+
+		return jpaQuery.getResultList();
+	}
 
 	@Override
 	public long getCount(ItemFilter filter) {
@@ -183,26 +204,6 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<IItem> search(String text) {
-
-		EntityManager em = getEntityManager();
-		FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
-
-		// create native Lucene query unsing the query DSL
-		// alternatively you can write the Lucene query using the Lucene query parser
-		// or the Lucene programmatic API. The Hibernate Search DSL is recommended
-		// though
-		QueryBuilder qb = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Item.class).get();
-		org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("text", "name").matching(text).createQuery();
-
-		// wrap Lucene query in a javax.persistence.Query
-		javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Item.class);
-
-		return jpaQuery.getResultList();
-	}
-	
 	@Override
 	public List<IItem> findRelatedItemsBySeller(Integer id) {
 		final EntityManager em = getEntityManager();

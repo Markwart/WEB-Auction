@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
-import com.itacademy.jd2.mm.auction.service.hashpassword.PasswordUtils;
+import com.itacademy.jd2.mm.auction.service.utils.PasswordUtils;
 
 @Component("customAuthenticationProvider")
 public class CustomAuthenticationProvider implements AuthenticationProvider {

@@ -44,7 +44,6 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 		final Root<UserAccount> from = cq.from(UserAccount.class);
 
 		cq.select(from);
-
 		from.fetch(UserAccount_.personalData, JoinType.LEFT);
 
 		applyFilter(filter, cb, cq, from);
@@ -69,10 +68,6 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 		if (!StringUtils.isEmpty(email)) {
 			ands.add(cb.equal(from.get(UserAccount_.email), email));
 		}
-		/*final Roles role = filter.getRole();
-		if (!StringUtils.isEmpty(role)) { 
-			ands.add(cb.equal(from.get(UserAccount_.role), role));
-		}*/
 		if (!ands.isEmpty()) {
 			cq.where(cb.and(ands.toArray(new Predicate[0])));
 		}

@@ -24,6 +24,7 @@ public interface IItemService {
 
 	IItem createEntity();
 	
+	@Transactional
 	List<IItem> find(ItemFilter filter, Integer id);
 
     long getCount(ItemFilter filter);

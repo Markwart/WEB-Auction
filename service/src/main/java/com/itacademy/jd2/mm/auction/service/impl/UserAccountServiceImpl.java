@@ -27,8 +27,8 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
-import com.itacademy.jd2.mm.auction.service.hashpassword.PasswordUtils;
-import com.itacademy.jd2.mm.auction.service.mail.SendMailTLS;
+import com.itacademy.jd2.mm.auction.service.utils.PasswordUtils;
+import com.itacademy.jd2.mm.auction.service.utils.SendMailTLS;
 
 @Service
 public class UserAccountServiceImpl implements IUserAccountService {

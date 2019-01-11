@@ -67,7 +67,6 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 
 		cq.select(from);
 		if (id != null) {
-
 			Predicate predicate1 = cb.equal(from.get(Feedback_.userFrom), id);
 			Predicate predicate2 = cb.equal(from.get(Feedback_.userWhom), id);
 			cq.where(cb.or(predicate1, predicate2));
