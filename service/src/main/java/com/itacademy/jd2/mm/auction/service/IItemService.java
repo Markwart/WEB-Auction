@@ -24,14 +24,14 @@ public interface IItemService {
 
 	IItem createEntity();
 	
-	@Transactional
+	
 	List<IItem> find(ItemFilter filter, Integer id);
-
+	
+	@Transactional // because hibernate search is used. need to keep session opened
+	List<IItem> findInIndex(String name);
     long getCount(ItemFilter filter);
 
 	IItem getFullInfo(Integer id);
 
-	@Transactional
-	List<IItem> search(String text);
 
 }

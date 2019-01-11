@@ -1,5 +1,6 @@
 package com.itacademy.jd2.mm.auction.service.impl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.itacademy.jd2.mm.auction.daoapi.IBidDao;
 import com.itacademy.jd2.mm.auction.daoapi.IDeferredBidDao;
@@ -34,9 +36,9 @@ public class ItemServiceImpl implements IItemService {
 	private IDeferredBidDao deferredBidDao;
 	private IMessageDao messageDao;
 	private IFeedbackDao feedbackDao;
-	
-    @Autowired
-    private IAuctionDurationService auctionDurationService;
+
+	@Autowired
+	private IAuctionDurationService auctionDurationService;
 
 	@Autowired
 	public ItemServiceImpl(IItemDao dao, IBidDao bidDao, IDeferredBidDao deferredBidDao, IMessageDao messageDao,
@@ -68,12 +70,12 @@ public class ItemServiceImpl implements IItemService {
 		if (entity.getId() == null) {
 			entity.setCreated(now);
 			entity.setStatusAuction(StatusAuction.OPEN);
-			
+
 			Calendar c = Calendar.getInstance();
 			c.setTime(now);
 			c.add(Calendar.DAY_OF_YEAR, auctionDurationService.get(entity.getDuration().getId()).getDay());
 			entity.setAuctionEnd(c.getTime());
-			
+
 			dao.insert(entity);
 			LOGGER.debug("new item created: {}", entity);
 		} else {
@@ -125,8 +127,19 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	@Override
+	public List<IItem> findInIndex(String name) {
+		List<IItem> findInIndex = dao.findInIndex(name);
+		List<IItem> result = new ArrayList<>();
+		for (IItem iItem : findInIndex) {
+			result.add(dao.getFullInfo(iItem.getId()));
+		}
+		return result;
+	}
+
+	@Override
 	public List<IItem> find(ItemFilter filter, Integer id) {
 		return dao.find(filter, id);
+
 	}
 
 	@Override
@@ -137,10 +150,5 @@ public class ItemServiceImpl implements IItemService {
 	@Override
 	public IItem getFullInfo(Integer id) {
 		return dao.getFullInfo(id);
-	}
-
-	@Override
-	public List<IItem> search(String text) {
-		return dao.search(text);
 	}
 }

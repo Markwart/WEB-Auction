@@ -69,6 +69,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 
 	@Override
 	public List<IItem> find(ItemFilter filter, Integer id) {
+
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
 
@@ -107,34 +108,23 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 			cq.orderBy(new OrderImpl(expression, filter.getSortOrder()));
 		}
 
-		final List<IItem> resultList;
-		final String name = filter.getName();
-		
-		if (!StringUtils.isEmpty(name)) {
-			resultList = search(name);
-		} else {
-			final TypedQuery<IItem> q = em.createQuery(cq);
-			setPaging(filter, q);
-			resultList = q.getResultList();
-		}
-		return resultList;
+		final TypedQuery<IItem> q = em.createQuery(cq);
+		setPaging(filter, q);
+		return q.getResultList();
 	}
 
-	/*private void applyFilter(final ItemFilter filter, final CriteriaBuilder cb, final CriteriaQuery<?> cq,
-			final Root<Item> from) {
-		final List<Predicate> ands = new ArrayList<>();
+	/*
+	 * private void applyFilter(final ItemFilter filter, final CriteriaBuilder cb,
+	 * final CriteriaQuery<?> cq, final Root<Item> from) { final List<Predicate>
+	 * ands = new ArrayList<>();
+	 * 
+	 * final String name = filter.getName(); if (!StringUtils.isEmpty(name)) {
+	 * ands.add(cb.equal(from.get(Item_.name), name)); } if (!ands.isEmpty()) {
+	 * cq.where(cb.and(ands.toArray(new Predicate[0]))); } }
+	 */
 
-		final String name = filter.getName();
-		if (!StringUtils.isEmpty(name)) {
-			ands.add(cb.equal(from.get(Item_.name), name));
-		}
-		if (!ands.isEmpty()) {
-			cq.where(cb.and(ands.toArray(new Predicate[0])));
-		}
-	}*/
-	
 	@Override
-	public List<IItem> search(String text) {
+	public List<IItem> findInIndex(String text) {
 		EntityManager em = getEntityManager();
 		FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
 

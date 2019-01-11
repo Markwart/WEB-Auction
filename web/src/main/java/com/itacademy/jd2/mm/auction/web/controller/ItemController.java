@@ -116,6 +116,7 @@ public class ItemController extends AbstractController {
 			loggedUserId = null; 
 		}
 
+		// if name 
 		final List<IItem> entities = itemService.find(filter, loggedUserId);
 		List<ItemDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 

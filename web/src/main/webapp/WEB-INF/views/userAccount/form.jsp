@@ -16,11 +16,11 @@
 				<form:errors path="email" cssClass="red-text" />
 				<label for="email">email</label>
 			</div>
-			<div class="input-field col s12">
+			 <div class="input-field col s12">
 				<form:input path="password" type="text" disabled="${readonly}" />
 				<form:errors path="password" cssClass="red-text" />
 				<label for="password">password</label>
-			</div>
+			</div> 
 
 			 <sec:authorize access="hasRole('admin')"> 
 				<div class="input-field col s12">

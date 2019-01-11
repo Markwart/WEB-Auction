@@ -74,13 +74,13 @@
 		</div>
 
 		<sec:authorize access="hasRole('admin')">
-			<div class="row">
+			 <div class="row">
 				<div class="input-field col s12">
 					<form:input path="auctionEnd" disabled="${readonly}" />
 					<form:errors path="auctionEnd" cssClass="red-text" />
 					<label for="auctionEnd">auction end</label>
 				</div>
-			</div>
+			</div> 
 			<div class="row">
 				<div class="input-field col s12">
 					<form:select path="statusAuction" disabled="${readonly}">
