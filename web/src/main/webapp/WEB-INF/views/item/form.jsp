@@ -5,8 +5,8 @@
 
 <h4 class="header">Edit item</h4>
 <div class="row">
-	<form:form class="col s12" method="POST" action="${pagesItem}/add"
-		modelAttribute="formModel">
+	<form:form class="col s12" method="POST" enctype="multipart/form-data"
+		action="${pagesItem}/add" modelAttribute="formModel">
 
 		<form:input path="id" type="hidden" />
 
@@ -25,30 +25,26 @@
 			</div>
 		</div>
 
-		<div class="row">
+		<%-- <div class="row">
 			<div class="input-field col s12">
 				<form:input path="image" disabled="${readonly}" />
 				<form:errors path="image" cssClass="red-text" />
 				<label for="image">image</label>
 			</div>
-		</div> 
+		</div>  --%>
 
-	<%-- 	<div>
-			<form method="POST" enctype="multipart/form-data"
-				action="${contextPath}/file">
-				<table>
-					<tr>
-						<td>File to upload:</td>
-						<td><input type="file" name="file" /> <input type="submit"
-							value="Upload" /></td>
-					</tr>
-				</table>
-			</form> --%>
+		<div>
+			<table>
+				<tr>
+					<td>File to upload:</td>
+					<td><input type="file" name="file" /></td>
+				</tr>
+			</table>
 
-			<%-- <img alt="no image"
-		src="${contextPath}/file/image?uuid=<%= request.getParameter("uuid"). %>" />  
-		
-		</div>--%>
+			<img alt="no image"
+				src="${contextPath}/file/image?uuid=<%= request.getParameter("uuid") %>" />
+
+		</div>
 
 		<div class="row">
 			<div class="input-field col s12">

@@ -14,7 +14,6 @@
 		base-package="com.itacademy.jd2.mm.auction.web.security" />
 		
 	<http>
-		<!-- <intercept-url pattern="/brand**" access="!isAnonymous()" /> --> 
 		<intercept-url pattern="/cond**" access="hasAnyRole('admin', 'moderator')" />
 		<intercept-url pattern="/categ**" access="hasAnyRole('admin', 'moderator')" />
 		<intercept-url pattern="/comp**" access="hasAnyRole('admin', 'moderator')" /> 

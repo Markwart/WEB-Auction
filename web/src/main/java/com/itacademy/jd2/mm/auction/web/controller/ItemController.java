@@ -1,9 +1,15 @@
 package com.itacademy.jd2.mm.auction.web.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
@@ -45,7 +52,8 @@ import com.itacademy.jd2.mm.auction.web.security.AuthHelper;
 @Controller
 @RequestMapping(value = "/item")
 public class ItemController extends AbstractController {
-
+	
+	//public static final String FILE_FOLDER = "d:\\M_Matusevich\\G-JD2-10-17_mmatusevich\\doc\\"; 
 	private static final String SEARCH_FORM_MODEL = "searchFormModel";
 	private static final String SEARCH_DTO = ItemController.class.getSimpleName() + "_SEACH_DTO";
 
@@ -85,6 +93,7 @@ public class ItemController extends AbstractController {
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
 
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
+		boolean isPrivate = req.getRequestURI().contains("/private");
 
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
@@ -108,7 +117,7 @@ public class ItemController extends AbstractController {
 		filter.setFetchCountryOrigin(true);
 		filter.setFetchAuctionDuration(true);
 
-		if (!req.getRequestURI().contains("/private")) { // get private list
+		if (!isPrivate) { // get private list
 			filter.setLoggedUserId(loggedUserId = null);
 		} else {
 			filter.setLoggedUserId(loggedUserId);
@@ -126,6 +135,7 @@ public class ItemController extends AbstractController {
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
 		models.put(SEARCH_FORM_MODEL, searchDTO);
+		models.put("showAddButton", isPrivate);
 		return new ModelAndView("item.list", models);
 	}
 
@@ -138,7 +148,17 @@ public class ItemController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public Object save(@Valid @ModelAttribute("formModel") final ItemDTO formModel, final BindingResult result) {
+	public Object save(@Valid @ModelAttribute("formModel") final ItemDTO formModel,@RequestParam("file") final MultipartFile file, final BindingResult result) throws IOException {
+		
+		String originalFilename = file.getOriginalFilename(); // to DB
+		String contentType = file.getContentType();// to DB
+		String uuid = UUID.randomUUID().toString(); // to DB
+
+		//System.out.printf("Uploaded file %s", file.getOriginalFilename());
+
+		//InputStream inputStream = file.getInputStream();
+		//Files.copy(inputStream, new File(FILE_FOLDER + uuid).toPath(), StandardCopyOption.REPLACE_EXISTING);
+		
 		
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
 		
@@ -149,7 +169,8 @@ public class ItemController extends AbstractController {
 			return new ModelAndView("item.edit", hashMap);
 		} else {
 			final IItem entity = fromDtoConverter.apply(formModel);
-			itemService.save(entity, loggedUserId);
+			entity.setImage(uuid);
+			itemService.save(entity, loggedUserId/*, uuid, file*/);
 			return "redirect:/item";
 		}
 	}

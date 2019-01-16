@@ -17,6 +17,7 @@
 <c:set var="pagesAdminCommunication" value="${contextPath}/adminCommunication" scope="request" />
 <c:set var="pagesUserAccount" value="${contextPath}/userAccount" scope="request" />
 <c:set var="pagesItem" value="${contextPath}/item" scope="request" />
+<c:set var="filesUrl" value="${contextPath}/file" scope="request" />
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

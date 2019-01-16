@@ -61,7 +61,7 @@
 		</tr>
 		<c:forEach var="item" items="${gridItems}" varStatus="loopCounter">
 			<tr class="font-my-set">
-			    <td class="image-column-set"><img src=<c:url value="file/image?uuid=${item.image}"/> ></td>
+			    <td class="image-column-set"><img src="${filesUrl}/image?uuid=${item.image}"/> </td>
 				<td><c:out value="${item.name}" /></td>
 				
 				<td><c:out value="${item.startingPrice}" /></td>
@@ -90,15 +90,10 @@
 
 <jspFragments:paging />
 
-<%-- <% final HttpServletRequest req = request;
-   if(req.getRequestURI().contains("/private")) {
-%>  
+<c:if test="${showAddButton}">
 <a class="waves-effect waves-light btn right" href="${pagesItem}/add"><i class="material-icons">add</i></a>
-<% } %>   --%>
+</c:if>
 
-<sec:authorize access="!isAnonymous()">
-<a class="waves-effect waves-light btn right" href="${pagesItem}/add"><i class="material-icons">add</i></a>
-</sec:authorize>
 
 
 
