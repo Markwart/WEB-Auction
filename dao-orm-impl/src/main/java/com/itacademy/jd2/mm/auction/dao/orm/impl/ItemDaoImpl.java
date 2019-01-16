@@ -1,6 +1,5 @@
 package com.itacademy.jd2.mm.auction.dao.orm.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,14 +8,12 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.AuctionDuration_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Category_;
@@ -68,7 +65,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 	}
 
 	@Override
-	public List<IItem> find(ItemFilter filter, Integer id) {
+	public List<IItem> find(ItemFilter filter) {
 
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -77,8 +74,8 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		final Root<Item> from = cq.from(Item.class);
 
 		cq.select(from);
-		if (id != null) {
-			cq.where(cb.equal(from.get(Item_.seller), id));
+		if (filter.getLoggedUserId() != null) {
+			cq.where(cb.equal(from.get(Item_.seller), filter.getLoggedUserId()));
 		} // only for logged user
 
 		if (filter.getFetchCategory()) {
@@ -100,8 +97,6 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 			from.fetch(Item_.duration, JoinType.LEFT);
 		}
 
-		// applyFilter(filter, cb, cq, from);
-
 		final String sortColumn = filter.getSortColumn();
 		if (sortColumn != null) {
 			final Path<?> expression = getSortPath(from, sortColumn);
@@ -113,15 +108,6 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		return q.getResultList();
 	}
 
-	/*
-	 * private void applyFilter(final ItemFilter filter, final CriteriaBuilder cb,
-	 * final CriteriaQuery<?> cq, final Root<Item> from) { final List<Predicate>
-	 * ands = new ArrayList<>();
-	 * 
-	 * final String name = filter.getName(); if (!StringUtils.isEmpty(name)) {
-	 * ands.add(cb.equal(from.get(Item_.name), name)); } if (!ands.isEmpty()) {
-	 * cq.where(cb.and(ands.toArray(new Predicate[0]))); } }
-	 */
 
 	@Override
 	public List<IItem> findInIndex(String text) {

@@ -123,7 +123,7 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 	}
 
 	@Override
-	public List<IMessage> find(MessageFilter filter, Integer id) {
+	public List<IMessage> find(MessageFilter filter) {
 		final StringBuilder sqlTile;
 		if (filter.getFetchUserAccountFrom() & filter.getFetchItem()) {
 			sqlTile = new StringBuilder(String.format(

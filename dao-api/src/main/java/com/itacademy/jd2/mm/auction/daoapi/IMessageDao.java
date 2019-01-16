@@ -15,5 +15,5 @@ public interface IMessageDao extends IDao<IMessage, Integer> {
 
 	List<IMessage> findRelatedMessagesByUser(Integer id);
 
-	List<IMessage> find(MessageFilter filter, Integer id);
+	List<IMessage> find(MessageFilter filter);
 }

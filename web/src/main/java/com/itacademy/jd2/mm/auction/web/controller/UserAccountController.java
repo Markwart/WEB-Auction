@@ -50,7 +50,7 @@ public class UserAccountController extends AbstractController {
 		this.toDtoConverter = toDtoConverter;
 		this.fromDtoConverter = fromDtoConverter;
 	}
-	
+
 	@RequestMapping(method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView index(final HttpServletRequest req,
 			@ModelAttribute(SEARCH_FORM_MODEL) UserAccountSearchDTO searchDto,
@@ -68,13 +68,12 @@ public class UserAccountController extends AbstractController {
 
 		final UserAccountFilter filter = new UserAccountFilter();
 		if (searchDto.getEmail() != null) {
-            filter.setEmail(searchDto.getEmail());
-        }
-		/*if (searchDto.getRole() != null) {
-            filter.setRole(searchDto.getRole());
-        }*/
-		
-		prepareFilter(gridState, filter);
+			filter.setEmail(searchDto.getEmail());
+		}
+
+		if (!req.getMethod().equalsIgnoreCase("post")) {
+			prepareFilter(gridState, filter); // get view without sort and paging
+		}
 
 		final List<IUserAccount> entities = userAccountService.find(filter);
 		List<UserAccountDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
@@ -83,7 +82,12 @@ public class UserAccountController extends AbstractController {
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
 		models.put(SEARCH_FORM_MODEL, searchDto);
-		return new ModelAndView("userAccount.list", models);
+
+		if (req.getMethod().equalsIgnoreCase("post")) {
+			return new ModelAndView("userAccount.list-search", models);
+		} else {
+			return new ModelAndView("userAccount.list", models);
+		}
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)

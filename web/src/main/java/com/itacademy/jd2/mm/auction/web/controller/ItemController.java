@@ -98,10 +98,6 @@ public class ItemController extends AbstractController {
 
 		final ItemFilter filter = new ItemFilter();
 
-		if (searchDTO.getName() != null) {
-			filter.setName(searchDTO.getName());
-		}
-
 		prepareFilter(gridState, filter);
 		gridState.setTotalCount(itemService.getCount(filter));
 
@@ -113,11 +109,18 @@ public class ItemController extends AbstractController {
 		filter.setFetchAuctionDuration(true);
 
 		if (!req.getRequestURI().contains("/private")) { // get private list
-			loggedUserId = null; 
+			filter.setLoggedUserId(loggedUserId = null);
+		} else {
+			filter.setLoggedUserId(loggedUserId);
 		}
-
-		// if name 
-		final List<IItem> entities = itemService.find(filter, loggedUserId);
+		
+		List<IItem> entities;
+		if (searchDTO.getName() != null) {
+			filter.setName(searchDTO.getName());
+			entities = itemService.findInIndex(filter.getName());
+		} else {
+			entities = itemService.find(filter);
+		}
 		List<ItemDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
 		final Map<String, Object> models = new HashMap<>();
@@ -136,6 +139,9 @@ public class ItemController extends AbstractController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Object save(@Valid @ModelAttribute("formModel") final ItemDTO formModel, final BindingResult result) {
+		
+		Integer loggedUserId = AuthHelper.getLoggedUserId();
+		
 		if (result.hasErrors()) {
 			final Map<String, Object> hashMap = new HashMap<>();
 			hashMap.put("formModel", formModel);
@@ -143,7 +149,7 @@ public class ItemController extends AbstractController {
 			return new ModelAndView("item.edit", hashMap);
 		} else {
 			final IItem entity = fromDtoConverter.apply(formModel);
-			itemService.save(entity);
+			itemService.save(entity, loggedUserId);
 			return "redirect:/item";
 		}
 	}

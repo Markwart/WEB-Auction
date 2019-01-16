@@ -31,9 +31,7 @@
 <table class="bordered highlight offset-class">
 	<tbody class="item-table">
 		<tr class="font-my-set">
-			<th><mytaglib:sort-link pageUrl="${pagesItem}" column="image">
-					<mytaglib:i18n key="table.column.image"></mytaglib:i18n>
-				</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesItem}" column="image"><mytaglib:i18n key="table.column.image"></mytaglib:i18n></mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesItem}" column="name">
 					<mytaglib:i18n key="table.column.name"></mytaglib:i18n>
 				</mytaglib:sort-link></th>
@@ -63,32 +61,28 @@
 		</tr>
 		<c:forEach var="item" items="${gridItems}" varStatus="loopCounter">
 			<tr class="font-my-set">
-				<td><c:out value="${item.image}" /></td>
+			    <td class="image-column-set"><img src=<c:url value="file/image?uuid=${item.image}"/> ></td>
 				<td><c:out value="${item.name}" /></td>
+				
 				<td><c:out value="${item.startingPrice}" /></td>
-				<td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd"
-						value="${item.auctionEnd}" /></td>
-
+				
+				<td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss a" value="${item.auctionEnd}" /></td>
 				<td><c:out value="${item.sellerEmail}" /></td>
 				<td><c:out value="${item.statusAuction}" /></td>
 
 				<sec:authorize access="hasAnyRole('admin', 'moderator')">
-					<td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd"
-							value="${item.created}" /></td>
-					<td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd"
-							value="${item.updated}" /></td>
+					<td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.created}" /></td>
+					<td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${item.updated}" /></td>
 					<td><c:out value="${item.id}" /></td>
 				</sec:authorize>
 
-				<td class="right"><a class="btn-floating"
-					href="${pagesItem}/${item.id}"><i class="material-icons">info</i></a>
-
-					<sec:authorize access="hasRole('admin')">
-						<a class="btn-floating" href="${pagesItem}/${item.id}/edit"><i
-							class="material-icons">edit</i></a>
-						<a class="btn-floating red" href="${pagesItem}/${item.id}/delete"><i
-							class="material-icons">delete</i></a>
-					</sec:authorize></td>
+				<td class="center info-edit-delete">
+				<a class="btn-floating" href="${pagesItem}/${item.id}"><i class="material-icons">info</i></a>
+				
+				<sec:authorize access="!isAnonymous()">
+				<a class="btn-floating" href="${pagesItem}/${item.id}/edit"><i class="material-icons">edit</i></a>
+				<a class="btn-floating red" href="${pagesItem}/${item.id}/delete"><i class="material-icons">delete</i></a>
+				</sec:authorize></td>
 			</tr>
 		</c:forEach>
 	</tbody>
@@ -96,10 +90,16 @@
 
 <jspFragments:paging />
 
+<%-- <% final HttpServletRequest req = request;
+   if(req.getRequestURI().contains("/private")) {
+%>  
+<a class="waves-effect waves-light btn right" href="${pagesItem}/add"><i class="material-icons">add</i></a>
+<% } %>   --%>
 
-<sec:authorize access="hasRole('admin')">
-	<a class="waves-effect waves-light btn right" href="${pagesItem}/add"><i
-		class="material-icons">add</i></a>
+<sec:authorize access="!isAnonymous()">
+<a class="waves-effect waves-light btn right" href="${pagesItem}/add"><i class="material-icons">add</i></a>
 </sec:authorize>
+
+
 
 

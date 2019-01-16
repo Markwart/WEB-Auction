@@ -25,29 +25,30 @@
 			</div>
 		</div>
 
-		<%-- <div class="row">
-			<div class="input-field col s12">
-				<form method="POST" enctype="multipart/form-data"
-					action="${contextPath}/file">
-					<form:errors path="image" cssClass="red-text" />
-				</form>
-				<table>
-					<tr>
-						<td>Image to upload:</td>
-						<td><input type="file" name="file" /></td>
-						<td><input type="submit" value="Upload" /></td>
-					</tr>
-				</table>
-			</div>
-		</div> --%>
-
 		<div class="row">
 			<div class="input-field col s12">
 				<form:input path="image" disabled="${readonly}" />
 				<form:errors path="image" cssClass="red-text" />
 				<label for="image">image</label>
 			</div>
-		</div>
+		</div> 
+
+	<%-- 	<div>
+			<form method="POST" enctype="multipart/form-data"
+				action="${contextPath}/file">
+				<table>
+					<tr>
+						<td>File to upload:</td>
+						<td><input type="file" name="file" /> <input type="submit"
+							value="Upload" /></td>
+					</tr>
+				</table>
+			</form> --%>
+
+			<%-- <img alt="no image"
+		src="${contextPath}/file/image?uuid=<%= request.getParameter("uuid"). %>" />  
+		
+		</div>--%>
 
 		<div class="row">
 			<div class="input-field col s12">
@@ -74,13 +75,13 @@
 		</div>
 
 		<sec:authorize access="hasRole('admin')">
-			 <div class="row">
+			<div class="row">
 				<div class="input-field col s12">
 					<form:input path="auctionEnd" disabled="${readonly}" />
 					<form:errors path="auctionEnd" cssClass="red-text" />
 					<label for="auctionEnd">auction end</label>
 				</div>
-			</div> 
+			</div>
 			<div class="row">
 				<div class="input-field col s12">
 					<form:select path="statusAuction" disabled="${readonly}">
@@ -92,7 +93,7 @@
 			</div>
 		</sec:authorize>
 
-		<div class="row">
+		<%--  <div class="row">
 			<div class="input-field col s12">
 				<form:select path="sellerId" disabled="${readonly}">
 					<form:options items="${sellerChoices}" />
@@ -100,7 +101,8 @@
 				<form:errors path="sellerId" cssClass="red-text" />
 				<label for="sellerId">user account</label>
 			</div>
-		</div>
+		</div>  --%>
+
 		<div class="row">
 			<div class="input-field col s12">
 				<form:select path="categoryId" disabled="${readonly}">

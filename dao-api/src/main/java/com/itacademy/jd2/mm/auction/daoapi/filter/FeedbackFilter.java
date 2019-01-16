@@ -1,11 +1,19 @@
 package com.itacademy.jd2.mm.auction.daoapi.filter;
 
 public class FeedbackFilter extends AbstractFilter{
+	
+	private Integer loggedUserId;
 
 	private boolean fetchUserAccountFrom;
 	private boolean fetchUserAccountWhom;
 	private boolean fetchItem;
 	
+	public Integer getLoggedUserId() {
+		return loggedUserId;
+	}
+	public void setLoggedUserId(Integer loggedUserId) {
+		this.loggedUserId = loggedUserId;
+	}
 	public boolean getFetchUserAccountFrom() {
 		return fetchUserAccountFrom;
 	}

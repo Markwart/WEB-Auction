@@ -73,10 +73,13 @@ public class FeedbackController extends AbstractController {
 		filter.setFetchUserAccountWhom(true);
 		filter.setFetchItem(true);
 
-		if (!req.getRequestURI().contains("/private")) {
-			loggedUserId = null;
+		if (!req.getRequestURI().contains("/private")) { // get private list
+			filter.setLoggedUserId(loggedUserId = null);
+		} else {
+			filter.setLoggedUserId(loggedUserId);
 		}
-		final List<IFeedback> entities = feedbackService.find(filter, loggedUserId);
+		
+		final List<IFeedback> entities = feedbackService.find(filter);
 		List<FeedbackDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
 		final Map<String, Object> models = new HashMap<>();

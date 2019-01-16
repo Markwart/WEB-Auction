@@ -143,7 +143,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 	}
 
 	@Override
-	public List<IItem> find(ItemFilter filter, Integer id) {
+	public List<IItem> find(ItemFilter filter) {
 		final StringBuilder sqlTile;
 		if (filter.getFetchUserAccount()) {
 			sqlTile = new StringBuilder(

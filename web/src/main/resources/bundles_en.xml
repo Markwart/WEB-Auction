@@ -18,7 +18,7 @@
 	<entry key="table.column.price">ITEM PRICE</entry>
 	<entry key="table.column.ends">TIME ENDS</entry>
 	<entry key="table.column.status">STATUS</entry>
-
+	
 	<!-- Sections -->
 	<entry key="main">Web-Auction</entry>
 
@@ -30,6 +30,7 @@
 	<entry key="section.setting">Settings</entry>
 	<entry key="section.my-item">My items</entry>
 	<entry key="section.watch-list">Watch list</entry>
+	<entry key="section.biddin">Bidding</entry>
 
 	<entry key="section.work-set">Working settings</entry>
 	<entry key="section.category">Category</entry>

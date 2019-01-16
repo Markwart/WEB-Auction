@@ -8,11 +8,15 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
+
 public class ItemDTO {
 
 	private Integer id;
+	
+	private StatusAuction statusAuction;
 
-	private String name, image, text, statusAuction;
+	private String name, image, text;
 
 	private Integer year;
 
@@ -26,7 +30,7 @@ public class ItemDTO {
 	@NotNull
 	private Integer categoryId, countryOriginId, conditionId, compositionId, durationId;
 	private String categoryName, countryOriginName, conditionName, compositionName;
-	@NotNull
+	
 	private Integer sellerId;
 	private String sellerEmail;
 	
@@ -34,6 +38,14 @@ public class ItemDTO {
 
 	private Date created;
 	private Date updated;
+	
+	public StatusAuction getStatusAuction() {
+		return statusAuction;
+	}
+
+	public void setStatusAuction(StatusAuction statusAuction) {
+		this.statusAuction = statusAuction;
+	}
 
 	public String getCategoryName() {
 		return categoryName;
@@ -121,14 +133,6 @@ public class ItemDTO {
 
 	public void setText(String text) {
 		this.text = text;
-	}
-
-	public String getStatusAuction() {
-		return statusAuction;
-	}
-
-	public void setStatusAuction(String statusAuction) {
-		this.statusAuction = statusAuction;
 	}
 
 	public Integer getYear() {

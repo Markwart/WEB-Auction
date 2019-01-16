@@ -24,7 +24,7 @@ public interface IFeedbackService {
 
 	IFeedback createEntity();
 
-	List<IFeedback> find(FeedbackFilter filter, Integer id);
+	List<IFeedback> find(FeedbackFilter filter);
 
 	long getCount(FeedbackFilter filter);
 

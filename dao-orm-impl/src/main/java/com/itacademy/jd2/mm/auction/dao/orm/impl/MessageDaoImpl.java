@@ -58,7 +58,7 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 	}
 
 	@Override
-	public List<IMessage> find(MessageFilter filter, Integer id) {
+	public List<IMessage> find(MessageFilter filter) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
 
@@ -67,9 +67,9 @@ public class MessageDaoImpl extends AbstractDaoImpl<IMessage, Integer> implement
 		final Root<Message> from = cq.from(Message.class);
 
 		cq.select(from);
-		if (id != null) {
-			Predicate predicate1 = cb.equal(from.get(Message_.userFrom), id);
-			Predicate predicate2 = cb.equal(from.get(Message_.userWhom), id);
+		if (filter.getLoggedUserId() != null) {
+			Predicate predicate1 = cb.equal(from.get(Message_.userFrom), filter.getLoggedUserId());
+			Predicate predicate2 = cb.equal(from.get(Message_.userWhom), filter.getLoggedUserId());
 			cq.where(cb.or(predicate1, predicate2));
 		} // only for logged user
 

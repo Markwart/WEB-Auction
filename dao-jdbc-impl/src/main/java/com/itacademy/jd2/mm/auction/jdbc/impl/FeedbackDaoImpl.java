@@ -132,7 +132,7 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 	}
 
 	@Override
-	public List<IFeedback> find(FeedbackFilter filter, Integer id) {
+	public List<IFeedback> find(FeedbackFilter filter) {
 		final StringBuilder sqlTile;
 		if (filter.getFetchUserAccountFrom() & filter.getFetchUserAccountWhom() & filter.getFetchItem()) {
 			sqlTile = new StringBuilder(String.format(

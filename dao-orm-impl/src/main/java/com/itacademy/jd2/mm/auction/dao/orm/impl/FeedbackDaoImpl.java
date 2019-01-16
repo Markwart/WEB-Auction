@@ -58,7 +58,7 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 	}
 
 	@Override
-	public List<IFeedback> find(FeedbackFilter filter, Integer id) {
+	public List<IFeedback> find(FeedbackFilter filter) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
 
@@ -66,9 +66,9 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 		final Root<Feedback> from = cq.from(Feedback.class);
 
 		cq.select(from);
-		if (id != null) {
-			Predicate predicate1 = cb.equal(from.get(Feedback_.userFrom), id);
-			Predicate predicate2 = cb.equal(from.get(Feedback_.userWhom), id);
+		if (filter.getLoggedUserId() != null) {
+			Predicate predicate1 = cb.equal(from.get(Feedback_.userFrom), filter.getLoggedUserId());
+			Predicate predicate2 = cb.equal(from.get(Feedback_.userWhom), filter.getLoggedUserId());
 			cq.where(cb.or(predicate1, predicate2));
 		} // only for logged user
 

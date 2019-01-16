@@ -11,10 +11,10 @@ public interface IItemDao extends IDao<IItem, Integer> {
 
 	IItem getFullInfo(Integer id);
 
-	List<IItem> findInIndex(String text);
-
 	List<IItem> findRelatedItemsBySeller(Integer id);
 
-	List<IItem> find(ItemFilter filter, Integer id);
+	List<IItem> find(ItemFilter filter);
+	
+	List<IItem> findInIndex(String text);
 
 }

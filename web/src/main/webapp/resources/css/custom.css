@@ -142,9 +142,24 @@ nav .input-field label.active i, nav .input-field label i {
 	font-weight: 500;
 }
 
-.center {
-	padding-top: 70px;
+.login-page {
+	padding-top: 8rem;
 }
 
 .pagination li.active {
-    background-color: #4caf88;
+	background-color: #4caf88;
+}
+
+.info-edit-delete {center;
+	max-width: 100;
+}
+
+img {
+	border-radius: 10%;
+	max-height: 150;
+	max-height: 150;
+}
+
+.image-column-set {
+	width: 200;
+}

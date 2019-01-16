@@ -25,7 +25,7 @@ public class ItemToDTOConverter implements Function<IItem, ItemDTO> {
 		dto.setYear(entity.getYear());
 		dto.setText(entity.getText());
 		dto.setStartingPrice(entity.getStartingPrice());
-		dto.setStatusAuction(entity.getStatusAuction().name());
+		dto.setStatusAuction(entity.getStatusAuction());
 
 		final IUserAccount userAccount = entity.getSeller();
 		if (userAccount != null) {

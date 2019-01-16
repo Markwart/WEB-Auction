@@ -25,12 +25,12 @@
 <table class="bordered highlight">
     <tbody>
         <tr>
-            <th><mytaglib:sort-link pageUrl="${pagesUserAccount}" column="id">id</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesUserAccount}" column="email">email</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesUserAccount}" column="password">password</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesUserAccount}" column="role">role</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesUserAccount}" column="created">created</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesUserAccount}" column="updated">updated</mytaglib:sort-link></th>
+            <th>id</th>
+            <th>email</th>
+            <th>password</th>
+            <th>role</th>
+            <th>created</th>
+            <th>updated</th>
             <th></th>
         </tr>
         <c:forEach var="userAccount" items="${gridItems}" varStatus="loopCounter">
@@ -51,13 +51,6 @@
         </c:forEach>
     </tbody>
 </table>
-
-<%-- <% final HttpServletRequest req = request;
-   if(req.getMethod().equalsIgnoreCase("get")) {
-%>  
-<% } %>  --%>
-
-<jspFragments:paging />
 
 <sec:authorize access="hasRole('admin')">
 <a class="waves-effect waves-light btn right" href="${pagesUserAccount}/add"><i class="material-icons">add</i></a>

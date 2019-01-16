@@ -70,8 +70,8 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	}
 
 	@Override
-	public List<IFeedback> find(FeedbackFilter filter, Integer id) {
-		return dao.find(filter, id);
+	public List<IFeedback> find(FeedbackFilter filter) {
+		return dao.find(filter);
 	}
 	
 	@Override

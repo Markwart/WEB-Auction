@@ -14,7 +14,7 @@ public interface IItemService {
 	List<IItem> getAll();
 
 	@Transactional
-	void save(IItem entity);
+	void save(IItem entity, Integer id);
 
 	@Transactional
 	void delete(Integer id);
@@ -24,11 +24,11 @@ public interface IItemService {
 
 	IItem createEntity();
 	
-	
-	List<IItem> find(ItemFilter filter, Integer id);
+	List<IItem> find(ItemFilter filter);
 	
 	@Transactional // because hibernate search is used. need to keep session opened
 	List<IItem> findInIndex(String name);
+	
     long getCount(ItemFilter filter);
 
 	IItem getFullInfo(Integer id);

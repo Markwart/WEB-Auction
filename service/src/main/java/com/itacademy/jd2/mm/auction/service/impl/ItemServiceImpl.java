@@ -9,13 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.itacademy.jd2.mm.auction.daoapi.IBidDao;
 import com.itacademy.jd2.mm.auction.daoapi.IDeferredBidDao;
 import com.itacademy.jd2.mm.auction.daoapi.IFeedbackDao;
 import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
 import com.itacademy.jd2.mm.auction.daoapi.IMessageDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
@@ -25,6 +25,7 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.filter.ItemFilter;
 import com.itacademy.jd2.mm.auction.service.IAuctionDurationService;
 import com.itacademy.jd2.mm.auction.service.IItemService;
+import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 
 @Service
 public class ItemServiceImpl implements IItemService {
@@ -39,6 +40,10 @@ public class ItemServiceImpl implements IItemService {
 
 	@Autowired
 	private IAuctionDurationService auctionDurationService;
+	@Autowired
+	private IUserAccountService userAccountService;
+	@Autowired
+	private IItemService itemService;
 
 	@Autowired
 	public ItemServiceImpl(IItemDao dao, IBidDao bidDao, IDeferredBidDao deferredBidDao, IMessageDao messageDao,
@@ -64,12 +69,13 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	@Override
-	public void save(IItem entity) {
+	public void save(IItem entity, Integer id) {
 		final Date now = new Date();
 		entity.setUpdated(now);
 		if (entity.getId() == null) {
 			entity.setCreated(now);
 			entity.setStatusAuction(StatusAuction.OPEN);
+			entity.setSeller(userAccountService.get(id));
 
 			Calendar c = Calendar.getInstance();
 			c.setTime(now);
@@ -79,6 +85,13 @@ public class ItemServiceImpl implements IItemService {
 			dao.insert(entity);
 			LOGGER.debug("new item created: {}", entity);
 		} else {
+			
+			if (!userAccountService.get(id).getRole().equals(Roles.admin)) {
+				entity.setStatusAuction(itemService.get(entity.getId()).getStatusAuction());
+				entity.setSeller(userAccountService.get(id));
+				entity.setAuctionEnd(itemService.get(entity.getId()).getAuctionEnd());
+			}
+			
 			dao.update(entity);
 			LOGGER.debug("item updated: {}", entity);
 		}
@@ -137,9 +150,8 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	@Override
-	public List<IItem> find(ItemFilter filter, Integer id) {
-		return dao.find(filter, id);
-
+	public List<IItem> find(ItemFilter filter) {
+		return dao.find(filter);
 	}
 
 	@Override

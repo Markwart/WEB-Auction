@@ -3,6 +3,8 @@ package com.itacademy.jd2.mm.auction.daoapi.filter;
 public class ItemFilter extends AbstractFilter {
 	
 	private String name, text;
+	
+	private Integer loggedUserId;
 
 	private boolean fetchUserAccount;
 	private boolean fetchCategory;
@@ -10,6 +12,14 @@ public class ItemFilter extends AbstractFilter {
 	private boolean fetchComposition;
 	private boolean fetchCountryOrigin;
 	private boolean fetchAuctionDuration;
+	
+	public Integer getLoggedUserId() {
+		return loggedUserId;
+	}
+
+	public void setLoggedUserId(Integer loggedUserId) {
+		this.loggedUserId = loggedUserId;
+	}
 
 	public boolean getFetchAuctionDuration() {
 		return fetchAuctionDuration;

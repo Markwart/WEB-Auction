@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 
-<h4 class="center"><mytaglib:i18n key="login.header"></mytaglib:i18n></h4>
+<h4 class="center login-page"><mytaglib:i18n key="login.header"></mytaglib:i18n></h4>
 <div class="row center-in-window">
 	<div class="col s3"></div>
 	<div class="col s6">

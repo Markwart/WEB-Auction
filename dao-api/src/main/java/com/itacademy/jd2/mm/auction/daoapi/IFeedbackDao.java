@@ -7,7 +7,7 @@ import com.itacademy.jd2.mm.auction.daoapi.filter.FeedbackFilter;
 
 public interface IFeedbackDao extends IDao<IFeedback, Integer> {
 
-	List<IFeedback> find(FeedbackFilter filter, Integer id);
+	List<IFeedback> find(FeedbackFilter filter);
 
 	long getCount(FeedbackFilter filter);
 

@@ -94,6 +94,8 @@
 		<li class="divider" tabindex="-1"></li>
 		<li><a href="#!"><i class="material-icons">library_books</i><mytaglib:i18n key="section.watch-list"></mytaglib:i18n></a></li>
 		<li class="divider" tabindex="-1"></li>
+		<li><a href="#!"><i class="material-icons">equalizer</i><mytaglib:i18n key="section.biddin"></mytaglib:i18n></a></li>
+		<li class="divider" tabindex="-1"></li>
 		<li><a href="${pagesMessage}/private"><i class="material-icons">mail_outline</i><mytaglib:i18n key="section.message"></mytaglib:i18n></a></li>
 		<li class="divider" tabindex="-1"></li>
 		<li><a href="${pagesFeedback}/private"><i class="material-icons">feedback</i><mytaglib:i18n key="section.feedback"></mytaglib:i18n></a></li>

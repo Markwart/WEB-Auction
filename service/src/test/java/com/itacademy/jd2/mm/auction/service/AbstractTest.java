@@ -237,7 +237,7 @@ public abstract class AbstractTest {
 		entity.setText("text-" + getRandomPrefix());
 		entity.setSeller(saveNewUserAccount());
 		entity.setStatusAuction(StatusAuction.OPEN);
-		itemService.save(entity);
+		itemService.save(entity, null);
 		return entity;
 	}
 

@@ -28,5 +28,5 @@ public interface IMessageService {
 
 	IMessage getFullInfo(Integer id);
 
-	List<IMessage> find(MessageFilter filter, Integer id);
+	List<IMessage> find(MessageFilter filter);
 }

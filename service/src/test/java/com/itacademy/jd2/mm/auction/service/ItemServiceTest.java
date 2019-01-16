@@ -47,7 +47,7 @@ public class ItemServiceTest extends AbstractTest{
 		String newName = entity.getName() + "_updated";
 		entity.setName(newName);
 		Thread.sleep(DELAY);
-		itemService.save(entity);
+		itemService.save(entity, null);
 
 		final IItem entityFromDb = itemService.getFullInfo(entity.getId());
 
