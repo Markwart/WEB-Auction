@@ -16,11 +16,13 @@ public class ItemDTO {
 	
 	private StatusAuction statusAuction;
 
+	@NotNull
 	private String name, image, text;
 
+	@NotNull
 	private Integer year;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd") //hh:mm:ss a
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
 	private Date auctionEnd;
 
 	@NotNull
