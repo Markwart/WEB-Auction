@@ -24,7 +24,17 @@
 
 <table class="bordered highlight">
     <tbody>
-        <tr>
+         <c:if test="${showPagingAndSort eq 'false'}"><tr>
+            <th>id</th>
+            <th>email</th>
+            <th>password</th>
+            <th>role</th>
+            <th>created</th>
+            <th>updated</th>
+            <th></th>
+        </tr></c:if>
+        
+        <c:if test="${showPagingAndSort}"><tr>
             <th><mytaglib:sort-link pageUrl="${pagesUserAccount}" column="id">id</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesUserAccount}" column="email">email</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesUserAccount}" column="password">password</mytaglib:sort-link></th>
@@ -32,7 +42,8 @@
             <th><mytaglib:sort-link pageUrl="${pagesUserAccount}" column="created">created</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesUserAccount}" column="updated">updated</mytaglib:sort-link></th>
             <th></th>
-        </tr>
+        </tr></c:if>
+        
         <c:forEach var="userAccount" items="${gridItems}" varStatus="loopCounter">
             <tr>
                 <td><c:out value="${userAccount.id}" /></td>
@@ -52,12 +63,9 @@
     </tbody>
 </table>
 
-<%-- <% final HttpServletRequest req = request;
-   if(req.getMethod().equalsIgnoreCase("get")) {
-%>  
-<% } %>  --%>
-
-<jspFragments:paging />
+<c:if test="${showPagingAndSort}">
+    <jspFragments:paging />
+</c:if>
 
 <sec:authorize access="hasRole('admin')">
 <a class="waves-effect waves-light btn right" href="${pagesUserAccount}/add"><i class="material-icons">add</i></a>

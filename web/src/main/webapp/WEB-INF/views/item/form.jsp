@@ -24,26 +24,22 @@
 				<label for="year">year</label>
 			</div>
 		</div>
-
+		
 		<%-- <div class="row">
 			<div class="input-field col s12">
 				<form:input path="image" disabled="${readonly}" />
 				<form:errors path="image" cssClass="red-text" />
 				<label for="image">image</label>
 			</div>
-		</div>  --%>
+		</div> --%>
 
 		<div>
 			<table>
 				<tr>
-					<td>File to upload:</td>
+					<td>Image to upload:</td>
 					<td><input type="file" name="file" /></td>
 				</tr>
 			</table>
-
-			<img alt="no image"
-				src="${contextPath}/file/image?uuid=<%= request.getParameter("uuid") %>" />
-
 		</div>
 
 		<div class="row">
@@ -152,15 +148,4 @@
 	</form:form>
 </div>
 
-
-<c:if test='${param["showAlerts"]}'>
-	<!-- checks the URL parameter -->
-
-
-	<script src="${contextPath}/resources/js/sample-alert-with-params.js"></script>
-	<script>
-		showMessage('${contextPath}'); // execute function defined somewhere above
-	</script>
-
-</c:if>
 

@@ -135,12 +135,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/item/form.jsp" />
 	</definition>
 	
-	<definition name="userAccount.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/userAccount/list.jsp" />
+	<definition name="item.view" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/item/view.jsp" />
 	</definition>
 	
-	<definition name="userAccount.list-search" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/userAccount/list-search.jsp" />
+	<definition name="userAccount.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/userAccount/list.jsp" />
 	</definition>
 	
 	<definition name="userAccount.edit" extends="DefaultTemplate">

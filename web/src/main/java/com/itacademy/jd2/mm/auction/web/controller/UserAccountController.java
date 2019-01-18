@@ -60,6 +60,8 @@ public class UserAccountController extends AbstractController {
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
 
+		boolean isRequestMethodPost = req.getMethod().equalsIgnoreCase("post");
+
 		if (req.getMethod().equalsIgnoreCase("get")) {
 			searchDto = getSearchDTO(req);
 		} else {
@@ -71,7 +73,7 @@ public class UserAccountController extends AbstractController {
 			filter.setEmail(searchDto.getEmail());
 		}
 
-		if (!req.getMethod().equalsIgnoreCase("post")) {
+		if (!isRequestMethodPost) {
 			prepareFilter(gridState, filter); // get view without sort and paging
 		}
 
@@ -82,12 +84,8 @@ public class UserAccountController extends AbstractController {
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
 		models.put(SEARCH_FORM_MODEL, searchDto);
-
-		if (req.getMethod().equalsIgnoreCase("post")) {
-			return new ModelAndView("userAccount.list-search", models);
-		} else {
-			return new ModelAndView("userAccount.list", models);
-		}
+		models.put("showPagingAndSort", !isRequestMethodPost);
+		return new ModelAndView("userAccount.list", models);
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)

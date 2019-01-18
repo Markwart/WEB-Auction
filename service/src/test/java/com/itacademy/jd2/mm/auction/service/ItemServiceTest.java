@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -41,13 +42,13 @@ public class ItemServiceTest extends AbstractTest{
 
 
 	@Test
-	public void testUpdate() throws InterruptedException {
+	public void testUpdate() throws InterruptedException, IOException {
 		final IItem entity = saveNewItem();
 
 		String newName = entity.getName() + "_updated";
 		entity.setName(newName);
 		Thread.sleep(DELAY);
-		itemService.save(entity, null);
+		itemService.save(entity, null, null, null);
 
 		final IItem entityFromDb = itemService.getFullInfo(entity.getId());
 

@@ -1,10 +1,6 @@
 package com.itacademy.jd2.mm.auction.web.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +11,8 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -52,8 +50,9 @@ import com.itacademy.jd2.mm.auction.web.security.AuthHelper;
 @Controller
 @RequestMapping(value = "/item")
 public class ItemController extends AbstractController {
-	
-	//public static final String FILE_FOLDER = "d:\\M_Matusevich\\G-JD2-10-17_mmatusevich\\doc\\"; 
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ItemController.class);
+
 	private static final String SEARCH_FORM_MODEL = "searchFormModel";
 	private static final String SEARCH_DTO = ItemController.class.getSimpleName() + "_SEACH_DTO";
 
@@ -122,7 +121,7 @@ public class ItemController extends AbstractController {
 		} else {
 			filter.setLoggedUserId(loggedUserId);
 		}
-		
+
 		List<IItem> entities;
 		if (searchDTO.getName() != null) {
 			filter.setName(searchDTO.getName());
@@ -135,7 +134,7 @@ public class ItemController extends AbstractController {
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
 		models.put(SEARCH_FORM_MODEL, searchDTO);
-		models.put("showAddButton", isPrivate);
+		models.put("showButton", isPrivate);
 		return new ModelAndView("item.list", models);
 	}
 
@@ -148,20 +147,14 @@ public class ItemController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public Object save(@Valid @ModelAttribute("formModel") final ItemDTO formModel,@RequestParam("file") final MultipartFile file, final BindingResult result) throws IOException {
-		
-		String originalFilename = file.getOriginalFilename(); // to DB
-		String contentType = file.getContentType();// to DB
-		String uuid = UUID.randomUUID().toString(); // to DB
+	public Object save(@Valid @ModelAttribute("formModel") final ItemDTO formModel,
+			@RequestParam("file") final MultipartFile file, final BindingResult result) throws IOException {
 
-		//System.out.printf("Uploaded file %s", file.getOriginalFilename());
+		String uuid = UUID.randomUUID().toString();
+		LOGGER.debug("Uploaded file %s", file.getOriginalFilename());
 
-		//InputStream inputStream = file.getInputStream();
-		//Files.copy(inputStream, new File(FILE_FOLDER + uuid).toPath(), StandardCopyOption.REPLACE_EXISTING);
-		
-		
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
-		
+
 		if (result.hasErrors()) {
 			final Map<String, Object> hashMap = new HashMap<>();
 			hashMap.put("formModel", formModel);
@@ -170,7 +163,7 @@ public class ItemController extends AbstractController {
 		} else {
 			final IItem entity = fromDtoConverter.apply(formModel);
 			entity.setImage(uuid);
-			itemService.save(entity, loggedUserId/*, uuid, file*/);
+			itemService.save(entity, loggedUserId, uuid, file);
 			return "redirect:/item";
 		}
 	}
@@ -187,9 +180,9 @@ public class ItemController extends AbstractController {
 		final ItemDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
-		hashMap.put("readonly", true);
+		//hashMap.put("readonly", true);
 		loadCommonFormModels(hashMap);
-		return new ModelAndView("item.edit", hashMap);
+		return new ModelAndView("item.view", hashMap);
 	}
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)

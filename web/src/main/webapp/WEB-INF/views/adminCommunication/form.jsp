@@ -48,14 +48,5 @@
 </div>
 
 
-<c:if test='${param["showAlerts"]}'>
-	<!-- checks the URL parameter -->
 
-
-	<script src="${contextPath}/resources/js/sample-alert-with-params.js"></script>
-	<script>
-		showMessage('${contextPath}'); // execute function defined somewhere above
-	</script>
-
-</c:if>
 

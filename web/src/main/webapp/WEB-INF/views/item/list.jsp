@@ -62,7 +62,7 @@
 		<c:forEach var="item" items="${gridItems}" varStatus="loopCounter">
 			<tr class="font-my-set">
 			    <td class="image-column-set"><img src="${filesUrl}/image?uuid=${item.image}"/> </td>
-				<td><c:out value="${item.name}" /></td>
+				<td><a href="${pagesItem}/${item.id}"><c:out value="${item.name}" /></a></td>
 				
 				<td><c:out value="${item.startingPrice}" /></td>
 				
@@ -76,13 +76,15 @@
 					<td><c:out value="${item.id}" /></td>
 				</sec:authorize>
 
+                
 				<td class="center info-edit-delete">
-				<a class="btn-floating" href="${pagesItem}/${item.id}"><i class="material-icons">info</i></a>
+				<a class="btn-floating" href="${pagesItem}/${item.id}"><i class="material-icons" title="Page view">pageview</i></a>
 				
 				<sec:authorize access="!isAnonymous()">
-				<a class="btn-floating" href="${pagesItem}/${item.id}/edit"><i class="material-icons">edit</i></a>
-				<a class="btn-floating red" href="${pagesItem}/${item.id}/delete"><i class="material-icons">delete</i></a>
-				</sec:authorize></td>
+				<c:if test="${showButton}">
+				<a class="btn-floating" href="${pagesItem}/${item.id}/edit"><i class="material-icons" title="Edit">edit</i></a>
+				<a class="btn-floating grey" href="${pagesItem}/${item.id}/delete"><i class="material-icons" title="Delete">delete_forever</i></a>
+				</c:if></sec:authorize></td>
 			</tr>
 		</c:forEach>
 	</tbody>
@@ -90,11 +92,9 @@
 
 <jspFragments:paging />
 
-<c:if test="${showAddButton}">
-<a class="waves-effect waves-light btn right" href="${pagesItem}/add"><i class="material-icons">add</i></a>
+<c:if test="${showButton}">
+<a class="waves-effect waves-light btn right" href="${pagesItem}/add">Place a new Item</a>
 </c:if>
-
-
 
 
 

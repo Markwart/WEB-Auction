@@ -1,5 +1,6 @@
 package com.itacademy.jd2.mm.auction.service;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Random;
@@ -237,7 +238,12 @@ public abstract class AbstractTest {
 		entity.setText("text-" + getRandomPrefix());
 		entity.setSeller(saveNewUserAccount());
 		entity.setStatusAuction(StatusAuction.OPEN);
-		itemService.save(entity, null);
+		
+		try {
+			itemService.save(entity, null, null, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return entity;
 	}
 

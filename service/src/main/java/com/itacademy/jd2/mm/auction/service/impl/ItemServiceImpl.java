@@ -1,6 +1,7 @@
 package com.itacademy.jd2.mm.auction.service.impl;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -13,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itacademy.jd2.mm.auction.daoapi.IBidDao;
 import com.itacademy.jd2.mm.auction.daoapi.IDeferredBidDao;
@@ -35,7 +37,7 @@ import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 public class ItemServiceImpl implements IItemService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ItemServiceImpl.class);
-	public static final String FILE_FOLDER = "d:\\M_Matusevich\\G-JD2-10-17_mmatusevich\\doc\\"; 
+	public static final String FILE_FOLDER = "d:\\JavaMark\\web-auction\\G-JD1-06-13_mmatusevich\\doc\\image\\";
 
 	private IItemDao dao;
 	private IBidDao bidDao;
@@ -74,7 +76,7 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	@Override
-	public void save(IItem entity, Integer id) {
+	public void save(IItem entity, Integer id, String uuid, MultipartFile file) throws IOException {
 		final Date now = new Date();
 		entity.setUpdated(now);
 		if (entity.getId() == null) {
@@ -88,17 +90,18 @@ public class ItemServiceImpl implements IItemService {
 			entity.setAuctionEnd(c.getTime());
 
 			dao.insert(entity);
-			//InputStream inputStream = file.getInputStream();
-			//Files.copy(inputStream, new File(FILE_FOLDER + uuid).toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+			InputStream inputStream = file.getInputStream();
+			Files.copy(inputStream, new File(FILE_FOLDER + uuid).toPath(), StandardCopyOption.REPLACE_EXISTING);
+
 			LOGGER.debug("new item created: {}", entity);
 		} else {
-			
+
 			if (!userAccountService.get(id).getRole().equals(Roles.admin)) {
 				entity.setStatusAuction(itemService.get(entity.getId()).getStatusAuction());
 				entity.setSeller(userAccountService.get(id));
 				entity.setAuctionEnd(itemService.get(entity.getId()).getAuctionEnd());
 			}
-			
 			dao.update(entity);
 			LOGGER.debug("item updated: {}", entity);
 		}
