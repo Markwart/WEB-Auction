@@ -1,6 +1,9 @@
 package com.itacademy.jd2.mm.auction.jdbc.impl.entity;
 
+import java.util.Set;
+
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
@@ -55,6 +58,18 @@ public class UserAccount extends BaseEntity implements IUserAccount {
 	@Override
 	public Roles getRole() {
 		return role;
+	}
+
+	@Override
+	public void setItems(Set<IItem> items) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Set<IItem> getItems() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

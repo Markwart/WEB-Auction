@@ -59,5 +59,8 @@
 	<entry key="admin">Admin</entry>
 	<entry key="moderator">Moderator</entry>
 	<entry key="user">User</entry>
+	
+	<!-- Others -->
+	<entry key="search-error">The field must not start with an empty character</entry>
 
 </properties>

@@ -31,6 +31,7 @@ import com.itacademy.jd2.mm.auction.web.converter.BidFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.BidToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.dto.BidDTO;
 import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
+import com.itacademy.jd2.mm.auction.web.security.AuthHelper;
 
 @Controller
 @RequestMapping(value = "/bid")
@@ -69,7 +70,7 @@ public class BidController extends AbstractController {
 
 		filter.setFetchUserAccount(true);
 		filter.setFetchItem(true);
-		
+
 		final List<IBid> entities = bidService.find(filter);
 		List<BidDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
@@ -96,8 +97,23 @@ public class BidController extends AbstractController {
 		} else {
 			final IBid entity = fromDtoConverter.apply(formModel);
 			bidService.save(entity);
-			return "redirect:/bid"; 
+			return "redirect:/bid";
 		}
+	}
+
+	@RequestMapping(value = "/{itemId}/placeBid", method = RequestMethod.POST)
+	public Object placeBid(@Valid @ModelAttribute("formBid") final BidDTO formBid,
+			@PathVariable(name = "itemId", required = true) final Integer itemId) {
+
+		Integer loggedUserId = AuthHelper.getLoggedUserId();
+		final IBid entity = fromDtoConverter.apply(formBid);
+
+		entity.setUserBid(userAccountService.get(loggedUserId));
+		entity.setItem(itemService.get(itemId));
+		entity.setStatusBid(StatusBid.made);
+
+		bidService.save(entity);
+		return "redirect:/item/{itemId}";
 	}
 
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
@@ -136,10 +152,9 @@ public class BidController extends AbstractController {
 				.collect(Collectors.toMap(IUserAccount::getId, IUserAccount::getEmail));
 		hashMap.put("userAccountsChoices", userAccountsMap);
 
-		final Map<Integer, String> itemsMap = items.stream()
-				.collect(Collectors.toMap(IItem::getId, IItem::getName));
+		final Map<Integer, String> itemsMap = items.stream().collect(Collectors.toMap(IItem::getId, IItem::getName));
 		hashMap.put("itemsChoices", itemsMap);
-		
+
 		final Map<String, String> statusBidMap = statusBidList.stream()
 				.collect(Collectors.toMap(StatusBid::name, StatusBid::name));
 		hashMap.put("statusBidChoices", statusBidMap);

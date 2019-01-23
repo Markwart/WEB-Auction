@@ -35,11 +35,11 @@
                 <td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${message.updated}" /></td>
                 </sec:authorize>
                 
-                <td class="right"><a class="btn-floating" href="${pagesMessage}/${message.id}"><i class="material-icons">info</i></a> 
+                <td class="right"><a class="btn-floating color-icon" href="${pagesMessage}/${message.id}"><i class="material-icons">info</i></a> 
                 
                 <sec:authorize access="hasRole('admin')">
-                <a class="btn-floating" href="${pagesMessage}/${message.id}/edit"><i class="material-icons">edit</i></a> 
-                <a class="btn-floating red" href="${pagesMessage}/${message.id}/delete"><i class="material-icons">delete</i></a>
+                <a class="btn-floating color-icon" href="${pagesMessage}/${message.id}/edit"><i class="material-icons">edit</i></a> 
+                <a class="btn-floating color-icon-delete" href="${pagesMessage}/${message.id}/delete"><i class="material-icons">delete_forever</i></a>
                 </sec:authorize></td>
             </tr>
         </c:forEach>

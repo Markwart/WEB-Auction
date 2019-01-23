@@ -2,6 +2,7 @@ package com.itacademy.jd2.mm.auction.web.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -32,15 +33,49 @@ public class ItemDTO {
 	@NotNull
 	private Integer categoryId, countryOriginId, conditionId, compositionId, durationId;
 	private String categoryName, countryOriginName, conditionName, compositionName;
-	
+	private Integer durationDay;
+
 	private Integer sellerId;
 	private String sellerEmail;
 	
-	private Integer durationDay;
+	private Set<Integer> shippingMethodsIds, paymentMethodsIds;
+	private Set<String> shippingMethodsNames, paymentMethodsNames;
 
 	private Date created;
 	private Date updated;
 	
+	public Set<String> getShippingMethodsNames() {
+		return shippingMethodsNames;
+	}
+
+	public void setShippingMethodsNames(Set<String> shippingMethodsNames) {
+		this.shippingMethodsNames = shippingMethodsNames;
+	}
+
+	public Set<String> getPaymentMethodsNames() {
+		return paymentMethodsNames;
+	}
+
+	public void setPaymentMethodsNames(Set<String> paymentMethodsNames) {
+		this.paymentMethodsNames = paymentMethodsNames;
+	}
+
+	public Set<Integer> getShippingMethodsIds() {
+		return shippingMethodsIds;
+	}
+
+	public void setShippingMethodsIds(Set<Integer> shippingMethodsIds) {
+		this.shippingMethodsIds = shippingMethodsIds;
+	}
+
+	public Set<Integer> getPaymentMethodsIds() {
+		return paymentMethodsIds;
+	}
+
+	public void setPaymentMethodsIds(Set<Integer> paymentMethodsIds) {
+		this.paymentMethodsIds = paymentMethodsIds;
+	}
+
 	public StatusAuction getStatusAuction() {
 		return statusAuction;
 	}

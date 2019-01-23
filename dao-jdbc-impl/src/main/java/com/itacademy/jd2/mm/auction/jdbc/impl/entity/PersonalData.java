@@ -64,4 +64,28 @@ public class PersonalData extends BaseEntity implements IPersonalData {
 				+ ", adress=" + adress + ", userAccount=" + userAccount + ", getCreated()=" + getCreated()
 				+ ", getUpdated()=" + getUpdated() + "]";
 	}
+
+	@Override
+	public void setCity(String city) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getCity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCountry(String country) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getCountry() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

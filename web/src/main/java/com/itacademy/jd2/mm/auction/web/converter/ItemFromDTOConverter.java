@@ -1,7 +1,10 @@
 package com.itacademy.jd2.mm.auction.web.converter;
 
+import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +14,8 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICountryOrigin;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.service.IAuctionDurationService;
 import com.itacademy.jd2.mm.auction.service.ICategoryService;
@@ -18,6 +23,8 @@ import com.itacademy.jd2.mm.auction.service.ICompositionService;
 import com.itacademy.jd2.mm.auction.service.IConditionService;
 import com.itacademy.jd2.mm.auction.service.ICountryOriginService;
 import com.itacademy.jd2.mm.auction.service.IItemService;
+import com.itacademy.jd2.mm.auction.service.IPaymentMethodService;
+import com.itacademy.jd2.mm.auction.service.IShippingMethodService;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 import com.itacademy.jd2.mm.auction.web.dto.ItemDTO;
 
@@ -38,6 +45,10 @@ public class ItemFromDTOConverter implements Function<ItemDTO, IItem> {
     private ICompositionService compositionService;
     @Autowired
     private IAuctionDurationService auctionDurationService;
+    @Autowired
+    private IShippingMethodService shippingMethodService;
+    @Autowired
+    private IPaymentMethodService paymentMethodService;
     
     @Override
     public IItem apply(final ItemDTO dto) {
@@ -74,6 +85,24 @@ public class ItemFromDTOConverter implements Function<ItemDTO, IItem> {
         final IAuctionDuration duration = auctionDurationService.createEntity();
         duration.setId(dto.getDurationId());
         entity.setDuration(duration);
+        
+        final Set<Integer> shippingMethodsIds = dto.getShippingMethodsIds();
+        if (CollectionUtils.isNotEmpty(shippingMethodsIds)) {
+            entity.setShippingMethods(shippingMethodsIds.stream().map((id) -> {
+                final IShippingMethod shippingMethod = shippingMethodService.createEntity();
+                shippingMethod.setId(id);
+                return shippingMethod;
+            }).collect(Collectors.toSet()));
+        }
+        
+        final Set<Integer> paymentMethodsIds = dto.getPaymentMethodsIds();
+        if (CollectionUtils.isNotEmpty(paymentMethodsIds)) {
+            entity.setPaymentMethods(paymentMethodsIds.stream().map((id) -> {
+                final IPaymentMethod paymentMethod = paymentMethodService.createEntity();
+                paymentMethod.setId(id);
+                return paymentMethod;
+            }).collect(Collectors.toSet()));
+        }
         
         return entity;
     }

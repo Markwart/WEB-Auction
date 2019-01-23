@@ -2,8 +2,10 @@ package com.itacademy.jd2.mm.auction.web.controller;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,15 +22,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPersonalData;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
+import com.itacademy.jd2.mm.auction.service.IItemService;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
+import com.itacademy.jd2.mm.auction.web.converter.ItemFromDTOConverter;
+import com.itacademy.jd2.mm.auction.web.converter.ItemToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.UserAccountFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.UserAccountToDTOConverter;
+import com.itacademy.jd2.mm.auction.web.dto.ItemDTO;
 import com.itacademy.jd2.mm.auction.web.dto.UserAccountDTO;
 import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
 import com.itacademy.jd2.mm.auction.web.dto.search.UserAccountSearchDTO;
+import com.itacademy.jd2.mm.auction.web.security.AuthHelper;
 
 @Controller
 @RequestMapping(value = "/userAccount")
@@ -41,6 +49,13 @@ public class UserAccountController extends AbstractController {
 
 	private UserAccountToDTOConverter toDtoConverter;
 	private UserAccountFromDTOConverter fromDtoConverter;
+	
+	@Autowired
+	private IItemService itemService;
+	@Autowired
+	private ItemToDTOConverter toDtoConverterItem;
+	@Autowired
+	private ItemFromDTOConverter fromDtoConverterItem;
 
 	@Autowired
 	public UserAccountController(IUserAccountService userAccountService, UserAccountToDTOConverter toDtoConverter,
@@ -56,13 +71,14 @@ public class UserAccountController extends AbstractController {
 			@ModelAttribute(SEARCH_FORM_MODEL) UserAccountSearchDTO searchDto,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
+
+		boolean isRequestMethodPost = req.getMethod().equalsIgnoreCase("post");
+
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
 
-		boolean isRequestMethodPost = req.getMethod().equalsIgnoreCase("post");
-
-		if (req.getMethod().equalsIgnoreCase("get")) {
+		if (!isRequestMethodPost) {
 			searchDto = getSearchDTO(req);
 		} else {
 			req.getSession().setAttribute(SEARCH_DTO, searchDto);
@@ -138,11 +154,27 @@ public class UserAccountController extends AbstractController {
 		return new ModelAndView("userAccount.edit", hashMap);
 	}
 
+	@RequestMapping(value = "/{itemId}/watchList", method = RequestMethod.GET)
+	public Object addWatchList(@PathVariable(name = "itemId", required = true) final Integer itemId) {
+		
+		Integer loggedUserId = AuthHelper.getLoggedUserId();
+		
+		final IItem dbModelItem = itemService.getFullInfo(itemId);
+		Set<IItem> items = new HashSet<>();
+		items.add(dbModelItem);
+		userAccountService.getPersonalData(loggedUserId).setItems(items);
+		return "redirect:/";
+	}
+
 	private void loadCommonFormModels(final Map<String, Object> hashMap) {
 		final List<Roles> rolesList = Arrays.asList(Roles.values());
 
 		final Map<String, String> rolesMap = rolesList.stream().collect(Collectors.toMap(Roles::name, Roles::name));
 		hashMap.put("rolesChoices", rolesMap);
+		
+		final Map<Integer, String> itemsMap = itemService.getAll().stream()
+				.collect(Collectors.toMap(IItem::getId, IItem::getName));
+		hashMap.put("itemsChoices", itemsMap);
 	}
 
 	private UserAccountSearchDTO getSearchDTO(final HttpServletRequest req) {

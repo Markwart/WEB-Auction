@@ -1,5 +1,7 @@
 package com.itacademy.jd2.mm.auction.daoapi.entity.table;
 
+import java.util.Set;
+
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
 
 public interface IUserAccount  extends IBaseEntity{
@@ -19,4 +21,8 @@ public interface IUserAccount  extends IBaseEntity{
 	void setRole(Roles role);
 
 	Roles getRole();
+
+	void setItems(Set<IItem> items);
+
+	Set<IItem> getItems();
 }

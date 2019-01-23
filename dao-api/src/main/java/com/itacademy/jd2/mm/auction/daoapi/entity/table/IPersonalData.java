@@ -21,4 +21,12 @@ public interface IPersonalData extends IBaseEntity {
 	void setUsername(String username);
 
 	String getUsername();
+
+	void setCity(String city);
+
+	String getCity();
+
+	void setCountry(String country);
+
+	String getCountry();
 }

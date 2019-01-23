@@ -2,12 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <h4 class="header">Edit message</h4>
 <div class="row">
-	<form:form class="col s12" method="POST" action="${pagesMessage}"
+	<form:form class="col s12" method="POST" action="${pagesMessage}/${formModelItem.id}/send"
 		modelAttribute="formModel">
 
 		<form:input path="id" type="hidden" />
 
-		<div class="row">
+		<%-- <div class="row">
 			<div class="input-field col s12">
 				<form:select path="itemId" disabled="${readonly}">
 					<form:options items="${itemsChoices}" />
@@ -15,7 +15,7 @@
 				<form:errors path="itemId" cssClass="red-text" />
 				<label for="itemId">item</label>
 			</div>
-		</div>
+		</div> --%>
 		
 		<div class="row">
 			<div class="input-field col s12">
@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		
-		<div class="row">
+		<%-- <div class="row">
 			<div class="input-field col s12">
 				<form:select path="userFromId" disabled="${readonly}">
 					<form:options items="${userAccountsChoices}" />
@@ -51,17 +51,17 @@
 				<form:errors path="userWhomId" cssClass="red-text" />
 				<label for="userWhomId">whom</label>
 			</div>
-		</div>
+		</div> --%>
 
 		<div class="row">
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">save</button>
+					<button class="btn waves-effect waves-light right color-button" type="submit">save</button>
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right" href="${pagesMessage}">list<i class="material-icons right"></i>
+				<a class="btn waves-effect waves-light right color-button" href="${pagesMessage}">list<i class="material-icons right"></i>
 				</a>
 			</div>
 		</div>

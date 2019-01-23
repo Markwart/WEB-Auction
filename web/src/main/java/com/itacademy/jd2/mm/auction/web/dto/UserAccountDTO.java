@@ -1,6 +1,7 @@
 package com.itacademy.jd2.mm.auction.web.dto;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -22,6 +23,8 @@ public class UserAccountDTO {
 	@NotNull
 	@Size(min = 6, max = 50)
 	private String password;
+	
+	private Set<Integer> itemsIds;
 
 	private Date created;
 	private Date updated;
@@ -29,6 +32,14 @@ public class UserAccountDTO {
     @Valid
     private PersonalDataDTO personalData = new PersonalDataDTO();
 	
+	public Set<Integer> getItemsIds() {
+		return itemsIds;
+	}
+
+	public void setItemsIds(Set<Integer> itemsIds) {
+		this.itemsIds = itemsIds;
+	}
+
 	public PersonalDataDTO getPersonalData() {
 		return personalData;
 	}

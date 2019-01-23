@@ -29,11 +29,15 @@ import com.itacademy.jd2.mm.auction.web.converter.FeedbackFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.FeedbackToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.dto.FeedbackDTO;
 import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
+import com.itacademy.jd2.mm.auction.web.dto.search.FeedbackSearchDTO;
 import com.itacademy.jd2.mm.auction.web.security.AuthHelper;
 
 @Controller
 @RequestMapping(value = "/feedback")
 public class FeedbackController extends AbstractController {
+
+	private static final String SEARCH_FORM_MODEL = "searchFormModel";
+	private static final String SEARCH_DTO = FeedbackController.class.getSimpleName() + "_SEACH_DTO";
 
 	private IFeedbackService feedbackService;
 	private IUserAccountService userAccountService;
@@ -54,26 +58,47 @@ public class FeedbackController extends AbstractController {
 		this.fromDtoConverter = fromDtoConverter;
 	}
 
-	@RequestMapping(value = { "", "/private" }, method = RequestMethod.GET)
-	public ModelAndView index2(final HttpServletRequest req,
+	@RequestMapping(value = { "", "/private", "/userFeedback/{userId}" }, method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView index(final HttpServletRequest req,
+			@ModelAttribute(SEARCH_FORM_MODEL) FeedbackSearchDTO searchDto,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
-			@RequestParam(name = "sort", required = false) final String sortColumn) {
+			@RequestParam(name = "sort", required = false) final String sortColumn,
+			@PathVariable(name = "useId", required = false) final Integer userId) {
 
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
+		boolean isRequestMethodPost = req.getMethod().equalsIgnoreCase("post");
+		boolean isPrivate = req.getRequestURI().contains("/private");
+		boolean isPrivateUserId = req.getRequestURI().contains("/userFeedback/{userId}");
 
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
+		
+		if (!isRequestMethodPost) {
+			searchDto = getSearchDTO(req);
+		} else {
+			req.getSession().setAttribute(SEARCH_DTO, searchDto);
+		}
 
 		final FeedbackFilter filter = new FeedbackFilter();
-		prepareFilter(gridState, filter);
-		gridState.setTotalCount(feedbackService.getCount(filter));
+		
+		if (searchDto.getUserWhomEmail() != null) {
+			filter.setUserWhomEmail(searchDto.getUserWhomEmail());
+		}
+		
+		if (isPrivate) {
+			filter.setLoggedUserId(loggedUserId); // get private list
+		} else if (isPrivateUserId) {
+			filter.setLoggedUserId(userId); // get user private list
+		} else {
+			filter.setLoggedUserId(loggedUserId = null); // get all list
+		}
 
 		filter.setFetchUserAccountFrom(true);
 		filter.setFetchUserAccountWhom(true);
 		filter.setFetchItem(true);
 
-		if (!req.getRequestURI().contains("/private")) { // get private list
+		if (!isPrivate) { // get private list
 			filter.setLoggedUserId(loggedUserId = null);
 		} else {
 			filter.setLoggedUserId(loggedUserId);
@@ -81,9 +106,13 @@ public class FeedbackController extends AbstractController {
 		
 		final List<IFeedback> entities = feedbackService.find(filter);
 		List<FeedbackDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
+		gridState.setTotalCount(feedbackService.getCount(filter));
 
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
+		models.put(SEARCH_FORM_MODEL, searchDto);
+		models.put("showSomeElements", isPrivate);
+		models.put("showPagingAndSort", !isRequestMethodPost);
 		return new ModelAndView("feedback.list", models);
 	}
 
@@ -95,7 +124,7 @@ public class FeedbackController extends AbstractController {
 		return new ModelAndView("feedback.edit", hashMap);
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Object save(@Valid @ModelAttribute("formModel") final FeedbackDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
 			final Map<String, Object> hashMap = new HashMap<>();
@@ -146,5 +175,14 @@ public class FeedbackController extends AbstractController {
 
 		final Map<Integer, String> itemsMap = items.stream().collect(Collectors.toMap(IItem::getId, IItem::getName));
 		hashMap.put("itemsChoices", itemsMap);
+	}
+
+	private FeedbackSearchDTO getSearchDTO(final HttpServletRequest req) {
+		FeedbackSearchDTO searchDTO = (FeedbackSearchDTO) req.getSession().getAttribute(SEARCH_DTO);
+		if (searchDTO == null) {
+			searchDTO = new FeedbackSearchDTO();
+			req.getSession().setAttribute(SEARCH_DTO, searchDTO);
+		}
+		return searchDTO;
 	}
 }

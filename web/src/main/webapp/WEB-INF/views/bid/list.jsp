@@ -26,11 +26,11 @@
                 <td><c:out value="${bid.statusBid}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${bid.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${bid.updated}" /></td>
-                <td class="right"><a class="btn-floating" href="${pagesBid}/${bid.id}"><i class="material-icons">info</i></a> 
+                <td class="right"><a class="btn-floating color-icon" href="${pagesBid}/${bid.id}"><i class="material-icons">pageview</i></a> 
                 
                 <sec:authorize access="hasRole('admin')">
-                <a class="btn-floating" href="${pagesBid}/${bid.id}/edit"><i class="material-icons">edit</i></a>
-                <a class="btn-floating red" href="${pagesBid}/${bid.id}/delete"><i class="material-icons">delete</i></a>
+                <a class="btn-floating color-icon" href="${pagesBid}/${bid.id}/edit"><i class="material-icons">edit</i></a>
+                <a class="btn-floating color-icon-delete" href="${pagesBid}/${bid.id}/delete"><i class="material-icons">delete_forever</i></a>
                 </sec:authorize></td>
             </tr>
         </c:forEach>

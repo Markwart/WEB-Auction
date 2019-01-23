@@ -2,6 +2,7 @@ package com.itacademy.jd2.mm.auction.jdbc.impl.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
@@ -10,6 +11,8 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICountryOrigin;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 public class Item extends BaseEntity implements IItem {
@@ -155,5 +158,27 @@ public class Item extends BaseEntity implements IItem {
 	@Override
 	public IAuctionDuration getDuration() {
 		return duration;
+	}
+
+	@Override
+	public void setPaymentMethods(Set<IPaymentMethod> paymentMethods) {
+		throw new RuntimeException("not implemneted");
+
+	}
+
+	@Override
+	public Set<IPaymentMethod> getPaymentMethods() {
+		throw new RuntimeException("not implemneted");
+	}
+
+	@Override
+	public void setShippingMethods(Set<IShippingMethod> shippingMethods) {
+		throw new RuntimeException("not implemneted");
+
+	}
+
+	@Override
+	public Set<IShippingMethod> getShippingMethods() {
+		throw new RuntimeException("not implemneted");
 	}
 }

@@ -33,13 +33,13 @@
 			</c:if>
 			<div class="row">
 				<div class="col s12 center">
-					<button class="btn waves-effect waves-light " type="submit"><mytaglib:i18n key="login"></mytaglib:i18n></button>
+					<button class="btn waves-effect waves-light color-button" type="submit"><mytaglib:i18n key="login"></mytaglib:i18n></button>
 
 				</div>
 			</div>
 			<div class="row">
 				<div class="col s12 center">
-						<a class="btn waves-effect waves-light " href="${pagesUserAccount}/add"><mytaglib:i18n key="registration"></mytaglib:i18n></a>
+						<a class="btn waves-effect waves-light color-button" href="${pagesUserAccount}/add"><mytaglib:i18n key="registration"></mytaglib:i18n></a>
 				</div>
 			</div>
 		</form>

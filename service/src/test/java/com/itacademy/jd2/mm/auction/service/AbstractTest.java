@@ -185,7 +185,7 @@ public abstract class AbstractTest {
 		entity.setItem(saveNewItem());
 		entity.setUserFrom(saveNewUserAccount());
 		entity.setUserWhom(saveNewUserAccount());
-		messageService.save(entity);
+		messageService.save(entity, null, null);
 		return entity;
 	}
 

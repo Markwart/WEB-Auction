@@ -1,7 +1,10 @@
 package com.itacademy.jd2.mm.auction.web.dto.search;
 
+import javax.validation.constraints.NotNull;
+
 public class ItemSearchDTO {
 	
+	@NotNull
 	private String name, text;
 
 	public String getName() {

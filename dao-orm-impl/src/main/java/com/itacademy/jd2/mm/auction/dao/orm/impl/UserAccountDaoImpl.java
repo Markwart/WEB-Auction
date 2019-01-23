@@ -98,7 +98,8 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 		cq.select(from);
 
 		from.fetch(UserAccount_.personalData, JoinType.LEFT);
-		cq.distinct(true);
+		from.fetch(UserAccount_.items, JoinType.LEFT);
+		cq.distinct(true); // to avoid duplicate rows in result
 
 		cq.where(cb.equal(from.get(UserAccount_.id), id));
 

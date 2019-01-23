@@ -14,6 +14,7 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Feedback;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Feedback_;
@@ -82,6 +83,8 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 			from.fetch(Feedback_.item, JoinType.LEFT);
 		}
 
+		applyFilter(filter, cb, cq, from);
+
 		final String sortColumn = filter.getSortColumn();
 		if (sortColumn != null) {
 			final Path<?> expression = getSortPath(from, sortColumn);
@@ -92,6 +95,19 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 		setPaging(filter, q);
 		final List<IFeedback> resultList = q.getResultList();
 		return resultList;
+	}
+
+	private void applyFilter(final FeedbackFilter filter, final CriteriaBuilder cb, final CriteriaQuery<?> cq,
+			final Root<Feedback> from) {
+		final List<Predicate> ands = new ArrayList<>();
+
+		final String email = filter.getUserWhomEmail();
+		if (!StringUtils.isEmpty(email)) {
+			ands.add(cb.equal(from.get(Feedback_.userWhom).get(UserAccount_.email), email));
+		}
+		if (!ands.isEmpty()) {
+			cq.where(cb.and(ands.toArray(new Predicate[0])));
+		}
 	}
 
 	@Override

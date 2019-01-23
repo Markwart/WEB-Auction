@@ -179,8 +179,6 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		throw new RuntimeException("not implemneted");
 	}
 
-
-
 	@Override
 	public List<IItem> findRelatedItemsBySeller(Integer id) {
 		throw new RuntimeException("not implemented");

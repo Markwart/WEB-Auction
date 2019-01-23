@@ -4,10 +4,26 @@ import java.util.Date;
 
 public class PersonalDataDTO {
 
-	private String username, firstName, lastName, adress;
+	private String username, firstName, lastName, adress, country, city;
 
 	private Date created;
 	private Date updated;
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 
 	public String getUsername() {
 		return username;

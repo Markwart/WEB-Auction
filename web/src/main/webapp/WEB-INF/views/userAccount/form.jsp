@@ -1,11 +1,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <h4 class="header">Edit user account</h4>
 <div class="row">
-	<form:form class="col s12" method="POST" action="${pagesUserAccount}/add"
-		modelAttribute="formModel">
+	<form:form class="col s12" method="POST"
+		action="${pagesUserAccount}/add" modelAttribute="formModel">
 
 		<form:input path="id" type="hidden" />
 
@@ -16,13 +17,13 @@
 				<form:errors path="email" cssClass="red-text" />
 				<label for="email">email</label>
 			</div>
-			 <div class="input-field col s12">
-				<form:input path="password" type="text" disabled="${readonly}" />
+			<div class="input-field col s12">
+				<form:input path="password" type="password" disabled="${readonly}" />
 				<form:errors path="password" cssClass="red-text" />
 				<label for="password">password</label>
-			</div> 
+			</div>
 
-			 <sec:authorize access="hasRole('admin')"> 
+			<sec:authorize access="hasRole('admin')">
 				<div class="input-field col s12">
 					<form:select path="role" disabled="${readonly}">
 						<form:options items="${rolesChoices}" />
@@ -30,7 +31,7 @@
 					<form:errors path="role" cssClass="red-text" />
 					<label for="role">role</label>
 				</div>
-			 </sec:authorize> 
+			</sec:authorize>
 		</div>
 
 		<div class="row">
@@ -45,6 +46,20 @@
 				<form:input path="personalData.lastName" disabled="${readonly}" />
 				<form:errors path="personalData.lastName" cssClass="red-text" />
 				<label for="personalData.lastName">last name</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field  col s12">
+				<form:input path="personalData.country" disabled="${readonly}" />
+				<form:errors path="personalData.country" cssClass="red-text" />
+				<label for="personalData.country">country</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field  col s12">
+				<form:input path="personalData.city" disabled="${readonly}" />
+				<form:errors path="personalData.city" cssClass="red-text" />
+				<label for="personalData.city">city</label>
 			</div>
 		</div>
 		<div class="row">
@@ -67,21 +82,20 @@
 			<div class="col s12"></div>
 			<div class="col s4">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">save</button>
+					<button class="btn waves-effect waves-light right color-button"
+						type="submit">save</button>
 				</c:if>
 			</div>
 			<sec:authorize access="hasAnyRole('admin', 'moderator')">
-			<div class="col s4">
-				<a class="btn waves-effect waves-light right"
-					href="${pagesUserAccount}">list<i
-					class="material-icons right"></i>
-				</a>
-			</div>
+				<div class="col s4">
+					<a class="btn waves-effect waves-light right color-button"
+						href="${pagesUserAccount}">list<i class="material-icons right"></i>
+					</a>
+				</div>
 			</sec:authorize>
 			<div class="col s4">
-				<a class="btn waves-effect waves-light right"
-					href="${contextPath}">Home page<i
-					class="material-icons right"></i>
+				<a class="btn waves-effect waves-light right color-button" href="${contextPath}">Home
+					page<i class="material-icons right"></i>
 				</a>
 			</div>
 		</div>

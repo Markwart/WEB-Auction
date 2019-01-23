@@ -2,6 +2,7 @@ package com.itacademy.jd2.mm.auction.daoapi.entity.table;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 
@@ -45,4 +46,10 @@ public interface IItem extends IBaseEntity {
 	
 	IAuctionDuration getDuration();
 	void setDuration(IAuctionDuration duration);
+	
+	void setPaymentMethods(Set<IPaymentMethod> paymentMethods);
+	Set<IPaymentMethod> getPaymentMethods();
+	
+	void setShippingMethods(Set<IShippingMethod> shippingMethods);
+	Set<IShippingMethod> getShippingMethods();
 }

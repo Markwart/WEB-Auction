@@ -20,11 +20,11 @@
                 <td><c:out value="${auctionDuration.day}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${auctionDuration.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${auctionDuration.updated}" /></td>
-                <td class="right"><a class="btn-floating" href="${pagesAuctionDuration}/${auctionDuration.id}"><i class="material-icons">info</i></a> 
+                <td class="right"><a class="btn-floating color-icon" href="${pagesAuctionDuration}/${auctionDuration.id}"><i class="material-icons">pageview</i></a> 
                 
                 <sec:authorize access="hasRole('admin')">
-                <a class="btn-floating" href="${pagesAuctionDuration}/${auctionDuration.id}/edit"><i class="material-icons">edit</i></a>
-                <a class="btn-floating red" href="${pagesAuctionDuration}/${auctionDuration.id}/delete"><i class="material-icons">delete</i></a>
+                <a class="btn-floating color-icon" href="${pagesAuctionDuration}/${auctionDuration.id}/edit"><i class="material-icons">edit</i></a>
+                <a class="btn-floating color-icon-delete" href="${pagesAuctionDuration}/${auctionDuration.id}/delete"><i class="material-icons">delete_forever</i></a>
                 </sec:authorize></td>
             </tr>
         </c:forEach>

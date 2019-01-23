@@ -1,10 +1,6 @@
 package com.itacademy.jd2.mm.auction.service.impl;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -91,8 +87,8 @@ public class ItemServiceImpl implements IItemService {
 
 			dao.insert(entity);
 
-			InputStream inputStream = file.getInputStream();
-			Files.copy(inputStream, new File(FILE_FOLDER + uuid).toPath(), StandardCopyOption.REPLACE_EXISTING);
+			//InputStream inputStream = file.getInputStream();
+			//Files.copy(inputStream, new File(FILE_FOLDER + uuid).toPath(), StandardCopyOption.REPLACE_EXISTING);
 
 			LOGGER.debug("new item created: {}", entity);
 		} else {
@@ -110,6 +106,10 @@ public class ItemServiceImpl implements IItemService {
 	@Override
 	public void delete(Integer id) {
 		LOGGER.info("delete item by id: {}", id);
+		 final IItem item = dao.get(id);
+	        item.getShippingMethods().clear();
+	        item.getPaymentMethods().clear();
+	        dao.update(item);
 		deleteRelatedEntities(id);
 		dao.delete(id);
 	}

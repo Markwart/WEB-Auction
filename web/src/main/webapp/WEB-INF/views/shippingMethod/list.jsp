@@ -24,11 +24,11 @@
                 <td><c:out value="${shippingMethod.cost}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${shippingMethod.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${shippingMethod.updated}" /></td>
-                <td class="right"><a class="btn-floating" href="${pagesShippingMethod}/${shippingMethod.id}"><i class="material-icons">info</i></a> 
+                <td class="right"><a class="btn-floating color-icon" href="${pagesShippingMethod}/${shippingMethod.id}"><i class="material-icons">pageview</i></a> 
                 
                 <sec:authorize access="hasRole('admin')">
-                <a class="btn-floating" href="${pagesShippingMethod}/${shippingMethod.id}/edit"><i class="material-icons">edit</i></a> 
-                <a class="btn-floating red" href="${pagesShippingMethod}/${shippingMethod.id}/delete"><i class="material-icons">delete</i></a>
+                <a class="btn-floating color-icon" href="${pagesShippingMethod}/${shippingMethod.id}/edit"><i class="material-icons">edit</i></a> 
+                <a class="btn-floating color-icon-delete" href="${pagesShippingMethod}/${shippingMethod.id}/delete"><i class="material-icons">delete_forever</i></a>
                 </sec:authorize></td>
             </tr>
         </c:forEach>

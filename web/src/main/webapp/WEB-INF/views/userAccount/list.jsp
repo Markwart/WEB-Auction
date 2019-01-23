@@ -12,7 +12,7 @@
 	<div class="nav-wrapper">
 		<form:form method="POST" action="${pagesUserAccount}" modelAttribute="searchFormModel" id="form">
 			<div class="input-field">
-				<form:input path="email" type="search" />
+				<form:input path="email" type="search" id="search-item"/>
 				<label class="label-icon" for="search">
 				<i class="material-icons">search</i></label>
 				<button class="button-reset" type="button" onclick="form.reset()"><i class="material-icons" >close</i></button>				
@@ -24,7 +24,8 @@
 
 <table class="bordered highlight">
     <tbody>
-         <c:if test="${showPagingAndSort eq 'false'}"><tr>
+         <c:if test="${showPagingAndSort eq 'false'}">
+         <tr>
             <th>id</th>
             <th>email</th>
             <th>password</th>
@@ -32,7 +33,8 @@
             <th>created</th>
             <th>updated</th>
             <th></th>
-        </tr></c:if>
+         </tr>
+         </c:if>
         
         <c:if test="${showPagingAndSort}"><tr>
             <th><mytaglib:sort-link pageUrl="${pagesUserAccount}" column="id">id</mytaglib:sort-link></th>

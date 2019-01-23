@@ -10,20 +10,31 @@
 			<sec:authorize access="hasAnyRole('admin', 'moderator')">
 				<ul id="dropdown1" class="dropdown-content">
 					<li><a href="${pagesCategory}"><mytaglib:i18n key="section.category"></mytaglib:i18n></a></li>
+					<li class="divider" tabindex="-1"></li>
 					<li><a href="${pagesComposition}"><mytaglib:i18n key="section.composition"></mytaglib:i18n></a></li>
+					<li class="divider" tabindex="-1"></li>
 					<li><a href="${pagesCondition}"><mytaglib:i18n key="section.condition"></mytaglib:i18n></a></li>
+					<li class="divider" tabindex="-1"></li>
 					<li><a href="${pagesCountryOrigin}"><mytaglib:i18n key="section.country"></mytaglib:i18n></a></li>
+					<li class="divider" tabindex="-1"></li>
 					<li><a href="${pagesPaymentMethod}"><mytaglib:i18n key="section.payment"></mytaglib:i18n></a></li>
+					<li class="divider" tabindex="-1"></li>
 					<li><a href="${pagesShippingMethod}"><mytaglib:i18n key="section.shipping"></mytaglib:i18n></a></li>
+					<li class="divider" tabindex="-1"></li>
 					<li><a href="${pagesStepBlock}"><mytaglib:i18n key="section.step-block"></mytaglib:i18n></a></li>
+					<li class="divider" tabindex="-1"></li>
 					<li><a href="${pagesAuctionDuration}"><mytaglib:i18n key="section.duration"></mytaglib:i18n></a></li>
 					<li class="divider"></li>
 				</ul>
 				<ul id="dropdown2" class="dropdown-content">
 					<li><a href="${pagesUserAccount}"><mytaglib:i18n key="section.account"></mytaglib:i18n></a></li>
+					<li class="divider" tabindex="-1"></li>
 					<li><a href="${pagesAdminCommunication}"><mytaglib:i18n key="section.admin-communication"></mytaglib:i18n></a></li>
+					<li class="divider" tabindex="-1"></li>
 					<li><a href="${pagesMessage}"><mytaglib:i18n key="section.message"></mytaglib:i18n></a></li>
+					<li class="divider" tabindex="-1"></li>
 					<li><a href="${pagesBid}"><mytaglib:i18n key="section.bid"></mytaglib:i18n></a></li>
+					<li class="divider" tabindex="-1"></li>
 					<li><a href="${pagesDeferredBid}"><mytaglib:i18n key="section.deferred-bid"></mytaglib:i18n></a></li>
 					<li class="divider"></li>
 				</ul>
@@ -51,10 +62,16 @@
 		</div>
 
 		<div class="locale">
-			<ul>
+		
+		    <%-- <ul class="language-select"> 
+                <li class="btn active" data-lang="ru"><a href="${contextPath}?language=ru">RU</a></li> 
+	            <li class="btn" data-lang="en"><a href="${contextPath}?language=en">EN</a></li>
+            </ul> --%>
+		
+			 <ul>
 				<li><a href="${contextPath}?language=ru">RU</a></li>
 				<li><a href="${contextPath}?language=en">EN</a></li>
-			</ul>
+			</ul> 
 		</div>
 
 		<div class="current-user">
@@ -104,5 +121,28 @@
 		<li class="divider" tabindex="-1"></li>
 		<li><a href="${contextPath}/execute_logout"><i class="material-icons">exit_to_app</i><mytaglib:i18n key="logout"></mytaglib:i18n></a></li>
 	</ul>
+	
+	<!-- <script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+	<script>
+		$('.language-select').click(function() {
+			$(this).toggleClass('open');
+		})
+
+		$('.language-select li')
+				.click(
+						function() {
+							var setLang = $('.language-select')
+									.data('location'), dataLangSelect = $(this)
+									.data('lang')
+							$('.language-select').data('location',
+									dataLangSelect);
+							$('.language-select li').removeClass('active');
+							$(this).toggleClass('active');
+						})
+	</script> -->
+	
 </header>

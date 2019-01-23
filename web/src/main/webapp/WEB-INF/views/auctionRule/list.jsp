@@ -31,11 +31,11 @@
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${auctionRule.updated}" /></td>
                 </sec:authorize>
                 
-                <td class="right"><a class="btn-floating" href="${pagesAuctionRule}/${auctionRule.id}"><i class="material-icons">info</i></a>
+                <td class="right"><a class="btn-floating color-icon" href="${pagesAuctionRule}/${auctionRule.id}"><i class="material-icons">pageview</i></a>
                 
                 <sec:authorize access="hasRole('admin')">  
-                <a class="btn-floating" href="${pagesAuctionRule}/${auctionRule.id}/edit"><i class="material-icons">edit</i></a> 
-                <a class="btn-floating red" href="${pagesAuctionRule}/${auctionRule.id}/delete"><i class="material-icons">delete</i></a>
+                <a class="btn-floating color-icon" href="${pagesAuctionRule}/${auctionRule.id}/edit"><i class="material-icons">edit</i></a> 
+                <a class="btn-floating color-icon-delete" href="${pagesAuctionRule}/${auctionRule.id}/delete"><i class="material-icons">delete_forever</i></a>
                 </sec:authorize> </td>
             </tr>
         </c:forEach>

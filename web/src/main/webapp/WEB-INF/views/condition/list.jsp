@@ -20,11 +20,11 @@
                 <td><c:out value="${condition.name}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${condition.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${condition.updated}" /></td>
-                <td class="right"><a class="btn-floating" href="${pagesCondition}/${condition.id}"><i class="material-icons">info</i></a> 
+                <td class="right"><a class="btn-floating color-icon" href="${pagesCondition}/${condition.id}"><i class="material-icons">pageview</i></a> 
                 
                 <sec:authorize access="hasRole('admin')">
-                <a class="btn-floating" href="${pagesCondition}/${condition.id}/edit"><i class="material-icons">edit</i></a> 
-                <a class="btn-floating red" href="${pagesCondition}/${condition.id}/delete"><i class="material-icons">delete</i></a>
+                <a class="btn-floating color-icon" href="${pagesCondition}/${condition.id}/edit"><i class="material-icons">edit</i></a> 
+                <a class="btn-floating color-icon-delete" href="${pagesCondition}/${condition.id}/delete"><i class="material-icons">delete_forever</i></a>
                 </sec:authorize></td>
             </tr>
         </c:forEach>

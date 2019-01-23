@@ -14,23 +14,42 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 
 @Entity
 public class PersonalData implements IPersonalData {
-	
+
 	@Id
-    private Integer id;
+	private Integer id;
 
 	@Column(updatable = false)
-    private Date created;
+	private Date created;
 
-    @Column
-    private Date updated;
-    
-    @Column
-	private String username, firstName, lastName, adress;
-    
-    @OneToOne(fetch = FetchType.LAZY, optional = false, targetEntity = UserAccount.class)
-    @PrimaryKeyJoinColumn
+	@Column
+	private Date updated;
+
+	@Column
+	private String username, firstName, lastName, adress, country, city;
+
+	@OneToOne(fetch = FetchType.LAZY, optional = false, targetEntity = UserAccount.class)
+	@PrimaryKeyJoinColumn
 	private IUserAccount userAccount;
 
+	@Override
+	public String getCountry() {
+		return country;
+	}
+
+	@Override
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	@Override
+	public String getCity() {
+		return city;
+	}
+
+	@Override
+	public void setCity(String city) {
+		this.city = city;
+	}
 
 	@Override
 	public String getUsername() {

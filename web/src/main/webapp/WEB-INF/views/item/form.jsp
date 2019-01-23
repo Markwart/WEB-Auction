@@ -24,23 +24,23 @@
 				<label for="year">year</label>
 			</div>
 		</div>
-		
-		<%-- <div class="row">
+
+		 <div class="row">
 			<div class="input-field col s12">
 				<form:input path="image" disabled="${readonly}" />
 				<form:errors path="image" cssClass="red-text" />
 				<label for="image">image</label>
 			</div>
-		</div> --%>
+		</div> 
 
-		<div>
+		<!-- <div>
 			<table>
 				<tr>
 					<td>Image to upload:</td>
 					<td><input type="file" name="file" /></td>
 				</tr>
 			</table>
-		</div>
+		</div> -->
 
 		<div class="row">
 			<div class="input-field col s12">
@@ -131,6 +131,28 @@
 				<label for="countryOriginId">country origin</label>
 			</div>
 		</div>
+		
+		<div class="row">
+            <div class="input-field  col s12">
+                <form:select path="shippingMethodsIds" disabled="${readonly}" multiple="true">
+                    <option value="" disabled "${empty formModel.shippingMethodsIds? "selected":""}">choose shipping methods</option>
+                    <form:options items="${shippingMethodChoices}" />
+                </form:select>
+                <form:errors path="shippingMethodsIds" cssClass="red-text" />
+                <label for="shippingMethodsIds" class="multiselect-label">shipping methods</label>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field  col s12">
+                <form:select path="paymentMethodsIds" disabled="${readonly}" multiple="true">
+                    <option value="" disabled ${empty formModel.paymentMethodsIds? "selected":""}>choose payment methods</option>
+                    <form:options items="${paymentMethodChoices}" />
+                </form:select>
+                <form:errors path="paymentMethodsIds" cssClass="red-text" />
+                <label for="paymentMethodsIds" class="multiselect-label">payment methods</label>
+            </div>
+        </div>
 
 		<div class="row">
 			<div class="col s6"></div>

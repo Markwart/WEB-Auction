@@ -79,10 +79,12 @@ public class UserAccount extends BaseEntity implements IUserAccount {
 		this.personalData = personalData;
 	}
 
+	@Override
 	public Set<IItem> getItems() {
 		return items;
 	}
 
+	@Override
 	public void setItems(Set<IItem> items) {
 		this.items = items;
 	}

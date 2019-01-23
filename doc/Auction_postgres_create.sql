@@ -41,6 +41,8 @@ CREATE TABLE "personal_data" (
 	"username" character varying NOT NULL,
 	"first_name" character varying NOT NULL,
 	"last_name" character varying NOT NULL,
+	"country" character varying NOT NULL,
+	"city" character varying NOT NULL,
 	"adress" character varying NOT NULL,
 	"created" TIMESTAMP NOT NULL,
 	"updated" TIMESTAMP NOT NULL,
@@ -256,6 +258,24 @@ CREATE TABLE "step_block" (
 
 
 
+CREATE TABLE "item_2_shipping_method" (
+	"item_id" int NOT NULL,
+	"shipping_method_id" int NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "item_2_payment_method copy" (
+	"item_id" int NOT NULL,
+	"payment_method_id" int NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
+
+
 
 ALTER TABLE "item" ADD CONSTRAINT "item_fk0" FOREIGN KEY ("duration_id") REFERENCES "auction_duration"("id");
 ALTER TABLE "item" ADD CONSTRAINT "item_fk1" FOREIGN KEY ("category_id") REFERENCES "category"("id");
@@ -293,4 +313,10 @@ ALTER TABLE "admin_communication" ADD CONSTRAINT "admin_communication_fk0" FOREI
 ALTER TABLE "deferred_bid" ADD CONSTRAINT "deferred_bid_fk0" FOREIGN KEY ("item_id") REFERENCES "item"("id");
 ALTER TABLE "deferred_bid" ADD CONSTRAINT "deferred_bid_fk1" FOREIGN KEY ("user_bid_id") REFERENCES "user_account"("id");
 
+
+ALTER TABLE "item_2_shipping_method" ADD CONSTRAINT "item_2_shipping_method_fk0" FOREIGN KEY ("item_id") REFERENCES "item"("id");
+ALTER TABLE "item_2_shipping_method" ADD CONSTRAINT "item_2_shipping_method_fk1" FOREIGN KEY ("shipping_method_id") REFERENCES "shipping_method"("id");
+
+ALTER TABLE "item_2_payment_method copy" ADD CONSTRAINT "item_2_payment_method copy_fk0" FOREIGN KEY ("item_id") REFERENCES "item"("id");
+ALTER TABLE "item_2_payment_method copy" ADD CONSTRAINT "item_2_payment_method copy_fk1" FOREIGN KEY ("payment_method_id") REFERENCES "payment_method"("id");
 

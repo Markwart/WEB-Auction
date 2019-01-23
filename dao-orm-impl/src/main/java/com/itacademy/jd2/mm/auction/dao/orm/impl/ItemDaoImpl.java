@@ -56,6 +56,10 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		from.fetch(Item_.countryOrigin, JoinType.LEFT);
 		from.fetch(Item_.seller, JoinType.LEFT);
 		from.fetch(Item_.duration, JoinType.LEFT);
+		
+		from.fetch(Item_.shippingMethods, JoinType.LEFT);
+		from.fetch(Item_.paymentMethods, JoinType.LEFT);
+        cq.distinct(true); // to avoid duplicate rows in result
 
 		cq.where(cb.equal(from.get(Item_.id), id));
 

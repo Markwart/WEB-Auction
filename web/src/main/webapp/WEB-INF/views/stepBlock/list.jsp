@@ -30,11 +30,11 @@
                 <td><c:out value="${stepBlock.step_5}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${stepBlock.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${stepBlock.updated}" /></td>
-                <td class="right"><a class="btn-floating" href="${pagesStepBlock}/${stepBlock.id}"><i class="material-icons">info</i></a> 
+                <td class="right"><a class="btn-floating color-icon" href="${pagesStepBlock}/${stepBlock.id}"><i class="material-icons">pageview</i></a> 
                 
                 <sec:authorize access="hasRole('admin')">
-                <a class="btn-floating" href="${pagesStepBlock}/${stepBlock.id}/edit"><i class="material-icons">edit</i></a> 
-                <a class="btn-floating red" href="${pagesStepBlock}/${stepBlock.id}/delete"><i class="material-icons">delete</i></a>
+                <a class="btn-floating color-icon" href="${pagesStepBlock}/${stepBlock.id}/edit"><i class="material-icons">edit</i></a> 
+                <a class="btn-floating color-icon-delete" href="${pagesStepBlock}/${stepBlock.id}/delete"><i class="material-icons">delete_forever</i></a>
                 </sec:authorize></td>
             </tr>
         </c:forEach>

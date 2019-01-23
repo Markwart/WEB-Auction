@@ -59,5 +59,9 @@
 	<entry key="admin">Админ</entry>
 	<entry key="moderator">Модератор</entry>
 	<entry key="user">Пользователь</entry>
+	
+	<!-- Others -->
+	<entry key="search-error">Поле не должно начинаться с пустого символа</entry>
+	
 
 </properties>
