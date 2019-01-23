@@ -247,7 +247,7 @@ body .row nav .button-reset i {
 /* Private-menu properties -------------------------------------------------------------------------------- */
 
 .private-menu, .private-menu:hover, .private-menu:active {
-	background: transparent;
+	background: transparent!important;
 	box-shadow: none;
 	display: flex;
 	align-items: center;

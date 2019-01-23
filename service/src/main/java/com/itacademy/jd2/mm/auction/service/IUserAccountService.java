@@ -34,4 +34,7 @@ public interface IUserAccountService {
 	long getCount(UserAccountFilter filter);
 
 	IUserAccount getUserByLogin(String username);
+	
+	@Transactional
+	void update(IUserAccount personalData);
 }

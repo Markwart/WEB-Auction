@@ -25,22 +25,22 @@
 			</div>
 		</div>
 
-		 <div class="row">
+		 <%-- <div class="row">
 			<div class="input-field col s12">
 				<form:input path="image" disabled="${readonly}" />
 				<form:errors path="image" cssClass="red-text" />
 				<label for="image">image</label>
 			</div>
-		</div> 
+		</div>  --%>
 
-		<!-- <div>
+		 <div>
 			<table>
 				<tr>
 					<td>Image to upload:</td>
 					<td><input type="file" name="file" /></td>
 				</tr>
 			</table>
-		</div> -->
+		</div> 
 
 		<div class="row">
 			<div class="input-field col s12">

@@ -11,11 +11,12 @@ public class MessageDTO {
 	@NotNull
 	private String theme, text;
 
-	@NotNull
+	//@NotNull
 	private Integer userFromId, userWhomId;
+	
 	private String userFromEmail, userWhomEmail;
 	
-	@NotNull
+	//@NotNull
 	private Integer itemId;
 	private String itemName;
 

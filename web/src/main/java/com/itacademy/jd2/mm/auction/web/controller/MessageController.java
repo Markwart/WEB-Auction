@@ -131,13 +131,18 @@ public class MessageController extends AbstractController {
 
 	@RequestMapping(value = "/{itemId}/send", method = RequestMethod.POST)
 	public Object save(@Valid @ModelAttribute("formModel") final MessageDTO formModel, final BindingResult result,
-			@PathVariable(name = "itemId", required = false) final Integer itemId) {
+			@PathVariable(name = "itemId", required = true) final Integer itemId) {
 
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
 
 		if (result.hasErrors()) {
+			
+			final ItemDTO itemDTO = new ItemDTO();
+			itemDTO.setId(itemId);
+			
 			final Map<String, Object> hashMap = new HashMap<>();
 			hashMap.put("formModel", formModel);
+			hashMap.put("formModelItem", itemDTO);
 			loadCommonFormModels(hashMap);
 			return new ModelAndView("message.edit", hashMap);
 		} else {

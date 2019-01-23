@@ -160,9 +160,14 @@ public class UserAccountController extends AbstractController {
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
 		
 		final IItem dbModelItem = itemService.getFullInfo(itemId);
-		Set<IItem> items = new HashSet<>();
-		items.add(dbModelItem);
-		userAccountService.getPersonalData(loggedUserId).setItems(items);
+		/*Set<IItem> items = new HashSet<>();
+		items.add(dbModelItem);*/
+		IUserAccount personalData = userAccountService.getPersonalData(loggedUserId);
+		personalData.getItems().add(dbModelItem);
+		
+		userAccountService.update(personalData);
+		
+		
 		return "redirect:/";
 	}
 

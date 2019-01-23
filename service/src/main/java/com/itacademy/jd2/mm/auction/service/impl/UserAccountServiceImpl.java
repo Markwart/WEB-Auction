@@ -179,4 +179,10 @@ public class UserAccountServiceImpl implements IUserAccountService {
 	public IUserAccount getUserByLogin(String username) {
 		return dao.getUserByLogin(username);
 	}
+
+	@Override
+	public void update(IUserAccount personalData) {
+		dao.update(personalData);
+		
+	}
 }

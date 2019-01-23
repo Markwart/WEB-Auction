@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping(value = "/file")
 public class FileUploadController {
 
-	public static final String FILE_FOLDER = "d:\\JavaMark\\web-auction\\G-JD1-06-13_mmatusevich\\doc\\image\\"; 
+	public static final String FILE_FOLDER = "d:\\M_Matusevich\\G-JD2-10-17_mmatusevich\\doc\\image\\"; 
 	
 	//d:\\JavaMark\\web-auction\\G-JD1-06-13_mmatusevich\\doc\\
 	//d:\\M_Matusevich\\G-JD2-10-17_mmatusevich\\doc\\

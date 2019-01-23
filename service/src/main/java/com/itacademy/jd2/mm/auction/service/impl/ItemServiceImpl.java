@@ -1,6 +1,10 @@
 package com.itacademy.jd2.mm.auction.service.impl;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,8 +37,10 @@ import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 public class ItemServiceImpl implements IItemService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ItemServiceImpl.class);
-	public static final String FILE_FOLDER = "d:\\JavaMark\\web-auction\\G-JD1-06-13_mmatusevich\\doc\\image\\";
+	public static final String FILE_FOLDER = "d:\\M_Matusevich\\G-JD2-10-17_mmatusevich\\doc\\image\\";
 
+	//d:\\JavaMark\\web-auction\\G-JD1-06-13_mmatusevich\\doc\\image\\
+	
 	private IItemDao dao;
 	private IBidDao bidDao;
 	private IDeferredBidDao deferredBidDao;
@@ -87,8 +93,8 @@ public class ItemServiceImpl implements IItemService {
 
 			dao.insert(entity);
 
-			//InputStream inputStream = file.getInputStream();
-			//Files.copy(inputStream, new File(FILE_FOLDER + uuid).toPath(), StandardCopyOption.REPLACE_EXISTING);
+			InputStream inputStream = file.getInputStream();
+			Files.copy(inputStream, new File(FILE_FOLDER + uuid).toPath(), StandardCopyOption.REPLACE_EXISTING);
 
 			LOGGER.debug("new item created: {}", entity);
 		} else {

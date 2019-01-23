@@ -1,11 +1,13 @@
 package com.itacademy.jd2.mm.auction.web.dto.search;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class ItemSearchDTO {
 	
 	@NotNull
-	private String name, text;
+	@Size(min=1)
+	private String name;
 
 	public String getName() {
 		return name;
@@ -13,14 +15,6 @@ public class ItemSearchDTO {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
 	}
 
 }

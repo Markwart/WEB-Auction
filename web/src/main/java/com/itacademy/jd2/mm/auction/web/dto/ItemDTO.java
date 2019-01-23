@@ -14,11 +14,13 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 public class ItemDTO {
 
 	private Integer id;
-	
+
 	private StatusAuction statusAuction;
 
+	private String image;
+
 	@NotNull
-	private String name, image, text;
+	private String name, text;
 
 	@NotNull
 	private Integer year;
@@ -37,13 +39,13 @@ public class ItemDTO {
 
 	private Integer sellerId;
 	private String sellerEmail;
-	
+
 	private Set<Integer> shippingMethodsIds, paymentMethodsIds;
 	private Set<String> shippingMethodsNames, paymentMethodsNames;
 
 	private Date created;
 	private Date updated;
-	
+
 	public Set<String> getShippingMethodsNames() {
 		return shippingMethodsNames;
 	}
