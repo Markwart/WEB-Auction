@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.mm.auction.daoapi.IMessageDao;
-import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IMessage;
 import com.itacademy.jd2.mm.auction.daoapi.filter.MessageFilter;
 import com.itacademy.jd2.mm.auction.service.IItemService;
@@ -47,15 +46,15 @@ public class MessageServiceImpl implements IMessageService {
 	}
 
 	@Override
-	public void save(final IMessage entity, Integer loggedUserId, IItem entityItem) {
+	public void save(final IMessage entity, Integer loggedUserId, Integer itemId) {
 		final Date modefeOn = new Date();
 		entity.setUpdated(modefeOn);
 		if (entity.getId() == null) {
 			entity.setCreated(modefeOn);
 			
-			/*entity.setUserFrom(userAccountService.get(loggedUserId));
-			entity.setUserWhom(entityItem.getSeller());
-			entity.setItem(entityItem);*/
+			entity.setUserFrom(userAccountService.get(loggedUserId));
+			entity.setUserWhom(itemService.getFullInfo(itemId).getSeller());
+			entity.setItem(itemService.get(itemId));
 			
 			dao.insert(entity);
 			LOGGER.debug("new message created: {}", entity);

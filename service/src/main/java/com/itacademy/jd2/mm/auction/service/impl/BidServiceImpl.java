@@ -13,6 +13,8 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.filter.BidFilter;
 import com.itacademy.jd2.mm.auction.service.IBidService;
+import com.itacademy.jd2.mm.auction.service.IItemService;
+import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 
 @Service
 public class BidServiceImpl implements IBidService {
@@ -20,6 +22,11 @@ public class BidServiceImpl implements IBidService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BidServiceImpl.class);
 	
 	private IBidDao dao;
+	
+	@Autowired
+	private IUserAccountService userAccountService;
+	@Autowired
+	private IItemService itemService;
 	
 	@Autowired
 	public BidServiceImpl(IBidDao dao) {
@@ -40,12 +47,17 @@ public class BidServiceImpl implements IBidService {
 	}
 
 	@Override
-	public void save(final IBid entity) {
+	public void save(final IBid entity, Integer loggedUserId, Integer itemId) {
 		final Date modefeOn = new Date();
 		entity.setUpdated(modefeOn);
 		if (entity.getId() == null) {
 			entity.setCreated(modefeOn);
 			entity.setStatusBid(StatusBid.made);
+			
+			entity.setUserBid(userAccountService.get(loggedUserId));
+			entity.setItem(itemService.get(itemId));
+			entity.setStatusBid(StatusBid.made);
+			
 			dao.insert(entity);
 			LOGGER.debug("new bid created: {}", entity);
 		} else {
@@ -80,9 +92,19 @@ public class BidServiceImpl implements IBidService {
 	public long getCount(BidFilter filter) {
 		return dao.getCount(filter);
 	}
+	
+	@Override
+	public long getCountItemBids(BidFilter filter) {
+		return dao.getCount(filter);
+	}
 
 	@Override
     public IBid getFullInfo(Integer id) {
         return dao.getFullInfo(id);
     }
+	
+	@Override
+	public List<IBid> getBidByItemId(Integer bidId) {
+		return dao.findRelatedBidsByItem(bidId);
+	}
 }

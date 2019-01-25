@@ -87,33 +87,30 @@ public class BidController extends AbstractController {
 		return new ModelAndView("bid.edit", hashMap);
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
-	public Object save(@Valid @ModelAttribute("formModel") final BidDTO formModel, final BindingResult result) {
-		if (result.hasErrors()) {
-			final Map<String, Object> hashMap = new HashMap<>();
-			hashMap.put("formModel", formModel);
-			loadCommonFormModels(hashMap);
-			return new ModelAndView("bid.edit", hashMap);
-		} else {
-			final IBid entity = fromDtoConverter.apply(formModel);
-			bidService.save(entity);
-			return "redirect:/bid";
-		}
-	}
-
 	@RequestMapping(value = "/{itemId}/placeBid", method = RequestMethod.POST)
-	public Object placeBid(@Valid @ModelAttribute("formBid") final BidDTO formBid,
+	public Object placeBid(@Valid @ModelAttribute("formBid") final BidDTO formBid, final BindingResult result,
 			@PathVariable(name = "itemId", required = true) final Integer itemId) {
 
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
-		final IBid entity = fromDtoConverter.apply(formBid);
+		
+		if (result.hasErrors()) {
+			
+			formBid.setId(itemId);
+			
+			final Map<String, Object> hashMap = new HashMap<>();
+			hashMap.put("formModel", formBid);
+			loadCommonFormModels(hashMap);
+			return "redirect:/item/{itemId}";
+		} else {
+			final IBid entity = fromDtoConverter.apply(formBid);
+			
+			entity.setUserBid(userAccountService.get(loggedUserId));
+			entity.setItem(itemService.get(itemId));
+			entity.setStatusBid(StatusBid.made);
 
-		entity.setUserBid(userAccountService.get(loggedUserId));
-		entity.setItem(itemService.get(itemId));
-		entity.setStatusBid(StatusBid.made);
-
-		bidService.save(entity);
-		return "redirect:/item/{itemId}";
+			bidService.save(entity, loggedUserId, itemId);
+			return "redirect:/item/{itemId}";
+		}
 	}
 
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)

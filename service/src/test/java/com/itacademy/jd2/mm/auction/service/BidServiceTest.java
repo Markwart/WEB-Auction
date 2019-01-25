@@ -40,7 +40,7 @@ public class BidServiceTest extends AbstractTest {
 		StatusBid newStatusBid = entity.getStatusBid().cancelled;
 		entity.setStatusBid(newStatusBid);
 		Thread.sleep(DELAY);
-		bidService.save(entity);
+		bidService.save(entity, null, null);
 
 		final IBid entityFromDb = bidService.getFullInfo(entity.getId());
 

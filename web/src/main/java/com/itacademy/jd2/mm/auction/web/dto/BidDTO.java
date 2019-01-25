@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
+import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusBid;
+
 public class BidDTO {
 
 	private Integer id;
@@ -14,17 +16,24 @@ public class BidDTO {
 	@DecimalMin(value = "0.1")
 	private BigDecimal priceBid;
 	
-	private String statusBid;
+	private StatusBid statusBid;
 	
-	@NotNull
 	private Integer userBidId;
 	private String userBidEmail;
-	@NotNull
+	
 	private Integer itemId;
 	private String itemName;
 
 	private Date created;
 	private Date updated;
+
+	public StatusBid getStatusBid() {
+		return statusBid;
+	}
+
+	public void setStatusBid(StatusBid statusBid) {
+		this.statusBid = statusBid;
+	}
 
 	public Integer getUserBidId() {
 		return userBidId;
@@ -64,14 +73,6 @@ public class BidDTO {
 
 	public void setPriceBid(BigDecimal priceBid) {
 		this.priceBid = priceBid;
-	}
-
-	public String getStatusBid() {
-		return statusBid;
-	}
-
-	public void setStatusBid(String statusBid) {
-		this.statusBid = statusBid;
 	}
 
 	public Integer getItemId() {

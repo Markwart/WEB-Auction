@@ -2,8 +2,11 @@ package com.itacademy.jd2.mm.auction.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class PersonalDataDTO {
 
+	@NotNull
 	private String username, firstName, lastName, adress, country, city;
 
 	private Date created;

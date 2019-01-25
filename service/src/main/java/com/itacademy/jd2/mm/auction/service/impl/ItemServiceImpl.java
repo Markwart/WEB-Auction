@@ -37,7 +37,7 @@ import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 public class ItemServiceImpl implements IItemService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ItemServiceImpl.class);
-	public static final String FILE_FOLDER = "d:\\M_Matusevich\\G-JD2-10-17_mmatusevich\\doc\\image\\";
+	public static final String FILE_FOLDER = "d:\\JavaMark\\web-auction\\G-JD1-06-13_mmatusevich\\doc\\image\\";
 
 	//d:\\JavaMark\\web-auction\\G-JD1-06-13_mmatusevich\\doc\\image\\
 	

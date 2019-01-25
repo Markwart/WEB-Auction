@@ -67,11 +67,12 @@ public class FeedbackDaoImpl extends AbstractDaoImpl<IFeedback, Integer> impleme
 		final Root<Feedback> from = cq.from(Feedback.class);
 
 		cq.select(from);
-		if (filter.getLoggedUserId() != null) {
-			Predicate predicate1 = cb.equal(from.get(Feedback_.userFrom), filter.getLoggedUserId());
+		if (filter.getLoggedUserId() != null) { // only for logged user
+			/*Predicate predicate1 = cb.equal(from.get(Feedback_.userFrom), filter.getLoggedUserId());
 			Predicate predicate2 = cb.equal(from.get(Feedback_.userWhom), filter.getLoggedUserId());
-			cq.where(cb.or(predicate1, predicate2));
-		} // only for logged user
+			cq.where(cb.or(predicate1, predicate2));*/
+			cq.where(cb.equal(from.get(Feedback_.userWhom), filter.getLoggedUserId()));
+		} 
 
 		if (filter.getFetchUserAccountFrom()) {
 			from.fetch(Feedback_.userFrom, JoinType.LEFT);

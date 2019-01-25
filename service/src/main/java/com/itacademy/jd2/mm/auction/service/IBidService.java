@@ -12,9 +12,9 @@ public interface IBidService {
 	IBid get(Integer id);
 
 	List<IBid> getAll();
-
+	
 	@Transactional
-	void save(IBid entity);
+	void save(IBid entity, Integer loggedUserId, Integer itemId); 
 
 	@Transactional
 	void delete(Integer id);
@@ -29,4 +29,8 @@ public interface IBidService {
     long getCount(BidFilter filter);
 
 	IBid getFullInfo(Integer id);
+
+	List<IBid> getBidByItemId(Integer bidId);
+
+	long getCountItemBids(BidFilter filter);
 }

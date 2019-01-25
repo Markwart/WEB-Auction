@@ -5,19 +5,21 @@
 	<!-- Table columns -->
 	<entry key="table.column.id">ИН</entry>
 	<entry key="table.column.created">СОЗДАНО</entry>
+	<entry key="table.column.created-2">Дата размещения</entry>
 	<entry key="table.column.updated">ИЗМЕНЕНО</entry>
 	<entry key="table.column.theme">ТЕМА</entry>
 	<entry key="table.column.text">ОПИСАНИЕ</entry>
 	<entry key="table.column.index">НОМЕР</entry>
-	<entry key="table.column.item-name">НАИМЕНОВАНИЕ ЛОТА</entry>
-	<entry key="table.column.seller">ПРОДАВЕЦ</entry>
+	<entry key="table.column.item-name">Наименование лота</entry>
+	<entry key="table.column.seller">Продавец</entry>
 	<entry key="table.column.comment">КОММЕНТАРИЙ</entry>
 	<entry key="table.column.from">ОТПРАВИТЕЛЬ</entry>
-	<entry key="table.column.name">НАИМЕНОВАНИЕ</entry>
+	<entry key="table.column.name">Наименование</entry>
 	<entry key="table.column.image">ИЗОБРАЖЕНИЕ</entry>
-	<entry key="table.column.price">СТОИМОСТЬ ЛОТА</entry>
-	<entry key="table.column.ends">ОКОНЧАНИЕ ТОРГОВ</entry>
+	<entry key="table.column.price">Начальная стоимость</entry>
+	<entry key="table.column.ends">Окончание</entry>
 	<entry key="table.column.status">СТАТУС</entry>
+	
 
 	<!-- Sections -->
 	<entry key="main">Интернет-Аукцион</entry>
@@ -63,5 +65,7 @@
 	<!-- Others -->
 	<entry key="search-error">Поле не должно начинаться с пустого символа</entry>
 	
+	<!-- Item List -->
+	<entry key="sort">Сортировка</entry>
 
 </properties>

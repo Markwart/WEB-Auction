@@ -63,12 +63,12 @@ public class FeedbackController extends AbstractController {
 			@ModelAttribute(SEARCH_FORM_MODEL) FeedbackSearchDTO searchDto,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn,
-			@PathVariable(name = "useId", required = false) final Integer userId) {
+			@PathVariable(name = "userId", required = false) final Integer userId) {
 
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
 		boolean isRequestMethodPost = req.getMethod().equalsIgnoreCase("post");
 		boolean isPrivate = req.getRequestURI().contains("/private");
-		boolean isPrivateUserId = req.getRequestURI().contains("/userFeedback/{userId}");
+		boolean isPrivateUserId = req.getRequestURI().matches(".*\\/userFeedback\\/[0-9]*");
 
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
@@ -81,11 +81,10 @@ public class FeedbackController extends AbstractController {
 		}
 
 		final FeedbackFilter filter = new FeedbackFilter();
-		
-		if (searchDto.getUserWhomEmail() != null) {
-			filter.setUserWhomEmail(searchDto.getUserWhomEmail());
-		}
-		
+		filter.setFetchUserAccountFrom(true);
+		filter.setFetchUserAccountWhom(true);
+		filter.setFetchItem(true);
+
 		if (isPrivate) {
 			filter.setLoggedUserId(loggedUserId); // get private list
 		} else if (isPrivateUserId) {
@@ -93,20 +92,16 @@ public class FeedbackController extends AbstractController {
 		} else {
 			filter.setLoggedUserId(loggedUserId = null); // get all list
 		}
-
-		filter.setFetchUserAccountFrom(true);
-		filter.setFetchUserAccountWhom(true);
-		filter.setFetchItem(true);
-
-		if (!isPrivate) { // get private list
-			filter.setLoggedUserId(loggedUserId = null);
-		} else {
-			filter.setLoggedUserId(loggedUserId);
+		
+		prepareFilter(gridState, filter);
+		gridState.setTotalCount(feedbackService.getCount(filter));
+		
+		if (searchDto.getUserWhomEmail() != null) {
+			filter.setUserWhomEmail(searchDto.getUserWhomEmail());
 		}
 		
 		final List<IFeedback> entities = feedbackService.find(filter);
 		List<FeedbackDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
-		gridState.setTotalCount(feedbackService.getCount(filter));
 
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);

@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IAuctionDuration;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICategory;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IComposition;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.ICondition;
@@ -35,6 +36,7 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IPaymentMethod;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IShippingMethod;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
+import com.itacademy.jd2.mm.auction.daoapi.filter.BidFilter;
 import com.itacademy.jd2.mm.auction.daoapi.filter.ItemFilter;
 import com.itacademy.jd2.mm.auction.service.IAuctionDurationService;
 import com.itacademy.jd2.mm.auction.service.IBidService;
@@ -48,7 +50,6 @@ import com.itacademy.jd2.mm.auction.service.IShippingMethodService;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 import com.itacademy.jd2.mm.auction.web.converter.ItemFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.ItemToDTOConverter;
-import com.itacademy.jd2.mm.auction.web.converter.UserAccountToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.dto.BidDTO;
 import com.itacademy.jd2.mm.auction.web.dto.ItemDTO;
 import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
@@ -74,7 +75,6 @@ public class ItemController extends AbstractController {
 
 	private ItemToDTOConverter toDtoConverter;
 	private ItemFromDTOConverter fromDtoConverter;
-	private UserAccountToDTOConverter toDtoConverterUser;
 
 	@Autowired
 	private IShippingMethodService shippingMethodService;
@@ -109,9 +109,9 @@ public class ItemController extends AbstractController {
 			@RequestParam(name = "sort", required = false) final String sortColumn,
 			@PathVariable(name = "userId", required = false) final Integer userId) {
 
- 		Integer loggedUserId = AuthHelper.getLoggedUserId();
+		Integer loggedUserId = AuthHelper.getLoggedUserId();
 		boolean isPrivate = req.getRequestURI().contains("/private");
-		boolean isPrivateUserId = req.getRequestURI().matches(".*\\/userItems\\/[0-9]*") ;
+		boolean isPrivateUserId = req.getRequestURI().matches(".*\\/userItems\\/[0-9]*");
 
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
@@ -132,19 +132,18 @@ public class ItemController extends AbstractController {
 		filter.setFetchAuctionDuration(true);
 
 		if (isPrivate) {
-			filter.setLoggedUserId(loggedUserId); // get private list
+			filter.setLoggedUserId(loggedUserId); // get private Item list
 		} else if (isPrivateUserId) {
-			filter.setLoggedUserId(userId); // get user private list
+			filter.setLoggedUserId(userId); // get user private Item list
 		} else {
 			filter.setLoggedUserId(loggedUserId = null); // get all list
 		}
+
 		prepareFilter(gridState, filter);
 		gridState.setTotalCount(itemService.getCount(filter));
 
-		
-
 		List<IItem> entities;
-		if (StringUtils.isNotBlank(searchDTO.getName())  ) {
+		if (StringUtils.isNotBlank(searchDTO.getName())) {
 			filter.setName(searchDTO.getName());
 			entities = itemService.findInIndex(filter.getName());
 		} else {
@@ -173,8 +172,6 @@ public class ItemController extends AbstractController {
 
 		String uuid = UUID.randomUUID().toString();
 		LOGGER.debug("Uploaded file %s", file.getOriginalFilename());
-		// String uuid = null;
-		// MultipartFile file = null;
 
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
 
@@ -201,14 +198,17 @@ public class ItemController extends AbstractController {
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
 
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
+		final BidFilter bidFilter = new BidFilter();
+		bidFilter.setItemId(id);
 
 		final IItem dbModel = itemService.getFullInfo(id);
 		final ItemDTO dto = toDtoConverter.apply(dbModel);
-
-		// final UserAccountDTO userAccount =
-		// toDtoConverterUser.apply(userAccountService.getPersonalData(itemService.getFullInfo(id).getSeller().getId()));
+		
 		final IUserAccount userAccount = userAccountService
 				.getPersonalData(itemService.getFullInfo(id).getSeller().getId());
+		
+		//List<IBid> bidEntities = bidService.getBidByItemId(id);
+		dto.setTotalCountBids(bidService.getCountItemBids(bidFilter));
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formView", dto);

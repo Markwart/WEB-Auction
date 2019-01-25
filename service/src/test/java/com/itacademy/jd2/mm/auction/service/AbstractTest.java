@@ -209,7 +209,7 @@ public abstract class AbstractTest {
 		entity.setStatusBid(StatusBid.outbidded);
 		entity.setItem(saveNewItem());
 		entity.setUserBid(saveNewUserAccount());
-		bidService.save(entity);
+		bidService.save(entity, null, null);
 		return entity;
 	}
 

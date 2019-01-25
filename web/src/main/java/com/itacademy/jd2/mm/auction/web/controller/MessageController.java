@@ -25,8 +25,6 @@ import com.itacademy.jd2.mm.auction.daoapi.filter.MessageFilter;
 import com.itacademy.jd2.mm.auction.service.IItemService;
 import com.itacademy.jd2.mm.auction.service.IMessageService;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
-import com.itacademy.jd2.mm.auction.web.converter.ItemFromDTOConverter;
-import com.itacademy.jd2.mm.auction.web.converter.ItemToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.MessageFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.MessageToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.dto.ItemDTO;
@@ -45,12 +43,6 @@ public class MessageController extends AbstractController {
 	private MessageToDTOConverter toDtoConverter;
 	private MessageFromDTOConverter fromDtoConverter;
 	
-	@Autowired
-	private ItemToDTOConverter toDtoConverterItem;
-	@Autowired
-	private ItemFromDTOConverter fromDtoConverterItem;
-	
-
 	@Autowired
 	public MessageController(IMessageService messageService, IUserAccountService userAccountService,
 			IItemService itemService, MessageToDTOConverter toDtoConverter, MessageFromDTOConverter fromDtoConverter) {
@@ -74,9 +66,6 @@ public class MessageController extends AbstractController {
 		gridState.setSort(sortColumn, "id");
 
 		final MessageFilter filter = new MessageFilter();
-		prepareFilter(gridState, filter);
-		gridState.setTotalCount(messageService.getCount(filter));
-
 		filter.setFetchUserAccountFrom(true);
 		filter.setFetchUserAccountWhom(true);
 		filter.setFetchItem(true);
@@ -86,6 +75,10 @@ public class MessageController extends AbstractController {
 		} else {
 			filter.setLoggedUserId(loggedUserId);
 		}
+		
+		prepareFilter(gridState, filter);
+		gridState.setTotalCount(messageService.getCount(filter));
+		
 		final List<IMessage> entities = messageService.find(filter);
 		List<MessageDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
@@ -94,32 +87,9 @@ public class MessageController extends AbstractController {
 		return new ModelAndView("message.list", models);
 	}
 
-	/*@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView showForm() {
-		final Map<String, Object> hashMap = new HashMap<>();
-		hashMap.put("formModel", new MessageDTO());
-		loadCommonFormModels(hashMap);
-		return new ModelAndView("message.edit", hashMap);
-	}*/
-
-	/*@RequestMapping(method = RequestMethod.POST)
-	public Object save(@Valid @ModelAttribute("formModel") final MessageDTO formModel, final BindingResult result) {
-		if (result.hasErrors()) {
-			final Map<String, Object> hashMap = new HashMap<>();
-			hashMap.put("formModel", formModel);
-			loadCommonFormModels(hashMap);
-			return new ModelAndView("message.edit", hashMap);
-		} else {
-			final IMessage entity = fromDtoConverter.apply(formModel);
-			messageService.save(entity);
-			return "redirect:/message";
-		}
-	}*/
-	
 	@RequestMapping(value = {"/add", "/{itemId}/add"}, method = RequestMethod.GET)
 	public ModelAndView showForm(@PathVariable(name = "itemId", required = false) final Integer itemId) {
 		
-		//final ItemDTO dtoItem = toDtoConverterItem.apply(itemService.getFullInfo(itemId));
 		final IItem item = itemService.getFullInfo(itemId);
 		
 		final Map<String, Object> hashMap = new HashMap<>();
@@ -147,14 +117,8 @@ public class MessageController extends AbstractController {
 			return new ModelAndView("message.edit", hashMap);
 		} else {
 			final IMessage entity = fromDtoConverter.apply(formModel);
-			//final IItem entityItem = fromDtoConverterItem.apply(formModelItem);
-			
-			entity.setUserFrom(userAccountService.get(loggedUserId));
-			entity.setUserWhom(itemService.getFullInfo(itemId).getSeller());
-			entity.setItem(itemService.get(itemId));
-			
-			messageService.save(entity, loggedUserId, null);
-			return "redirect:/message";
+			messageService.save(entity, loggedUserId, itemId);
+			return "redirect:/item/{itemId}";
 		}
 	}
 

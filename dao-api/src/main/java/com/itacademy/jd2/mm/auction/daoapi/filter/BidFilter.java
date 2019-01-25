@@ -5,6 +5,14 @@ public class BidFilter extends AbstractFilter {
 	private boolean fetchUserAccount;
 	private boolean fetchItem;
 	
+	private Integer itemId;
+	
+	public Integer getItemId() {
+		return itemId;
+	}
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
+	}
 	public boolean getFetchUserAccount() {
 		return fetchUserAccount;
 	}

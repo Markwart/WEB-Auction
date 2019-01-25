@@ -158,4 +158,9 @@ public class BidDaoImpl extends AbstractDaoImpl<IBid, Integer> implements IBidDa
 	public List<IBid> findRelatedBidsByUser(Integer id) {
 		throw new RuntimeException("not implemented");
 	}
+
+	@Override
+	public long getCountItemBids(BidFilter filter) {
+		throw new RuntimeException("not implemented");
+	}
 }

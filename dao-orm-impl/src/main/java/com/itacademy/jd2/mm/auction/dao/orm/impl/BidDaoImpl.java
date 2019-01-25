@@ -98,6 +98,21 @@ public class BidDaoImpl extends AbstractDaoImpl<IBid, Integer> implements IBidDa
 		return q.getSingleResult();
 	}
 	
+	@Override
+	public long getCountItemBids(BidFilter filter) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		final Root<Bid> from = cq.from(Bid.class);
+
+		cq.select(cb.count(from));
+		cq.where(cb.equal(from.get(Bid_.item), filter.getItemId()));
+
+		final TypedQuery<Long> q = em.createQuery(cq);
+		return q.getSingleResult();
+	}
+	
 	private Path<?> getSortPath(final Root<Bid> from, final String sortColumn) {
 		switch (sortColumn) {
 		case "created":

@@ -22,7 +22,6 @@ public class ItemDTO {
 	@NotNull
 	private String name, text;
 
-	@NotNull
 	private Integer year;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
@@ -45,6 +44,16 @@ public class ItemDTO {
 
 	private Date created;
 	private Date updated;
+	
+	private Long totalCountBids;
+
+	public Long getTotalCountBids() {
+		return totalCountBids;
+	}
+
+	public void setTotalCountBids(Long totalCountBids) {
+		this.totalCountBids = totalCountBids;
+	}
 
 	public Set<String> getShippingMethodsNames() {
 		return shippingMethodsNames;

@@ -5,18 +5,19 @@
 	<!-- Table columns -->
 	<entry key="table.column.id">ID</entry>
 	<entry key="table.column.created">CREATED</entry>
+	<entry key="table.column.created-2">Placement date</entry>
 	<entry key="table.column.updated">UPDATED</entry>
 	<entry key="table.column.theme">THEME</entry>
 	<entry key="table.column.text">DESCRIPTION</entry>
 	<entry key="table.column.index">NUMBER</entry>
 	<entry key="table.column.item-name">ITEM NAME</entry>
-	<entry key="table.column.seller">SELLER</entry>
+	<entry key="table.column.seller">Seller</entry>
 	<entry key="table.column.comment">COMMENT</entry>
 	<entry key="table.column.from">FROM</entry>
-	<entry key="table.column.name">NAME</entry>
+	<entry key="table.column.name">Name</entry>
 	<entry key="table.column.image">IMAGE</entry>
-	<entry key="table.column.price">ITEM PRICE</entry>
-	<entry key="table.column.ends">TIME ENDS</entry>
+	<entry key="table.column.price">Starting Price</entry>
+	<entry key="table.column.ends">Time ends</entry>
 	<entry key="table.column.status">STATUS</entry>
 	
 	<!-- Sections -->
@@ -62,5 +63,8 @@
 	
 	<!-- Others -->
 	<entry key="search-error">The field must not start with an empty character</entry>
+	
+	<!-- Item List -->
+	<entry key="sort">Sort by</entry>
 
 </properties>

@@ -17,7 +17,7 @@ public class BidToDTOConverter implements Function<IBid, BidDTO> {
 		final BidDTO dto = new BidDTO();
 		dto.setId(entity.getId());
 		dto.setPriceBid(entity.getPriceBid());
-		dto.setStatusBid(entity.getStatusBid().name());
+		dto.setStatusBid(entity.getStatusBid());
 
 		final IUserAccount userAccount = entity.getUserBid();
 		if (userAccount != null) {

@@ -5,7 +5,6 @@ import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
@@ -29,7 +28,7 @@ public class BidFromDTOConverter implements Function<BidDTO, IBid> {
         final IBid entity = bidService.createEntity();
         entity.setId(dto.getId());
         entity.setPriceBid(dto.getPriceBid());
-        entity.setStatusBid(StatusBid.valueOf(dto.getStatusBid()));
+        entity.setStatusBid(dto.getStatusBid());
 
         final IUserAccount userAccount = userAccountService.createEntity();
         userAccount.setId(dto.getUserBidId());

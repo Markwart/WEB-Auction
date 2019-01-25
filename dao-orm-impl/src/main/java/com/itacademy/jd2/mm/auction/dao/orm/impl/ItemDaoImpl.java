@@ -78,9 +78,9 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		final Root<Item> from = cq.from(Item.class);
 
 		cq.select(from);
-		if (filter.getLoggedUserId() != null) {
+		if (filter.getLoggedUserId() != null) { // only for logged user
 			cq.where(cb.equal(from.get(Item_.seller), filter.getLoggedUserId()));
-		} // only for logged user
+		} 
 
 		if (filter.getFetchCategory()) {
 			from.fetch(Item_.category, JoinType.LEFT);
