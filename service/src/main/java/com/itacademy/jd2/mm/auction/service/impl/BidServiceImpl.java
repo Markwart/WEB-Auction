@@ -95,7 +95,7 @@ public class BidServiceImpl implements IBidService {
 	
 	@Override
 	public long getCountItemBids(BidFilter filter) {
-		return dao.getCount(filter);
+		return dao.getCountItemBids(filter);
 	}
 
 	@Override

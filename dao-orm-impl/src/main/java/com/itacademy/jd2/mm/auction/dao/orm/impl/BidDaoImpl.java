@@ -107,7 +107,7 @@ public class BidDaoImpl extends AbstractDaoImpl<IBid, Integer> implements IBidDa
 		final Root<Bid> from = cq.from(Bid.class);
 
 		cq.select(cb.count(from));
-		cq.where(cb.equal(from.get(Bid_.item), filter.getItemId()));
+		cq.where(cb.equal(from.get(Bid_.item).get(Item_.id), filter.getItemId()));
 
 		final TypedQuery<Long> q = em.createQuery(cq);
 		return q.getSingleResult();
