@@ -10,6 +10,8 @@ public interface IBidDao extends IDao<IBid, Integer> {
 	List<IBid> find(BidFilter filter);
 
 	long getCount(BidFilter filter);
+	
+	long getCountItemBids(BidFilter filter);
 
 	IBid getFullInfo(Integer id);
 
@@ -17,5 +19,5 @@ public interface IBidDao extends IDao<IBid, Integer> {
 
 	List<IBid> findRelatedBidsByUser(Integer id);
 
-	long getCountItemBids(BidFilter filter);
+	List<IBid> getLatestBidByItem(Integer id);
 }

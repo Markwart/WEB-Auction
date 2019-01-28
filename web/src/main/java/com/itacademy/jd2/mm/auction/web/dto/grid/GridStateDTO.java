@@ -20,7 +20,7 @@ public class GridStateDTO {
     }
 
     public GridStateDTO() {
-        this(9);
+        this(12);
     }
 
     public SortDTO getSort() {

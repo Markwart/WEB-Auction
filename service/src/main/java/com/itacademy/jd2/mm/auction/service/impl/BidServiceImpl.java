@@ -18,16 +18,16 @@ import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 
 @Service
 public class BidServiceImpl implements IBidService {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(BidServiceImpl.class);
-	
+
 	private IBidDao dao;
-	
+
 	@Autowired
 	private IUserAccountService userAccountService;
 	@Autowired
 	private IItemService itemService;
-	
+
 	@Autowired
 	public BidServiceImpl(IBidDao dao) {
 		super();
@@ -52,12 +52,12 @@ public class BidServiceImpl implements IBidService {
 		entity.setUpdated(modefeOn);
 		if (entity.getId() == null) {
 			entity.setCreated(modefeOn);
-			entity.setStatusBid(StatusBid.made);
-			
-			entity.setUserBid(userAccountService.get(loggedUserId));
-			entity.setItem(itemService.get(itemId));
-			entity.setStatusBid(StatusBid.made);
-			
+
+			if (loggedUserId != null) {
+				entity.setUserBid(userAccountService.get(loggedUserId));
+				entity.setItem(itemService.get(itemId));
+				entity.setStatusBid(StatusBid.made);
+			}
 			dao.insert(entity);
 			LOGGER.debug("new bid created: {}", entity);
 		} else {
@@ -69,13 +69,13 @@ public class BidServiceImpl implements IBidService {
 	@Override
 	public void delete(final Integer id) {
 		LOGGER.info("delete bid by id: {}", id);
-		dao.delete(id);		
+		dao.delete(id);
 	}
 
 	@Override
 	public void deleteAll() {
 		LOGGER.info("delete all bids");
-		dao.deleteAll();		
+		dao.deleteAll();
 	}
 
 	@Override
@@ -92,19 +92,19 @@ public class BidServiceImpl implements IBidService {
 	public long getCount(BidFilter filter) {
 		return dao.getCount(filter);
 	}
-	
+
 	@Override
 	public long getCountItemBids(BidFilter filter) {
 		return dao.getCountItemBids(filter);
 	}
 
 	@Override
-    public IBid getFullInfo(Integer id) {
-        return dao.getFullInfo(id);
-    }
-	
+	public IBid getFullInfo(Integer id) {
+		return dao.getFullInfo(id);
+	}
+
 	@Override
-	public List<IBid> getBidByItemId(Integer bidId) {
-		return dao.findRelatedBidsByItem(bidId);
+	public List<IBid> getLatestBidByItem(Integer id) {
+		return dao.getLatestBidByItem(id);
 	}
 }

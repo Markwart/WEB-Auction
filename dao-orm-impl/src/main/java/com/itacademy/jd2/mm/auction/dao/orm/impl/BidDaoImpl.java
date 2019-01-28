@@ -60,10 +60,12 @@ public class BidDaoImpl extends AbstractDaoImpl<IBid, Integer> implements IBidDa
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
 
 		final CriteriaQuery<IBid> cq = cb.createQuery(IBid.class);
-
 		final Root<Bid> from = cq.from(Bid.class);
 
 		cq.select(from);
+		if (filter.getLoggedUserId() != null) { // only for logged user
+			cq.where(cb.equal(from.get(Bid_.userBid), filter.getLoggedUserId()));
+		}
 
 		if (filter.getFetchUserAccount()) {
 			from.fetch(Bid_.userBid, JoinType.LEFT);
@@ -162,6 +164,23 @@ public class BidDaoImpl extends AbstractDaoImpl<IBid, Integer> implements IBidDa
 		cq.where(cb.equal(from.get(Bid_.userBid), id));
 
 		final TypedQuery<IBid> q = em.createQuery(cq);
+		final List<IBid> resultList = q.getResultList();
+		return resultList;
+	}
+	
+	@Override
+	public List<IBid> getLatestBidByItem(Integer itemId) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+
+		final CriteriaQuery<IBid> cq = cb.createQuery(IBid.class);
+		final Root<Bid> from = cq.from(Bid.class);
+
+		cq.select(from);
+		cq.where(cb.equal(from.get(Bid_.item), itemId));
+		cq.orderBy(cb.asc(from.get(Bid_.created)));
+
+		final TypedQuery<IBid> q = em.createQuery(cq).setMaxResults(1);
 		final List<IBid> resultList = q.getResultList();
 		return resultList;
 	}

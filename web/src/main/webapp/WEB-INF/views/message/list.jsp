@@ -10,14 +10,13 @@
         <tr class="font-my-set">
             <th><mytaglib:sort-link pageUrl="${pagesMessage}" column="item_id"><mytaglib:i18n key="table.column.item-name"></mytaglib:i18n></mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesMessage}" column="theme"><mytaglib:i18n key="table.column.theme"></mytaglib:i18n></mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesMessage}" column="text"><mytaglib:i18n key="table.column.comment"></mytaglib:i18n></mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesMessage}" column="user_from_id"><mytaglib:i18n key="table.column.from"></mytaglib:i18n></mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesMessage}" column="created"><mytaglib:i18n key="table.column.created"></mytaglib:i18n></mytaglib:sort-link></th>
             
             <sec:authorize access="hasAnyRole('admin', 'moderator')">
-            <th><mytaglib:sort-link pageUrl="${pagesMessage}" column="id">id</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesMessage}" column="user_whom_id">whom</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesMessage}" column="updated">updated</mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesMessage}" column="updated"><mytaglib:i18n key="table.column.updated" /></mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesMessage}" column="user_whom_id"><mytaglib:i18n key="table.column.seller" /></mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesMessage}" column="id"><mytaglib:i18n key="table.column.id" /></mytaglib:sort-link></th>
             </sec:authorize>
             <th></th>
         </tr>
@@ -25,17 +24,16 @@
             <tr class="font-my-set">
                 <td><c:out value="${message.itemName}" /></td>
                 <td><c:out value="${message.theme}" /></td>
-                <td><c:out value="${message.text}" /></td>
                 <td><c:out value="${message.userFromEmail}" /></td>
                 <td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${message.created}" /></td>
                 
                 <sec:authorize access="hasAnyRole('admin', 'moderator')">
-                <td><c:out value="${message.id}" /></td>
-                <td><c:out value="${message.userWhomEmail}" /></td>
                 <td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${message.updated}" /></td>
+                <td><c:out value="${message.userWhomEmail}" /></td>
+                <td><c:out value="${message.id}" /></td>
                 </sec:authorize>
                 
-                <td class="right"><a class="btn-floating color-icon" href="${pagesMessage}/${message.id}"><i class="material-icons">info</i></a> 
+                <td class="right"><a class="btn-floating color-icon" href="${pagesMessage}/${message.id}"><i class="material-icons">pageview</i></a> 
                 
                 <sec:authorize access="hasRole('admin')">
                 <a class="btn-floating color-icon" href="${pagesMessage}/${message.id}/edit"><i class="material-icons">edit</i></a> 

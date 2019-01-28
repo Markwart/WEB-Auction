@@ -1,6 +1,7 @@
 package com.itacademy.jd2.mm.auction.web.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -50,8 +51,10 @@ import com.itacademy.jd2.mm.auction.service.IShippingMethodService;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
 import com.itacademy.jd2.mm.auction.web.converter.ItemFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.ItemToDTOConverter;
+import com.itacademy.jd2.mm.auction.web.converter.UserAccountToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.dto.BidDTO;
 import com.itacademy.jd2.mm.auction.web.dto.ItemDTO;
+import com.itacademy.jd2.mm.auction.web.dto.UserAccountDTO;
 import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
 import com.itacademy.jd2.mm.auction.web.dto.search.ItemSearchDTO;
 import com.itacademy.jd2.mm.auction.web.security.AuthHelper;
@@ -82,6 +85,8 @@ public class ItemController extends AbstractController {
 	private IPaymentMethodService paymentMethodService;
 	@Autowired
 	private IBidService bidService;
+	@Autowired
+	private UserAccountToDTOConverter toDtoConverterUser;
 
 	@Autowired
 	public ItemController(IItemService itemService, IUserAccountService userAccountService,
@@ -110,8 +115,14 @@ public class ItemController extends AbstractController {
 			@PathVariable(name = "userId", required = false) final Integer userId) {
 
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
-		boolean isPrivate = req.getRequestURI().contains("/private");
-		boolean isPrivateUserId = req.getRequestURI().matches(".*\\/userItems\\/[0-9]*");
+
+		UserAccountDTO loggedUser = null;
+		if (loggedUserId != null) {
+			loggedUser = toDtoConverterUser.apply(userAccountService.getPersonalData(loggedUserId));
+		}
+
+		boolean isPrivateList = req.getRequestURI().contains("/private");
+		boolean isUserItemList = req.getRequestURI().matches(".*\\/userItems\\/[0-9]*");
 
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
@@ -131,10 +142,10 @@ public class ItemController extends AbstractController {
 		filter.setFetchCountryOrigin(true);
 		filter.setFetchAuctionDuration(true);
 
-		if (isPrivate) {
+		if (isPrivateList) {
 			filter.setLoggedUserId(loggedUserId); // get private Item list
-		} else if (isPrivateUserId) {
-			filter.setLoggedUserId(userId); // get user private Item list
+		} else if (isUserItemList) {
+			filter.setLoggedUserId(userId); // get user Item list
 		} else {
 			filter.setLoggedUserId(loggedUserId = null); // get all list
 		}
@@ -154,7 +165,37 @@ public class ItemController extends AbstractController {
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
 		models.put(SEARCH_FORM_MODEL, searchDTO);
-		models.put("showSomeElements", isPrivate);
+		models.put("privateList", isPrivateList);
+		models.put("loggedUser", loggedUser);
+		return new ModelAndView("item.list", models);
+	}
+
+	@RequestMapping(value = "/private/watchList", method = RequestMethod.GET)
+	public ModelAndView getWatchList(final HttpServletRequest req,
+			@RequestParam(name = "page", required = false) final Integer pageNumber) {
+		final GridStateDTO gridState = getListDTO(req);
+		gridState.setPage(pageNumber);
+
+		Integer loggedUserId = AuthHelper.getLoggedUserId();
+		boolean isPrivateList = req.getRequestURI().contains("/private");
+		boolean isWatchList = req.getRequestURI().contains("/private/watchList");
+
+		UserAccountDTO loggedUser = null;
+		if (loggedUserId != null) {
+			loggedUser = toDtoConverterUser.apply(userAccountService.getPersonalData(loggedUserId));
+		}
+
+		List<IItem> entities = new ArrayList<IItem>();
+		for (IItem iItem : userAccountService.getPersonalData(loggedUserId).getItems()) {
+			entities.add(itemService.getFullInfo(iItem.getId()));
+		}
+		List<ItemDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
+
+		final Map<String, Object> models = new HashMap<>();
+		models.put("gridItems", dtos);
+		models.put("privateList", isPrivateList);
+		models.put("loggedUser", loggedUser);
+		models.put("watchList", isWatchList);
 		return new ModelAndView("item.list", models);
 	}
 
@@ -198,22 +239,31 @@ public class ItemController extends AbstractController {
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
 
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
-		final BidFilter bidFilter = new BidFilter();
-		bidFilter.setItemId(id);
 
 		final IItem dbModel = itemService.getFullInfo(id);
 		final ItemDTO dto = toDtoConverter.apply(dbModel);
-		
+
 		final IUserAccount userAccount = userAccountService
 				.getPersonalData(itemService.getFullInfo(id).getSeller().getId());
-		
-		//List<IBid> bidEntities = bidService.getBidByItemId(id);
+		UserAccountDTO loggedUser = null;
+		if (loggedUserId != null) {
+			loggedUser = toDtoConverterUser.apply(userAccountService.getPersonalData(loggedUserId));
+		}
+
+		final BidFilter bidFilter = new BidFilter();
+		bidFilter.setItemId(id);
 		dto.setTotalCountBids(bidService.getCountItemBids(bidFilter));
+		final List<IBid> bidList = bidService.getLatestBidByItem(id);
+		for (IBid iBid : bidList) {
+			bidList.clear();
+			bidList.add(bidService.getFullInfo(iBid.getId()));
+		}
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formView", dto);
 		hashMap.put("formBid", new BidDTO());
-		hashMap.put("showSomeElements", loggedUserId);
+		hashMap.put("latestBid", bidList);
+		hashMap.put("loggedUser", loggedUser);
 		hashMap.put("userAccountData", userAccount);
 		loadCommonFormModels(hashMap);
 		return new ModelAndView("item.view", hashMap);

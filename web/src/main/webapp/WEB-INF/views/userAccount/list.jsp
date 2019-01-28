@@ -54,11 +54,11 @@
                 <td><c:out value="${userAccount.role}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${userAccount.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${userAccount.updated}" /></td>
-                <td class="right"><a class="btn-floating" href="${pagesUserAccount}/${userAccount.id}"><i class="material-icons">info</i></a> 
+                <td class="right"><a class="btn-floating color-icon" href="${pagesUserAccount}/${userAccount.id}"><i class="material-icons">pageview</i></a> 
                 
                 <sec:authorize access="hasRole('admin')">
-                <a class="btn-floating" href="${pagesUserAccount}/${userAccount.id}/edit"><i class="material-icons">edit</i></a> 
-                <a class="btn-floating red" href="${pagesUserAccount}/${userAccount.id}/delete"><i class="material-icons">delete</i></a>
+                <a class="btn-floating color-icon" href="${pagesUserAccount}/${userAccount.id}/edit"><i class="material-icons">edit</i></a> 
+                <a class="btn-floating color-icon-delete" href="${pagesUserAccount}/${userAccount.id}/delete"><i class="material-icons">delete_forever</i></a>
                 </sec:authorize></td>
             </tr>
         </c:forEach>

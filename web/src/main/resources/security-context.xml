@@ -21,11 +21,11 @@
 		<intercept-url pattern="/paym**" access="hasAnyRole('admin', 'moderator')" />
 		<intercept-url pattern="/ship**" access="hasAnyRole('admin', 'moderator')" />
 		<intercept-url pattern="/step**" access="hasAnyRole('admin', 'moderator')" />
-		<intercept-url pattern="/bid**" access="hasAnyRole('admin', 'moderator')" />
+		<intercept-url pattern="/bid**" access="hasAnyRole('admin', 'moderator', 'user')" />
 		<intercept-url pattern="/deferred**" access="hasAnyRole('admin', 'moderator')" />
 		<intercept-url pattern="/user**" access="hasAnyRole('admin', 'moderator')" />
 		<intercept-url pattern="/mess**" access="hasAnyRole('admin', 'moderator', 'user')" />
-		<intercept-url pattern="/admin**" access="hasAnyRole('admin', 'moderator')" />
+		<intercept-url pattern="/admin**" access="hasAnyRole('admin', 'moderator', 'user')" />
 		<intercept-url pattern="/auctionDur**" access="hasAnyRole('admin', 'moderator')" />
 		
 		<form-login login-page="/login" default-target-url="/"

@@ -30,7 +30,7 @@ public interface IBidService {
 
 	IBid getFullInfo(Integer id);
 
-	List<IBid> getBidByItemId(Integer bidId);
-
 	long getCountItemBids(BidFilter filter);
+
+	List<IBid> getLatestBidByItem(Integer id);
 }

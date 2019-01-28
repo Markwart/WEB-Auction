@@ -4,29 +4,39 @@
 
 	<!-- Table columns -->
 	<entry key="table.column.id">ИН</entry>
-	<entry key="table.column.created">СОЗДАНО</entry>
+	<entry key="table.column.created">Создано</entry>
 	<entry key="table.column.created-2">Дата размещения</entry>
-	<entry key="table.column.updated">ИЗМЕНЕНО</entry>
-	<entry key="table.column.theme">ТЕМА</entry>
-	<entry key="table.column.text">ОПИСАНИЕ</entry>
-	<entry key="table.column.index">НОМЕР</entry>
+	<entry key="table.column.updated">Изменено</entry>
+	<entry key="table.column.theme">Тема</entry>
+	<entry key="table.column.text">Описание</entry>
+	<entry key="table.column.index">Номер</entry>
+	<entry key="table.column.item">Лот</entry>
 	<entry key="table.column.item-name">Наименование лота</entry>
 	<entry key="table.column.seller">Продавец</entry>
-	<entry key="table.column.comment">КОММЕНТАРИЙ</entry>
-	<entry key="table.column.from">ОТПРАВИТЕЛЬ</entry>
+	<entry key="table.column.comment">Комментарий</entry>
+	<entry key="table.column.from">Отправитель</entry>
 	<entry key="table.column.name">Наименование</entry>
-	<entry key="table.column.image">ИЗОБРАЖЕНИЕ</entry>
-	<entry key="table.column.price">Начальная стоимость</entry>
+	<entry key="table.column.image">Изображение</entry>
+	<entry key="table.column.starting-price">Начальная цена</entry>
+	<entry key="table.column.price">Цена</entry>
+	<entry key="table.column.bid">Ставка</entry>
 	<entry key="table.column.ends">Окончание</entry>
-	<entry key="table.column.status">СТАТУС</entry>
+	<entry key="table.column.status">Статус</entry>
+	<entry key="table.column.user-account">Пользователь</entry>
+	<entry key="table.column.communication">Связь с продавцом</entry>
+	<entry key="table.column.shipping-time">Срок отправки</entry>
+	<entry key="table.column.shipping-charges">Стоимость доставки</entry>
+	<entry key="table.column.item-description">Описание лота</entry>
+	<entry key="table.column.content">Содержание</entry>
 	
-
 	<!-- Sections -->
 	<entry key="main">Интернет-Аукцион</entry>
 
 	<entry key="section.home">Главная страница</entry>
 	<entry key="section.rule">Правила аукциона</entry>
+	<entry key="section.rule-edit">Правило аукциона</entry>
 	<entry key="section.feedback">Отзывы</entry>
+	<entry key="section.feedback-edit">Отзыв</entry>
 	<entry key="section.item">Лоты</entry>
 	<entry key="section.help">Помощь</entry>
 	<entry key="section.setting">Настройки</entry>
@@ -48,7 +58,10 @@
 	<entry key="section.account">Аккаунты пользователей</entry>
 	<entry key="section.admin-communication">Связь с администрацией</entry>
 	<entry key="section.message">Сообщения</entry>
+	<entry key="section.message-edit">Сообщение</entry>
+	<entry key="section.bid-edit">Ставка</entry>
 	<entry key="section.bid">Ставки</entry>
+	<entry key="section.my-bid">Мои Ставки</entry>
 	<entry key="section.deferred-bid">Отложенные ставки</entry>
 
 	<entry key="login">Войти</entry>
@@ -64,8 +77,28 @@
 	
 	<!-- Others -->
 	<entry key="search-error">Поле не должно начинаться с пустого символа</entry>
+	<entry key="save">Сохранить</entry>
+	<entry key="list">К списку</entry>
+	<entry key="send">Отправить</entry>
+	<entry key="edit">Править</entry>
 	
-	<!-- Item List -->
+	<!-- Item List and View -->
 	<entry key="sort">Сортировка</entry>
+	<entry key="place-item">Разместить новый лот</entry>
+	<entry key="add-watch-list">Добавить в Избранное</entry>
+	<entry key="remove-watch-list">Удалить из Избранное</entry>
+	<entry key="add/watch-list">Добавить/Избранное</entry>
+	<entry key="remove/watch-list">Удалить/Избранное</entry>
+	<entry key="auction-ends">Окончание аукциона</entry>
+	<entry key="time-left">Осталось</entry>
+	<entry key="current-price">Текущая цена</entry>
+	<entry key="leader">Лидер</entry>
+	<entry key="country-manufacture">Страна изготовления</entry>
+	<entry key="seller-info">Информация о продавце</entry>
+	<entry key="see-other-items">Другие лоты</entry>
+	<entry key="contact-seller">Связь с продавцом</entry>
+	<entry key="place-bid">Сделать ставку</entry>
+	<entry key="count-bids">ставок</entry>
+	<entry key="none">нет</entry>
 
 </properties>

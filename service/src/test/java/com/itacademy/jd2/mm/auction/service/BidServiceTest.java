@@ -37,7 +37,7 @@ public class BidServiceTest extends AbstractTest {
 		final IBid entity = saveNewBid();
 
 		@SuppressWarnings("static-access")
-		StatusBid newStatusBid = entity.getStatusBid().cancelled;
+		StatusBid newStatusBid = entity.getStatusBid().outbidded;
 		entity.setStatusBid(newStatusBid);
 		Thread.sleep(DELAY);
 		bidService.save(entity, null, null);

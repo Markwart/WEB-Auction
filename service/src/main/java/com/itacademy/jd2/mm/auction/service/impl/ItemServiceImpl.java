@@ -21,7 +21,6 @@ import com.itacademy.jd2.mm.auction.daoapi.IDeferredBidDao;
 import com.itacademy.jd2.mm.auction.daoapi.IFeedbackDao;
 import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
 import com.itacademy.jd2.mm.auction.daoapi.IMessageDao;
-import com.itacademy.jd2.mm.auction.daoapi.entity.enums.Roles;
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IDeferredBid;
@@ -39,8 +38,8 @@ public class ItemServiceImpl implements IItemService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ItemServiceImpl.class);
 	public static final String FILE_FOLDER = "d:\\JavaMark\\web-auction\\G-JD1-06-13_mmatusevich\\doc\\image\\";
 
-	//d:\\JavaMark\\web-auction\\G-JD1-06-13_mmatusevich\\doc\\image\\
-	
+	// d:\\JavaMark\\web-auction\\G-JD1-06-13_mmatusevich\\doc\\image\\
+
 	private IItemDao dao;
 	private IBidDao bidDao;
 	private IDeferredBidDao deferredBidDao;
@@ -78,31 +77,38 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	@Override
-	public void save(IItem entity, Integer id, String uuid, MultipartFile file) throws IOException {
+	public void save(IItem entity, Integer loggedUserId, String uuid, MultipartFile file) throws IOException {
 		final Date now = new Date();
 		entity.setUpdated(now);
 		if (entity.getId() == null) {
 			entity.setCreated(now);
-			entity.setStatusAuction(StatusAuction.OPEN);
-			entity.setSeller(userAccountService.get(id));
 
-			Calendar c = Calendar.getInstance();
-			c.setTime(now);
-			c.add(Calendar.DAY_OF_YEAR, auctionDurationService.get(entity.getDuration().getId()).getDay());
-			entity.setAuctionEnd(c.getTime());
+			if (loggedUserId != null) {
+				entity.setStatusAuction(StatusAuction.OPEN);
+				entity.setSeller(userAccountService.get(loggedUserId));
+
+				Calendar c = Calendar.getInstance();
+				c.setTime(now);
+				c.add(Calendar.DAY_OF_YEAR, auctionDurationService.get(entity.getDuration().getId()).getDay());
+				entity.setAuctionEnd(c.getTime());
+			}
 
 			dao.insert(entity);
 
-			InputStream inputStream = file.getInputStream();
-			Files.copy(inputStream, new File(FILE_FOLDER + uuid).toPath(), StandardCopyOption.REPLACE_EXISTING);
+			if (loggedUserId != null) {
+				InputStream inputStream = file.getInputStream();
+				Files.copy(inputStream, new File(FILE_FOLDER + uuid).toPath(), StandardCopyOption.REPLACE_EXISTING);
+			}
 
 			LOGGER.debug("new item created: {}", entity);
 		} else {
 
-			if (!userAccountService.get(id).getRole().equals(Roles.admin)) {
+			if (loggedUserId != null) {
 				entity.setStatusAuction(itemService.get(entity.getId()).getStatusAuction());
-				entity.setSeller(userAccountService.get(id));
+				entity.setSeller(userAccountService.get(entity.getSeller().getId()));
 				entity.setAuctionEnd(itemService.get(entity.getId()).getAuctionEnd());
+				entity.setDuration(itemService.get(entity.getId()).getDuration());
+				entity.setImage(itemService.get(entity.getId()).getImage());
 			}
 			dao.update(entity);
 			LOGGER.debug("item updated: {}", entity);
@@ -112,10 +118,10 @@ public class ItemServiceImpl implements IItemService {
 	@Override
 	public void delete(Integer id) {
 		LOGGER.info("delete item by id: {}", id);
-		 final IItem item = dao.get(id);
-	        item.getShippingMethods().clear();
-	        item.getPaymentMethods().clear();
-	        dao.update(item);
+		final IItem item = dao.get(id);
+		item.getShippingMethods().clear();
+		item.getPaymentMethods().clear();
+		dao.update(item);
 		deleteRelatedEntities(id);
 		dao.delete(id);
 	}

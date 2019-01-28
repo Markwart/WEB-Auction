@@ -55,27 +55,38 @@ public class BidController extends AbstractController {
 		this.fromDtoConverter = fromDtoConverter;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = { "", "/private" }, method = RequestMethod.GET)
 	public ModelAndView index(final HttpServletRequest req,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
+
+		Integer loggedUserId = AuthHelper.getLoggedUserId();
+		boolean isPrivateList = req.getRequestURI().contains("/private");
 
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
 
 		final BidFilter filter = new BidFilter();
-		prepareFilter(gridState, filter);
-		gridState.setTotalCount(bidService.getCount(filter));
 
 		filter.setFetchUserAccount(true);
 		filter.setFetchItem(true);
 
+		if (isPrivateList) {
+			filter.setLoggedUserId(loggedUserId); // get private Item list
+		} else {
+			filter.setLoggedUserId(loggedUserId = null); // get all list
+		}
+
 		final List<IBid> entities = bidService.find(filter);
 		List<BidDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
+		prepareFilter(gridState, filter);
+		gridState.setTotalCount(bidService.getCount(filter));
+
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
+		models.put("privateList", isPrivateList);
 		return new ModelAndView("bid.list", models);
 	}
 
@@ -88,26 +99,21 @@ public class BidController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/{itemId}/placeBid", method = RequestMethod.POST)
-	public Object placeBid(@Valid @ModelAttribute("formBid") final BidDTO formBid, final BindingResult result,
+	public Object placeBid(@Valid @ModelAttribute("formModel") final BidDTO bidDTO, final BindingResult result,
 			@PathVariable(name = "itemId", required = true) final Integer itemId) {
 
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
-		
+
 		if (result.hasErrors()) {
-			
-			formBid.setId(itemId);
-			
+
+			bidDTO.setId(itemId);
+
 			final Map<String, Object> hashMap = new HashMap<>();
-			hashMap.put("formModel", formBid);
+			hashMap.put("formModel", bidDTO);
 			loadCommonFormModels(hashMap);
 			return "redirect:/item/{itemId}";
 		} else {
-			final IBid entity = fromDtoConverter.apply(formBid);
-			
-			entity.setUserBid(userAccountService.get(loggedUserId));
-			entity.setItem(itemService.get(itemId));
-			entity.setStatusBid(StatusBid.made);
-
+			final IBid entity = fromDtoConverter.apply(bidDTO);
 			bidService.save(entity, loggedUserId, itemId);
 			return "redirect:/item/{itemId}";
 		}

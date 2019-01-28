@@ -160,7 +160,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
 			userAccount.setPassword(PasswordUtils.generateSecurePassword(userAccount.getPassword()));
 			userAccount.setRole(Roles.user);
 			dao.insert(userAccount);
-			SendMailTLS.sendMail();
+			//SendMailTLS.sendMail();
 
 			personalData.setId(userAccount.getId());
 			personalData.setCreated(modifiedDate);
@@ -181,8 +181,8 @@ public class UserAccountServiceImpl implements IUserAccountService {
 	}
 
 	@Override
-	public void update(IUserAccount personalData) {
-		dao.update(personalData);
+	public void update(IUserAccount userAccount) {
+		dao.update(userAccount);
 		
 	}
 }

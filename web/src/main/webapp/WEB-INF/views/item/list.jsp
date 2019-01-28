@@ -5,12 +5,23 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <h4 class="header offset-class">
-	<mytaglib:i18n key="section.item"></mytaglib:i18n>
+	<c:choose>
+		<c:when test="${watchList}">
+			<mytaglib:i18n key="section.watch-list" />
+		</c:when>
+		<c:when test="${privateList}">
+			<mytaglib:i18n key="section.my-item" />
+		</c:when>
+		<c:otherwise>
+			<mytaglib:i18n key="section.item"></mytaglib:i18n>
+		</c:otherwise>
+	</c:choose>
 </h4>
 
-<c:if test="${showSomeElements eq 'false'}">
+<c:if test="${privateList eq 'false'}">
 	<div class="row">
 		<nav class="search-from-db">
 			<div class="nav-wrapper">
@@ -31,44 +42,50 @@
 	</div>
 </c:if>
 
-<!-- [A-Za-zА-Яа-яЁё_]{1,}[a-zA-Z-А-Яа-яЁё0-9\s]+$ -->
 
-<div class="sorting">
-	<div class="right">
-		<a class="dropdown-trigger btn" data-target="dropdown4"><mytaglib:i18n key="sort"></mytaglib:i18n><i
-			class="material-icons right">arrow_drop_down</i></a>
+<c:if test="${privateList eq 'false'}">
+	<div class="sorting">
+		<div class="right">
+			<a class="dropdown-trigger btn" data-target="dropdown4"><mytaglib:i18n
+					key="sort"></mytaglib:i18n><i class="material-icons right">arrow_drop_down</i></a>
+		</div>
+
+		<!-- Dropdown Structure -->
+		<ul id="dropdown4" class="dropdown-content sorting-dropdown">
+			<li><mytaglib:sort-link pageUrl="${pagesItem}" column="name">
+					<mytaglib:i18n key="table.column.name"></mytaglib:i18n>
+				</mytaglib:sort-link></li>
+			<li class="divider" tabindex="-1"></li>
+			<li><mytaglib:sort-link pageUrl="${pagesItem}"
+					column="starting_price">
+					<mytaglib:i18n key="table.column.starting-price"></mytaglib:i18n>
+				</mytaglib:sort-link></li>
+			<li class="divider" tabindex="-1"></li>
+			<li><mytaglib:sort-link pageUrl="${pagesItem}"
+					column="auction_end">
+					<mytaglib:i18n key="table.column.ends"></mytaglib:i18n>
+				</mytaglib:sort-link></li>
+			<li class="divider" tabindex="-1"></li>
+			<li><mytaglib:sort-link pageUrl="${pagesItem}"
+					column="seller_id">
+					<mytaglib:i18n key="table.column.seller"></mytaglib:i18n>
+				</mytaglib:sort-link></li>
+			<li class="divider" tabindex="-1"></li>
+			<li><mytaglib:sort-link pageUrl="${pagesItem}" column="created">
+					<mytaglib:i18n key="table.column.created-2"></mytaglib:i18n>
+				</mytaglib:sort-link></li>
+		</ul>
 	</div>
+</c:if>
 
-	<!-- Dropdown Structure -->
-	<ul id="dropdown4" class="dropdown-content sorting-dropdown">
-		<li><mytaglib:sort-link pageUrl="${pagesItem}" column="name">
-				<mytaglib:i18n key="table.column.name"></mytaglib:i18n>
-			</mytaglib:sort-link></li>
-		<li class="divider" tabindex="-1"></li>
-		<li><mytaglib:sort-link pageUrl="${pagesItem}"
-				column="starting_price">
-				<mytaglib:i18n key="table.column.price"></mytaglib:i18n>
-			</mytaglib:sort-link></li>
-		<li class="divider" tabindex="-1"></li>
-		<li><mytaglib:sort-link pageUrl="${pagesItem}"
-				column="auction_end">
-				<mytaglib:i18n key="table.column.ends"></mytaglib:i18n>
-			</mytaglib:sort-link></li>
-		<li class="divider" tabindex="-1"></li>
-		<li><mytaglib:sort-link pageUrl="${pagesItem}" column="seller_id">
-				<mytaglib:i18n key="table.column.seller"></mytaglib:i18n>
-			</mytaglib:sort-link></li>
-		<li class="divider" tabindex="-1"></li>
-		<li><mytaglib:sort-link pageUrl="${pagesItem}" column="created"><mytaglib:i18n key="table.column.created-2"></mytaglib:i18n></mytaglib:sort-link></li>
-	</ul>
-</div>
 
 <div class="container-items">
 	<c:forEach var="item" items="${gridItems}" varStatus="loopCounter">
 		<div class="browse">
 			<div class="browsetext-top">
 				<div class="right">
-					<span><b>Starting Price: US $${item.startingPrice}</b></span>
+					<span><b><mytaglib:i18n key="table.column.ends" />: <fmt:formatDate
+								pattern="dd-MMM-yyyy HH:mm" value="${item.auctionEnd}" /></b></span>
 				</div>
 			</div>
 			<div class="browseimg">
@@ -78,12 +95,28 @@
 			<div class="browsetext">
 				<span><a href="${pagesItem}/${item.id}">${item.name}</a></span>
 				<div class="bottom">
-					<div class="left">
-						<a class="watchlot" href="#!"><input type="button"
-							class="button gray" value="Add to Watch List"></a>
-					</div>
+					<c:if test="${item.sellerId != loggedUser.id}">
+						<div class="left">
+							<sec:authorize access="!isAnonymous()">
+								<c:if test="${not fn:contains(loggedUser.itemsIds, item.id)}">
+									<a href="${pagesUserAccount}/${item.id}/addWatchList/main"><input
+										type="button"
+										value="<mytaglib:i18n
+			key="add-watch-list" />"></a>
+								</c:if>
+								<c:if test="${fn:contains(loggedUser.itemsIds, item.id)}">
+									<a href="${pagesUserAccount}/${item.id}/removeWatchList/main"><input
+										type="button"
+										value="<mytaglib:i18n
+			key="remove-watch-list" />"></a>
+								</c:if>
+							</sec:authorize>
+						</div>
+					</c:if>
 					<div class="right">
-						<b>Current Price: US $${item.startingPrice}</b>
+						<b><mytaglib:i18n key="table.column.starting-price" />: US $<fmt:formatNumber
+								value="${item.startingPrice}" minFractionDigits="2"
+								maxFractionDigits="2" /></b>
 					</div>
 				</div>
 			</div>
@@ -91,15 +124,13 @@
 	</c:forEach>
 </div>
 
-
 <div class="padding">
 	<jspFragments:paging />
 </div>
 
-<c:if test="${showSomeElements}">
-	<a class="waves-effect waves-light btn right" href="${pagesItem}/add">Place
-		a new Item</a>
+<c:if test="${privateList}">
+	<a class="waves-effect waves-light btn right" href="${pagesItem}/add"><mytaglib:i18n
+			key="place-item" /></a>
 </c:if>
-
 
 

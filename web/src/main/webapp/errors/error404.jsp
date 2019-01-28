@@ -3,7 +3,6 @@
 <title>Генерация исключения</title>
 </head>
 <body>
-	<%-- <jsp:useBean id="ob" class="java.lang.String" />
-	${ob.tostring --%>}
+	<h3>Opps... Sorry, an error occurred.</h3>
 </body>
 </html>

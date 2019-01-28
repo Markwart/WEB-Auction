@@ -1,6 +1,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<h4 class="header">Edit bid</h4>
+<%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
+
+
+<h4 class="header"><mytaglib:i18n key="section.bid-edit"></mytaglib:i18n></h4>
 <div class="row">
 	<form:form class="col s12" method="POST" action="${pagesBid}"
 		modelAttribute="formModel">
@@ -13,14 +16,14 @@
 					<form:options items="${itemsChoices}" />
 				</form:select>
 				<form:errors path="itemId" cssClass="red-text" />
-				<label for="itemId">item</label>
+				<label for="itemId"><mytaglib:i18n key="table.column.item-name"></mytaglib:i18n></label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
 				<form:input path="priceBid" type="text" disabled="${readonly}" />
 				<form:errors path="priceBid" cssClass="red-text" />
-				<label for="priceBid">price</label>
+				<label for="priceBid"><mytaglib:i18n key="table.column.bid"></mytaglib:i18n></label>
 			</div>
 		</div>
 		<div class="row">
@@ -29,7 +32,7 @@
 					<form:options items="${userAccountsChoices}" />
 				</form:select>
 				<form:errors path="userBidId" cssClass="red-text" />
-				<label for="userBidId">user account</label>
+				<label for="userBidId"><mytaglib:i18n key="table.column.user-account"></mytaglib:i18n></label>
 			</div>
 		</div>
 		<div class="row">
@@ -38,7 +41,7 @@
 					<form:options items="${statusBidChoices}" />
 				</form:select>
 				<form:errors path="statusBid" cssClass="red-text" />
-				<label for="statusBid">status</label>
+				<label for="statusBid"><mytaglib:i18n key="table.column.status"></mytaglib:i18n></label>
 			</div>
 		</div>
 
@@ -46,11 +49,11 @@
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">save</button>
+					<button class="btn waves-effect waves-light right" type="submit"><mytaglib:i18n key="save"></mytaglib:i18n></button>
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right" href="${pagesBid}">list<i class="material-icons right"></i>
+				<a class="btn waves-effect waves-light right" href="${pagesBid}"><mytaglib:i18n key="list"></mytaglib:i18n><i class="material-icons right"></i>
 				</a>
 			</div>
 		</div>

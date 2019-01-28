@@ -28,10 +28,9 @@
     <tbody>
      <c:if test="${showPagingAndSort eq 'false'}">
          <tr>
-            <th>item name</th>
-            <th>seller</th>
-            <th>comment</th>
-            <th>created</th>
+            <th><mytaglib:i18n key="table.column.item-name"></mytaglib:i18n></th>
+            <th><mytaglib:i18n key="table.column.seller"></mytaglib:i18n></th>
+            <th><mytaglib:i18n key="table.column.created"></mytaglib:i18n></th>
             <th></th>
          </tr>
       </c:if>
@@ -39,13 +38,12 @@
         <c:if test="${showPagingAndSort}"><tr class="font-my-set">
             <th><mytaglib:sort-link pageUrl="${pagesFeedback}" column="item_id"><mytaglib:i18n key="table.column.item-name"></mytaglib:i18n></mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesFeedback}" column="user_whom_id"><mytaglib:i18n key="table.column.seller"></mytaglib:i18n></mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesFeedback}" column="comment"><mytaglib:i18n key="table.column.comment"></mytaglib:i18n></mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesFeedback}" column="created"><mytaglib:i18n key="table.column.created"></mytaglib:i18n></mytaglib:sort-link></th>
             
             <sec:authorize access="hasAnyRole('admin', 'moderator')">
-            <th><mytaglib:sort-link pageUrl="${pagesFeedback}" column="user_from_id">from</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesFeedback}" column="updated">updated</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesFeedback}" column="id">ID</mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesFeedback}" column="updated"><mytaglib:i18n key="table.column.updated"></mytaglib:i18n></mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesFeedback}" column="user_from_id"><mytaglib:i18n key="table.column.from"></mytaglib:i18n></mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesFeedback}" column="id"><mytaglib:i18n key="table.column.id"></mytaglib:i18n></mytaglib:sort-link></th>
             </sec:authorize>
             <th></th>
         </tr></c:if>
@@ -54,12 +52,11 @@
             <tr class="font-my-set">
                 <td><c:out value="${feedback.itemName}" /></td>
                 <td><c:out value="${feedback.userWhomEmail}" /></td>
-                <td><c:out value="${feedback.comment}" /></td>
                 <td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${feedback.created}" /></td>
                 
                 <sec:authorize access="hasAnyRole('admin', 'moderator')">
-                <td><c:out value="${feedback.userFromEmail}" /></td>
                 <td class="no-transfer"><fmt:formatDate pattern="yyyy-MM-dd" value="${feedback.updated}" /></td>
+                <td><c:out value="${feedback.userFromEmail}" /></td>
                 <td><c:out value="${feedback.id}" /></td>
                 </sec:authorize>
                 

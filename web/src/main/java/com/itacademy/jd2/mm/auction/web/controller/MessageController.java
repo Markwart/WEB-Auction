@@ -90,7 +90,9 @@ public class MessageController extends AbstractController {
 	@RequestMapping(value = {"/add", "/{itemId}/add"}, method = RequestMethod.GET)
 	public ModelAndView showForm(@PathVariable(name = "itemId", required = false) final Integer itemId) {
 		
-		final IItem item = itemService.getFullInfo(itemId);
+		IItem item = null;
+		if (itemId != null) {
+		item = itemService.getFullInfo(itemId);}
 		
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", new MessageDTO());

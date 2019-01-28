@@ -6,10 +6,9 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Random;
+
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-
-import org.springframework.stereotype.Service;
 
 public class PasswordUtils {
 	

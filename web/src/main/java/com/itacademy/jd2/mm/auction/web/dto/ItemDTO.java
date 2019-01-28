@@ -7,8 +7,6 @@ import java.util.Set;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.itacademy.jd2.mm.auction.daoapi.entity.enums.StatusAuction;
 
 public class ItemDTO {
@@ -24,7 +22,6 @@ public class ItemDTO {
 
 	private Integer year;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss a")
 	private Date auctionEnd;
 
 	@NotNull

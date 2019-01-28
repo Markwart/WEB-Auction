@@ -1,8 +1,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-<h4 class="header">Edit feedback</h4>
+
+<h4 class="header"><mytaglib:i18n key="section.feedback-edit"></mytaglib:i18n></h4>
 <div class="row">
 	<form:form class="col s12" method="POST" action="${pagesFeedback}/add"
 		modelAttribute="formModel">
@@ -15,7 +17,7 @@
 					<form:options items="${itemsChoices}" />
 				</form:select>
 				<form:errors path="itemId" cssClass="red-text" />
-				<label for="itemId">item</label>
+				<label for="itemId"><mytaglib:i18n key="table.column.item-name"></mytaglib:i18n></label>
 			</div>
 		</div>
 		
@@ -25,7 +27,7 @@
 					<form:options items="${userAccountsChoices}" />
 				</form:select>
 				<form:errors path="userFromId" cssClass="red-text" />
-				<label for="userFromId">from</label>
+				<label for="userFromId"><mytaglib:i18n key="table.column.from"></mytaglib:i18n></label>
 			</div>
 		</div>
 		
@@ -35,11 +37,11 @@
 					<form:options items="${userAccountsChoices}" />
 				</form:select>
 				<form:errors path="userWhomId" cssClass="red-text" />
-				<label for="userWhomId">whom</label>
+				<label for="userWhomId"><mytaglib:i18n key="table.column.seller"></mytaglib:i18n></label>
 			</div>
 		</div>
 		
-		<span class="feedback-name">Communication:</span>
+		<span class="feedback-name"><mytaglib:i18n key="table.column.communication"></mytaglib:i18n>:</span>
 	  <div class="row">
 	  <div class="star-rating">
       <div class="star-rating__wrap">
@@ -58,7 +60,7 @@
       </div>
 	  </div>
 	  
-		<span class="feedback-name">Shipping Time:</span>
+		<span class="feedback-name"><mytaglib:i18n key="table.column.shipping-time"></mytaglib:i18n>:</span>
 	  <div class="row">
 	  <div class="star-rating">
       <div class="star-rating__wrap">
@@ -76,7 +78,7 @@
       </div>
 	  </div>
 		
-		<span class="feedback-name">Shipping Charges:</span>
+		<span class="feedback-name"><mytaglib:i18n key="table.column.shipping-charges"></mytaglib:i18n>:</span>
 	  <div class="row">
 	  <div class="star-rating">
       <div class="star-rating__wrap">
@@ -94,7 +96,7 @@
       </div>
 	  </div> 
 		
-		<span class="feedback-name">Item Description:</span>
+		<span class="feedback-name"><mytaglib:i18n key="table.column.item-description"></mytaglib:i18n>:</span>
 	  <div class="row">
       <div class="star-rating">
       <div class="star-rating__wrap" >
@@ -148,7 +150,7 @@
 			<div class="input-field col s12">
 				<form:textarea path="comment" type="text" disabled="${readonly}" />
 				<form:errors path="comment" cssClass="red-text" />
-				<label for="comment">comment</label>
+				<label for="comment"><mytaglib:i18n key="table.column.comment"></mytaglib:i18n></label>
 			</div>
 		</div>
 		
@@ -156,11 +158,11 @@
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">save</button>
+					<button class="btn waves-effect waves-light right" type="submit"><mytaglib:i18n key="save"></mytaglib:i18n></button>
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right color-button" href="${pagesFeedback}">list<i class="material-icons right"></i>
+				<a class="btn waves-effect waves-light right color-button" href="${pagesFeedback}"><mytaglib:i18n key="list"></mytaglib:i18n><i class="material-icons right"></i>
 				</a>
 			</div>
 		</div>

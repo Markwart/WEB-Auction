@@ -14,7 +14,7 @@ public class SendMailTLS {
 
 	public static void sendMail() {
 
-		final String username = "watashiwajanaidesu@gmail.com";
+		final String username = "markus.matusevich@gmail.com";
 		final String password = "932000mark";
 
 		Properties props = new Properties();
@@ -34,9 +34,9 @@ public class SendMailTLS {
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("watashiwajanaidesu@gmail.com"));
+			message.setFrom(new InternetAddress("markus.matusevich@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse("watashiwajanaidesu@gmail.com"));
+				InternetAddress.parse("markus.matusevich@gmail.com"));
 			message.setSubject("New account created");
 			message.setText("New account created");
 

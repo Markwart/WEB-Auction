@@ -51,11 +51,13 @@ public class MessageServiceImpl implements IMessageService {
 		entity.setUpdated(modefeOn);
 		if (entity.getId() == null) {
 			entity.setCreated(modefeOn);
-			
-			entity.setUserFrom(userAccountService.get(loggedUserId));
-			entity.setUserWhom(itemService.getFullInfo(itemId).getSeller());
-			entity.setItem(itemService.get(itemId));
-			
+
+			if (loggedUserId != null) {
+				entity.setUserFrom(userAccountService.get(loggedUserId));
+				entity.setUserWhom(itemService.getFullInfo(itemId).getSeller());
+				entity.setItem(itemService.get(itemId));
+			}
+
 			dao.insert(entity);
 			LOGGER.debug("new message created: {}", entity);
 		} else {

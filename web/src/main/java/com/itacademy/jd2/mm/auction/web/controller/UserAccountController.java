@@ -28,11 +28,8 @@ import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.UserAccountFilter;
 import com.itacademy.jd2.mm.auction.service.IItemService;
 import com.itacademy.jd2.mm.auction.service.IUserAccountService;
-import com.itacademy.jd2.mm.auction.web.converter.ItemFromDTOConverter;
-import com.itacademy.jd2.mm.auction.web.converter.ItemToDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.UserAccountFromDTOConverter;
 import com.itacademy.jd2.mm.auction.web.converter.UserAccountToDTOConverter;
-import com.itacademy.jd2.mm.auction.web.dto.ItemDTO;
 import com.itacademy.jd2.mm.auction.web.dto.UserAccountDTO;
 import com.itacademy.jd2.mm.auction.web.dto.grid.GridStateDTO;
 import com.itacademy.jd2.mm.auction.web.dto.search.UserAccountSearchDTO;
@@ -49,13 +46,9 @@ public class UserAccountController extends AbstractController {
 
 	private UserAccountToDTOConverter toDtoConverter;
 	private UserAccountFromDTOConverter fromDtoConverter;
-	
+
 	@Autowired
 	private IItemService itemService;
-	@Autowired
-	private ItemToDTOConverter toDtoConverterItem;
-	@Autowired
-	private ItemFromDTOConverter fromDtoConverterItem;
 
 	@Autowired
 	public UserAccountController(IUserAccountService userAccountService, UserAccountToDTOConverter toDtoConverter,
@@ -154,17 +147,31 @@ public class UserAccountController extends AbstractController {
 		return new ModelAndView("userAccount.edit", hashMap);
 	}
 
-	@RequestMapping(value = "/{itemId}/watchList", method = RequestMethod.GET)
-	public Object addWatchList(@PathVariable(name = "itemId", required = true) final Integer itemId) {
-		
+	@RequestMapping(value = { "/{itemId}/addWatchList", "/{itemId}/removeWatchList", "/{itemId}/addWatchList/main",
+			"/{itemId}/removeWatchList/main" }, method = RequestMethod.GET)
+	public Object WatchList(@PathVariable(name = "itemId", required = true) final Integer itemId,
+			final HttpServletRequest req) {
+
 		Integer loggedUserId = AuthHelper.getLoggedUserId();
-		
-		final IItem dbModelItem = itemService.getFullInfo(itemId);
-		IUserAccount personalData = userAccountService.getPersonalData(loggedUserId);
-		personalData.getItems().add(dbModelItem);
-		
-		userAccountService.update(personalData);
-		return "redirect:/";
+
+		IUserAccount userAccount = userAccountService.getPersonalData(loggedUserId);
+		if (req.getRequestURI().contains("/addWatchList")) {
+			userAccount.getItems().add(itemService.get(itemId));
+		} else {
+			Set<IItem> items = new HashSet<>();
+			for (IItem iItem : userAccount.getItems()) {
+				if (!iItem.getId().equals(itemId)) {
+					items.add(iItem);
+				}
+			}
+			userAccount.setItems(items);
+		}
+		userAccountService.update(userAccount);
+		if (req.getRequestURI().contains("/main")) {
+			return "redirect:/item";
+		} else {
+			return "redirect:/item/{itemId}";
+		}
 	}
 
 	private void loadCommonFormModels(final Map<String, Object> hashMap) {
@@ -172,7 +179,7 @@ public class UserAccountController extends AbstractController {
 
 		final Map<String, String> rolesMap = rolesList.stream().collect(Collectors.toMap(Roles::name, Roles::name));
 		hashMap.put("rolesChoices", rolesMap);
-		
+
 		final Map<Integer, String> itemsMap = itemService.getAll().stream()
 				.collect(Collectors.toMap(IItem::getId, IItem::getName));
 		hashMap.put("itemsChoices", itemsMap);

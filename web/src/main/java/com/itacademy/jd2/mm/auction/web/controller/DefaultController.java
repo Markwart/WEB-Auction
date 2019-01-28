@@ -38,7 +38,7 @@ public class DefaultController {
             LOGGER.info("switch to locale:" + locale);
         }
 
-        return "home";
+        return "redirect:/item";
     }
 
 }

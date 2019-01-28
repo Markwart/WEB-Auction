@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.jpa.criteria.OrderImpl;
@@ -16,15 +17,21 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.AuctionDuration_;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Bid;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Bid_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Category_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Composition_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Condition_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.CountryOrigin_;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Item;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Item_;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.Message_;
+import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.UserAccount;
 import com.itacademy.jd2.mm.auction.dao.orm.impl.entity.UserAccount_;
 import com.itacademy.jd2.mm.auction.daoapi.IItemDao;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IBid;
 import com.itacademy.jd2.mm.auction.daoapi.entity.table.IItem;
+import com.itacademy.jd2.mm.auction.daoapi.entity.table.IUserAccount;
 import com.itacademy.jd2.mm.auction.daoapi.filter.ItemFilter;
 
 @Repository
@@ -56,10 +63,10 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		from.fetch(Item_.countryOrigin, JoinType.LEFT);
 		from.fetch(Item_.seller, JoinType.LEFT);
 		from.fetch(Item_.duration, JoinType.LEFT);
-		
+
 		from.fetch(Item_.shippingMethods, JoinType.LEFT);
 		from.fetch(Item_.paymentMethods, JoinType.LEFT);
-        cq.distinct(true); // to avoid duplicate rows in result
+		cq.distinct(true); // to avoid duplicate rows in result
 
 		cq.where(cb.equal(from.get(Item_.id), id));
 
@@ -80,7 +87,7 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		cq.select(from);
 		if (filter.getLoggedUserId() != null) { // only for logged user
 			cq.where(cb.equal(from.get(Item_.seller), filter.getLoggedUserId()));
-		} 
+		}
 
 		if (filter.getFetchCategory()) {
 			from.fetch(Item_.category, JoinType.LEFT);
@@ -111,7 +118,6 @@ public class ItemDaoImpl extends AbstractDaoImpl<IItem, Integer> implements IIte
 		setPaging(filter, q);
 		return q.getResultList();
 	}
-
 
 	@Override
 	public List<IItem> findInIndex(String text) {

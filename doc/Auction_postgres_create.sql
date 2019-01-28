@@ -267,7 +267,7 @@ CREATE TABLE "item_2_shipping_method" (
 
 
 
-CREATE TABLE "item_2_payment_method copy" (
+CREATE TABLE "item_2_payment_method" (
 	"item_id" int NOT NULL,
 	"payment_method_id" int NOT NULL
 ) WITH (
@@ -317,6 +317,6 @@ ALTER TABLE "deferred_bid" ADD CONSTRAINT "deferred_bid_fk1" FOREIGN KEY ("user_
 ALTER TABLE "item_2_shipping_method" ADD CONSTRAINT "item_2_shipping_method_fk0" FOREIGN KEY ("item_id") REFERENCES "item"("id");
 ALTER TABLE "item_2_shipping_method" ADD CONSTRAINT "item_2_shipping_method_fk1" FOREIGN KEY ("shipping_method_id") REFERENCES "shipping_method"("id");
 
-ALTER TABLE "item_2_payment_method copy" ADD CONSTRAINT "item_2_payment_method copy_fk0" FOREIGN KEY ("item_id") REFERENCES "item"("id");
-ALTER TABLE "item_2_payment_method copy" ADD CONSTRAINT "item_2_payment_method copy_fk1" FOREIGN KEY ("payment_method_id") REFERENCES "payment_method"("id");
+ALTER TABLE "item_2_payment_method" ADD CONSTRAINT "item_2_payment_method_fk0" FOREIGN KEY ("item_id") REFERENCES "item"("id");
+ALTER TABLE "item_2_payment_method" ADD CONSTRAINT "item_2_payment_method_fk1" FOREIGN KEY ("payment_method_id") REFERENCES "payment_method"("id");
 

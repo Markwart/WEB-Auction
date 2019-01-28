@@ -5,7 +5,7 @@
 -- Dumped from database version 10.5
 -- Dumped by pg_dump version 10.5
 
--- Started on 2019-01-25 17:10:27
+-- Started on 2019-01-28 16:25:42
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -913,6 +913,7 @@ ALTER TABLE ONLY public.user_account ALTER COLUMN id SET DEFAULT nextval('public
 -- Data for Name: admin_communication; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.admin_communication (id, theme, user_from_id, text, created, updated) VALUES (1, 'question', 11, 'good example', '2019-01-28 15:13:52.699', '2019-01-28 15:13:52.699');
 
 
 --
@@ -924,6 +925,8 @@ ALTER TABLE ONLY public.user_account ALTER COLUMN id SET DEFAULT nextval('public
 INSERT INTO public.auction_duration (id, day, created, updated) VALUES (1, 1, '2019-01-06 20:51:03.355', '2019-01-06 20:51:03.355');
 INSERT INTO public.auction_duration (id, day, created, updated) VALUES (2, 15, '2019-01-06 20:51:07.532', '2019-01-06 20:51:07.532');
 INSERT INTO public.auction_duration (id, day, created, updated) VALUES (3, 30, '2019-01-06 20:51:11.469', '2019-01-06 20:51:11.469');
+INSERT INTO public.auction_duration (id, day, created, updated) VALUES (4, 7, '2019-01-28 15:10:54.684', '2019-01-28 15:10:54.684');
+INSERT INTO public.auction_duration (id, day, created, updated) VALUES (5, 2, '2019-01-28 15:11:04.709', '2019-01-28 15:11:04.709');
 
 
 --
@@ -946,6 +949,7 @@ INSERT INTO public.bid (id, item_id, price_bid, user_bid_id, status_bid, created
 INSERT INTO public.bid (id, item_id, price_bid, user_bid_id, status_bid, created, updated) VALUES (4, 20, 6, 2, 'made', '2019-01-25 16:10:22.243', '2019-01-25 16:10:22.243');
 INSERT INTO public.bid (id, item_id, price_bid, user_bid_id, status_bid, created, updated) VALUES (5, 20, 7.00, 11, 'made', '2019-01-25 16:18:23.083', '2019-01-25 16:18:23.083');
 INSERT INTO public.bid (id, item_id, price_bid, user_bid_id, status_bid, created, updated) VALUES (6, 20, 8, 3, 'made', '2019-01-25 16:31:16.123', '2019-01-25 16:31:16.123');
+INSERT INTO public.bid (id, item_id, price_bid, user_bid_id, status_bid, created, updated) VALUES (7, 19, 170, 2, 'made', '2019-01-26 01:18:48.697', '2019-01-26 01:18:48.697');
 
 
 --
@@ -955,6 +959,9 @@ INSERT INTO public.bid (id, item_id, price_bid, user_bid_id, status_bid, created
 --
 
 INSERT INTO public.category (id, name, created, updated) VALUES (1, 'coin', '2019-01-06 20:50:18.396', '2019-01-06 20:50:18.396');
+INSERT INTO public.category (id, name, created, updated) VALUES (2, 'paper money', '2019-01-28 14:57:14.01', '2019-01-28 14:57:14.01');
+INSERT INTO public.category (id, name, created, updated) VALUES (3, 'fake coin', '2019-01-28 14:57:23.263', '2019-01-28 14:57:23.263');
+INSERT INTO public.category (id, name, created, updated) VALUES (4, 'jubilee coin', '2019-01-28 15:00:06.088', '2019-01-28 15:00:06.088');
 
 
 --
@@ -964,6 +971,18 @@ INSERT INTO public.category (id, name, created, updated) VALUES (1, 'coin', '201
 --
 
 INSERT INTO public.composition (id, name, created, updated) VALUES (1, 'metal', '2019-01-06 20:50:26.568', '2019-01-06 20:50:46.876');
+INSERT INTO public.composition (id, name, created, updated) VALUES (2, 'steel', '2019-01-28 15:00:21.176', '2019-01-28 15:00:21.176');
+INSERT INTO public.composition (id, name, created, updated) VALUES (3, 'bronze', '2019-01-28 15:00:33.559', '2019-01-28 15:00:33.559');
+INSERT INTO public.composition (id, name, created, updated) VALUES (4, 'paper', '2019-01-28 15:00:51.615', '2019-01-28 15:00:51.615');
+INSERT INTO public.composition (id, name, created, updated) VALUES (5, 'silver', '2019-01-28 15:01:08.615', '2019-01-28 15:01:08.615');
+INSERT INTO public.composition (id, name, created, updated) VALUES (6, 'gold', '2019-01-28 15:01:15.974', '2019-01-28 15:01:15.974');
+INSERT INTO public.composition (id, name, created, updated) VALUES (7, 'brass', '2019-01-28 15:01:31.736', '2019-01-28 15:01:31.736');
+INSERT INTO public.composition (id, name, created, updated) VALUES (8, 'wood', '2019-01-28 15:01:37.471', '2019-01-28 15:01:37.471');
+INSERT INTO public.composition (id, name, created, updated) VALUES (9, 'copper', '2019-01-28 15:01:57.079', '2019-01-28 15:01:57.079');
+INSERT INTO public.composition (id, name, created, updated) VALUES (10, 'aluminum', '2019-01-28 15:02:39.807', '2019-01-28 15:02:39.807');
+INSERT INTO public.composition (id, name, created, updated) VALUES (11, 'iron', '2019-01-28 15:03:10.479', '2019-01-28 15:03:10.479');
+INSERT INTO public.composition (id, name, created, updated) VALUES (12, 'cast iron', '2019-01-28 15:03:20.102', '2019-01-28 15:03:20.102');
+INSERT INTO public.composition (id, name, created, updated) VALUES (13, 'cotton paper', '2019-01-28 15:03:48.958', '2019-01-28 15:03:48.958');
 
 
 --
@@ -973,6 +992,11 @@ INSERT INTO public.composition (id, name, created, updated) VALUES (1, 'metal', 
 --
 
 INSERT INTO public.condition (id, name, created, updated) VALUES (1, 'good', '2019-01-06 20:50:39.015', '2019-01-06 20:50:39.015');
+INSERT INTO public.condition (id, name, created, updated) VALUES (2, 'excellent', '2019-01-28 15:04:06.456', '2019-01-28 15:04:06.456');
+INSERT INTO public.condition (id, name, created, updated) VALUES (3, 'new', '2019-01-28 15:04:20.35', '2019-01-28 15:04:20.35');
+INSERT INTO public.condition (id, name, created, updated) VALUES (4, 'there are cracks', '2019-01-28 15:04:41.054', '2019-01-28 15:04:41.054');
+INSERT INTO public.condition (id, name, created, updated) VALUES (5, 'old', '2019-01-28 15:05:46.542', '2019-01-28 15:05:46.542');
+INSERT INTO public.condition (id, name, created, updated) VALUES (6, 'with scratches', '2019-01-28 15:06:33.646', '2019-01-28 15:06:33.646');
 
 
 --
@@ -982,6 +1006,14 @@ INSERT INTO public.condition (id, name, created, updated) VALUES (1, 'good', '20
 --
 
 INSERT INTO public.country_origin (id, name, created, updated) VALUES (1, 'Belarus', '2019-01-06 20:50:55.405', '2019-01-06 20:50:55.405');
+INSERT INTO public.country_origin (id, name, created, updated) VALUES (2, 'France', '2019-01-28 15:06:44.177', '2019-01-28 15:06:44.177');
+INSERT INTO public.country_origin (id, name, created, updated) VALUES (3, 'Spain', '2019-01-28 15:06:48.79', '2019-01-28 15:06:48.79');
+INSERT INTO public.country_origin (id, name, created, updated) VALUES (4, 'Japan', '2019-01-28 15:06:55.287', '2019-01-28 15:06:55.287');
+INSERT INTO public.country_origin (id, name, created, updated) VALUES (5, 'China', '2019-01-28 15:06:59.574', '2019-01-28 15:06:59.574');
+INSERT INTO public.country_origin (id, name, created, updated) VALUES (6, 'Australia', '2019-01-28 15:07:20.911', '2019-01-28 15:07:37.616');
+INSERT INTO public.country_origin (id, name, created, updated) VALUES (7, 'Austria', '2019-01-28 15:07:51.198', '2019-01-28 15:07:51.198');
+INSERT INTO public.country_origin (id, name, created, updated) VALUES (8, 'Saudi Arabia', '2019-01-28 15:08:09.39', '2019-01-28 15:08:09.39');
+INSERT INTO public.country_origin (id, name, created, updated) VALUES (9, 'Germany', '2019-01-28 15:08:29.902', '2019-01-28 15:08:29.902');
 
 
 --
@@ -1020,6 +1052,23 @@ Country/Region of Manufacture: Germany
 Composition:	Silver	
 Circulated/Uncirculated:	Circulated', 3, 'OPEN', '2019-01-20 13:21:35.675', '2019-01-20 23:52:20.096');
 INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (20, 'FRENCH COIN, 1849 A, PARIS MINT, 5 FRANCS SILVER, HERCULE, GRADE XF', '2019-02-19 14:01:12.868', 3, 5.00, 1, 1849, 1, 1, 1, 'c118e4b5-5d2f-4934-9e1e-74aa9c749749', 'FRENCH COIN, 1849 A, PARIS MINT, 5 FRANCS SILVER, HERCULE, GRADE XF, 900/1000 SILVER, DIAMETER 37 MM, WEIGHT 25 GR, COMBINE SHIPMENT : 2 $ EACH ADDITIONAL ITEM', 11, 'OPEN', '2019-01-20 14:01:12.868', '2019-01-20 23:53:03.679');
+INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (24, 'Saudi Arabia 50 Riyals 1961 , 2nd Issue Pick 9b F/VF - Rare', '2019-01-29 13:39:22.718', 1, 1199.00, 1, 1961, 1, 1, 1, '657d3092-ad99-43b7-a8d4-6fa87c7f9311', 'Saudi Arabia 50 Riyals 1961 , 2nd Issue Pick 9b F/VF - Rare
+', 12, 'OPEN', '2019-01-28 13:39:22.718', '2019-01-28 13:39:22.718');
+INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (25, 'Middle East BANKNOTE 1000 RIALS M.REZA SHAH 1951, Pick 53 XF/AUNC', '2019-02-12 14:08:56.602', 2, 850, 1, 1951, 1, 1, 1, 'c3110dfa-b6a3-4862-9262-2ef9eb1c0140', 'Middle East BANKNOTE 1000 RIALS M.REZA SHAH 1951, Pick 53 XF/AUNC', 12, 'OPEN', '2019-01-28 14:08:56.602', '2019-01-28 14:08:56.602');
+INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (26, 'LOT # 3 Middle East BANKNOTE PAIR 10 RIALS M.REZA SHAH 1954, Pick 64 UNC', '2019-02-27 14:15:49.814', 3, 9.50, 1, 1954, 1, 1, 1, '1262637b-4ded-46de-a868-17cdcfc6c1e5', 'LOT # 3 Middle East BANKNOTE PAIR 10 RIALS M.REZA SHAH 1954, Pick 64 UNC ', 14, 'OPEN', '2019-01-28 14:15:49.814', '2019-01-28 14:15:49.814');
+INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (27, 'LOT #1 Middle East BANKNOTE 100 RIALS M.REZA SHAH 1976, Pick 108 UNC', '2019-02-27 14:17:08.693', 3, 1, 1, 1978, 1, 1, 1, 'ea3b0811-6d33-4383-8c5a-a00d9d1ca04d', 'LOT #1 Middle East BANKNOTE 100 RIALS M.REZA SHAH 1976, Pick 108 UNC', 14, 'OPEN', '2019-01-28 14:17:08.693', '2019-01-28 14:17:08.693');
+INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (28, 'Austria 1,5 euro silver 1 ounce leopold v 2019', '2019-02-12 14:19:23.776', 2, 21.50, 1, 2019, 1, 1, 1, 'ef127c4c-310e-4fef-b356-05374ae1b4bc', 'Cette nouvelle série de trois pièces pour le 825ème anniversaire de la Monnaie autrichienne illustre à merveille la fondation de la Monnaie de Vienne et permet de recréer cette histoire fascinante', 15, 'OPEN', '2019-01-28 14:19:23.776', '2019-01-28 14:19:23.776');
+INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (29, 'Austria 1,5 euro silver 1 ounce philarmoniker 2019', '2019-01-29 14:20:39.864', 1, 19.50, 1, 2019, 1, 1, 1, '1d526d4e-4b40-487b-8a7c-66faa74dc0a3', 'Magnifiquement conçue, cette pièce Philarmonique emblématique de la monnaie autrichienne est disponible en .999 argent fin, ce qui en fait une pièce de placement idéale. Avers: Le Musikverein, le grand orgue de la salle d’or de la salle de concert de Vienne, avec son année, son poids et sa valeur faciale. Revers: Un ensemble d''instruments comprenant le violoncelle, le violon, la harpe, le cor de Vienne et le basson.', 15, 'OPEN', '2019-01-28 14:20:39.864', '2019-01-28 14:20:39.864');
+INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (30, 'Australia 15 dollars gold 1/10 ounce year of the pig 2019', '2019-02-27 14:24:39.63', 3, 149.95, 1, 2019, 1, 1, 1, '15b567cd-8aed-47ec-86d1-cdc2186ebe5f', 'Une série de pièces marquantes de premier plan, le Perth Lunars propose de magnifiques designs, des monnaies avec un limité et un attrait universel tout en un. Métal : Or 999/1000.', 15, 'OPEN', '2019-01-28 14:24:39.63', '2019-01-28 14:24:39.63');
+INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (31, 'Japanese old coins KANEI 2.9㎝ Sendai Ishinomaki rarities Beauty item Limited', '2019-02-12 14:29:12.752', 2, 530, 1, 1560, 1, 1, 1, 'ae85e8bb-7ba9-45da-955b-515eb0d935b4', 'Japanese old coins KANEI 2.9㎝ Sendai Ishinomaki rarities Beauty item Limited.
+Paypal Only Please make a payment with in 2 weeks after you purchased.', 13, 'OPEN', '2019-01-28 14:29:12.752', '2019-01-28 14:29:12.752');
+INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (32, 'Japanese old coins Tiger coin Edo diameter: 33.04 mm Limited very rare', '2019-02-12 14:30:43.738', 2, 140, 1, 1700, 1, 1, 1, '57c55e01-922b-4e18-acb6-d6468a1aabcd', 'Japanese old coins Tiger coin Edo diameter: 33.04 mm Limited very rare
+Weight: 10.5 g. Only Paypal will be purchased.
+Please pay within 2 weeks after purchase.', 13, 'OPEN', '2019-01-28 14:30:43.738', '2019-01-28 14:30:43.738');
+INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (33, 'Post WW ll-War Coins From Old Japan One 5 Sen 1946 Close out Sale Lot C6', '2019-01-29 14:32:44.801', 1, 1.5, 1, 1946, 1, 1, 1, 'cd5e36c7-32c4-45c6-a27d-4cb86988979a', 'One Japanese  5 Sen ---- Low Starting Price---Made for only one Year because of Rare War Metals~~~Thanks', 10, 'OPEN', '2019-01-28 14:32:44.801', '2019-01-28 14:32:44.801');
+INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (34, 'France 10 Francs, 1944, P-99e, A-UNC', '2019-02-12 14:34:33.559', 2, 27, 1, 1944, 1, 1, 1, '4d808f3d-108e-469d-a4a7-84a85fca2e3f', 'France 10 Francs, 1944, P-99e, A-UNC.
+we ship the item via USPS to USA (10-15 days for shipping), Via china-post to world(10-30 days for shipping).', 10, 'OPEN', '2019-01-28 14:34:33.559', '2019-01-28 14:34:33.559');
+INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (35, 'France 5 Francs 1967 (F) Condition Banknote P-146b', '2019-02-12 14:56:19.72', 2, 11.99, 1, 1967, 1, 1, 1, '58aab678-a0b9-45d9-adbf-e6574f82da45', 'Banknote has a small cut on the upper border area and pin-holes (see scans)#A719', 9, 'OPEN', '2019-01-28 14:56:19.72', '2019-01-28 14:56:19.72');
 INSERT INTO public.item (id, name, auction_end, duration_id, starting_price, category_id, year, country_origin_id, condition_id, composition_id, image, text, seller_id, status_auction, created, updated) VALUES (17, 'JAPAN SILVER RYUKYU KINGDOM 1/2 SHU RYUKYU ISLANDS AD1863', '2019-02-04 13:19:05.751', 2, 186.36, 1, 1863, 1, 1, 1, '6f3dc202-22ef-49b6-8e08-3d9847c2a458', ' We are pleased to offer all of our customers a 14 day no quibble returns policy.
 * Please notify us by email before returning,then we send the correct address.
 * If for any reason you are not happy with your purchase, please return to us in the original condition and packaging for a refund or exchange.', 2, 'OPEN', '2019-01-20 13:19:05.751', '2019-01-20 23:51:09.297');
@@ -1040,6 +1089,23 @@ INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (3,
 INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (2, 18);
 INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (1, 20);
 INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (2, 20);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (3, 24);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (3, 25);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (2, 26);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (1, 26);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (2, 27);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (1, 28);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (2, 29);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (1, 29);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (1, 30);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (3, 30);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (2, 31);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (2, 32);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (1, 33);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (1, 34);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (2, 34);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (1, 35);
+INSERT INTO public.item_2_payment_method (payment_method_id, item_id) VALUES (2, 35);
 
 
 --
@@ -1055,6 +1121,22 @@ INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (
 INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (1, 19);
 INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (2, 18);
 INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (1, 20);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (2, 24);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (1, 25);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (2, 26);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (1, 26);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (1, 27);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (2, 27);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (3, 28);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (3, 29);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (1, 30);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (2, 31);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (2, 32);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (1, 33);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (3, 33);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (1, 34);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (2, 34);
+INSERT INTO public.item_2_shipping_method (shipping_method_id, item_id) VALUES (1, 35);
 
 
 --
@@ -1089,16 +1171,16 @@ INSERT INTO public.payment_method (id, name, created, updated) VALUES (4, 'Cash'
 -- Data for Name: personal_data; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (9, '', '', '', '', '2019-01-14 14:53:04.164', '2019-01-14 14:53:04.164', NULL, NULL);
-INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (10, '', '', '', '', '2019-01-14 14:53:20.499', '2019-01-14 14:53:20.499', NULL, NULL);
-INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (12, '', '', '', '', '2019-01-14 14:55:23.179', '2019-01-14 14:55:23.179', NULL, NULL);
-INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (13, '', '', '', '', '2019-01-14 14:57:49.945', '2019-01-14 14:57:49.945', NULL, NULL);
-INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (14, '', '', '', '', '2019-01-14 17:35:44.393', '2019-01-14 17:35:44.393', NULL, NULL);
 INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (2, '', 'Ruslan', '', '', '2019-01-06 20:51:36.528', '2019-01-06 20:51:36.528', 'Grodno', 'Belarus');
 INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (1, '', 'Mark', 'Matusevich', '', '2019-01-06 20:48:43.805', '2019-01-06 20:48:43.805', 'Warsaw', 'Poland');
 INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (3, '', 'George', '', '', '2019-01-06 20:51:51.486', '2019-01-15 23:12:32.582', 'Atlanta', 'USA');
-INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (11, '', 'Frederick', '', '', '2019-01-14 14:53:39.169', '2019-01-20 14:00:16.849', 'Toronto', 'Canada');
-INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (15, '', '', '', '', '2019-01-25 14:29:08.805', '2019-01-25 14:29:08.805', '', '');
+INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (10, '', 'Genry', '', '', '2019-01-14 14:53:20.499', '2019-01-14 14:53:20.499', 'London', 'UK');
+INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (12, '', 'Karlos', '', '', '2019-01-14 14:55:23.179', '2019-01-14 14:55:23.179', 'Madrid', 'Spain');
+INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (9, '', 'Inna', '', '', '2019-01-14 14:53:04.164', '2019-01-14 14:53:04.164', 'Moskow', 'Russia');
+INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (15, '', 'Yorgen', '', '', '2019-01-25 14:29:08.805', '2019-01-25 14:29:08.805', 'Dublin', 'Ireland');
+INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (13, '', 'Alexander', '', '', '2019-01-14 14:57:49.945', '2019-01-14 14:57:49.945', 'Berlin', 'Germany');
+INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (14, '', 'Susanna', '', '', '2019-01-14 17:35:44.393', '2019-01-14 17:35:44.393', 'Paris', 'France');
+INSERT INTO public.personal_data (id, username, first_name, last_name, adress, created, updated, city, country) VALUES (11, '', 'Frederick', '', '', '2019-01-14 14:53:39.169', '2019-01-28 15:17:21.125', 'Toronto', 'Canada');
 
 
 --
@@ -1118,6 +1200,8 @@ INSERT INTO public.shipping_method (id, name, delivery_time, cost, created, upda
 -- Data for Name: step_block; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.step_block (id, name, step_1, step_2, step_3, step_4, step_5, created, updated) VALUES (1, '(1, 2, 5, 10, 15)', 1, 2, 5, 10, 15, '2019-01-28 15:09:27.06', '2019-01-28 15:09:27.06');
+INSERT INTO public.step_block (id, name, step_1, step_2, step_3, step_4, step_5, created, updated) VALUES (2, '(2, 5, 10, 15, 20)', 2, 5, 10, 15, 20, '2019-01-28 15:10:37.976', '2019-01-28 15:10:37.976');
 
 
 --
@@ -1126,6 +1210,10 @@ INSERT INTO public.shipping_method (id, name, delivery_time, cost, created, upda
 -- Data for Name: user_2_item; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.user_2_item (item_id, user_id) VALUES (20, 1);
+INSERT INTO public.user_2_item (item_id, user_id) VALUES (17, 1);
+INSERT INTO public.user_2_item (item_id, user_id) VALUES (18, 2);
+INSERT INTO public.user_2_item (item_id, user_id) VALUES (29, 13);
 
 
 --
@@ -1142,8 +1230,8 @@ INSERT INTO public.user_account (id, role, email, password, created, updated) VA
 INSERT INTO public.user_account (id, role, email, password, created, updated) VALUES (13, 'user', 'garry@gmail.com', 'wMIY/qLAB4B97AB/mD+LtCRxekwmp+xbSza99qYu3RM=', '2019-01-14 14:57:49.945', '2019-01-14 14:57:49.945');
 INSERT INTO public.user_account (id, role, email, password, created, updated) VALUES (14, 'user', 'tampler@gmail.com', 'wMIY/qLAB4B97AB/mD+LtCRxekwmp+xbSza99qYu3RM=', '2019-01-14 17:35:44.393', '2019-01-14 17:35:44.393');
 INSERT INTO public.user_account (id, role, email, password, created, updated) VALUES (3, 'user', 'hata@mail.ru', 'wMIY/qLAB4B97AB/mD+LtCRxekwmp+xbSza99qYu3RM=', '2019-01-06 20:51:51.486', '2019-01-15 23:12:32.582');
-INSERT INTO public.user_account (id, role, email, password, created, updated) VALUES (11, 'moderator', 'rem@mail.ru', 'wMIY/qLAB4B97AB/mD+LtCRxekwmp+xbSza99qYu3RM=', '2019-01-14 14:53:39.169', '2019-01-20 14:00:16.849');
 INSERT INTO public.user_account (id, role, email, password, created, updated) VALUES (15, 'user', 'gad@list.ru', 'wMIY/qLAB4B97AB/mD+LtCRxekwmp+xbSza99qYu3RM=', '2019-01-25 14:29:08.805', '2019-01-25 14:29:08.805');
+INSERT INTO public.user_account (id, role, email, password, created, updated) VALUES (11, 'moderator', 'rem@mail.ru', '/PR4OwFnMuvMCPp9JggVpddjI/8TCMQZ0LDik1WpXGs=', '2019-01-14 14:53:39.169', '2019-01-28 15:17:21.125');
 
 
 --
@@ -1152,7 +1240,7 @@ INSERT INTO public.user_account (id, role, email, password, created, updated) VA
 -- Name: admin_communication_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.admin_communication_id_seq', 1, false);
+SELECT pg_catalog.setval('public.admin_communication_id_seq', 1, true);
 
 
 --
@@ -1161,7 +1249,7 @@ SELECT pg_catalog.setval('public.admin_communication_id_seq', 1, false);
 -- Name: auction_duration_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.auction_duration_id_seq', 3, true);
+SELECT pg_catalog.setval('public.auction_duration_id_seq', 5, true);
 
 
 --
@@ -1179,7 +1267,7 @@ SELECT pg_catalog.setval('public.auction_rule_id_seq', 2, true);
 -- Name: bid_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.bid_id_seq', 6, true);
+SELECT pg_catalog.setval('public.bid_id_seq', 7, true);
 
 
 --
@@ -1188,7 +1276,7 @@ SELECT pg_catalog.setval('public.bid_id_seq', 6, true);
 -- Name: category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.category_id_seq', 1, true);
+SELECT pg_catalog.setval('public.category_id_seq', 4, true);
 
 
 --
@@ -1197,7 +1285,7 @@ SELECT pg_catalog.setval('public.category_id_seq', 1, true);
 -- Name: composition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.composition_id_seq', 1, true);
+SELECT pg_catalog.setval('public.composition_id_seq', 13, true);
 
 
 --
@@ -1206,7 +1294,7 @@ SELECT pg_catalog.setval('public.composition_id_seq', 1, true);
 -- Name: condition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.condition_id_seq', 1, true);
+SELECT pg_catalog.setval('public.condition_id_seq', 6, true);
 
 
 --
@@ -1215,7 +1303,7 @@ SELECT pg_catalog.setval('public.condition_id_seq', 1, true);
 -- Name: country_origin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.country_origin_id_seq', 1, true);
+SELECT pg_catalog.setval('public.country_origin_id_seq', 9, true);
 
 
 --
@@ -1242,7 +1330,7 @@ SELECT pg_catalog.setval('public.feedback_id_seq', 18, true);
 -- Name: item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.item_id_seq', 23, true);
+SELECT pg_catalog.setval('public.item_id_seq', 35, true);
 
 
 --
@@ -1278,7 +1366,7 @@ SELECT pg_catalog.setval('public.shipping_method_id_seq', 3, true);
 -- Name: step_block_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.step_block_id_seq', 1, false);
+SELECT pg_catalog.setval('public.step_block_id_seq', 2, true);
 
 
 --
@@ -1749,7 +1837,7 @@ ALTER TABLE ONLY public.user_2_item
     ADD CONSTRAINT user_2_item_fk1 FOREIGN KEY (user_id) REFERENCES public.user_account(id);
 
 
--- Completed on 2019-01-25 17:10:27
+-- Completed on 2019-01-28 16:25:42
 
 --
 -- PostgreSQL database dump complete

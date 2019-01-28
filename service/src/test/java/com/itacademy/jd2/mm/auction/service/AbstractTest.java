@@ -161,7 +161,7 @@ public abstract class AbstractTest {
 
 	protected IAuctionDuration saveNewAuctionDuration() {
 		final IAuctionDuration entity = auctionDurationService.createEntity();
-		entity.setDay(RANDOM.nextInt(100));
+		entity.setDay(RANDOM.nextInt(1000));
 		auctionDurationService.save(entity);
 		return entity;
 	}
@@ -206,7 +206,7 @@ public abstract class AbstractTest {
 	protected IBid saveNewBid() {
 		final IBid entity = bidService.createEntity();
 		entity.setPriceBid(new BigDecimal(getRANDOM().nextInt(10000)));
-		entity.setStatusBid(StatusBid.outbidded);
+		entity.setStatusBid(StatusBid.made);
 		entity.setItem(saveNewItem());
 		entity.setUserBid(saveNewUserAccount());
 		bidService.save(entity, null, null);
@@ -255,6 +255,8 @@ public abstract class AbstractTest {
 		entity.setPassword("password-" + getRandomPrefix());
 		personalDataEntity.setFirstName("first_name-" + getRandomPrefix());
 		personalDataEntity.setLastName("last_name-" + getRandomPrefix());
+		personalDataEntity.setCountry("country-" + getRandomPrefix());
+		personalDataEntity.setCity("city-" + getRandomPrefix());
 		personalDataEntity.setAdress("adress-" + getRandomPrefix());
 		personalDataEntity.setUsername("username-" + getRandomPrefix());
 		personalDataEntity.setId(entity.getId());

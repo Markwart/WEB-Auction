@@ -3,8 +3,9 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 
 <div class="grid-container">
 	<div class="column-2">
@@ -12,37 +13,57 @@
 			<ul class="information-list">
 				<li class="item-name">${formView.name}</li>
 				<li class="divider" tabindex="-1"></li>
-				<li>Condition: &#8194<q>${formView.conditionName}</q></li>
-				<li>Starting price: <b><i>&#8194 US
-							$${formView.startingPrice}</i></b></li>
-				<li>Auction ends: &#8194<q><fmt:formatDate
+				<li><mytaglib:i18n key="section.condition" />: &#8194<q>${formView.conditionName}</q></li>
+				<li><mytaglib:i18n key="table.column.starting-price" />: <b><i>&#8194
+							US $<fmt:formatNumber value="${formView.startingPrice}"
+								minFractionDigits="2" maxFractionDigits="2" />
+					</i></b></li>
+				<li><mytaglib:i18n key="auction-ends" />: &#8194<q><fmt:formatDate
 							pattern="dd MMMM yyyy HH:mm:ss" value="${formView.auctionEnd}" /></q></li>
-				<li>Time left: &#8194<b><i><span id="demo"></span></i></b></li>
+				<li><mytaglib:i18n key="time-left" />: &#8194<b><i><span
+							id="demo"></span></i></b></li>
 			</ul>
 		</div>
 		<div class="ct-two">
 			<table class="striped additional-inf">
-
 				<tbody>
 					<tr>
-						<td>Current price: &#8194<b><i>US
-									$${formView.startingPrice}</i></b></td>
+						<td><mytaglib:i18n key="current-price" />: &#8194<b><i>US
+									$<c:if test="${latestBid[0].priceBid != null}">
+										<fmt:formatNumber value="${latestBid[0].priceBid}"
+											minFractionDigits="2" maxFractionDigits="2" />
+									</c:if> <c:if test="${latestBid[0].priceBid == null}">
+										<fmt:formatNumber value="${formView.startingPrice}"
+											minFractionDigits="2" maxFractionDigits="2" />
+									</c:if>
+							</i></b></td>
 						<td><span class="count-bids">(${formView.totalCountBids}
-								bids)</span></td>
+								<mytaglib:i18n key="count-bids" />)
+						</span></td>
 					</tr>
+					<sec:authorize access="!isAnonymous()">
+						<c:if test="${formView.sellerId != loggedUser.id}">
+							<tr>
+								<form:form method="POST"
+									action="${pagesBid}/${formView.id}/placeBid"
+									modelAttribute="formBid">
+									<td><form:input path="priceBid" type="text"
+											class="bidClass" autocomplete="off" value="" /> <form:errors
+											path="priceBid" cssClass="red-text" /></td>
+									<td><button
+											class="waves-effect waves-light btn bid-botton" type="submit">
+											<mytaglib:i18n key="place-bid" />
+										</button></td>
+								</form:form>
+							</tr>
+						</c:if>
+					</sec:authorize>
 					<tr>
-						<form:form method="POST"
-							action="${pagesBid}/${formView.id}/placeBid"
-							modelAttribute="formBid">
-							<td><form:input path="priceBid" type="text" class="bidClass"
-									autocomplete="off" value="" /> <form:errors path="priceBid"
-									cssClass="red-text" /></td>
-							<td><button class="waves-effect waves-light btn bid-botton"
-									type="submit">Place bid</button></td>
-						</form:form>
-					</tr>
-					<tr>
-						<td>Leader: &#8194<i>Unknown</i></td>
+						<td><mytaglib:i18n key="leader" />: &#8194<i><c:if
+									test="${latestBid[0].userBid != null}">${latestBid[0].userBid.email}</c:if>
+								<c:if test="${latestBid[0].userBid == null}">
+									<mytaglib:i18n key="none" />
+								</c:if></i></td>
 						<td></td>
 					</tr>
 				</tbody>
@@ -52,29 +73,29 @@
 			<table class="striped additional-inf">
 				<tbody>
 					<tr>
-						<td>Category:</td>
+						<td><mytaglib:i18n key="section.category" />:</td>
 						<td><q>${formView.categoryName}</q></td>
 					</tr>
 					<tr>
-						<td>Country of Manufacture:</td>
+						<td><mytaglib:i18n key="country-manufacture" />:</td>
 						<td><q>${formView.countryOriginName}</q></td>
 					</tr>
 					<tr>
-						<td>Composition:</td>
+						<td><mytaglib:i18n key="section.composition" />:</td>
 						<td><q>${formView.compositionName}</q></td>
 					</tr>
 					<tr>
-						<td>Shipping:</td>
+						<td><mytaglib:i18n key="section.shipping" />:</td>
 						<td><q><c:forEach var="shippingMethodsNames"
 									items="${formView.shippingMethodsNames}">
-								-&nbsp;${shippingMethodsNames}, 	
+								-&nbsp;${shippingMethodsNames} 	
 							</c:forEach></q></td>
 					</tr>
 					<tr>
-						<td>Payment:</td>
+						<td><mytaglib:i18n key="section.payment" />:</td>
 						<td><q><c:forEach var="paymentMethodsNames"
 									items="${formView.paymentMethodsNames}">
-								-&nbsp;${paymentMethodsNames},
+								-&nbsp;${paymentMethodsNames}
 							</c:forEach></q></td>
 					</tr>
 				</tbody>
@@ -89,32 +110,56 @@
 	</div>
 	<div class="row-2">
 		<div class="com-row-2">
-			<b>Description: &#8194</b><q>${formView.text}</q>
+			<b><mytaglib:i18n key="table.column.text" />: &#8194</b><q>${formView.text}</q>
 		</div>
 	</div>
 	<div class="column-3">
 		<div class="half-area">
 			<ul class="information-list">
-				<li><b>Seller information</b></li>
+				<li><b><mytaglib:i18n key="seller-info" /></b></li>
 				<li class="divider" tabindex="-1"></li>
 				<li class="seller-name">${formView.sellerEmail}</li>
-				<li><${userAccountData.personalData.city},
+				<li class="seller-name">${userAccountData.personalData.city},
 					${userAccountData.personalData.country}</li>
 				<li class="divider" tabindex="-1"></li>
 				<li><a
-					href="${pagesFeedback}/userFeedback/${formView.sellerId}">Feedback</a></li>
-				<li><a href="${pagesItem}/userItems/${formView.sellerId}">See
-						other items</a></li>
+					href="${pagesFeedback}/userFeedback/${formView.sellerId}"><i
+						class="material-icons">feedback</i> <mytaglib:i18n
+							key="section.feedback" /></a></li>
+				<li><a href="${pagesItem}/userItems/${formView.sellerId}"><i
+						class="material-icons">storage</i> <mytaglib:i18n
+							key="see-other-items" /></a></li>
 
-				<c:if test="${formView.sellerId != showSomeElements}">
+
+				<c:if test="${formView.sellerId != loggedUser.id}">
 					<sec:authorize access="!isAnonymous()">
-						<li><a href="${pagesMessage}/${formView.id}/add">Contact
-								seller</a></li>
+						<li><a href="${pagesMessage}/${formView.id}/add"><i
+								class="material-icons">mail_outline</i> <mytaglib:i18n
+									key="contact-seller" /></a></li>
 						<li class="divider" tabindex="-1"></li>
-						<li class="add-watch-list"><a
-							href="${pagesUserAccount}/${formView.id}/watchList"><i
-								class="material-icons">library_books</i>Add to Watch List</a></li>
+
+						<%-- <spring:eval var="containsValue"
+							expression="loggedUser.itemsIds.contains(formView.id)" />
+						<c:if test="${containsValue}"> --%>
+
+						<c:if test="${not fn:contains(loggedUser.itemsIds, formView.id)}">
+							<li><a
+								href="${pagesUserAccount}/${formView.id}/addWatchList"><i
+									class="material-icons">library_books</i> <mytaglib:i18n
+										key="add/watch-list" /></a></li>
+						</c:if>
+						<c:if test="${fn:contains(loggedUser.itemsIds, formView.id)}">
+							<li><a
+								href="${pagesUserAccount}/${formView.id}/removeWatchList"><i
+									class="material-icons">library_books</i> <mytaglib:i18n
+										key="remove/watch-list" /></a></li>
+						</c:if>
+
 					</sec:authorize>
+				</c:if>
+				<c:if test="#!<%-- ${formView.sellerId == loggedUser.id} --%>">
+					<li><a href="${pagesItem}/${formView.id}/edit"><i
+							class="material-icons">edit</i> <mytaglib:i18n key="edit" /></a></li>
 				</c:if>
 			</ul>
 

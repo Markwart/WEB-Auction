@@ -25,7 +25,7 @@
 			</div>
 		</div>
 
-		 <%-- <div class="row">
+		<%-- <div class="row">
 			<div class="input-field col s12">
 				<form:input path="image" disabled="${readonly}" />
 				<form:errors path="image" cssClass="red-text" />
@@ -33,14 +33,16 @@
 			</div>
 		</div>  --%>
 
-		 <div>
-			<table>
-				<tr>
-					<td>Image to upload:</td>
-					<td><input type="file" name="file" /></td>
-				</tr>
-			</table>
-		</div> 
+		<sec:authorize access="hasAnyRole('admin','user')">
+			<div>
+				<table>
+					<tr>
+						<td>Image to upload:</td>
+						<td><input type="file" name="file" /></td>
+					</tr>
+				</table>
+			</div>
+		</sec:authorize>
 
 		<div class="row">
 			<div class="input-field col s12">
@@ -56,18 +58,18 @@
 				<label for="text">text</label>
 			</div>
 		</div>
-		<div class="row">
-			<div class="input-field col s12">
-				<form:select path="durationId" disabled="${readonly}">
-					<form:options items="${auctionDurationChoices}" />
-				</form:select>
-				<form:errors path="durationId" cssClass="red-text" />
-				<label for="durationId">duration</label>
-			</div>
-		</div>
 
-		<sec:authorize access="hasRole('admin')">
+		<sec:authorize access="hasAnyRole('admin','user')">
 			<div class="row">
+				<div class="input-field col s12">
+					<form:select path="durationId" disabled="${readonly}">
+						<form:options items="${auctionDurationChoices}" />
+					</form:select>
+					<form:errors path="durationId" cssClass="red-text" />
+					<label for="durationId">duration</label>
+				</div>
+			</div>
+			<%-- <div class="row">
 				<div class="input-field col s12">
 					<form:input path="auctionEnd" disabled="${readonly}" />
 					<form:errors path="auctionEnd" cssClass="red-text" />
@@ -83,17 +85,16 @@
 					<label for="statusAuction">status</label>
 				</div>
 			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<form:select path="sellerId" disabled="${readonly}">
+						<form:options items="${sellerChoices}" />
+					</form:select>
+					<form:errors path="sellerId" cssClass="red-text" />
+					<label for="sellerId">user account</label>
+				</div>
+			</div> --%>
 		</sec:authorize>
-
-		<%--  <div class="row">
-			<div class="input-field col s12">
-				<form:select path="sellerId" disabled="${readonly}">
-					<form:options items="${sellerChoices}" />
-				</form:select>
-				<form:errors path="sellerId" cssClass="red-text" />
-				<label for="sellerId">user account</label>
-			</div>
-		</div>  --%>
 
 		<div class="row">
 			<div class="input-field col s12">
@@ -131,28 +132,34 @@
 				<label for="countryOriginId">country origin</label>
 			</div>
 		</div>
-		
+
 		<div class="row">
-            <div class="input-field  col s12">
-                <form:select path="shippingMethodsIds" disabled="${readonly}" multiple="true">
-                    <option value="" disabled "${empty formModel.shippingMethodsIds? "selected":""}">choose shipping methods</option>
-                    <form:options items="${shippingMethodChoices}" />
-                </form:select>
-                <form:errors path="shippingMethodsIds" cssClass="red-text" />
-                <label for="shippingMethodsIds" class="multiselect-label">shipping methods</label>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="input-field  col s12">
-                <form:select path="paymentMethodsIds" disabled="${readonly}" multiple="true">
-                    <option value="" disabled ${empty formModel.paymentMethodsIds? "selected":""}>choose payment methods</option>
-                    <form:options items="${paymentMethodChoices}" />
-                </form:select>
-                <form:errors path="paymentMethodsIds" cssClass="red-text" />
-                <label for="paymentMethodsIds" class="multiselect-label">payment methods</label>
-            </div>
-        </div>
+			<div class="input-field  col s12">
+				<form:select path="shippingMethodsIds" disabled="${readonly}"
+					multiple="true">
+					<option value=""disabled "${emptyformModel.shippingMethodsIds? "selected":""}">choose
+						shipping methods</option>
+					<form:options items="${shippingMethodChoices}" />
+				</form:select>
+				<form:errors path="shippingMethodsIds" cssClass="red-text" />
+				<label for="shippingMethodsIds" class="multiselect-label">shipping
+					methods</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-field  col s12">
+				<form:select path="paymentMethodsIds" disabled="${readonly}"
+					multiple="true">
+					<option value=""disabled ${emptyformModel.paymentMethodsIds? "selected":""}>choose
+						payment methods</option>
+					<form:options items="${paymentMethodChoices}" />
+				</form:select>
+				<form:errors path="paymentMethodsIds" cssClass="red-text" />
+				<label for="paymentMethodsIds" class="multiselect-label">payment
+					methods</label>
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col s6"></div>
