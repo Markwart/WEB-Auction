@@ -178,7 +178,7 @@ public class BidDaoImpl extends AbstractDaoImpl<IBid, Integer> implements IBidDa
 
 		cq.select(from);
 		cq.where(cb.equal(from.get(Bid_.item), itemId));
-		cq.orderBy(cb.asc(from.get(Bid_.created)));
+		cq.orderBy(cb.asc(from.get(Bid_.priceBid)).reverse());
 
 		final TypedQuery<IBid> q = em.createQuery(cq).setMaxResults(1);
 		final List<IBid> resultList = q.getResultList();
