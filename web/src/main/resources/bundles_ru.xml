@@ -100,5 +100,6 @@
 	<entry key="place-bid">Сделать ставку</entry>
 	<entry key="count-bids">ставок</entry>
 	<entry key="none">нет</entry>
+	<entry key="leave-feedback">Оставить отзыв</entry>
 
 </properties>

@@ -161,6 +161,11 @@
 					<li><a href="#!<%-- ${pagesItem}/${formView.id}/edit --%>"><i
 							class="material-icons">edit</i> <mytaglib:i18n key="edit" /></a></li>
 				</c:if>
+				<c:if test="${formView.sellerId != loggedUser.id}">
+					<li><a href="${pagesFeedback}/add"><i
+							class="material-icons">feedback</i> <mytaglib:i18n
+								key="leave-feedback" /></a></li>
+				</c:if>
 			</ul>
 
 		</div>

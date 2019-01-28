@@ -100,5 +100,6 @@
 	<entry key="place-bid">Place Bid</entry>
 	<entry key="count-bids">bids</entry>
 	<entry key="none">none</entry>
+	<entry key="leave-feedback">Leave Feedback</entry>
 
 </properties>
